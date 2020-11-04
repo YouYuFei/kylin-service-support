@@ -1,4 +1,10 @@
-kylin-service-and-support (1.0.0kord) v101; urgency=medium
+kylin-service-support (1.0.1kord) v101; urgency=medium
+
+  * 增加单例，修改changelog，修改软件名
+
+ -- hanzehui <hanzehui@kylinos.cn>  Wed, 04 Nov 2020 21:27:40 +0800
+
+kylin-service-support (1.0.0kord) v101; urgency=medium
 
   * First demo
 

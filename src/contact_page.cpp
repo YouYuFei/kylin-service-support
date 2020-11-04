@@ -1,5 +1,22 @@
+/************************************************
+* 文件描述: 联系我们页的类
+* 待完善:
+* 待优化:
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*************************************************/
 #include "contact_page.h"
-
+/************************************************
+* 函数名称：ContactPage
+* 功能描述：构造函数
+* 输入参数：窗口各参数类
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 ContactPage::ContactPage(WidgetParameterClass basicParam)
 {
     this->setWindowTitle("contact_page");
@@ -7,7 +24,16 @@ ContactPage::ContactPage(WidgetParameterClass basicParam)
 
     contactPageUIInit();
 }
-
+/************************************************
+* 函数名称：contactPageUIInit
+* 功能描述：界面ui初始化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void ContactPage::contactPageUIInit()
 {
     body = new QWidget(this);

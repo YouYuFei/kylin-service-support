@@ -1,9 +1,26 @@
+/************************************************
+* 文件描述: 留言页面类
+* 待完善:   界面未完成
+* 待优化:
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*************************************************/
 #include "message_page.h"
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
 #include <QHttpPart>
-
+/************************************************
+* 函数名称：MessagePage
+* 功能描述：构造函数
+* 输入参数：界面参数类
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 MessagePage::MessagePage(WidgetParameterClass basicParam)
 {
     this->setWindowTitle("message_page");
@@ -17,7 +34,16 @@ MessagePage::MessagePage(WidgetParameterClass basicParam)
     submitting_timer->setInterval(100);
     connect(submitting_timer,SIGNAL(timeout()),this,SLOT(submit_change_load_image()));
 }
-
+/************************************************
+* 函数名称：messagePageUIInit
+* 功能描述：界面布局
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::messagePageUIInit()
 {
     pageStyleOfAskRowLocationInit();
@@ -30,12 +56,30 @@ void MessagePage::messagePageUIInit()
     pageAllRowLocationInit();
     getSysteminfo();
 }
-
+/************************************************
+* 函数名称：httpclientInit
+* 功能描述：网络链接管理
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::httpclientInit()
 {
     accessManager = new QNetworkAccessManager(this);
 }
-
+/************************************************
+* 函数名称：pageStyleOfAskRowLocationInit
+* 功能描述：咨询类别行初始化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::pageStyleOfAskRowLocationInit()
 {
     //咨询类别一栏的底板widget宽度
@@ -80,7 +124,16 @@ void MessagePage::pageStyleOfAskRowLocationInit()
     m_pWidgetStyleOfAsk->setLayout(HStyleOfAskLayout);
 
 }
-
+/************************************************
+* 函数名称：pageContentOfAskRowLocationInit
+* 功能描述：咨询内容行初始化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::pageContentOfAskRowLocationInit()
 {
     //第二行widget高度调整
@@ -101,7 +154,7 @@ void MessagePage::pageContentOfAskRowLocationInit()
     m_pTitleOfAsk->setAlignment(Qt::AlignVCenter);
 
     m_pContentTextEdit = new QTextEdit(m_pTitleOfAsk);
-    //m_pTitleTextEdit->setObjectName(QString::fromUtf8("TitleTextEdit"));
+
     m_pContentTextEdit->setFixedSize(634,180);
     m_pContentTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
     m_pContentTextEdit->setFrameShape(QFrame::NoFrame);
@@ -111,12 +164,10 @@ void MessagePage::pageContentOfAskRowLocationInit()
 
     m_pDetailTextLetterLimit = new QLabel(m_pContentTextEdit);
     m_pDetailTextLetterLimit->setFixedSize(60,30);
-    //m_pMailFormatErr->setStyleSheet("background-color:rgba(0,255,0,1);color:rgba(255, 0, 0, 0.85);font-size:12px;");
     m_pDetailTextLetterLimit->setText("0/200");
     m_pDetailTextLetterLimit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 14px;color: rgba(192, 196, 204, 1);"));
     m_pDetailTextLetterLimit->setAlignment(Qt::AlignLeft);
     m_pDetailTextLetterLimit->setAlignment(Qt::AlignVCenter);
-    //m_pTitleLetterLimit->hide();
 
     QVBoxLayout *VStyleOfAskLayout = new QVBoxLayout;
     VStyleOfAskLayout->setMargin(0);
@@ -137,15 +188,22 @@ void MessagePage::pageContentOfAskRowLocationInit()
     HStyleOfAskLayout->addSpacing(30);
     HStyleOfAskLayout->addLayout(VStyleOfAskLayout);
     HStyleOfAskLayout->addSpacing(18);
-    HStyleOfAskLayout->addLayout(VQuestionLayout);;
-    //HStyleOfAskLayout->addWidget(m_pTitleLetterLimit);
+    HStyleOfAskLayout->addLayout(VQuestionLayout);
     HStyleOfAskLayout->addStretch(99);
-    //HStyleOfAskLayout->addStretch(99);
 
     m_pWidgetTitleOfAsk->setLayout(HStyleOfAskLayout);
 
 }
-
+/************************************************
+* 函数名称：pageUploadFilesRowLocationInit
+* 功能描述：上传文件行初始化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::pageUploadFilesRowLocationInit()
 {
     //上传附件widget宽度
@@ -170,11 +228,9 @@ void MessagePage::pageUploadFilesRowLocationInit()
     m_pUserDataPushButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255,255,255,0)");
     connect(m_pUserDataPushButton,SIGNAL(clicked()),this,SLOT(userDataPushButton_clicked()));
 
-    //m_pTitleTextEdit->setObjectName(QString::fromUtf8("TitleTextEdit"));
     m_pUserDataLimit = new QLabel(m_pWidgetUserData);
     m_pUserDataLimit->setFixedSize(560,30);
     m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
-    //m_pTitleTextEdit->setFrameShape(QFrame::NoFrame);
     m_pUserDataLimit->setText(tr("总附件大小不超过10mb，附件数量不超过5个"));
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
@@ -187,11 +243,19 @@ void MessagePage::pageUploadFilesRowLocationInit()
     HStyleOfAskLayout->addSpacing(10);
     HStyleOfAskLayout->addWidget(m_pUserDataPushButton,1);
     HStyleOfAskLayout->addStretch(99);
-    //HStyleOfAskLayout->addStretch(99);
 
     m_pWidgetUserData->setLayout(HStyleOfAskLayout);
 }
-
+/************************************************
+* 函数名称：pageMailRowLocationInit
+* 功能描述：留邮箱行初始化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::pageMailRowLocationInit()
 {
     //填写邮件的widget宽度
@@ -210,16 +274,13 @@ void MessagePage::pageMailRowLocationInit()
     m_pMail->setAlignment(Qt::AlignVCenter);
 
     m_pMailTextEdit = new QTextEdit(m_pWidgetMail);
-    //m_pTitleTextEdit->setObjectName(QString::fromUtf8("TitleTextEdit"));
     m_pMailTextEdit->setFixedSize(634,40);
     m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
-    //m_pTitleTextEdit->setFrameShape(QFrame::NoFrame);
     m_pMailTextEdit->setPlaceholderText(tr("KylinOS服务与支持团队将通过您预留的邮件反馈处理进度和结果"));
     connect(m_pMailTextEdit,SIGNAL(textChanged()),this,SLOT(mailTextEdit_textChanged()));
 
     m_pMailFormatErr = new QLabel;
     m_pMailFormatErr->setFixedSize(84,17);
-    //m_pMailFormatErr->setStyleSheet("background-color:rgba(0,255,0,1);color:rgba(255, 0, 0, 0.85);font-size:12px;");
     m_pMailFormatErr->setText("邮箱格式不正确");
     m_pMailFormatErr->setStyleSheet(QString::fromUtf8("font: 12px;color: rgba(237, 100, 100, 1);"));
     m_pMailFormatErr->setAlignment(Qt::AlignLeft);
@@ -233,10 +294,7 @@ void MessagePage::pageMailRowLocationInit()
     HStyleOfAskLayout_I->addWidget(m_pMail);
     HStyleOfAskLayout_I->addSpacing(46);
     HStyleOfAskLayout_I->addWidget(m_pMailTextEdit);
-    //HStyleOfAskLayout->addSpacing(5);
-    //HStyleOfAskLayout->addWidget(m_pMailFormatErr);
     HStyleOfAskLayout_I->addStretch(99);
-    //HStyleOfAskLayout->addStretch(99);
 
     QHBoxLayout *HStyleOfAskLayout_II = new QHBoxLayout;
     HStyleOfAskLayout_II->setSpacing(0);
@@ -258,7 +316,16 @@ void MessagePage::pageMailRowLocationInit()
 
     m_pWidgetMail->setLayout(VStyleOfAskLayout);
 }
-
+/************************************************
+* 函数名称：pageSysLogRowLocationInit
+* 功能描述：系统日志行初始化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::pageSysLogRowLocationInit()
 {
     //上传日志行widget
@@ -306,7 +373,16 @@ void MessagePage::pageSysLogRowLocationInit()
     m_pWidgetLog->setLayout(HStyleOfAskLayout);
 }
 
-
+/************************************************
+* 函数名称：pageUserDataRowLocationInit
+* 功能描述：用户数据行初始化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::pageUserDataRowLocationInit()
 {
     m_pWidgetUserDataWidget = new QWidget;
@@ -339,7 +415,16 @@ void MessagePage::pageUserDataRowLocationInit()
     m_pWidgetUserDataWidget->setLayout(HStyleOfAskLayout);
 
 }
-
+/************************************************
+* 函数名称：pageAllRowLocationInit
+* 功能描述：所有行垂直布局
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::pageAllRowLocationInit()
 {
     commitButton = new QPushButton(this);
@@ -398,7 +483,6 @@ void MessagePage::pageAllRowLocationInit()
     showInfoButton = new systemInfoButton(this);
     showInfoButton->setText(tr("系统信息"));
     showInfoButton->move(172,525);
-    //showInfoButton->setGeometry(QRect(138, 534, 68, 24));
     showInfoButton->setFeedBack(this);
     showInfoButton->setFlat(true);
     showInfoButton->setEnabled(false);
@@ -442,28 +526,10 @@ void MessagePage::pageAllRowLocationInit()
     VmainLayout->addWidget(m_pWidgetUserDataWidget, 1);
     VmainLayout->addSpacing(6);
     VmainLayout->addWidget(m_pWidgetLog, 1);
-//    VmainLayout->addSpacing(5);
-//    VmainLayout->addWidget(m_pWidgetDetailOfAsk);
     VmainLayout->addSpacing(12);
     VmainLayout->addWidget(m_pWidgetMail);
-//    VmainLayout->addWidget(m_pWidgetUserData, 1);
-//    VmainLayout->addSpacing(2);
 
-
-//    VmainLayout->addSpacing(5);
-//    VmainLayout->addWidget(m_pWidgetUserDataWidget);
-//    VmainLayout->addSpacing(5);
-//    //VmainLayout->addStretch(99);
-//    VmainLayout->addLayout(PushButtonLayout);
-//    VmainLayout->addSpacing(5);
     VmainLayout->addStretch(99);
-
-//    QHBoxLayout *HmainLayout = new QHBoxLayout;
-//    HmainLayout->setMargin(0);
-//    HmainLayout->addSpacing(0);
-//    HmainLayout->addLayout(VmainLayout);
-//    HmainLayout->addSpacing(0);
-//    HmainLayout->setMargin(0);
 
     m_pDetailTextLetterLimit->move(577,144);
     m_pUserPermission->move(105,531);
@@ -471,13 +537,20 @@ void MessagePage::pageAllRowLocationInit()
     commitButton->move(687,531);
     this->setLayout(VmainLayout);
 }
-
+/************************************************
+* 函数名称：styleOfAskCombobox_currentIndexChanged
+* 功能描述：问题类别combobox值变化槽函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::styleOfAskCombobox_currentIndexChanged()
 {
     if(0 == m_pStyleOfAskCombobox->currentIndex())
     {
-//        textStyleOfAsk.clear();
-//        qDebug() << textStyleOfAsk;
         if("系统问题" == textStyleOfAsk)
         {
             qDebug() << "textStyleOfAsk为空！";
@@ -501,7 +574,16 @@ void MessagePage::styleOfAskCombobox_currentIndexChanged()
         commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     }
 }
-
+/************************************************
+* 函数名称：detailTextEdit_textChanged
+* 功能描述：问题详细描述文本框文字变化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::detailTextEdit_textChanged()
 {
     if( "" == m_pContentTextEdit->toPlainText())
@@ -542,7 +624,16 @@ void MessagePage::detailTextEdit_textChanged()
         commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     }
 }
-
+/************************************************
+* 函数名称：mailTextEdit_textChanged
+* 功能描述：邮件地址文本框文字变化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::mailTextEdit_textChanged()
 {
     if("" == m_pMailTextEdit->toPlainText())
@@ -582,7 +673,16 @@ void MessagePage::mailTextEdit_textChanged()
     }
 
 }
-
+/************************************************
+* 函数名称：trueSyslogCheckBox_stateChanged
+* 功能描述：是否允许上传系统日志checkbox改变，是否互锁
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::trueSyslogCheckBox_stateChanged(int state)
 {
     if (m_pTrueSyslogCheckBox->isChecked() == true)
@@ -609,20 +709,27 @@ void MessagePage::trueSyslogCheckBox_stateChanged(int state)
         qDebug() << "所有文件大小不到10M！";
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
     }
-    //再次判断大小是否超过10M,如果不超过并且详细描述和邮箱都填写  激活提交
-    /*
-     Once again, determine if the size exceeds 10M, if not,
-     and fill in the detailed description and
-     email address to activate the submission.
-    */
-//    if ((all_file_size_than_10M() == false) && describeflag == 1 && emailflag == 1 ) {
-//        label_13->hide();
-//        file_listwidget->move(140,407);
-//        pushButton_2->setEnabled(true);
-//        pushButton_2->setPalette(palette_blue);
-//    }
+    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    {
+        commitButton->setEnabled(true);
+        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+    }
+    else
+    {
+        commitButton->setEnabled(false);
+        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+    }
 }
-
+/************************************************
+* 函数名称：falseSyslogCheckBox_stateChanged
+* 功能描述：是否允许上传系统日志checkbox改变，是否互锁
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::falseSyslogCheckBox_stateChanged(int state)
 {
     if (m_pFalseSyslogCheckBox->isChecked() == true)
@@ -649,20 +756,27 @@ void MessagePage::falseSyslogCheckBox_stateChanged(int state)
         qDebug() << "所有文件大小不到10M！";
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
     }
-    //再次判断大小是否超过10M,如果不超过并且详细描述和邮箱都填写  激活提交
-    /*
-     Once again, determine if the size exceeds 10M, if not,
-     and fill in the detailed description and
-     email address to activate the submission.
-    */
-//    if ((all_file_size_than_10M() == false) && describeflag == 1 && emailflag == 1 ) {
-//        label_13->hide();
-//        file_listwidget->move(140,407);
-//        pushButton_2->setEnabled(true);
-//        pushButton_2->setPalette(palette_blue);
-//    }
+    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    {
+        commitButton->setEnabled(true);
+        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+    }
+    else
+    {
+        commitButton->setEnabled(false);
+        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+    }
 }
-
+/************************************************
+* 函数名称：userPermission_stateChanged
+* 功能描述：用户是否允许上传本地信息
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::userPermission_stateChanged(int state)
 {
     if (state == Qt::Checked)
@@ -675,7 +789,16 @@ void MessagePage::userPermission_stateChanged(int state)
     }
     return;
 }
-
+/************************************************
+* 函数名称：allFileSizeLargerThan10M
+* 功能描述：添加的文件总大小是否大于10M
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 bool MessagePage::allFileSizeLargerThan10M()
 {
     int allFilesize = 0;
@@ -700,7 +823,16 @@ bool MessagePage::allFileSizeLargerThan10M()
         return false;
     }
 }
-
+/************************************************
+* 函数名称：userDataPushButton_clicked
+* 功能描述：添加的文件的按钮点击槽函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::userDataPushButton_clicked()
 {
     userUploadFileName=QFileDialog::getOpenFileName(this,tr("select file"),"/","(*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx)",0);
@@ -751,7 +883,16 @@ void MessagePage::userDataPushButton_clicked()
         }
     }
 }
-
+/************************************************
+* 函数名称：addFileInfoModel
+* 功能描述：添加的文件的列表函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::addFileInfoModel()
 {
     qDebug() << "添加文件到上传列表！";
@@ -792,8 +933,16 @@ void MessagePage::addFileInfoModel()
     update_add_file_window();
 }
 
-//根据数据列表 刷新窗口
-//Refresh window based on data list
+/************************************************
+* 函数名称：update_add_file_window
+* 功能描述：添加删除文件后更新列表函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::update_add_file_window()
 {
     if(allFileSizeLargerThan10M())
@@ -871,8 +1020,16 @@ void MessagePage::update_add_file_window()
     }
 }
 
-//删除文件按钮槽函数
-//Delete file button slot function
+/************************************************
+* 函数名称：del_file_button_clicked
+* 功能描述：删除文件按钮点击槽函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::del_file_button_clicked()
 {
     //返回发送信号的对象的指针
@@ -940,7 +1097,16 @@ void MessagePage::del_file_button_clicked()
         commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     }
 }
-
+/************************************************
+* 函数名称：update_linedit_add_or_del_file
+* 功能描述：
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::update_linedit_add_or_del_file()
 {
     int rowNum = uploadFileNameList.size();
@@ -949,8 +1115,16 @@ void MessagePage::update_linedit_add_or_del_file()
     }
 }
 
-//点击提交之后按钮更换加载图片
-//Click the Submit button to replace the loaded image
+/************************************************
+* 函数名称：submit_change_load_image
+* 功能描述：点击提交后，提交按钮动画
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::submit_change_load_image()
 {
     int pixmap_i = 0;
@@ -960,7 +1134,16 @@ void MessagePage::submit_change_load_image()
     if (pixmap_i == 8 )
         pixmap_i = 0;
 }
-
+/************************************************
+* 函数名称：on_resetButton_clicked
+* 功能描述：重置按钮点击槽函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::on_resetButton_clicked()
 {
     m_pStyleOfAskCombobox->setCurrentIndex(0);
@@ -970,9 +1153,33 @@ void MessagePage::on_resetButton_clicked()
     m_pTrueSyslogCheckBox->setChecked(true);
     m_pFalseSyslogCheckBox->setChecked(false);
     m_pUserPermission->setChecked(false);
-//    FileListWidget->clear();
+    //清空list
+    for (int i = 0; i < uploadFileNameList.size(); i++) {
+        delete file_listwidget_item[i];
+        delete file_widget[i];
+    }
+    foreach (auto item, uploadFileNameList) {
+        uploadFileNameList.removeOne(item);
+    }
+    foreach (auto item,uploadFileSizeList) {
+        uploadFileSizeList.removeOne(item);
+    }
+    foreach(auto item,uploadFilePathList) {
+        uploadFilePathList.removeOne(item);
+    }
+    //隐藏页面上的附件列表
+    FileListWidget->hide();
 }
-
+/************************************************
+* 函数名称：on_commitButton_clicked
+* 功能描述：提交按钮点击槽函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::on_commitButton_clicked()
 {
     //判断邮箱格式
@@ -1065,23 +1272,31 @@ void MessagePage::on_commitButton_clicked()
 
     if (timer_http.isActive()) {
 //        if (window_is_close_flag == false) {
-//            timer_http.stop();
+            timer_http.stop();
             finishedSlot(pReply);
 //        }
     } else {
 //        if (window_is_close_flag ==false) {
-//            timeout_http_flag=true;
-//            finishedSlot(pReply);
-//            timer_http.stop();
-//            disconnect(pReply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
-//            pReply->abort();
-//            pReply->deleteLater();
-//            qDebug() << "Timeout";
+            timeout_http_flag=true;
+            finishedSlot(pReply);
+            timer_http.stop();
+            disconnect(pReply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+            pReply->abort();
+            pReply->deleteLater();
+            qDebug() << "Timeout";
 //        }
     }
 }
-//http请求完成
-//HTTP request completed
+/************************************************
+* 函数名称：finishedSlot
+* 功能描述：http请求完成后动作
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::finishedSlot(QNetworkReply *reply)
 {
     //定时器结束
@@ -1146,8 +1361,16 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
     reply->deleteLater();
 }
 
-//截取今天的syslog
-//Intercept today's syslog
+/************************************************
+* 函数名称：get_today_syslog
+* 功能描述：截取今天的syslog
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 QByteArray MessagePage::get_today_syslog()
 {
     QDate date(QDate::currentDate());
@@ -1168,7 +1391,16 @@ QByteArray MessagePage::get_today_syslog()
 
     return output;
 }
-
+/************************************************
+* 函数名称：add_file_to_Part
+* 功能描述：上传文件到服务器
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::add_file_to_Part(QString filepath,QString file_type,QString file_name)
 {
     qDebug()<<"this is add_file_to_Part";
@@ -1187,7 +1419,16 @@ void MessagePage::add_file_to_Part(QString filepath,QString file_type,QString fi
     delete upload_file;
     return ;
 }
-
+/************************************************
+* 函数名称：send_file_httpserver
+* 功能描述：上传文件到服务器
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::send_file_httpserver(QString uid)
 {
     file_send_failed_flag = false;
@@ -1240,8 +1481,16 @@ void MessagePage::send_file_httpserver(QString uid)
     accessManager_file->post(request_file,multiPart);
 }
 
-//发送文件请求结束槽函数
-//Send file request end slot function
+/************************************************
+* 函数名称：发送文件请求结束槽函数
+* 功能描述：sendfile_finished
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::sendfile_finished(QNetworkReply* reply)
 {
     file_send_failed_flag = true;
@@ -1262,7 +1511,16 @@ void MessagePage::sendfile_finished(QNetworkReply* reply)
         this->close();
 }
 
-
+/************************************************
+* 函数名称：systeminfo_show
+* 功能描述：显示本机系统信息
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::systeminfo_show(QPointF pt)
 {
     //verticalWidget->setGeometry(pt.x(),pt.y(),220,80);
@@ -1272,14 +1530,31 @@ void MessagePage::systeminfo_show(QPointF pt)
     verticalWidget->show();
 }
 
-//系统信息隐藏
-//System information hiding
+/************************************************
+* 函数名称：systeminfo_hide
+* 功能描述：隐藏本机系统信息
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::systeminfo_hide()
 {
     verticalWidget->hide();
 }
 
-//为弹出标签获取系统信息
+/************************************************
+* 函数名称：getSysteminfo
+* 功能描述：获取本机系统信息
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::getSysteminfo()
 {
     string encoding_info = "系统语言: ";
@@ -1364,8 +1639,16 @@ void MessagePage::getSysteminfo()
     }
 }
 
-//提交过程中所有控件不可以操作
-//All controls are not operable during the commit process.
+/************************************************
+* 函数名称：set_all_disable_in_submit
+* 功能描述：提交过程中禁止操作
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::set_all_disable_in_submit()
 {
     //    comboBox->setEnabled(false);
@@ -1382,8 +1665,16 @@ void MessagePage::set_all_disable_in_submit()
         file_widget[filenum]->deletebtn0->setEnabled(false);
 }
 
-//提交完成后所有控件还原
-//Restore all controls after commit
+/************************************************
+* 函数名称：set_all_enable_after_submitt
+* 功能描述：提交完成后功能还原
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::set_all_enable_after_submit()
 {
     //    comboBox->setEnabled(true);
@@ -1401,15 +1692,32 @@ void MessagePage::set_all_enable_after_submit()
         file_widget[filenum]->deletebtn0->setEnabled(true);
     }
 }
-
+/************************************************
+* 函数名称：set_request_header
+* 功能描述：设置http报头
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::set_request_header()
 {
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 }
 
 
-//发送失败后 重新发送
-//Resend after failing to send
+/************************************************
+* 函数名称：resend_info_when_sendfail
+* 功能描述：该函数暂时注释
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void MessagePage::resend_info_when_sendfail()
 {
 //    this->on_pushButton_2_clicked();

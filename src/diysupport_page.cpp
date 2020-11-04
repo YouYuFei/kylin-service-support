@@ -1,6 +1,23 @@
+/************************************************
+* 文件描述: 自助服务页面
+* 待完善:
+* 待优化:
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*************************************************/
 #include "diysupport_page.h"
 #include <QDebug>
-
+/************************************************
+* 函数名称：DIYSupportPage
+* 功能描述：构造函数
+* 输入参数：窗口各参数类
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 DIYSupportPage::DIYSupportPage(WidgetParameterClass basicParam)
 {
     this->setWindowTitle("diysupport_page");
@@ -9,7 +26,16 @@ DIYSupportPage::DIYSupportPage(WidgetParameterClass basicParam)
     // 响应用户手册
     mDaemonIpcDbus = new DaemonIpcDbus();
 }
-
+/************************************************
+* 函数名称：pageLocationInit
+* 功能描述：窗口页面布局
+* 输入参数：
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void DIYSupportPage::pageLocationInit()
 {
     m_pKylinPic = new QLabel;
@@ -181,13 +207,31 @@ void DIYSupportPage::pageLocationInit()
     VmainLayout->addStretch(99);
     this->setLayout(VmainLayout);
 }
-
+/************************************************
+* 函数名称：on_officialWeb_clicked
+* 功能描述：点击跳转到ubuntukylin主页
+* 输入参数：
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void DIYSupportPage::on_officialWeb_clicked()
 {
     qDebug() << "=============================================";
     QDesktopServices::openUrl(QUrl("https://www.ubuntukylin.com/qa/"));
 }
-
+/************************************************
+* 函数名称：on_kylinManual_clicked
+* 功能描述：点击打开用户手册
+* 输入参数：
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void DIYSupportPage::on_kylinManual_clicked()
 {
     qDebug() << "+++++++++++++++++++++++++++++++++++++++++++++";

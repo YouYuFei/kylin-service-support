@@ -1,8 +1,15 @@
+/************************************************
+* 文件描述: 基础窗口框架
+* 待完善:
+* 待优化:
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*************************************************/
 #ifndef BASESTYLE_H
 #define BASESTYLE_H
 
 #include "widget_parameter_class.h"
-#include "my_tab_widget.h"
 #include "main_page.h"
 #include "message_page.h"
 #include "tabmenu_button.h"
@@ -46,11 +53,11 @@ public:
 
 private slots:
 
-    void m_MainPageButtonSlots();
-    void m_MessagePageButtonSlots();
-    void m_OnlinePageButtonSlots();
-    void m_ContactPageButtonSlots();
-    void m_DIYPageButtonSlots();
+    void m_MainPageButtonSlots();           //点击“软件介绍”对应槽函数
+    void m_MessagePageButtonSlots();        //点击“留言咨询”对应槽函数
+    void m_OnlinePageButtonSlots();         //点击“在线咨询”对应槽函数
+    void m_ContactPageButtonSlots();        //点击“联系我们”对应槽函数
+    void m_DIYPageButtonSlots();            //点击“自助支持”对应槽函数
 
 private:
     //virtual void paintEvent(QPaintEvent *ev);//重绘窗口
@@ -96,7 +103,7 @@ private:
 
     bool paintOnce=false;//只绘制一次
 
-    MyTabWidget *tabWidget;
+    //MyTabWidget *tabWidget;
 
     MainPage *mainPage = nullptr;
     MessagePage *messagePage = nullptr;

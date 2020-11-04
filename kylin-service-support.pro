@@ -28,7 +28,6 @@ SOURCES += \
     src/main_page.cpp \
     src/mainwindow.cpp \
     src/message_page.cpp \
-    src/my_tab_widget.cpp \
     src/myclick_widget.cpp \
     src/submitFail.cpp \
     src/submitSuccess.cpp \
@@ -46,7 +45,6 @@ HEADERS += \
     src/main_page.h \
     src/mainwindow.h \
     src/message_page.h \
-    src/my_tab_widget.h \
     src/myclick_widget.h \
     src/submitFail.h \
     src/submitSuccess.h \
@@ -58,14 +56,14 @@ FORMS +=
 
 TRANSLATIONS += \
 
-TARGET = kylin-service-and-support
+TARGET = kylin-service-support
 
 target.path = /usr/bin
 target.source += $$TARGET
 icon.path = /usr/share/pixmaps
-icon.files = data/kylin-service-and-support.png
+icon.files = data/kylin-service-support.png
 desktop.path = /usr/share/applications/
-desktop.files = kylin-service-and-support.desktop
+desktop.files = kylin-service-support.desktop
 
 INSTALLS += target \
             icon \

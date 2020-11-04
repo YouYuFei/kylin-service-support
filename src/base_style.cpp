@@ -1,5 +1,22 @@
+/************************************************
+* 文件描述: 基础窗口框架
+* 待完善:
+* 待优化:
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*************************************************/
 #include "base_style.h"
-
+/************************************************
+* 函数名称：BaseStyle(WidgetParameterClass basicParameter, QString dialogTitleText)
+* 功能描述：构造函数
+* 输入参数：参数的类及窗口标题
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 BaseStyle::BaseStyle(WidgetParameterClass basicParameter, QString dialogTitleText)
 {
     local_basicParameter = basicParameter;
@@ -18,7 +35,16 @@ BaseStyle::BaseStyle(WidgetParameterClass basicParameter, QString dialogTitleTex
     text->setFont(ft);
 
 }
-
+/************************************************
+* 函数名称：
+* 功能描述：重绘函数，暂注释
+* 输入参数：重绘event
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 //void BaseStyle::paintEvent(QPaintEvent *event)//重绘窗口
 //{
 //    if(paintOnce)return;
@@ -29,12 +55,30 @@ BaseStyle::BaseStyle(WidgetParameterClass basicParameter, QString dialogTitleTex
 //    text->setFont(ft);
 //    paintOnce=true;
 //}
-
+/************************************************
+* 函数名称：WidgetStyleClose
+* 功能描述：窗口关闭函数，关闭程序
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::WidgetStyleClose()
 {
     this->close();
 }
-
+/************************************************
+* 函数名称：myWidgetStyle
+* 功能描述：界面布局
+* 输入参数：参数类
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
 {
     myWidgetSizeDesign(basicParameter.winWidth ,basicParameter.winHeight);
@@ -162,25 +206,9 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     hlt_menu->setMargin(0);
     hlt_menu->setSpacing(0);
 
-    //hlt_menu->addSpacing(15);
     hlt_menu->addWidget(menuBox, 1);
-    //hlt_menu->addSpacing(10);
     hlt_menu->addWidget(showBox, 1);
-    //hlt_menu->addSpacing(10);
-    //hlt_menu->addWidget(showPage, 1);
-    //hlt_menu->addWidget(tabWidget);
     hlt_menu->addStretch(99);
-
-//    QVBoxLayout *hlt4=new QVBoxLayout;//窗体
-//    hlt4->setMargin(0);
-//    hlt4->setSpacing(0);
-//    //hlt4->addSpacing(15);
-//    hlt4->addLayout(hlt_menu);
-//    hlt4->addStretch(99);
-
-//    body->setLayout(hlt4);
-
-//    hlt3->addWidget(body);
 
     QVBoxLayout *vl=new QVBoxLayout;//总体
     vl->setMargin(0);
@@ -214,14 +242,23 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     supportIcon->move(40,236);
 
     titleIcon = new QLabel(this);
-    titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-and-support.png);border:0px;");
+    titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
     titleIcon->setFixedSize(24,24);
     titleIcon->move(26,16);
-    this->setWindowIcon(QIcon(":/data/kylin-service-and-support.png"));
+    this->setWindowIcon(QIcon(":/data/kylin-service-support.png"));
     this->setWindowTitle(tr("服务与支持"));
     this->show();
 }
-
+/************************************************
+* 函数名称：myWidgetSizeDesign
+* 功能描述：界面大小设定
+* 输入参数：参数类中的长宽
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::myWidgetSizeDesign(int width,int height)
 {
     this->setWindowFlags(Qt::FramelessWindowHint);//无边框
@@ -231,7 +268,16 @@ void BaseStyle::myWidgetSizeDesign(int width,int height)
     QRect availableGeometry = qApp->primaryScreen()->availableGeometry();
     this->move((availableGeometry.width() - this->width())/2, (availableGeometry.height() - this->height())/2);
 }
-
+/************************************************
+* 函数名称：myWidgetBasicInit
+* 功能描述：界面布局初始化
+* 输入参数：参数类中的标题高
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::myWidgetBasicInit(int titleHeight)
 {
     text = new QLabel;
@@ -299,7 +345,16 @@ void BaseStyle::myWidgetBasicInit(int titleHeight)
     showBox->setStyleSheet(showStyleSheet);
 
 }
-
+/************************************************
+* 函数名称：myWidgetTabInit
+* 功能描述：界面左侧按钮初始化
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::myWidgetTabInit()
 {
     //主页界面显示按钮
@@ -345,53 +400,91 @@ void BaseStyle::myWidgetTabInit()
     connect(m_pDIYButton, &TabMenuButton::clicked, this, &BaseStyle::m_DIYPageButtonSlots);
 
 }
-
-/* 移动到剪贴板按钮需要修改的界面 */
+/************************************************
+* 函数名称：m_MainPageButtonSlots
+* 功能描述：翻页到主界面函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::m_MainPageButtonSlots()
 {
-//    m_pBlueBackgroundButton->setVisible(false);
     setMainPageButtonBackgroundBlue();
     m_pstackWidget->setCurrentIndex(0);
-//    setSmallPluginsButtonBackgroudIsBlank();
-//    return;
 }
 
-/* 移动到小插件界面按钮需要做的界面修改 */
+/************************************************
+* 函数名称：m_MessagePageButtonSlots
+* 功能描述：翻页到留言界面函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::m_MessagePageButtonSlots()
 {
-//    m_pBlueBackgroundButton->setVisible(false);
-//    setClipboardButtonBackgroundIsBlank();
     setMessagePageButtonBackgroudIsBlue();
     m_pstackWidget->setCurrentIndex(1);
-//    return;
 }
-
+/************************************************
+* 函数名称：m_OnlinePageButtonSlots
+* 功能描述：翻页到在线咨询界面函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::m_OnlinePageButtonSlots()
 {
-//    m_pBlueBackgroundButton->setVisible(false);
-//    setClipboardButtonBackgroundIsBlank();
     setOnlinePageButtonBackgroudIsBlue();
-//    return;
 }
-
+/************************************************
+* 函数名称：m_ContactPageButtonSlots
+* 功能描述：翻页到联系我们界面函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::m_ContactPageButtonSlots()
 {
-//    m_pBlueBackgroundButton->setVisible(false);
-//    setClipboardButtonBackgroundIsBlank();
     setContactPageButtonBackgroudIsBlue();
     m_pstackWidget->setCurrentIndex(2);
-//    return;
 }
-
+/************************************************
+* 函数名称：m_DIYPageButtonSlots
+* 功能描述：翻页到自助界面函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::m_DIYPageButtonSlots()
 {
-//    m_pBlueBackgroundButton->setVisible(false);
-//    setClipboardButtonBackgroundIsBlank();
     setDIYPageButtonBackgroudIsBlue();
     m_pstackWidget->setCurrentIndex(3);
-//    return;
 }
-
+/************************************************
+* 函数名称：setMainPageButtonBackgroundBlue
+* 功能描述：翻页到主界面时其余按钮恢复非选中状态
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::setMainPageButtonBackgroundBlue()
 {
     m_pMainPageButton->setStyleSheet(qssChooseMenuBar);
@@ -404,7 +497,16 @@ void BaseStyle::setMainPageButtonBackgroundBlue()
 
     m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
 }
-
+/************************************************
+* 函数名称：setMessagePageButtonBackgroudIsBlue
+* 功能描述：翻页到留言界面时其余按钮恢复非选中状态
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::setMessagePageButtonBackgroudIsBlue()
 {
     m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
@@ -417,7 +519,16 @@ void BaseStyle::setMessagePageButtonBackgroudIsBlue()
 
     m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
 }
-
+/************************************************
+* 函数名称：setOnlinePageButtonBackgroudIsBlue
+* 功能描述：翻页到在线客服界面时其余按钮恢复非选中状态
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::setOnlinePageButtonBackgroudIsBlue()
 {
     m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
@@ -430,7 +541,16 @@ void BaseStyle::setOnlinePageButtonBackgroudIsBlue()
 
     m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
 }
-
+/************************************************
+* 函数名称：setContactPageButtonBackgroudIsBlue
+* 功能描述：翻页到联系我们界面时其余按钮恢复非选中状态
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::setContactPageButtonBackgroudIsBlue()
 {
     m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
@@ -443,7 +563,16 @@ void BaseStyle::setContactPageButtonBackgroudIsBlue()
 
     m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
 }
-
+/************************************************
+* 函数名称：setDIYPageButtonBackgroudIsBlue
+* 功能描述：翻页到自助支持界面时其余按钮恢复非选中状态
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::setDIYPageButtonBackgroudIsBlue()
 {
     m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
@@ -456,7 +585,16 @@ void BaseStyle::setDIYPageButtonBackgroudIsBlue()
 
     m_pDIYButton->setStyleSheet(qssChooseMenuBar);
 }
-
+/************************************************
+* 函数名称：mousePressEvent
+* 功能描述：鼠标点击事件重写
+* 输入参数：点击event
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
@@ -465,7 +603,16 @@ void BaseStyle::mousePressEvent(QMouseEvent *event)
     }
     QWidget::mousePressEvent(event);
 }
-
+/************************************************
+* 函数名称：mouseReleaseEvent
+* 功能描述：鼠标松开事件重写
+* 输入参数：松开event
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
@@ -473,7 +620,16 @@ void BaseStyle::mouseReleaseEvent(QMouseEvent *event)
     }
     QWidget::mouseReleaseEvent(event);
 }
-
+/************************************************
+* 函数名称：mouseMoveEvent
+* 功能描述：鼠标移动事件重写
+* 输入参数：移动event
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
 void BaseStyle::mouseMoveEvent(QMouseEvent *event)
 {
     if (this->mousePressed) {

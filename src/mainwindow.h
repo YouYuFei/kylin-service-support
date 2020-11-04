@@ -1,8 +1,21 @@
+/************************************************
+* 文件描述: 程序主进程
+* 待完善:
+* 待优化:
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*************************************************/
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
 #include <QStackedWidget>
+#include <QStandardPaths>
+#include <unistd.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <xcb/xcb.h>
 
 #include "widget_parameter_class.h"
 #include "base_style.h"
@@ -33,6 +46,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow();
     ~MainWindow();
+
+    void checkSingle();
 
 private:
     //WidgetParameterClass basicParameter;
