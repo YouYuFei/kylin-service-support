@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=kylin-service-and-support
+Name[zh_CN]= 麒麟服务与支持工具
+Icon=/usr/share/pixmaps/kylin-service-and-support.png
+Exec=/usr/bin/kylin-service-and-support %u
+Type=Application
+Categories=GNOME;Utility;

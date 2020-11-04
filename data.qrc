@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/data"/>
+    <qresource prefix="/">
+        <file>data/PingFang-SC-Semibold-2.ttf</file>
+        <file>data/PingFang-Jian-ChangGuiTi-2.ttf</file>
+        <file>data/close_d.png</file>
+        <file>data/close_h.png</file>
+        <file>data/close_p.png</file>
+        <file>data/min_d.png</file>
+        <file>data/min_h.png</file>
+        <file>data/test.png</file>
+        <file>data/icon_intro.png</file>
+        <file>data/icon_wx.png</file>
+        <file>data/icon_kefu.png</file>
+        <file>data/icon_message.png</file>
+        <file>data/icon_support.png</file>
+        <file>data/icon_support1.png</file>
+        <file>data/icon_team.png</file>
+        <file>data/icon_tele.png</file>
+        <file>data/icon_check.png</file>
+        <file>data/icon_checked.png</file>
+        <file>data/icon_contact.png</file>
+        <file>data/icon_email.png</file>
+        <file>data/mail.png</file>
+        <file>data/banner.png</file>
+        <file>data/weixin.png</file>
+        <file>data/conning-a/1.png</file>
+        <file>data/conning-a/2.png</file>
+        <file>data/conning-a/3.png</file>
+        <file>data/conning-a/4.png</file>
+        <file>data/conning-a/5.png</file>
+        <file>data/conning-a/6.png</file>
+        <file>data/conning-a/7.png</file>
+        <file>data/conning-a/8.png</file>
+        <file>data/kylin-service-and-support.png</file>
+    </qresource>
+</RCC>
