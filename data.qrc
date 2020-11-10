@@ -33,5 +33,6 @@
         <file>data/conning-a/7.png</file>
         <file>data/conning-a/8.png</file>
         <file>data/kylin-service-support.png</file>
+        <file>data/qcpic.png</file>
     </qresource>
 </RCC>

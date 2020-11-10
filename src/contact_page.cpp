@@ -44,7 +44,7 @@ void ContactPage::contactPageUIInit()
     body->setStyleSheet(bodyStyleSheet);
 
     m_pContactUs = new QLabel(this);
-    m_pContactUs->setFixedSize(56,20);
+    m_pContactUs->setFixedSize(58,20);
     m_pContactUs->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;");
     m_pContactUs->setText("联系我们");
     m_pContactUs->setAlignment(Qt::AlignLeft);
@@ -106,7 +106,7 @@ void ContactPage::contactPageUIInit()
 
     m_pQRCode_1 = new QLabel;
     m_pQRCode_1->setFixedSize(118,118);
-    m_pQRCode_1->setStyleSheet("border-image:url(:/data/weixin.png);border:0px;");
+    m_pQRCode_1->setStyleSheet("border-image:url(:/data/qcpic.png);border:0px;");
 
     m_pQRCode_2 = new QLabel;
     m_pQRCode_2->setFixedSize(154,20);
@@ -120,7 +120,7 @@ void ContactPage::contactPageUIInit()
     HContactLayout_1->setSpacing(0);
     HContactLayout_1->addSpacing(30);
     HContactLayout_1->addWidget(m_pContactUs,1);
-    HContactLayout_1->addSpacing(694);
+    //HContactLayout_1->addSpacing(694);
     HContactLayout_1->addStretch(99);
 
     QHBoxLayout *HTeamLayout_1 = new QHBoxLayout;

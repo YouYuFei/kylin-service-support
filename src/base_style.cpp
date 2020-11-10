@@ -103,11 +103,11 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     connect(widgetClose,&QPushButton::clicked,this,&BaseStyle::WidgetStyleClose);
 
     widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_d.png);border-radius:4px;}"
-                             "BaseStyle #widgetMin:hover{background-color:rgba(100,105,241,1);border-image:url(:/data/min_h.png);border-radius:4px;}"
-                             "BaseStyle #widgetMin:pressed{background-color:rgba(82,87,217,1);border-image:url(:/data/min_h.png);border-radius:4px;}");
+                             "BaseStyle #widgetMin:hover{background-color:rgba(0, 0, 0, 0.04);border-image:url(:/data/min_h.png);border-radius:4px;}"
+                             "BaseStyle #widgetMin:pressed{background-color:rgba(48, 49, 51, 0.08);border-image:url(:/data/min_h.png);border-radius:4px;}");
     widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
-                               "BaseStyle #widgetClose:hover{background-color:rgba(240,64,52,1);border-image:url(:/data/close_h.png);border-radius:4px;}"
-                               "BaseStyle #widgetClose:pressed{background-color:rgba(215,51,53,1);border-image:url(:/data/close_p.png);border-radius:4px;}");
+                               "BaseStyle #widgetClose:hover{background-color:rgba(253, 149, 149, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
+                               "BaseStyle #widgetClose:pressed{background-color:rgba(237, 100, 100, 1);border-image:url(:/data/close_p.png);border-radius:4px;}");
 
 
 

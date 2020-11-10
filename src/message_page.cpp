@@ -1415,6 +1415,7 @@ void MessagePage::add_file_to_Part(QString filepath,QString file_type,QString fi
     } else {
         upload_part.setBody(upload_file->readAll());
     }
+
     multiPart->append(upload_part);
     delete upload_file;
     return ;
@@ -1471,6 +1472,12 @@ void MessagePage::send_file_httpserver(QString uid)
 
         //var/log/syslog.log
         add_file_to_Part("/var/log/syslog","syslog","syslog");
+
+        //var/log/lightdm/lightdm.log
+        add_file_to_Part("/var/log/lightdm/lightdm.log","lightdm","lightdm.log");
+
+        //var/log/Xorg.0.log
+        add_file_to_Part("/var/log/Xorg.0.log","Xorg","Xorg.0.log");
     }
 
     //获取添加的附件，文件名

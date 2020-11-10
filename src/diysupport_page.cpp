@@ -220,7 +220,7 @@ void DIYSupportPage::pageLocationInit()
 void DIYSupportPage::on_officialWeb_clicked()
 {
     qDebug() << "=============================================";
-    QDesktopServices::openUrl(QUrl("https://www.ubuntukylin.com/qa/"));
+    QDesktopServices::openUrl(QUrl("http://www.kylinos.cn/support/problem.html"));
 }
 /************************************************
 * 函数名称：on_kylinManual_clicked
