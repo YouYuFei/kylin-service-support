@@ -66,7 +66,7 @@ public:
     QLabel *labelSystemVersion;
     QLabel *labelDesktopVersion;
     QLabel *labelLanguage;
-
+    QString currentTheme;
 signals:
 
 public slots:

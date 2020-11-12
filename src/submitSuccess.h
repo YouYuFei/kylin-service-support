@@ -33,7 +33,7 @@ private slots:
 
 
 protected:
-    void paintEvent(QPaintEvent*);
+    //void paintEvent(QPaintEvent*);
 
 
 private:

@@ -103,6 +103,8 @@ private:
     TabMenuButton *m_pContactButton;                        //在线客服界面显示按钮
     TabMenuButton *m_pDIYButton;                            //在线客服界面显示按钮
 
+    int currentPageIndex = 0;
+
     bool paintOnce=false;//只绘制一次
 
     //MyTabWidget *tabWidget;
@@ -117,7 +119,7 @@ private:
                               "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}");
     QString qssChooseMenuBar = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}");
 
-    QString qssDefaultMenuBar_d = tr("QPushButton{background:transparent;color:rgba(143, 147, 153, 1);border-radius: 16px;}"
+    QString qssDefaultMenuBar_d = tr("QPushButton{background:transparent;color:rgba(192, 196, 204, 1);border-radius: 16px;}"
                               "QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}"
                               "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
     QString qssChooseMenuBar_d = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");

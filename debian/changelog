@@ -1,3 +1,18 @@
+kylin-service-support (1.0.4kord) v101; urgency=medium
+
+  * BUG 24399 解决麒麟服务与支持工具没有适配深色主题
+  * BUG 24453 缺少汉化
+  * BUG 24483 desktop文件缺少comment
+  * BUG 24489 提交失败后，最小化窗口标题无汉化
+
+ -- hanzehui <hanzehui@kylinos.cn>  Thu, 12 Nov 2020 17:27:40 +0800
+
+kylin-service-support (1.0.3kord) v101; urgency=medium
+
+  * BUG 24399 解决麒麟服务与支持工具没有适配深色主题
+
+ -- hanzehui <hanzehui@kylinos.cn>  Thu, 12 Nov 2020 17:27:40 +0800
+
 kylin-service-support (1.0.2kord) v101; urgency=medium
 
   * BUG 24417 修改跳转网页链接 

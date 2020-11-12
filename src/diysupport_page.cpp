@@ -45,15 +45,15 @@ void DIYSupportPage::pageChangeForTheme(QString str)
         m_pMoreInfoLink->setStyleSheet("color:rgba(143, 147, 153, 1);font-size:12px;");
         m_pPageTitle->setStyleSheet("color:rgba(192, 196, 204, 1);font-size:12px;");
         QString officialWebStyleSheet="MyClickWidget{background-color:rgba(49, 50, 52, 1);border-radius:6px;}"
-                                      "MyClickWidget:hover{background-color:rgba(112, 149, 255, 1);border-radius:6px;}"
-                                      "MyClickWidget:pressed{background-color:rgba(112, 149, 255, 1);border-radius:6px;}";
+                                      "MyClickWidget:hover{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}"
+                                      "MyClickWidget:pressed{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}";
         officialWeb->setStyleSheet(officialWebStyleSheet);
         m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx_d.png);border:0px;");
         m_pKylinOfficialWeb_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
         m_pKylinOfficialWeb_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
         QString kylinManualStyleSheet="MyClickWidget{background-color:rgba(49, 50, 52, 1);border-radius:6px;}"
-                                      "MyClickWidget:hover{background-color:rgba(112, 149, 255, 1);border-radius:6px;}"
-                                      "MyClickWidget:pressed{background-color:rgba(112, 149, 255, 1);border-radius:6px;}";
+                                      "MyClickWidget:hover{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}"
+                                      "MyClickWidget:pressed{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}";
         kylinManual->setStyleSheet(kylinManualStyleSheet);
         m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail_d.png);border:0px;");
         m_pKylinManual_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");

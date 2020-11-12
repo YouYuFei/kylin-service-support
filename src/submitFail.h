@@ -31,7 +31,7 @@ private slots:
     void resend_feedbackinfo();
 
 protected:
-    void paintEvent(QPaintEvent*);
+    //void paintEvent(QPaintEvent*);
 
 private:
 

@@ -46,7 +46,8 @@ MessagePage::MessagePage(WidgetParameterClass basicParam)
 *************************************************/
 void MessagePage::pageChangeForTheme(QString str)
 {
-
+    currentTheme = str;
+    qDebug() << currentTheme;
     if("ukui-dark" == str || "ukui-black" == str)
     {
         QString widgetStyleOfAskSheet="QWidget #StyleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
@@ -743,26 +744,63 @@ void MessagePage::mailTextEdit_textChanged()
         QRegExp rx("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+");
         int pos=0;
         QRegExpValidator v(rx, 0);
-        if (2==v.validate(mailText,pos)) {
-            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
-            m_pMailFormatErr->hide();
-            mailFormatFlag = true;
-        } else {
-            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-width:1px;border-color:rgba(245, 108, 108, 1);border-style: solid;");
-            mailFormatFlag = false;
-            m_pMailFormatErr->show();
-            return ;
+        if (2==v.validate(mailText,pos))
+        {
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+                m_pMailFormatErr->hide();
+                mailFormatFlag = true;
+            }
+            else
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+                m_pMailFormatErr->hide();
+                mailFormatFlag = true;
+            }
+        }
+        else
+        {
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-width:1px;border-color:rgba(245, 108, 108, 1);border-style: solid;");
+                mailFormatFlag = false;
+                m_pMailFormatErr->show();
+                return ;
+            }
+            else
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-width:1px;border-color:rgba(245, 108, 108, 1);border-style: solid;");
+                mailFormatFlag = false;
+                m_pMailFormatErr->show();
+                return ;
+            }
+
         }
     }
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
         commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        }
+        else
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        }
     }
     else
     {
         commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        }
+        else
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        }
     }
 
 }
@@ -795,22 +833,52 @@ void MessagePage::trueSyslogCheckBox_stateChanged(int state)
     if(allFileSizeLargerThan10M())
     {
         qDebug() << "所有文件大小超过10M！";
-        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+        }
+        else
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+        }
+
     }
     else
     {
         qDebug() << "所有文件大小不到10M！";
-        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
+        }
+        else
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
+        }
     }
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
         commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        }
+        else
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        }
+
     }
     else
     {
         commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        }
+        else
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        }
     }
 }
 /************************************************
@@ -842,22 +910,52 @@ void MessagePage::falseSyslogCheckBox_stateChanged(int state)
     if(allFileSizeLargerThan10M())
     {
         qDebug() << "所有文件大小超过10M！";
-        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+        }
+        else
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+        }
+
     }
     else
     {
         qDebug() << "所有文件大小不到10M！";
-        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
+        }
+        else
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
+        }
     }
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
         commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        }
+        else
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        }
+
     }
     else
     {
         commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        }
+        else
+        {
+            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        }
     }
 }
 /************************************************
@@ -910,9 +1008,12 @@ bool MessagePage::allFileSizeLargerThan10M()
     }
 
     qDebug() << "所有文件大小" << allFilesize << "KB";
-    if (allFilesize >= 10*1024*1024) {
+    if (allFilesize >= 10*1024*1024)
+    {
         return true;
-    } else {
+    }
+    else
+    {
         return false;
     }
 }
@@ -1421,6 +1522,9 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
         success_dialog = new submit_success(this);
         success_dialog->setModal(false);
         success_dialog->show();
+        QTimer::singleShot(3000, [=](){
+            success_dialog->hide();
+        });
         //解析JSON 获取uid annex_uid
         //Parsing JSON to get uid annex_uid
         QString uid_value;
@@ -1443,12 +1547,15 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
         //判断错误类型
         //Type of error
         fail_dialog = new submit_fail(this);
-        if(!timeout_http_flag)
-            fail_dialog->show_faillinfo((int)reply->error());
-        else
-            fail_dialog->show_faillinfo(4); //timeout
+//        if(!timeout_http_flag)
+//            fail_dialog->show_faillinfo((int)reply->error());
+//        else
+//            fail_dialog->show_faillinfo(4); //timeout
         fail_dialog->setModal(false);
         fail_dialog->show();
+        QTimer::singleShot(3000, [=](){
+            fail_dialog->hide();
+        });
     }
     timeout_http_flag=false;
     reply->deleteLater();

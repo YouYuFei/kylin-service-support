@@ -54,7 +54,9 @@ HEADERS += \
 
 FORMS +=
 
-TRANSLATIONS += \
+TRANSLATIONS = translations/kylin-service-support.zh_CN.ts
+qm_files.files = translations/*.qm
+qm_files.path = /usr/share/kylin-service-support/translations/
 
 TARGET = kylin-service-support
 
@@ -67,9 +69,12 @@ desktop.files = kylin-service-support.desktop
 
 INSTALLS += target \
             icon \
-            desktop
+            desktop \
+            qm_files
 
-DISTFILES +=
+DISTFILES += \
+    translations/kylin-service-support.zh_CN.qm \
+    translations/kylin-service-support.zh_CN.ts
 
 RESOURCES += \
     data.qrc

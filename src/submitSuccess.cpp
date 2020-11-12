@@ -21,59 +21,44 @@ void submit_success::UI_init()
 {
     if (this->objectName().isEmpty())
         this->setObjectName(QString::fromUtf8("submit_success"));
-    this->resize(350, 230);
+    this->resize(236, 60);
     setWindowTitle(tr("问题提交成功"));
-    this->setAttribute(Qt::WA_TranslucentBackground);
+    //this->setAttribute(Qt::WA_TranslucentBackground);
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
 
     //----- ------------------------
 
     label = new QLabel(this);
-    label->setText(tr("问题提交成功"));
+    label->setText(tr("反馈信息已发送!"));
     label->setObjectName(QString::fromUtf8("label"));
-    label->setGeometry(QRect(111, 70, 168, 31));
-    label->setStyleSheet(QString::fromUtf8("font: 24px;\n"));
-
-    QPalette palette;
-    QColor ColorPlaceholderText(255,255,255,0);
-    QBrush brush;
-    brush.setColor(ColorPlaceholderText);
-    palette.setBrush(QPalette::Button, brush);
-    palette.setBrush(QPalette::ButtonText, brush);
-
-    succ_closeBtn = new QPushButton(this);
-    succ_closeBtn->setGeometry(QRect(310, 15, 30, 30));
-    succ_closeBtn->setIcon(QIcon::fromTheme("window-close-symbolic"));
-    succ_closeBtn->setPalette(palette);
-    succ_closeBtn->setProperty("useIconHighlightEffect", true);
-    succ_closeBtn->setProperty("iconHighlightEffectMode", 1);
-
-    connect(succ_closeBtn,SIGNAL(clicked()),this,SLOT(succ_close_window()));
-
-    pushButton = new QPushButton(this);
-    pushButton->setText(tr("继续反馈问题"));
-    pushButton->setObjectName(QString::fromUtf8("pushButton"));
-    pushButton->setGeometry(QRect(110, 165, 131, 26));
-    pushButton->setFlat(false);
-    pushButton->hide();
-
-
-
-
-    pushButton_2 = new QPushButton(this);
-    pushButton_2->setText(tr("确认"));
-    pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-    pushButton_2->setGeometry(QRect(249, 180, 80, 30));
+    label->setGeometry(QRect(75, 19, 118, 22));
+    label->setStyleSheet(QString::fromUtf8("font: 16px;\n"));
 
     label_2 = new QLabel(this);
     label_2->setObjectName(QString::fromUtf8("label_2"));
-    label_2->setGeometry(QRect(71, 71, 30, 30));
-    label_2->setPixmap(QPixmap(":/image/success.png"));
+    label_2->setGeometry(QRect(43, 18, 24, 24));
+    label_2->setStyleSheet("border-image:url(:/data/finish.png);border:0px;");
 
+    label_2->setFixedSize(24,24);
 
-//    connect(pushButton,SIGNAL(clicked()),this,SLOT(on_pushButton_clicked()));
-    connect(pushButton_2,SIGNAL(clicked()),this,SLOT(on_pushButton_clicked()));
-    qDebug()<<"submit_success::UI_init()";
+    QHBoxLayout *hlt_menu=new QHBoxLayout;//窗体内部，水平布局
+    hlt_menu->setMargin(0);
+    hlt_menu->setSpacing(0);
+    hlt_menu->addSpacing(43);
+    hlt_menu->addWidget(label_2, 1);
+    hlt_menu->addSpacing(8);
+    hlt_menu->addWidget(label, 1);
+    hlt_menu->addStretch(99);
+
+    QVBoxLayout *vlt_menu=new QVBoxLayout;//窗体内部，水平布局
+    vlt_menu->setMargin(0);
+    vlt_menu->setSpacing(0);
+    vlt_menu->addSpacing(18);
+    vlt_menu->addLayout(hlt_menu, 1);
+    vlt_menu->addStretch(99);
+
+    this->setLayout(vlt_menu);
+    this->setStyleSheet("{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
     this->show();
 }
 submit_success::~submit_success()
@@ -96,39 +81,39 @@ void submit_success::succ_close_window()
 {
     this->close();
 }
-void submit_success::paintEvent(QPaintEvent *e)
-{
-    Q_UNUSED(e);
+//void submit_success::paintEvent(QPaintEvent *e)
+//{
+//    Q_UNUSED(e);
 
-    QPainter p(this);
-    p.setRenderHint(QPainter::Antialiasing);
-    QPainterPath rectPath;
-    rectPath.addRoundedRect(this->rect().adjusted(10, 10, -10, -10), 5, 5);
+//    QPainter p(this);
+//    p.setRenderHint(QPainter::Antialiasing);
+//    QPainterPath rectPath;
+//    rectPath.addRoundedRect(this->rect().adjusted(10, 10, -10, -10), 5, 5);
 
-    QPixmap pixmap(this->rect().size());
-    pixmap.fill(Qt::transparent);
-    QPainter pixmapPainter(&pixmap);
-    pixmapPainter.setRenderHint(QPainter::Antialiasing);
-    pixmapPainter.setPen(Qt::transparent);
-    pixmapPainter.setBrush(Qt::black);
-    pixmapPainter.drawPath(rectPath);
-    pixmapPainter.end();
+//    QPixmap pixmap(this->rect().size());
+//    pixmap.fill(Qt::transparent);
+//    QPainter pixmapPainter(&pixmap);
+//    pixmapPainter.setRenderHint(QPainter::Antialiasing);
+//    pixmapPainter.setPen(Qt::transparent);
+//    pixmapPainter.setBrush(Qt::black);
+//    pixmapPainter.drawPath(rectPath);
+//    pixmapPainter.end();
 
-    QImage img = pixmap.toImage();
-    qt_blurImage(img, 10, false, false);
+//    QImage img = pixmap.toImage();
+//    qt_blurImage(img, 10, false, false);
 
-    pixmap = QPixmap::fromImage(img);
-    QPainter pixmapPainter2(&pixmap);
-    pixmapPainter2.setRenderHint(QPainter::Antialiasing);
-    pixmapPainter2.setCompositionMode(QPainter::CompositionMode_Clear);
-    pixmapPainter2.setPen(Qt::transparent);
-    pixmapPainter2.setBrush(Qt::transparent);
-    pixmapPainter2.drawPath(rectPath);
+//    pixmap = QPixmap::fromImage(img);
+//    QPainter pixmapPainter2(&pixmap);
+//    pixmapPainter2.setRenderHint(QPainter::Antialiasing);
+//    pixmapPainter2.setCompositionMode(QPainter::CompositionMode_Clear);
+//    pixmapPainter2.setPen(Qt::transparent);
+//    pixmapPainter2.setBrush(Qt::transparent);
+//    pixmapPainter2.drawPath(rectPath);
 
-    p.drawPixmap(this->rect(), pixmap, pixmap.rect());
+//    p.drawPixmap(this->rect(), pixmap, pixmap.rect());
 
-    QStyleOption *option = new QStyleOption();
-    p.save();
-    p.fillPath(rectPath, option->palette.color(QPalette::Base));
-    p.restore();
-}
+//    QStyleOption *option = new QStyleOption();
+//    p.save();
+//    p.fillPath(rectPath, option->palette.color(QPalette::Base));
+//    p.restore();
+//}

@@ -239,6 +239,7 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     titleIcon->move(26,16);
     this->setWindowIcon(QIcon(":/data/kylin-service-support.png"));
     this->setWindowTitle(tr("服务与支持"));
+
     this->show();
 }
 /************************************************
@@ -324,8 +325,8 @@ void BaseStyle::myWidgetTabInit()
     m_pMainPageButton->setText("软件介绍");
     m_pMainPageButton->setObjectName("MainPageButton");
     m_pMainPageButton->setFixedSize(132,32);
-    m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
-    m_pMainPageButton->setStyleSheet(qssChooseMenuBar);
+
+
 
     connect(m_pMainPageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MainPageButtonSlots);
 
@@ -334,23 +335,50 @@ void BaseStyle::myWidgetTabInit()
     m_pMessagePageButton->setText(tr("留言咨询"));
     m_pMessagePageButton->setObjectName("MessagePageButton");
     m_pMessagePageButton->setFixedSize(132,32);
-    m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+
+//    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+//    {
+//        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
+//    }
+//    else
+//    {
+//        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+//    }
+
     connect(m_pMessagePageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MessagePageButtonSlots);
 
     //在线客服界面显示按钮
-    m_pOnlineButton = new TabMenuButton();
-    m_pOnlineButton->setText(tr("在线客服"));
-    m_pOnlineButton->setObjectName("OnlineButton");
-    m_pOnlineButton->setFixedSize(132,32);
-    m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
-    connect(m_pOnlineButton, &TabMenuButton::clicked, this, &BaseStyle::m_OnlinePageButtonSlots);
+//    m_pOnlineButton = new TabMenuButton();
+//    m_pOnlineButton->setText(tr("在线客服"));
+//    m_pOnlineButton->setObjectName("OnlineButton");
+//    m_pOnlineButton->setFixedSize(132,32);
+
+//    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+//    {
+//        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+//    }
+//    else
+//    {
+//        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+//    }
+
+//    connect(m_pOnlineButton, &TabMenuButton::clicked, this, &BaseStyle::m_OnlinePageButtonSlots);
 
     //联系我们界面显示按钮
     m_pContactButton = new TabMenuButton();
     m_pContactButton->setText(tr("联系我们"));
     m_pContactButton->setObjectName("ContactButton");
     m_pContactButton->setFixedSize(132,32);
-    m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+
+//    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+//    {
+//        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
+//    }
+//    else
+//    {
+//        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+//    }
+
     connect(m_pContactButton, &TabMenuButton::clicked, this, &BaseStyle::m_ContactPageButtonSlots);
 
     //自助支持界面显示按钮
@@ -358,7 +386,16 @@ void BaseStyle::myWidgetTabInit()
     m_pDIYButton->setText(tr("自助支持"));
     m_pDIYButton->setObjectName("DIYButton");
     m_pDIYButton->setFixedSize(132,32);
-    m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+
+//    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+//    {
+//        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+//    }
+//    else
+//    {
+//        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+//    }
+
     connect(m_pDIYButton, &TabMenuButton::clicked, this, &BaseStyle::m_DIYPageButtonSlots);
 
 }
@@ -376,6 +413,7 @@ void BaseStyle::m_MainPageButtonSlots()
 {
     setMainPageButtonBackgroundBlue();
     m_pstackWidget->setCurrentIndex(0);
+    currentPageIndex = 0;
 }
 
 /************************************************
@@ -392,6 +430,7 @@ void BaseStyle::m_MessagePageButtonSlots()
 {
     setMessagePageButtonBackgroudIsBlue();
     m_pstackWidget->setCurrentIndex(1);
+    currentPageIndex = 1;
 }
 /************************************************
 * 函数名称：m_OnlinePageButtonSlots
@@ -421,6 +460,7 @@ void BaseStyle::m_ContactPageButtonSlots()
 {
     setContactPageButtonBackgroudIsBlue();
     m_pstackWidget->setCurrentIndex(2);
+    currentPageIndex = 2;
 }
 /************************************************
 * 函数名称：m_DIYPageButtonSlots
@@ -436,6 +476,7 @@ void BaseStyle::m_DIYPageButtonSlots()
 {
     setDIYPageButtonBackgroudIsBlue();
     m_pstackWidget->setCurrentIndex(3);
+    currentPageIndex = 3;
 }
 /************************************************
 * 函数名称：setMainPageButtonBackgroundBlue
@@ -449,15 +490,30 @@ void BaseStyle::m_DIYPageButtonSlots()
 *************************************************/
 void BaseStyle::setMainPageButtonBackgroundBlue()
 {
-    m_pMainPageButton->setStyleSheet(qssChooseMenuBar);
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pMainPageButton->setStyleSheet(qssChooseMenuBar_d);
 
-    m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+    }
+    else
+    {
+        m_pMainPageButton->setStyleSheet(qssChooseMenuBar);
+
+        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+
+        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+    }
 }
 /************************************************
 * 函数名称：setMessagePageButtonBackgroudIsBlue
@@ -471,15 +527,30 @@ void BaseStyle::setMainPageButtonBackgroundBlue()
 *************************************************/
 void BaseStyle::setMessagePageButtonBackgroudIsBlue()
 {
-    m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pMessagePageButton->setStyleSheet(qssChooseMenuBar);
+        m_pMessagePageButton->setStyleSheet(qssChooseMenuBar_d);
 
-    m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+    }
+    else
+    {
+        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pMessagePageButton->setStyleSheet(qssChooseMenuBar);
+
+        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+    }
 }
 /************************************************
 * 函数名称：setOnlinePageButtonBackgroudIsBlue
@@ -493,15 +564,30 @@ void BaseStyle::setMessagePageButtonBackgroudIsBlue()
 *************************************************/
 void BaseStyle::setOnlinePageButtonBackgroudIsBlue()
 {
-    m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pOnlineButton->setStyleSheet(qssChooseMenuBar);
+        //m_pOnlineButton->setStyleSheet(qssChooseMenuBar_d);
 
-    m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+    }
+    else
+    {
+        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+
+        //m_pOnlineButton->setStyleSheet(qssChooseMenuBar);
+
+        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+    }
 }
 /************************************************
 * 函数名称：setContactPageButtonBackgroudIsBlue
@@ -515,15 +601,30 @@ void BaseStyle::setOnlinePageButtonBackgroudIsBlue()
 *************************************************/
 void BaseStyle::setContactPageButtonBackgroudIsBlue()
 {
-    m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pContactButton->setStyleSheet(qssChooseMenuBar);
+        m_pContactButton->setStyleSheet(qssChooseMenuBar_d);
 
-    m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+    }
+    else
+    {
+        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+
+        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pContactButton->setStyleSheet(qssChooseMenuBar);
+
+        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+    }
 }
 /************************************************
 * 函数名称：setDIYPageButtonBackgroudIsBlue
@@ -537,15 +638,31 @@ void BaseStyle::setContactPageButtonBackgroudIsBlue()
 *************************************************/
 void BaseStyle::setDIYPageButtonBackgroudIsBlue()
 {
-    m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
 
-    m_pDIYButton->setStyleSheet(qssChooseMenuBar);
+        m_pDIYButton->setStyleSheet(qssChooseMenuBar_d);
+    }
+    else
+    {
+        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+
+        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+
+        m_pDIYButton->setStyleSheet(qssChooseMenuBar);
+    }
+
 }
 /************************************************
 * 函数名称：mousePressEvent
@@ -618,6 +735,21 @@ void BaseStyle::pageChangeForTheme(QString str)
     messagePage->pageChangeForTheme(currentTheme);
     contactPage->pageChangeForTheme(currentTheme);
     diySupportPage->pageChangeForTheme(currentTheme);
+    switch(currentPageIndex)
+    {
+        case 0:
+            m_MainPageButtonSlots();
+            break;
+        case 1:
+            m_MessagePageButtonSlots();
+            break;
+        case 2:
+            m_ContactPageButtonSlots();
+            break;
+        case 3:
+            m_DIYPageButtonSlots();
+            break;
+    }
     if("ukui-dark" == str || "ukui-black" == str)
     {
         widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(31, 32, 34, 1);border-image:url(:/data/min_h.png);border-radius:4px;}"
