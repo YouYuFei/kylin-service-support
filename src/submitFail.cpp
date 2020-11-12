@@ -24,8 +24,8 @@ submit_fail::submit_fail(QWidget *parent) :
 void submit_fail::UI_init()
 {
     if (this->objectName().isEmpty())
-        this->setObjectName(QString::fromUtf8("submit_fail"));
-    setWindowTitle(tr("submit fail"));
+        this->setObjectName(QString::fromUtf8("提交失败"));
+    setWindowTitle(tr("提交失败"));
 
     this->resize(350, 230);
 

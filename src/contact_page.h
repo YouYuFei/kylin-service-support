@@ -35,7 +35,7 @@ class ContactPage : public QWidget
     Q_OBJECT
 public:
     explicit ContactPage(WidgetParameterClass basicParam);
-
+    void pageChangeForTheme(QString str);
 signals:
 
 private:

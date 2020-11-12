@@ -27,6 +27,62 @@ DIYSupportPage::DIYSupportPage(WidgetParameterClass basicParam)
     mDaemonIpcDbus = new DaemonIpcDbus();
 }
 /************************************************
+* 函数名称：pageChangeForTheme
+* 功能描述：构造函数
+* 输入参数：界面参数类
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void DIYSupportPage::pageChangeForTheme(QString str)
+{
+
+    if("ukui-dark" == str || "ukui-black" == str)
+    {
+        m_pKylinPic->setStyleSheet("border-image:url(:/data/banner.png);border:0px;");
+        m_pMoreInfoLink->setStyleSheet("color:rgba(143, 147, 153, 1);font-size:12px;");
+        m_pPageTitle->setStyleSheet("color:rgba(192, 196, 204, 1);font-size:12px;");
+        QString officialWebStyleSheet="MyClickWidget{background-color:rgba(49, 50, 52, 1);border-radius:6px;}"
+                                      "MyClickWidget:hover{background-color:rgba(112, 149, 255, 1);border-radius:6px;}"
+                                      "MyClickWidget:pressed{background-color:rgba(112, 149, 255, 1);border-radius:6px;}";
+        officialWeb->setStyleSheet(officialWebStyleSheet);
+        m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx_d.png);border:0px;");
+        m_pKylinOfficialWeb_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
+        m_pKylinOfficialWeb_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+        QString kylinManualStyleSheet="MyClickWidget{background-color:rgba(49, 50, 52, 1);border-radius:6px;}"
+                                      "MyClickWidget:hover{background-color:rgba(112, 149, 255, 1);border-radius:6px;}"
+                                      "MyClickWidget:pressed{background-color:rgba(112, 149, 255, 1);border-radius:6px;}";
+        kylinManual->setStyleSheet(kylinManualStyleSheet);
+        m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail_d.png);border:0px;");
+        m_pKylinManual_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
+        m_pKylinManual_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+
+    }
+    else
+    {
+        m_pKylinPic->setStyleSheet("border-image:url(:/data/banner.png);border:0px;");
+        m_pMoreInfoLink->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
+        m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
+        QString officialWebStyleSheet="MyClickWidget{background-color:rgba(246, 247, 247, 1);border-radius:6px;}"
+                                      "MyClickWidget:hover{background-color:rgba(149, 176, 255, 1);border-radius:6px;}"
+                                      "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 1);border-radius:6px;}";
+        officialWeb->setStyleSheet(officialWebStyleSheet);
+        m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
+        m_pKylinOfficialWeb_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+        m_pKylinOfficialWeb_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+        QString kylinManualStyleSheet="MyClickWidget{background-color:rgba(246, 247, 247, 1);border-radius:6px;}"
+                                      "MyClickWidget:hover{background-color:rgba(149, 176, 255, 1);border-radius:6px;}"
+                                      "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 1);border-radius:6px;}";
+        kylinManual->setStyleSheet(kylinManualStyleSheet);
+        m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
+        m_pKylinManual_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+        m_pKylinManual_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+
+    }
+}
+/************************************************
 * 函数名称：pageLocationInit
 * 功能描述：窗口页面布局
 * 输入参数：
@@ -40,11 +96,10 @@ void DIYSupportPage::pageLocationInit()
 {
     m_pKylinPic = new QLabel;
     m_pKylinPic->setFixedSize(718,331);
-    m_pKylinPic->setStyleSheet("border-image:url(:/data/banner.png);border:0px;");
+
 
     m_pMoreInfoLink = new QLabel;
     m_pMoreInfoLink->setFixedSize(368,17);
-    m_pMoreInfoLink->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
     m_pMoreInfoLink->setOpenExternalLinks(true);
     m_pMoreInfoLink->setText(tr("点击"
                                 "<style> a {text-decoration: none} </style> <a href=\"http://www.kylinos.cn\">了解更多服务与支持内容</a>"
@@ -52,7 +107,6 @@ void DIYSupportPage::pageLocationInit()
 
     m_pPageTitle = new QLabel;
     m_pPageTitle->setFixedSize(168,17);
-    m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
     m_pPageTitle->setText("用户还可通过以下方式解决问题");
     m_pPageTitle->setAlignment(Qt::AlignHCenter);
 
@@ -60,21 +114,15 @@ void DIYSupportPage::pageLocationInit()
     officialWeb->setFixedSize(349,100);
     officialWeb->setObjectName("officialWeb");
 
-    QString officialWebStyleSheet="MyClickWidget{background-color:rgba(246, 247, 247, 1);border-radius:6px;}"
-            "MyClickWidget:hover{background-color:rgba(149, 176, 255, 1);border-radius:6px;}"
-            "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 1);border-radius:6px;}";
-    officialWeb->setStyleSheet(officialWebStyleSheet);
 
     connect(officialWeb,&MyClickWidget::clicked,this,&DIYSupportPage::on_officialWeb_clicked);
 
     m_pKylinOfficialWeb_1 = new QLabel;
     m_pKylinOfficialWeb_1->setFixedSize(18,18);
-    m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
     m_pKylinOfficialWeb_1->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_pKylinOfficialWeb_2 = new QLabel;
     m_pKylinOfficialWeb_2->setFixedSize(84,20);
-    m_pKylinOfficialWeb_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
     m_pKylinOfficialWeb_2->setText("前往麒麟官网");
     m_pKylinOfficialWeb_2->setAlignment(Qt::AlignLeft);
     m_pKylinOfficialWeb_2->setAlignment(Qt::AlignVCenter);
@@ -82,7 +130,6 @@ void DIYSupportPage::pageLocationInit()
 
     m_pKylinOfficialWeb_3 = new QLabel;
     m_pKylinOfficialWeb_3->setFixedSize(263,17);
-    m_pKylinOfficialWeb_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
     m_pKylinOfficialWeb_3->setText("用户通过访问官网，自助寻求技术与帮助。");
     m_pKylinOfficialWeb_3->setAlignment(Qt::AlignLeft);
     m_pKylinOfficialWeb_3->setAlignment(Qt::AlignVCenter);
@@ -92,27 +139,20 @@ void DIYSupportPage::pageLocationInit()
     kylinManual->setFixedSize(349,100);
     kylinManual->setObjectName("kylinManual");
 
-    QString kylinManualStyleSheet="MyClickWidget{background-color:rgba(246, 247, 247, 1);border-radius:6px;}"
-            "MyClickWidget:hover{background-color:rgba(149, 176, 255, 1);border-radius:6px;}"
-            "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 1);border-radius:6px;}";
-    kylinManual->setStyleSheet(kylinManualStyleSheet);
 
     connect(kylinManual,&MyClickWidget::clicked,this,&DIYSupportPage::on_kylinManual_clicked);
 
     m_pKylinManual_1 = new QLabel;
     m_pKylinManual_1->setFixedSize(18,18);
-    m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
 
     m_pKylinManual_2 = new QLabel;
     m_pKylinManual_2->setFixedSize(56,20);
-    m_pKylinManual_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
     m_pKylinManual_2->setText("帮助手册");
     m_pKylinManual_2->setAlignment(Qt::AlignLeft);
     m_pKylinManual_2->setAlignment(Qt::AlignVCenter);
 
     m_pKylinManual_3 = new QLabel;
     m_pKylinManual_3->setFixedSize(309,17);
-    m_pKylinManual_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
     m_pKylinManual_3->setText("用户通过查询桌面集成帮助手册，自助寻求支持与帮助。");
     m_pKylinManual_3->setAlignment(Qt::AlignLeft);
     m_pKylinManual_3->setAlignment(Qt::AlignVCenter);

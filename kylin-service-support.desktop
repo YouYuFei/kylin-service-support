@@ -5,3 +5,4 @@ Icon=kylin-service-support
 Exec=/usr/bin/kylin-service-support %u
 Type=Application
 Categories=GNOME;Utility;
+Comment= 提供麒麟服务，技术支持的工具

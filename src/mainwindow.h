@@ -12,6 +12,7 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QStandardPaths>
+#include <QGSettings>
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -20,7 +21,8 @@
 #include "widget_parameter_class.h"
 #include "base_style.h"
 
-
+//gsetting获取主题样式关键字
+#define FITTHEMEWINDOW "org.ukui.style"
 //窗体长宽
 #define WINDOW_WIDTH 958
 #define WINDOW_HEIGHT 640
@@ -54,5 +56,10 @@ private:
     BaseStyle      *basicWindow   = nullptr;
 
     QStackedWidget *stackedWidget = nullptr;
+    // getstting初始化、值获取、 设置getsetting值
+    void initGsetting();
+    void setThemeStyle();
+
+    QGSettings  *m_pThemeStyle= nullptr;
 };
 #endif // MAINWINDOW_H

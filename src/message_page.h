@@ -58,6 +58,7 @@ public:
     void systeminfo_show(QPointF pt);
     void systeminfo_hide();
     void set_request_header();
+    void pageChangeForTheme(QString str);
     QWidget *verticalWidget;
     QFrame *frameSysInfo;
     systemInfoButton *showInfoButton;

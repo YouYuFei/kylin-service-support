@@ -102,13 +102,6 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
 
     connect(widgetClose,&QPushButton::clicked,this,&BaseStyle::WidgetStyleClose);
 
-    widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_d.png);border-radius:4px;}"
-                             "BaseStyle #widgetMin:hover{background-color:rgba(0, 0, 0, 0.04);border-image:url(:/data/min_h.png);border-radius:4px;}"
-                             "BaseStyle #widgetMin:pressed{background-color:rgba(48, 49, 51, 0.08);border-image:url(:/data/min_h.png);border-radius:4px;}");
-    widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
-                               "BaseStyle #widgetClose:hover{background-color:rgba(253, 149, 149, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
-                               "BaseStyle #widgetClose:pressed{background-color:rgba(237, 100, 100, 1);border-image:url(:/data/close_p.png);border-radius:4px;}");
-
 
 
     //布局
@@ -189,7 +182,6 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     hltbutton3->setSpacing(0);
     hltbutton3->addStretch(99);
     hltbutton3->addLayout(vlt0,1);
-    //hltbutton3->addSpacing(15);
 
     QVBoxLayout *hlt3=new QVBoxLayout;//标题栏外部
     hlt3->setMargin(0);
@@ -222,7 +214,7 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     //qDebug() << m_pMainPageButton->mapToParent(QPoint(0,0));
 
     introIcon = new QLabel(this);
-    introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
+
     introIcon->setFixedSize(16,16);
     introIcon->move(40,89);
 
@@ -282,12 +274,6 @@ void BaseStyle::myWidgetBasicInit(int titleHeight)
 {
     text = new QLabel;
     text->setStyleSheet("rgba(255, 255, 255, 1);");
-//    QPalette pal_text(text->palette());
-
-//    //设置背景黑色
-//    pal_text.setColor(QPalette::WindowText, Qt::red);
-//    text->setAutoFillBackground(true);
-//    text->setPalette(pal_text);
 
 
     //标题栏
@@ -296,53 +282,29 @@ void BaseStyle::myWidgetBasicInit(int titleHeight)
     title->setMinimumHeight(titleHeight);
     title->setObjectName("title");
 
-//    QPalette pal_title(title->palette());
-//    pal_title.setColor(QPalette::Background, QColor(255, 255, 255, 0.8));//设置背景米色
-//    title->setAutoFillBackground(true);
-//    title->setPalette(pal_title);
-//    QString titleStyleSheet="QWidget #title{background-color:rgba(255,255,255,0.8);}";
-//    title->setStyleSheet(titleStyleSheet);
-
     //窗体
     body = new QWidget;
     body->setFixedHeight(this->height());
     body->setObjectName("body");
 
     QPalette pal_body(body->palette());
-    //pal_body.setColor(QPalette::Background, QColor(255, 255, 255, 0.8));//设置背景米色
-    //body->setAutoFillBackground(true);
     body->setPalette(pal_body);
 
-    QString bodyStyleSheet="QWidget #body{border-bottom-left-radius:"+QString::number(12)+"px;\
-                    border-top-left-radius:"+QString::number(12)+"px;}";
-    body->setStyleSheet(bodyStyleSheet);
+
 
     //左菜单背景
     menuBox = new QWidget;
     menuBox->setFixedSize(180,640);
     menuBox->setObjectName("menuBox");
 
-//    QPalette pal_menuBox(menuBox->palette());
-//    pal_menuBox.setColor(QPalette::Background, Qt::black);//设置背景黑色
-//    menuBox->setAutoFillBackground(true);
-//    menuBox->setPalette(pal_menuBox);
 
-    QString menuStyleSheet="QWidget #menuBox{background-color:rgba(255,255,255,0.8);border-bottom-left-radius:"+QString::number(12)+"px;\
-                    border-top-left-radius:"+QString::number(12)+"px;}";
-    menuBox->setStyleSheet(menuStyleSheet);
 
     //右对话框背景
     showBox = new QWidget;
     showBox->setFixedSize(778,640);
     showBox->setObjectName("showBox");
 
-//    QPalette pal_showBox(showBox->palette());
-//    pal_showBox.setColor(QPalette::Background, Qt::black);//设置背景黑色
-//    showBox->setAutoFillBackground(true);
-//    showBox->setPalette(pal_showBox);
-    QString showStyleSheet="QWidget #showBox{background-color:rgba(255,255,255,1);border-bottom-right-radius:"+QString::number(12)+"px;\
-                    border-top-right-radius:"+QString::number(12)+"px;}";
-    showBox->setStyleSheet(showStyleSheet);
+
 
 }
 /************************************************
@@ -636,6 +598,77 @@ void BaseStyle::mouseMoveEvent(QMouseEvent *event)
         move(event->globalPos() - this->dragPosition);
     }
     QWidget::mouseMoveEvent(event);
+}
+
+/************************************************
+* 函数名称：pageChangeForTheme
+* 功能描述：主题颜色适配
+* 输入参数：StyleWidgetAttribute page_swa
+* 输出参数：无
+* 修改日期：2020.10.12
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void BaseStyle::pageChangeForTheme(QString str)
+{
+    currentTheme = str;
+    qDebug() << currentTheme;
+    mainPage->pageChangeForTheme(currentTheme);
+    messagePage->pageChangeForTheme(currentTheme);
+    contactPage->pageChangeForTheme(currentTheme);
+    diySupportPage->pageChangeForTheme(currentTheme);
+    if("ukui-dark" == str || "ukui-black" == str)
+    {
+        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(31, 32, 34, 1);border-image:url(:/data/min_h.png);border-radius:4px;}"
+                                 "BaseStyle #widgetMin:hover{background-color:rgba(151, 151, 151, 1);border-image:url(:/data/min_h.png);border-radius:4px;}"
+                                 "BaseStyle #widgetMin:pressed{background-color:rgba(151, 151, 151, 1);border-image:url(:/data/min_h.png);border-radius:4px;}");
+        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(31, 32, 34, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
+                                   "BaseStyle #widgetClose:hover{background-color:rgba(253, 149, 149, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
+                                   "BaseStyle #widgetClose:pressed{background-color:rgba(237, 100, 100, 1);border-image:url(:/data/close_h.png);border-radius:4px;}");
+        QString bodyStyleSheet="QWidget #body{background-color:rgba(31, 32, 34, 1);border-bottom-left-radius:"+QString::number(12)+"px;\
+                        border-top-left-radius:"+QString::number(12)+"px;}";
+        body->setStyleSheet(bodyStyleSheet);
+
+        QString showStyleSheet="QWidget #showBox{background-color:rgba(31, 32, 34, 1);border-bottom-right-radius:"+QString::number(12)+"px;\
+                        border-top-right-radius:"+QString::number(12)+"px;}";
+        showBox->setStyleSheet(showStyleSheet);
+
+        QString menuStyleSheet="QWidget #menuBox{background-color:rgba(0, 0, 0, 0.7);border-bottom-left-radius:"+QString::number(12)+"px;\
+                        border-top-left-radius:"+QString::number(12)+"px;}";
+        menuBox->setStyleSheet(menuStyleSheet);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
+        titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
+    }
+    else
+    {
+        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_d.png);border-radius:4px;}"
+                                 "BaseStyle #widgetMin:hover{background-color:rgba(0, 0, 0, 0.04);border-image:url(:/data/min_d.png);border-radius:4px;}"
+                                 "BaseStyle #widgetMin:pressed{background-color:rgba(48, 49, 51, 0.08);border-image:url(:/data/min_d.png);border-radius:4px;}");
+        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
+                                   "BaseStyle #widgetClose:hover{background-color:rgba(253, 149, 149, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
+                                   "BaseStyle #widgetClose:pressed{background-color:rgba(237, 100, 100, 1);border-image:url(:/data/close_h.png);border-radius:4px;}");
+        QString bodyStyleSheet="QWidget #body{background-color:rgba(255,255,255,1);border-bottom-left-radius:"+QString::number(12)+"px;\
+                        border-top-left-radius:"+QString::number(12)+"px;}";
+        body->setStyleSheet(bodyStyleSheet);
+
+        QString showStyleSheet="QWidget #showBox{background-color:rgba(255,255,255,1);border-bottom-right-radius:"+QString::number(12)+"px;\
+                        border-top-right-radius:"+QString::number(12)+"px;}";
+        showBox->setStyleSheet(showStyleSheet);
+
+        QString menuStyleSheet="QWidget #menuBox{background-color:rgba(255,255,255,0.8);border-bottom-left-radius:"+QString::number(12)+"px;\
+                        border-top-left-radius:"+QString::number(12)+"px;}";
+        menuBox->setStyleSheet(menuStyleSheet);
+
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
+        titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
+    }
 }
 
 

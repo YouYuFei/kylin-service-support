@@ -27,6 +27,7 @@ public:
 public slots:
     void on_officialWeb_clicked();
     void on_kylinManual_clicked();
+    void pageChangeForTheme(QString str);
 signals:
 private:
     void pageLocationInit();

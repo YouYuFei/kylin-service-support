@@ -49,7 +49,7 @@ public:
     QWidget *menuBox   = nullptr;//窗体
     QWidget *showBox   = nullptr;//窗体
 
-    //void window_close();
+    void pageChangeForTheme(QString str);
 
 private slots:
 
@@ -62,6 +62,8 @@ private slots:
 private:
     //virtual void paintEvent(QPaintEvent *ev);//重绘窗口
     QStackedWidget  *m_pstackWidget;
+
+    QString currentTheme;
 
     void myWidgetStyle(WidgetParameterClass basicParameter);
     void myWidgetSizeDesign(int windowWidth, int windowHeight);
@@ -114,6 +116,12 @@ private:
                               "QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}"
                               "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}");
     QString qssChooseMenuBar = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}");
+
+    QString qssDefaultMenuBar_d = tr("QPushButton{background:transparent;color:rgba(143, 147, 153, 1);border-radius: 16px;}"
+                              "QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}"
+                              "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
+    QString qssChooseMenuBar_d = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
+
 };
 
 #endif // BASESTYLE_H

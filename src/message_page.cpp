@@ -35,6 +35,143 @@ MessagePage::MessagePage(WidgetParameterClass basicParam)
     connect(submitting_timer,SIGNAL(timeout()),this,SLOT(submit_change_load_image()));
 }
 /************************************************
+* 函数名称：pageChangeForTheme
+* 功能描述：构造函数
+* 输入参数：界面参数类
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::pageChangeForTheme(QString str)
+{
+
+    if("ukui-dark" == str || "ukui-black" == str)
+    {
+        QString widgetStyleOfAskSheet="QWidget #StyleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
+        m_pWidgetStyleOfAsk->setStyleSheet(widgetStyleOfAskSheet);
+        m_pStyleOfAsk->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
+        m_pStyleOfAskCombobox->setStyleSheet("QComboBox QAbstractItemView {border:0px;height:30px;border-radius: 6px;background: rgba(255, 255, 255, 1);font: 14pt;color:rgba(143, 147, 153, 1);} "
+                                             "QComboBox:editable{background:rgba(49, 50, 52, 1);}"
+                                             "QComboBox QAbstractItemView{border: 0px;outline:0px;selection-background-color: rgba(72, 72, 76, 1);height:30px;background: rgba(49, 50, 52, 1);font:14px;color:rgba(249, 249, 249, 1);}"
+                                             "QComboBox QAbstractItemView::item{height:40px;}");
+
+        QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
+        m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
+        m_pTitleOfAsk->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
+        m_pContentTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;");
+        m_pDetailTextLetterLimit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 14px;color: rgba(96, 98, 101, 1);"));
+        QString widgetUserDataSheet="QWidget #UserData{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
+        m_pWidgetUserData->setStyleSheet(widgetUserDataSheet);
+        m_pUserData->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
+        m_pUserDataPushButton->setStyleSheet("m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                             "m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                             "m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+        QString widgetMailSheet="QWidget #WidgetMail{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
+        m_pWidgetMail->setStyleSheet(widgetMailSheet);
+        m_pMail->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
+        m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;");
+        QString widgetLogSheet="QWidget #WidgetLog{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
+        m_pWidgetLog->setStyleSheet(widgetLogSheet);
+        m_pLog->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
+        m_pTrueSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
+        m_pFalseSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
+        QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
+        m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
+
+        commitButton->setStyleSheet("QPushButton{background:rgba(96, 98, 101, 1);font-size:14px;color:rgba(192, 196, 204, 1)");
+        resetButton->setStyleSheet("QPushButton{border:1px rgba(96, 98, 101, 1);background:rgba(31, 32, 34, 1);font-size:14px;color:rgba(192, 196, 204, 1)");
+        m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
+                                                  ""));
+        showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
+        verticalWidget->setStyleSheet(QString::fromUtf8("background-color: rgba(61, 61, 65, 1);\n"
+                                                        "border-top-left-radius:4px;\n"
+                                                        "\n"
+                                                        "border-top-right-radius:4px;\n"
+                                                        "\n"
+                                                        "border-bottom-left-radius:4px;\n"
+                                                        "\n"
+                                                        "border-bottom-right-radius:4px;\n"
+                                                        "border:0.5px solid black;\n"
+                                                        ""));
+        frameSysInfo->setStyleSheet("border-color: rgba(0, 0, 0, 0.16);");
+        labelSystemVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+        labelDesktopVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+        labelLanguage->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+
+    }
+    else
+    {
+        QString widgetStyleOfAskSheet="QWidget #StyleOfAsk{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
+        m_pWidgetStyleOfAsk->setStyleSheet(widgetStyleOfAskSheet);
+        m_pStyleOfAsk->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+        m_pStyleOfAskCombobox->setStyleSheet("QComboBox{background-color:rgba(143, 147, 153, 0.08);}"
+                                             "QComboBox QAbstractItemView::item {min-height: 30px; max-height: 30px; }");
+
+        QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
+        m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
+        m_pTitleOfAsk->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+        m_pContentTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+        m_pDetailTextLetterLimit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 14px;color: rgba(192, 196, 204, 1);"));
+        QString widgetUserDataSheet="QWidget #UserData{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
+        m_pWidgetUserData->setStyleSheet(widgetUserDataSheet);
+        m_pUserData->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+        m_pUserDataPushButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255,255,255,0)");
+        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
+        QString widgetMailSheet="QWidget #WidgetMail{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
+        m_pWidgetMail->setStyleSheet(widgetMailSheet);
+        m_pMail->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+        QString widgetLogSheet="QWidget #WidgetLog{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
+        m_pWidgetLog->setStyleSheet(widgetLogSheet);
+        m_pLog->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+        m_pTrueSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
+        m_pFalseSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
+        QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
+        m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
+
+        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        resetButton->setStyleSheet("QPushButton{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)");
+        m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
+                                                  ""));
+        showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
+        verticalWidget->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255);\n"
+                                                        "border-top-left-radius:4px;\n"
+                                                        "\n"
+                                                        "border-top-right-radius:4px;\n"
+                                                        "\n"
+                                                        "border-bottom-left-radius:4px;\n"
+                                                        "\n"
+                                                        "border-bottom-right-radius:4px;\n"
+                                                        "border:0.5px solid black;\n"
+                                                        ""));
+        frameSysInfo->setStyleSheet("border-color: rgba(0, 0, 0, 0.16);");
+        labelSystemVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+        labelDesktopVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+        labelLanguage->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+//        m_pMoreInfoLink->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
+//        m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
+//        m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
+//        m_pOnline_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+//        m_pOnline_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+//        m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
+//        m_pTelphone_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+//        m_pTelphone_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+//        m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
+//        m_pMail_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+//        m_pMail_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+//        m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
+//        m_pWeChat_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+//        m_pWeChat_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+//        m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1.png);border:0px;");
+//        m_pDIY_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
+//        m_pDIY_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
+
+    }
+}
+
+/************************************************
 * 函数名称：messagePageUIInit
 * 功能描述：界面布局
 * 输入参数：无
@@ -87,26 +224,23 @@ void MessagePage::pageStyleOfAskRowLocationInit()
     m_pWidgetStyleOfAsk->setFixedHeight(40);
     m_pWidgetStyleOfAsk->setObjectName("StyleOfAsk");
 
-    QString widgetStyleOfAskSheet="QWidget #StyleOfAsk{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
-    m_pWidgetStyleOfAsk->setStyleSheet(widgetStyleOfAskSheet);
+
 
     m_pStyleOfAsk = new QLabel;
     m_pStyleOfAsk->setFixedSize(68,20);
-    m_pStyleOfAsk->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
     m_pStyleOfAsk->setText("咨询类别 *");
     m_pStyleOfAsk->setAlignment(Qt::AlignLeft);
     m_pStyleOfAsk->setAlignment(Qt::AlignVCenter);
 
     m_pStyleOfAskCombobox = new QComboBox(m_pWidgetStyleOfAsk);
     m_pStyleOfAskCombobox->setFixedSize(206,40);
+    m_pStyleOfAskCombobox->setMaxVisibleItems(5);
     m_pStyleOfAskCombobox->addItem(QString(tr("问题类别")));
     m_pStyleOfAskCombobox->addItem(QString(tr("系统问题")));
     m_pStyleOfAskCombobox->addItem(QString(tr("意见建议")));
     m_pStyleOfAskCombobox->addItem(QString(tr("商务合作")));
     m_pStyleOfAskCombobox->addItem(QString(tr("其他")));
     connect(m_pStyleOfAskCombobox,SIGNAL(currentIndexChanged(QString)),this,SLOT(styleOfAskCombobox_currentIndexChanged()));
-    m_pStyleOfAskCombobox->setStyleSheet("QComboBox{background-color:rgba(143, 147, 153, 0.08);}"
-                                         "QComboBox QAbstractItemView::item { min-height: 30px; min-width: 30px; }");
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
     HStyleOfAskLayout->setMargin(0);
@@ -141,14 +275,12 @@ void MessagePage::pageContentOfAskRowLocationInit()
     m_pWidgetTitleOfAsk->setFixedHeight(180);
     m_pWidgetTitleOfAsk->setObjectName("TitleOfAsk");
 
-    QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
-    m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
+
 
 
 
     m_pTitleOfAsk = new QLabel;
     m_pTitleOfAsk->setFixedSize(68,20);
-    m_pTitleOfAsk->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
     m_pTitleOfAsk->setText("咨询内容 *");
     m_pTitleOfAsk->setAlignment(Qt::AlignLeft);
     m_pTitleOfAsk->setAlignment(Qt::AlignVCenter);
@@ -156,7 +288,6 @@ void MessagePage::pageContentOfAskRowLocationInit()
     m_pContentTextEdit = new QTextEdit(m_pTitleOfAsk);
 
     m_pContentTextEdit->setFixedSize(634,180);
-    m_pContentTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
     m_pContentTextEdit->setFrameShape(QFrame::NoFrame);
     m_pContentTextEdit->setAlignment(Qt::AlignVCenter);
     m_pContentTextEdit->setPlaceholderText(tr("* 请详细描述要咨询的问题详情,必要可添加附件\n* 目前支持的格式仅有*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx"));
@@ -165,7 +296,6 @@ void MessagePage::pageContentOfAskRowLocationInit()
     m_pDetailTextLetterLimit = new QLabel(m_pContentTextEdit);
     m_pDetailTextLetterLimit->setFixedSize(60,30);
     m_pDetailTextLetterLimit->setText("0/200");
-    m_pDetailTextLetterLimit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 14px;color: rgba(192, 196, 204, 1);"));
     m_pDetailTextLetterLimit->setAlignment(Qt::AlignLeft);
     m_pDetailTextLetterLimit->setAlignment(Qt::AlignVCenter);
 
@@ -211,26 +341,22 @@ void MessagePage::pageUploadFilesRowLocationInit()
     m_pWidgetUserData->setFixedHeight(30);
     m_pWidgetUserData->setObjectName("UserData");
 
-    QString widgetUserDataSheet="QWidget #UserData{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
-    m_pWidgetUserData->setStyleSheet(widgetUserDataSheet);
 
     m_pUserData = new QLabel;
     m_pUserData->setFixedSize(56,20);
-    m_pUserData->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
     m_pUserData->setText("上传附件");
     m_pUserData->setAlignment(Qt::AlignLeft);
     m_pUserData->setAlignment(Qt::AlignVCenter);
 
     m_pUserDataPushButton = new QPushButton(m_pWidgetUserData);
     m_pUserDataPushButton->setFixedSize(64,30);
+    m_pUserDataPushButton->setObjectName("m_pUserDataPushButton");
     m_pUserDataPushButton->setText(tr("浏览"));
     m_pUserDataPushButton->setFlat(true);
-    m_pUserDataPushButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255,255,255,0)");
     connect(m_pUserDataPushButton,SIGNAL(clicked()),this,SLOT(userDataPushButton_clicked()));
 
     m_pUserDataLimit = new QLabel(m_pWidgetUserData);
     m_pUserDataLimit->setFixedSize(560,30);
-    m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}");
     m_pUserDataLimit->setText(tr("总附件大小不超过10mb，附件数量不超过5个"));
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
@@ -263,19 +389,15 @@ void MessagePage::pageMailRowLocationInit()
     m_pWidgetMail->setFixedHeight(61);
     m_pWidgetMail->setObjectName("WidgetMail");
 
-    QString widgetMailSheet="QWidget #WidgetMail{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
-    m_pWidgetMail->setStyleSheet(widgetMailSheet);
 
     m_pMail = new QLabel;
     m_pMail->setFixedSize(40,20);
-    m_pMail->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
     m_pMail->setText("邮件 *");
     m_pMail->setAlignment(Qt::AlignLeft);
     m_pMail->setAlignment(Qt::AlignVCenter);
 
     m_pMailTextEdit = new QTextEdit(m_pWidgetMail);
     m_pMailTextEdit->setFixedSize(634,40);
-    m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
     m_pMailTextEdit->setPlaceholderText(tr("KylinOS服务与支持团队将通过您预留的邮件反馈处理进度和结果"));
     connect(m_pMailTextEdit,SIGNAL(textChanged()),this,SLOT(mailTextEdit_textChanged()));
 
@@ -333,12 +455,9 @@ void MessagePage::pageSysLogRowLocationInit()
     m_pWidgetLog->setFixedHeight(20);
     m_pWidgetLog->setObjectName("WidgetLog");
 
-    QString widgetLogSheet="QWidget #WidgetLog{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
-    m_pWidgetLog->setStyleSheet(widgetLogSheet);
 
     m_pLog = new QLabel;
     m_pLog->setFixedSize(56,20);
-    m_pLog->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
     m_pLog->setText("上传日志");
     m_pLog->setAlignment(Qt::AlignLeft);
     m_pLog->setAlignment(Qt::AlignVCenter);
@@ -347,15 +466,11 @@ void MessagePage::pageSysLogRowLocationInit()
     m_pTrueSyslogCheckBox->setText(tr("是"));
     m_pTrueSyslogCheckBox->setChecked(true);
     m_pTrueSyslogCheckBox->setObjectName(QString::fromUtf8("checkBox"));
-    m_pTrueSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"
-                                              ""));
     connect(m_pTrueSyslogCheckBox,SIGNAL(stateChanged(int)),this,SLOT(trueSyslogCheckBox_stateChanged(int)));
 
     m_pFalseSyslogCheckBox = new QCheckBox();
     m_pFalseSyslogCheckBox->setText(tr("否"));
     m_pFalseSyslogCheckBox->setObjectName(QString::fromUtf8("checkBox"));
-    m_pFalseSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"
-                                              ""));
     connect(m_pFalseSyslogCheckBox,SIGNAL(stateChanged(int)),this,SLOT(falseSyslogCheckBox_stateChanged(int)));
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
@@ -388,9 +503,6 @@ void MessagePage::pageUserDataRowLocationInit()
     m_pWidgetUserDataWidget = new QWidget;
 
     m_pWidgetUserDataWidget->setObjectName("UserData");
-
-    QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
-    m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
 
 
     FileListWidget = new QListWidget(m_pWidgetUserDataWidget);
@@ -431,7 +543,6 @@ void MessagePage::pageAllRowLocationInit()
     commitButton->setFixedSize(64,30);
     commitButton->setText(tr("提交"));
     commitButton->setEnabled(false);
-    commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     connect(commitButton,SIGNAL(clicked()),this,SLOT(on_commitButton_clicked()));
 
     //点下提交后按钮样式变化
@@ -448,15 +559,12 @@ void MessagePage::pageAllRowLocationInit()
     resetButton->setFixedSize(64,30);
     resetButton->setText(tr("重置"));
     resetButton->setEnabled(true);
-    resetButton->setStyleSheet("QPushButton{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)");
     connect(resetButton,SIGNAL(clicked()),this,SLOT(on_resetButton_clicked()));
 
     m_pUserPermission = new QCheckBox(this);
     m_pUserPermission->setFixedSize(120,17);
     m_pUserPermission->setText(tr("同意获取我的"));
     m_pUserPermission->setObjectName(QString::fromUtf8("checkBox"));
-    m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
-                                              ""));
     connect(m_pUserPermission,SIGNAL(stateChanged(int)),this,SLOT(userPermission_stateChanged(int)));
     //获取系统信息的小弹窗
     verticalWidget = new QWidget();
@@ -486,7 +594,6 @@ void MessagePage::pageAllRowLocationInit()
     showInfoButton->setFeedBack(this);
     showInfoButton->setFlat(true);
     showInfoButton->setEnabled(false);
-    showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
 
 
     labelSystemVersion = new QLabel(frameSysInfo);
@@ -499,20 +606,6 @@ void MessagePage::pageAllRowLocationInit()
     labelLanguage->setObjectName(QString::fromUtf8("labelLanguage"));
     labelLanguage->setGeometry(QRect(10, 52, 140, 20));
 
-    verticalWidget->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255);\n"
-                                                    "border-top-left-radius:4px;\n"
-                                                    "\n"
-                                                    "border-top-right-radius:4px;\n"
-                                                    "\n"
-                                                    "border-bottom-left-radius:4px;\n"
-                                                    "\n"
-                                                    "border-bottom-right-radius:4px;\n"
-                                                    "border:0.5px solid black;\n"
-                                                    ""));
-    frameSysInfo->setStyleSheet("border-color: rgba(0, 0, 0, 0.16);");
-    labelSystemVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
-    labelDesktopVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
-    labelLanguage->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
 
     QVBoxLayout *VmainLayout = new QVBoxLayout;
     VmainLayout->setSpacing(0);
@@ -835,7 +928,7 @@ bool MessagePage::allFileSizeLargerThan10M()
 *************************************************/
 void MessagePage::userDataPushButton_clicked()
 {
-    userUploadFileName=QFileDialog::getOpenFileName(this,tr("select file"),"/","(*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx)",0);
+    userUploadFileName=QFileDialog::getOpenFileName(this,tr("选择文件"),"/","(*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx)",0);
 
     if (userUploadFileName.isEmpty())
         return;
