@@ -24,7 +24,7 @@ public:
     ~submit_fail();
 
     void show_faillinfo(int errorcode);
-
+    void pageChangeForTheme(QString str);
 private slots:
     void on_pushButton_2_clicked();
     void close_fail_window();
@@ -43,6 +43,7 @@ private:
     QPushButton * resendBtn;
     QLabel *label_2;
     QLabel *label_3;
+    QString nowTheme;
 };
 
 #endif // SUBMIT_FAIL_H

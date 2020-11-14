@@ -24,6 +24,7 @@
 MessagePage::MessagePage(WidgetParameterClass basicParam)
 {
     this->setWindowTitle("message_page");
+
     mainPageBasicParameter = basicParam;
 
     messagePageUIInit();
@@ -32,7 +33,6 @@ MessagePage::MessagePage(WidgetParameterClass basicParam)
 
     submitting_timer = new QTimer();
     submitting_timer->setInterval(100);
-    connect(submitting_timer,SIGNAL(timeout()),this,SLOT(submit_change_load_image()));
 }
 /************************************************
 * 函数名称：pageChangeForTheme
@@ -48,6 +48,8 @@ void MessagePage::pageChangeForTheme(QString str)
 {
     currentTheme = str;
     qDebug() << currentTheme;
+    success_dialog->pageChangeForTheme(str);
+    fail_dialog->pageChangeForTheme(str);
     if("ukui-dark" == str || "ukui-black" == str)
     {
         QString widgetStyleOfAskSheet="QWidget #StyleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
@@ -81,8 +83,8 @@ void MessagePage::pageChangeForTheme(QString str)
         QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
 
-        commitButton->setStyleSheet("QPushButton{background:rgba(96, 98, 101, 1);font-size:14px;color:rgba(192, 196, 204, 1)");
-        resetButton->setStyleSheet("QPushButton{border:1px rgba(96, 98, 101, 1);background:rgba(31, 32, 34, 1);font-size:14px;color:rgba(192, 196, 204, 1)");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(96, 98, 101, 1);font-size:14px;color:rgba(192, 196, 204, 1)");
+        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(96, 98, 101, 1);font-size:14px;color:rgba(192, 196, 204, 1)");
         m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
                                                   ""));
         showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
@@ -132,8 +134,8 @@ void MessagePage::pageChangeForTheme(QString str)
         QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
 
-        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-        resetButton->setStyleSheet("QPushButton{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
                                                   ""));
         showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
@@ -540,24 +542,21 @@ void MessagePage::pageUserDataRowLocationInit()
 *************************************************/
 void MessagePage::pageAllRowLocationInit()
 {
+    success_dialog = new submit_success(this);
+    success_dialog->hide();
+    fail_dialog = new submit_fail(this);
+    fail_dialog->hide();
+
     commitButton = new QPushButton(this);
     commitButton->setFixedSize(64,30);
+    commitButton->setObjectName("commitButton");
     commitButton->setText(tr("提交"));
     commitButton->setEnabled(false);
     connect(commitButton,SIGNAL(clicked()),this,SLOT(on_commitButton_clicked()));
 
-    //点下提交后按钮样式变化
-    submitting_pixmap[0] =QPixmap(":/image/conning-a/1.png");
-    submitting_pixmap[1] =QPixmap(":/image/conning-a/2.png");
-    submitting_pixmap[2] =QPixmap(":/image/conning-a/3.png");
-    submitting_pixmap[3] =QPixmap(":/image/conning-a/4.png");
-    submitting_pixmap[4] =QPixmap(":/image/conning-a/5.png");
-    submitting_pixmap[5] =QPixmap(":/image/conning-a/6.png");
-    submitting_pixmap[6] =QPixmap(":/image/conning-a/7.png");
-    submitting_pixmap[7] =QPixmap(":/image/conning-a/8.png");
-
     resetButton = new QPushButton(this);
     resetButton->setFixedSize(64,30);
+    resetButton->setObjectName("resetButton");
     resetButton->setText(tr("重置"));
     resetButton->setEnabled(true);
     connect(resetButton,SIGNAL(clicked()),this,SLOT(on_resetButton_clicked()));
@@ -660,12 +659,12 @@ void MessagePage::styleOfAskCombobox_currentIndexChanged()
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
         commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
     }
     else
     {
         commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     }
 }
 /************************************************
@@ -710,12 +709,12 @@ void MessagePage::detailTextEdit_textChanged()
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
         commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
     }
     else
     {
         commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     }
 }
 /************************************************
@@ -783,11 +782,11 @@ void MessagePage::mailTextEdit_textChanged()
         commitButton->setEnabled(true);
         if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
         }
         else
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
         }
     }
     else
@@ -795,11 +794,11 @@ void MessagePage::mailTextEdit_textChanged()
         commitButton->setEnabled(false);
         if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         }
         else
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         }
     }
 
@@ -860,11 +859,11 @@ void MessagePage::trueSyslogCheckBox_stateChanged(int state)
         commitButton->setEnabled(true);
         if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
         }
         else
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
         }
 
     }
@@ -873,11 +872,11 @@ void MessagePage::trueSyslogCheckBox_stateChanged(int state)
         commitButton->setEnabled(false);
         if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         }
         else
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         }
     }
 }
@@ -937,11 +936,11 @@ void MessagePage::falseSyslogCheckBox_stateChanged(int state)
         commitButton->setEnabled(true);
         if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
         }
         else
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
         }
 
     }
@@ -950,11 +949,11 @@ void MessagePage::falseSyslogCheckBox_stateChanged(int state)
         commitButton->setEnabled(false);
         if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         }
         else
         {
-            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         }
     }
 }
@@ -1144,7 +1143,7 @@ void MessagePage::update_add_file_window()
         qDebug() << "所有文件大小超过10M！";
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
         commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     }
     else
     {
@@ -1153,12 +1152,12 @@ void MessagePage::update_add_file_window()
         if(detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
         {
             commitButton->setEnabled(true);
-            commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
         }
         else
         {
             commitButton->setEnabled(false);
-            commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         }
     }
 
@@ -1283,12 +1282,12 @@ void MessagePage::del_file_button_clicked()
     if ((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
         commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
     }
     else
     {
         commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     }
 }
 /************************************************
@@ -1309,25 +1308,6 @@ void MessagePage::update_linedit_add_or_del_file()
     }
 }
 
-/************************************************
-* 函数名称：submit_change_load_image
-* 功能描述：点击提交后，提交按钮动画
-* 输入参数：无
-* 输出参数：无
-* 修改日期：2020.11.04
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void MessagePage::submit_change_load_image()
-{
-    int pixmap_i = 0;
-    commitButton->setText("");
-    commitButton->setIcon(submitting_pixmap[pixmap_i]);
-    pixmap_i++;
-    if (pixmap_i == 8 )
-        pixmap_i = 0;
-}
 /************************************************
 * 函数名称：on_resetButton_clicked
 * 功能描述：重置按钮点击槽函数
@@ -1395,16 +1375,13 @@ void MessagePage::on_commitButton_clicked()
     //Determine if the total file size exceeds 10M, if so, prompt
     if (allFileSizeLargerThan10M() == true) {
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        //file_listwidget->move(140,430);
         commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
         return;
     }
 
-//    label_13->hide();
-//    file_listwidget->move(140,407);
     commitButton->setEnabled(false);
-    commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+    commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
 
     qDebug()<<"submitting_timer->start();";
     submitting_timer->start();
@@ -1498,11 +1475,12 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
     submitting_timer->stop();
     commitButton->setText(tr("提交"));
     commitButton->setEnabled(false);
-    commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+
+    commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
 
     commitButton->setIcon(QIcon());
 
-    set_all_enable_after_submit();
+
 
     qDebug() << "this is send feedbackinfo finished";
 
@@ -1519,11 +1497,14 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
         //panduan ==200
         qDebug() << bytes_info;
 
-        success_dialog = new submit_success(this);
+
         success_dialog->setModal(false);
         success_dialog->show();
+
         QTimer::singleShot(3000, [=](){
             success_dialog->hide();
+            set_all_enable_after_submit();
+            on_resetButton_clicked();
         });
         //解析JSON 获取uid annex_uid
         //Parsing JSON to get uid annex_uid
@@ -1546,7 +1527,7 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
         qDebug()<<qPrintable(reply->errorString());
         //判断错误类型
         //Type of error
-        fail_dialog = new submit_fail(this);
+
 //        if(!timeout_http_flag)
 //            fail_dialog->show_faillinfo((int)reply->error());
 //        else
@@ -1555,6 +1536,7 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
         fail_dialog->show();
         QTimer::singleShot(3000, [=](){
             fail_dialog->hide();
+            set_all_enable_after_submit();
         });
     }
     timeout_http_flag=false;
@@ -1864,10 +1846,10 @@ void MessagePage::set_all_disable_in_submit()
     m_pTrueSyslogCheckBox->setEnabled(false);
     m_pFalseSyslogCheckBox->setEnabled(false);
     m_pUserPermission->setEnabled(false);
-
+    resetButton->setEnabled(false);
     m_pUserDataPushButton->setEnabled(false);
     commitButton->setEnabled(false);
-    commitButton->setStyleSheet("QPushButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+    commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     for (int filenum = 0; filenum < uploadFileNameList.size(); filenum++)
         file_widget[filenum]->deletebtn0->setEnabled(false);
 }
@@ -1893,7 +1875,7 @@ void MessagePage::set_all_enable_after_submit()
 
     m_pUserDataPushButton->setEnabled(true);
     commitButton->setEnabled(true);
-    commitButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+    commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
     for (int filenum = 0; filenum< uploadFileNameList.size();filenum++)
     {
         file_widget[filenum]->deletebtn0->setEnabled(true);

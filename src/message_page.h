@@ -85,8 +85,6 @@ public slots:
 
     void update_linedit_add_or_del_file();
 
-    void submit_change_load_image();
-
     void on_commitButton_clicked();
 
     void on_resetButton_clicked();
@@ -156,7 +154,6 @@ private:
     QPushButton *m_pUserDataPushButton;
     QPushButton *resetButton;
     QPushButton *commitButton;
-    QPixmap submitting_pixmap[8];
 
     bool timeout_http_flag = false;
 

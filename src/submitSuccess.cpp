@@ -58,12 +58,26 @@ void submit_success::UI_init()
     vlt_menu->addStretch(99);
 
     this->setLayout(vlt_menu);
-    this->setStyleSheet("{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+    this->setStyleSheet("submit_success{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
     this->show();
 }
 submit_success::~submit_success()
 {
 
+}
+
+void submit_success::pageChangeForTheme(QString str)
+{
+    if("ukui-dark" == str || "ukui-black" == str)
+    {
+        this->setStyleSheet("submit_success{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+        label->setStyleSheet(QString::fromUtf8("color:rgba(192, 196, 204, 1);font: 16px;\n"));
+    }
+    else
+    {
+        this->setStyleSheet("submit_success{background-color:rgba(255, 255, 255, 1);border-radius:6px;}");
+        label->setStyleSheet(QString::fromUtf8("color:rgba(48, 49, 51, 1);font: 16px;\n"));
+    }
 }
 
 void submit_success::on_pushButton_2_clicked()
@@ -117,3 +131,18 @@ void submit_success::succ_close_window()
 //    p.fillPath(rectPath, option->palette.color(QPalette::Base));
 //    p.restore();
 //}
+
+//void submit_success::paintEvent(QPaintEvent *event)
+//{
+//    QPainter painter(this);
+//    painter.setRenderHint(QPainter::Antialiasing);  // 反锯齿;
+//    painter.setBrush(QBrush(Qt::red));
+//    painter.setPen(Qt::transparent);
+//    QRect rect = this->rect();
+//    rect.setWidth(rect.width() - 1);
+//    rect.setHeight(rect.height() - 1);
+//    painter.drawRoundedRect(rect, 6, 6);
+
+//    QWidget::paintEvent(event);
+//}
+

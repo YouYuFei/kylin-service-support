@@ -1,3 +1,15 @@
+kylin-service-support (1.0.6kord) v101; urgency=medium
+
+  * BUG 25072 解决提交失败后提示框不消失问题 
+
+ -- hanzehui <hanzehui@kylinos.cn>  Sat, 14 Nov 2020 21:27:40 +0800
+
+kylin-service-support (1.0.5kord) v101; urgency=medium
+
+  * 修改desktop文件
+
+ -- hanzehui <hanzehui@kylinos.cn>  Thu, 12 Nov 2020 21:27:40 +0800
+
 kylin-service-support (1.0.4kord) v101; urgency=medium
 
   * BUG 24399 解决麒麟服务与支持工具没有适配深色主题
@@ -5,7 +17,7 @@ kylin-service-support (1.0.4kord) v101; urgency=medium
   * BUG 24483 desktop文件缺少comment
   * BUG 24489 提交失败后，最小化窗口标题无汉化
 
- -- hanzehui <hanzehui@kylinos.cn>  Thu, 12 Nov 2020 17:27:40 +0800
+ -- hanzehui <hanzehui@kylinos.cn>  Thu, 12 Nov 2020 21:27:40 +0800
 
 kylin-service-support (1.0.3kord) v101; urgency=medium
 

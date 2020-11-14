@@ -13,7 +13,6 @@
 #include <QStackedWidget>
 #include <QStandardPaths>
 #include <QGSettings>
-#include <QTranslator>
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>

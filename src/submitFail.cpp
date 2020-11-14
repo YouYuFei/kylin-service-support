@@ -23,7 +23,7 @@ submit_fail::submit_fail(QWidget *parent) :
 void submit_fail::UI_init()
 {
     if (this->objectName().isEmpty())
-        this->setObjectName(QString::fromUtf8("submit_success"));
+        this->setObjectName(QString::fromUtf8("submit_fail"));
     this->resize(236, 60);
     setWindowTitle(tr("提交失败"));
 
@@ -62,10 +62,28 @@ void submit_fail::UI_init()
     vlt_menu->addStretch(99);
 
     this->setLayout(vlt_menu);
-    this->setStyleSheet("{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+    this->setStyleSheet("submit_fail{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
     this->show();
 
 }
+
+
+void submit_fail::pageChangeForTheme(QString str)
+{
+    qDebug() << "提交失败框的颜色设置！";
+    nowTheme = str;
+    if("ukui-dark" == str || "ukui-black" == str)
+    {
+        this->setStyleSheet("submit_fail{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+        label->setStyleSheet(QString::fromUtf8("color:rgba(192, 196, 204, 1);font: 16px;\n"));
+    }
+    else
+    {
+        this->setStyleSheet("submit_fail{background-color:rgba(255, 255, 255, 1);border-radius:6px;}");
+        label->setStyleSheet(QString::fromUtf8("color:rgba(48, 49, 51, 1);font: 16px;\n"));
+    }
+}
+
 //void submit_fail::show_faillinfo(int error_code)
 //{
 //    switch (error_code) {
@@ -150,4 +168,17 @@ void submit_fail::resend_feedbackinfo()
 //    p.save();
 //    p.fillPath(rectPath, option->palette.color(QPalette::Base));
 //    p.restore();
+//}
+
+//void submit_fail::paintEvent(QPaintEvent *event)
+//{
+//    QPainter painter(this);
+//    painter.setRenderHint(QPainter::Antialiasing);  // 反锯齿;
+
+//    QRect rect = this->rect();
+//    rect.setWidth(rect.width()-1);
+//    rect.setHeight(rect.height()-1);
+//    painter.drawRoundedRect(rect, 6, 6);
+
+//    QWidget::paintEvent(event);
 //}
