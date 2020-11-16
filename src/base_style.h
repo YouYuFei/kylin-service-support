@@ -15,8 +15,11 @@
 #include "tabmenu_button.h"
 #include "contact_page.h"
 #include "diysupport_page.h"
+#include "stylewidgetattribute.h"
+#include "stylewidgetshadow.h"
 #include <QWidget>
 #include <QStackedWidget>
+#include <QGraphicsDropShadowEffect>
 #include <QPalette>
 #include <QApplication>
 #include <QScreen>
@@ -34,6 +37,24 @@
 #include <QProxyStyle>
 
 #include <QColor>
+
+//窗体长宽
+#define SHAWINDOW_WIDTH 958
+#define SHAWINDOW_HEIGHT 640
+//窗体圆角
+#define SHAHASRADIUS 1                //是否有圆角
+#define SHAWINRADIUS 5                //圆角半径
+//窗体阴影
+#define SHAWINSHADOW 10                //窗体阴影宽度
+#define SHAWINSHADOWALPHA 0.08        //阴影透明度
+//标题高度
+#define SHATITLE_HEIGHT 60
+//左侧菜单栏长宽
+#define SHALEFTBOX_WIDTH 640
+#define SHALEFTBOX_HEIGHT 640
+//右侧交互页面长宽
+#define SHARIGHTBOXHEIGHT 640
+#define SHARIGHTBOXWIDTH  640
 
 class BaseStyle : public QWidget
 {
@@ -67,8 +88,9 @@ private:
 
     void myWidgetStyle(WidgetParameterClass basicParameter);
     void myWidgetSizeDesign(int windowWidth, int windowHeight);
-    void myWidgetBasicInit(int titleHeight);
+    void myWidgetBasicInit(WidgetParameterClass parameter);
     void myWidgetTabInit();
+
     void setMainPageButtonBackgroundBlue();
     void setMessagePageButtonBackgroudIsBlue();
     void setOnlinePageButtonBackgroudIsBlue();
@@ -76,15 +98,16 @@ private:
     void setDIYPageButtonBackgroudIsBlue();
 
     //窗口拖拽函数
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
+//    void mousePressEvent(QMouseEvent *event);
+//    void mouseReleaseEvent(QMouseEvent *event);
+//    void mouseMoveEvent(QMouseEvent *event);
 
     QPoint dragPosition;                                    //拖动坐标
     bool   mousePressed;                                    //鼠标是否按下
 
     WidgetParameterClass local_basicParameter;
 
+    StyleWidgetShadow *swshadow = nullptr;//阴影
 
     QLabel *text = nullptr;//标题
 
@@ -102,6 +125,7 @@ private:
     TabMenuButton *m_pOnlineButton;                         //在线客服界面显示按钮
     TabMenuButton *m_pContactButton;                        //在线客服界面显示按钮
     TabMenuButton *m_pDIYButton;                            //在线客服界面显示按钮
+
 
     int currentPageIndex = 0;
 

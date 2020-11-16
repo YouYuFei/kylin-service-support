@@ -28,10 +28,10 @@
 #define WINDOW_HEIGHT 640
 //窗体圆角
 #define HASRADIUS 1                //是否有圆角
-#define WINRADIUS 5                //圆角半径
+#define WINRADIUS 12                //圆角半径
 //窗体阴影
-#define WINSHADOW 0                //窗体阴影宽度
-#define WINSHADOWALPHA 0.00        //阴影透明度
+#define WINSHADOW 10                //窗体阴影宽度
+#define WINSHADOWALPHA 0.08        //阴影透明度
 //标题高度
 #define TITLE_HEIGHT 60
 //左侧菜单栏长宽

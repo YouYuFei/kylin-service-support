@@ -23,6 +23,8 @@ WidgetParameterClass::WidgetParameterClass(int pWinWidth, int pWinHeight,
     winWidth = pWinWidth + 2 * pWinShadow;
     winHeight = pWinHeight + 2 * pWinShadow;
 
+    winShadow = pWinShadow;
+
     if(pHasRadius)
         winRadius = pWinRadius;
     else

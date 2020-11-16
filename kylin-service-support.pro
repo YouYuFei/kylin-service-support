@@ -29,6 +29,8 @@ SOURCES += \
     src/mainwindow.cpp \
     src/message_page.cpp \
     src/myclick_widget.cpp \
+    src/stylewidgetattribute.cpp \
+    src/stylewidgetshadow.cpp \
     src/submitFail.cpp \
     src/submitSuccess.cpp \
     src/systeminfo_button.cpp \
@@ -46,6 +48,8 @@ HEADERS += \
     src/mainwindow.h \
     src/message_page.h \
     src/myclick_widget.h \
+    src/stylewidgetattribute.h \
+    src/stylewidgetshadow.h \
     src/submitFail.h \
     src/submitSuccess.h \
     src/systeminfo_button.h \

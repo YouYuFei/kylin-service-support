@@ -40,6 +40,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QStandardPaths>
 #include <QEventLoop>
+#include <QStyledItemDelegate>
 
 #include "file_item_init.h"
 #include "widget_parameter_class.h"
@@ -159,12 +160,6 @@ private:
 
     QComboBox *m_pStyleOfAskCombobox;
     QString textStyleOfAsk = "系统问题";
-
-    QComboBox *m_pStyleOfSystemCombobox;
-    QString textStyleOfSystem = "";
-
-    QComboBox *m_pStyleOfDeviceCombobox;
-    QString textStyleOfDevice = "";
 
     QTextEdit *m_pTitleTextEdit;
     QString titleText = "";

@@ -24,31 +24,34 @@ void submit_fail::UI_init()
 {
     if (this->objectName().isEmpty())
         this->setObjectName(QString::fromUtf8("submit_fail"));
-    this->resize(236, 60);
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
+    this->setFixedSize(248,72);
     setWindowTitle(tr("提交失败"));
 
-    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
-    //----- ------------------------
+
+
+    WidgetParameterClass shadowParameter(236 ,60,1,6,6,0.16,0,0,0,0,0);
+
+    swshadow = new StyleWidgetShadow(shadowParameter);
 
 
     label = new QLabel(this);
     label->setText(tr("反馈信息发送失败!"));
     label->setObjectName(QString::fromUtf8("label"));
-    label->setGeometry(QRect(75, 19, 134, 22));
+    label->setFixedSize(134,22);
     label->setStyleSheet(QString::fromUtf8("font: 16px;\n"));
 
 
     label_2 = new QLabel(this);
     label_2->setObjectName(QString::fromUtf8("label_2"));
-    label_2->setGeometry(QRect(43, 18, 24, 24));
-    label_2->setStyleSheet("border-image:url(:/data/fail.png);border:0px;");
-
     label_2->setFixedSize(24,24);
+    label_2->setStyleSheet("border-image:url(:/data/fail.png);border:0px;");
 
     QHBoxLayout *hlt_menu=new QHBoxLayout;//窗体内部，水平布局
     hlt_menu->setMargin(0);
     hlt_menu->setSpacing(0);
-    hlt_menu->addSpacing(43);
+    hlt_menu->addSpacing(35);
     hlt_menu->addWidget(label_2, 1);
     hlt_menu->addSpacing(8);
     hlt_menu->addWidget(label, 1);
@@ -59,11 +62,40 @@ void submit_fail::UI_init()
     vlt_menu->setSpacing(0);
     vlt_menu->addSpacing(18);
     vlt_menu->addLayout(hlt_menu, 1);
-    vlt_menu->addStretch(99);
+    vlt_menu->addSpacing(18);
+//    vlt_menu->addStretch(99);
 
-    this->setLayout(vlt_menu);
-    this->setStyleSheet("submit_fail{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
-    this->show();
+    body = new QWidget;//窗体
+    body->setFixedSize(236,60);
+    body->setObjectName("body");
+    body->setLayout(vlt_menu);
+    body->setStyleSheet("QWidget{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+
+
+    QHBoxLayout *hlt_fail=new QHBoxLayout;//窗体内部，水平布局
+    hlt_fail->setMargin(0);
+    hlt_fail->setSpacing(0);
+    hlt_fail->addSpacing(6);
+    hlt_fail->addWidget(body, 1);
+    hlt_fail->addSpacing(6);
+    QVBoxLayout *vlt_fail=new QVBoxLayout;//窗体内部，水平布局
+    vlt_fail->setMargin(0);
+    vlt_fail->setSpacing(0);
+    vlt_fail->addSpacing(6);
+    vlt_fail->addLayout(hlt_fail, 1);
+    vlt_fail->addSpacing(6);
+
+
+    this->setLayout(vlt_fail);
+    //this->setStyleSheet("submit_fail{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+
+    //设置阴影
+    QHBoxLayout *hblayout=new QHBoxLayout(swshadow);
+    hblayout->setMargin(0);//控件间距
+    hblayout->setSpacing(0);//控件间距
+    hblayout->addWidget(this);
+    swshadow->show();
+    //this->show();
 
 }
 
@@ -74,12 +106,12 @@ void submit_fail::pageChangeForTheme(QString str)
     nowTheme = str;
     if("ukui-dark" == str || "ukui-black" == str)
     {
-        this->setStyleSheet("submit_fail{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+        body->setStyleSheet("QWidget{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
         label->setStyleSheet(QString::fromUtf8("color:rgba(192, 196, 204, 1);font: 16px;\n"));
     }
     else
     {
-        this->setStyleSheet("submit_fail{background-color:rgba(255, 255, 255, 1);border-radius:6px;}");
+        body->setStyleSheet("QWidget{background-color:rgba(255, 255, 255, 1);border-radius:6px;}");
         label->setStyleSheet(QString::fromUtf8("color:rgba(48, 49, 51, 1);font: 16px;\n"));
     }
 }
@@ -124,7 +156,7 @@ void submit_fail::on_pushButton_2_clicked()
 }
 void submit_fail::close_fail_window()
 {
-    this->hide();
+    //this->hide();
 }
 void submit_fail::resend_feedbackinfo()
 {

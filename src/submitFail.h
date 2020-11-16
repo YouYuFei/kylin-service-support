@@ -12,7 +12,8 @@
 #include <QDialog>
 #include <QPushButton>
 #include <QLabel>
-
+#include "stylewidgetattribute.h"
+#include "stylewidgetshadow.h"
 class BaseStyle;
 
 class submit_fail : public QDialog
@@ -25,6 +26,8 @@ public:
 
     void show_faillinfo(int errorcode);
     void pageChangeForTheme(QString str);
+
+    StyleWidgetShadow *swshadow;
 private slots:
     void on_pushButton_2_clicked();
     void close_fail_window();
@@ -44,6 +47,7 @@ private:
     QLabel *label_2;
     QLabel *label_3;
     QString nowTheme;
+    QWidget *body  = nullptr;//窗体
 };
 
 #endif // SUBMIT_FAIL_H

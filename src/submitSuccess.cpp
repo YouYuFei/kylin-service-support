@@ -21,12 +21,13 @@ void submit_success::UI_init()
 {
     if (this->objectName().isEmpty())
         this->setObjectName(QString::fromUtf8("submit_success"));
-    this->resize(236, 60);
-    setWindowTitle(tr("问题提交成功"));
-    //this->setAttribute(Qt::WA_TranslucentBackground);
-    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
+    this->setFixedSize(248,72);
 
-    //----- ------------------------
+    WidgetParameterClass shadowParameter(236 ,60,1,6,6,0.16,0,0,0,0,0);
+
+    swshadow = new StyleWidgetShadow(shadowParameter);
 
     label = new QLabel(this);
     label->setText(tr("反馈信息已发送!"));
@@ -57,9 +58,33 @@ void submit_success::UI_init()
     vlt_menu->addLayout(hlt_menu, 1);
     vlt_menu->addStretch(99);
 
-    this->setLayout(vlt_menu);
-    this->setStyleSheet("submit_success{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
-    this->show();
+    body = new QWidget;//窗体
+    body->setFixedSize(236,60);
+    body->setObjectName("body");
+    body->setLayout(vlt_menu);
+    body->setStyleSheet("QWidget{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+
+
+    QHBoxLayout *hlt_suc=new QHBoxLayout;//窗体内部，水平布局
+    hlt_suc->setMargin(0);
+    hlt_suc->setSpacing(0);
+    hlt_suc->addSpacing(6);
+    hlt_suc->addWidget(body, 1);
+    hlt_suc->addSpacing(6);
+    QVBoxLayout *vlt_suc=new QVBoxLayout;//窗体内部，水平布局
+    vlt_suc->setMargin(0);
+    vlt_suc->setSpacing(0);
+    vlt_suc->addSpacing(6);
+    vlt_suc->addLayout(hlt_suc, 1);
+    vlt_suc->addSpacing(6);
+
+    this->setLayout(vlt_suc);
+    //设置阴影
+    QHBoxLayout *hblayout=new QHBoxLayout(swshadow);
+    hblayout->setMargin(0);//控件间距
+    hblayout->setSpacing(0);//控件间距
+    hblayout->addWidget(this);
+    swshadow->show();
 }
 submit_success::~submit_success()
 {
@@ -70,12 +95,12 @@ void submit_success::pageChangeForTheme(QString str)
 {
     if("ukui-dark" == str || "ukui-black" == str)
     {
-        this->setStyleSheet("submit_success{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
+        body->setStyleSheet("QWidget{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
         label->setStyleSheet(QString::fromUtf8("color:rgba(192, 196, 204, 1);font: 16px;\n"));
     }
     else
     {
-        this->setStyleSheet("submit_success{background-color:rgba(255, 255, 255, 1);border-radius:6px;}");
+        body->setStyleSheet("QWidget{background-color:rgba(255, 255, 255, 1);border-radius:6px;}");
         label->setStyleSheet(QString::fromUtf8("color:rgba(48, 49, 51, 1);font: 16px;\n"));
     }
 }
@@ -83,6 +108,7 @@ void submit_success::pageChangeForTheme(QString str)
 void submit_success::on_pushButton_2_clicked()
 {
     this->close();
+    swshadow->close();
     //parentWnd->window_close();
 }
 
