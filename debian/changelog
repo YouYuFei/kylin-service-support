@@ -1,3 +1,15 @@
+kylin-service-support (1.0.8kord) v101; urgency=medium
+
+  * desktop文件，增加藏语字段 
+
+ -- hanzehui <hanzehui@kylinos.cn>  Thu, 19 Nov 2020 14:27:40 +0800
+
+kylin-service-support (1.0.7kord) v101; urgency=medium
+
+  * BUG 25037 解决页面无边框bug 
+
+ -- hanzehui <hanzehui@kylinos.cn>  Mon, 16 Nov 2020 18:27:40 +0800
+
 kylin-service-support (1.0.6kord) v101; urgency=medium
 
   * BUG 25072 解决提交失败后提示框不消失问题 

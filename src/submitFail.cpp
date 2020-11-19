@@ -25,6 +25,7 @@ void submit_fail::UI_init()
     if (this->objectName().isEmpty())
         this->setObjectName(QString::fromUtf8("submit_fail"));
     this->setWindowFlags(Qt::FramelessWindowHint);
+
     this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
     this->setFixedSize(248,72);
     setWindowTitle(tr("提交失败"));
@@ -34,7 +35,7 @@ void submit_fail::UI_init()
     WidgetParameterClass shadowParameter(236 ,60,1,6,6,0.16,0,0,0,0,0);
 
     swshadow = new StyleWidgetShadow(shadowParameter);
-
+    swshadow->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
 
     label = new QLabel(this);
     label->setText(tr("反馈信息发送失败!"));

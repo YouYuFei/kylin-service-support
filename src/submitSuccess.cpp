@@ -22,12 +22,15 @@ void submit_success::UI_init()
     if (this->objectName().isEmpty())
         this->setObjectName(QString::fromUtf8("submit_success"));
     this->setWindowFlags(Qt::FramelessWindowHint);
+
+    this->showNormal();
     this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
     this->setFixedSize(248,72);
 
     WidgetParameterClass shadowParameter(236 ,60,1,6,6,0.16,0,0,0,0,0);
 
     swshadow = new StyleWidgetShadow(shadowParameter);
+        swshadow->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
 
     label = new QLabel(this);
     label->setText(tr("反馈信息已发送!"));
