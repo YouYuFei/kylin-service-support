@@ -1,3 +1,15 @@
+kylin-service-support (1.0.10kord) v101; urgency=medium
+
+  * 增加国际化翻译
+
+ -- hanzehui <hanzehui@kylinos.cn>  Sun, 21 Nov 2020 18:07:40 +0800
+
+kylin-service-support (1.0.9kord) v101; urgency=medium
+
+  * BUG 24438 【麒麟服务与支持】留言咨询中上传一个附件，删除按钮看不清
+
+ -- hanzehui <hanzehui@kylinos.cn>  Fri, 20 Nov 2020 18:07:40 +0800
+
 kylin-service-support (1.0.8kord) v101; urgency=medium
 
   * desktop文件，增加藏语字段 

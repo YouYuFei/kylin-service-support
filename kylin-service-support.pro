@@ -58,9 +58,9 @@ HEADERS += \
 
 FORMS +=
 
-TRANSLATIONS = translations/kylin-service-support.zh_CN.ts
-qm_files.files = translations/*.qm
-qm_files.path = /usr/share/kylin-service-support/translations/
+TRANSLATIONS += translations/kylin-service-support_zh_CN.ts \
+                translations/kylin-service-support_bo.ts
+
 
 TARGET = kylin-service-support
 
@@ -70,15 +70,15 @@ icon.path = /usr/share/pixmaps
 icon.files = data/kylin-service-support.png
 desktop.path = /usr/share/applications/
 desktop.files = kylin-service-support.desktop
+qm_files.files = translations/*.qm
+qm_files.path = /usr/share/kylin-service-support/translations/
 
 INSTALLS += target \
             icon \
             desktop \
             qm_files
 
-DISTFILES += \
-    translations/kylin-service-support.zh_CN.qm \
-    translations/kylin-service-support.zh_CN.ts
+DISTFILES +=
 
 RESOURCES += \
     data.qrc

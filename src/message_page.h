@@ -64,9 +64,12 @@ public:
     QFrame *frameSysInfo;
     systemInfoButton *showInfoButton;
     QGraphicsDropShadowEffect *effect;
-    QLabel *labelSystemVersion;
-    QLabel *labelDesktopVersion;
-    QLabel *labelLanguage;
+    QLabel *labelSystemVersion_1;
+    QLabel *labelDesktopVersion_1;
+    QLabel *labelLanguage_1;
+    QLabel *labelSystemVersion_2;
+    QLabel *labelDesktopVersion_2;
+    QLabel *labelLanguage_2;
     QString currentTheme;
 signals:
 

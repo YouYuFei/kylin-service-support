@@ -151,7 +151,7 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     vlt_menu_btn->addWidget(m_pMainPageButton, 1);
     vlt_menu_btn->addSpacing(16);
     vlt_menu_btn->addWidget(m_pMessagePageButton, 1);
-    vlt_menu_btn->addSpacing(20);
+    vlt_menu_btn->addSpacing(16);
     vlt_menu_btn->addWidget(m_pContactButton, 1);
     vlt_menu_btn->addSpacing(16);
     vlt_menu_btn->addWidget(m_pDIYButton, 1);
@@ -238,12 +238,12 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     contactIcon = new QLabel(menuBox);
     contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
     contactIcon->setFixedSize(16,16);
-    contactIcon->move(40,187);
+    contactIcon->move(40,185);
 
     supportIcon = new QLabel(menuBox);
     supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
     supportIcon->setFixedSize(16,16);
-    supportIcon->move(40,236);
+    supportIcon->move(40,234);
 
     titleIcon = new QLabel(menuBox);
     titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
@@ -252,7 +252,8 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
 
 
     this->setWindowIcon(QIcon(":/data/kylin-service-support.png"));
-    this->setWindowTitle(tr("服务与支持"));
+    this->setWindowTitle(tr("Service&Support"));
+//    this->setWindowTitle(tr("服务与支持"));
 
 
 }
@@ -345,7 +346,8 @@ void BaseStyle::myWidgetTabInit()
 {
     //主页界面显示按钮
     m_pMainPageButton = new TabMenuButton();
-    m_pMainPageButton->setText("软件介绍");
+    m_pMainPageButton->setText(tr("Intro"));
+    //m_pMainPageButton->setText("软件介绍");
     m_pMainPageButton->setObjectName("MainPageButton");
     m_pMainPageButton->setFixedSize(132,32);
 
@@ -353,7 +355,8 @@ void BaseStyle::myWidgetTabInit()
 
     //留言咨询界面显示按钮
     m_pMessagePageButton = new TabMenuButton();
-    m_pMessagePageButton->setText(tr("留言咨询"));
+    m_pMessagePageButton->setText(tr("Message"));
+    //m_pMessagePageButton->setText(tr("留言咨询"));
     m_pMessagePageButton->setObjectName("MessagePageButton");
     m_pMessagePageButton->setFixedSize(132,32);
 
@@ -387,7 +390,8 @@ void BaseStyle::myWidgetTabInit()
 
     //联系我们界面显示按钮
     m_pContactButton = new TabMenuButton();
-    m_pContactButton->setText(tr("联系我们"));
+    m_pContactButton->setText(tr("Contact"));
+//    m_pContactButton->setText(tr("联系我们"));
     m_pContactButton->setObjectName("ContactButton");
     m_pContactButton->setFixedSize(132,32);
 
@@ -404,7 +408,8 @@ void BaseStyle::myWidgetTabInit()
 
     //自助支持界面显示按钮
     m_pDIYButton = new TabMenuButton();
-    m_pDIYButton->setText(tr("自助支持"));
+    m_pDIYButton->setText(tr("Guidance"));
+//    m_pDIYButton->setText(tr("自助支持"));
     m_pDIYButton->setObjectName("DIYButton");
     m_pDIYButton->setFixedSize(132,32);
 

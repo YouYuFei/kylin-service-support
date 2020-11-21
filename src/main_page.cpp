@@ -46,16 +46,16 @@ void MainPage::pageLocationInit()
     //m_pPageTitle->setStyleSheet("color:rgba(255, 0, 0, 0.85);font-size:20px;");
 
     m_pMoreInfoLink = new QLabel;
-    m_pMoreInfoLink->setFixedSize(368,17);
+    m_pMoreInfoLink->adjustSize();//setFixedSize(368,17);
     m_pMoreInfoLink->setOpenExternalLinks(true);
     m_pMoreInfoLink->setStyleSheet("font-size:12px;");
-    m_pMoreInfoLink->setText(tr("点击"
-                                "<style> a {text-decoration: none} </style> <a href=\"http://www.kylinos.cn\">了解更多服务与支持内容</a>"
-                                "，跳转至KylinOS官方网站技术支持页面"));
+    m_pMoreInfoLink->setText(tr("Click "
+                                "<style> a {text-decoration: none} </style> <a href=\"http://www.kylinos.cn\">to know more about support</a>"
+                                "，to KylinOS Official Web"));
     m_pPageTitle = new QLabel;
-    m_pPageTitle->setFixedSize(216,17);   
+    m_pPageTitle->adjustSize();//setFixedSize(216,17);
     m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
-    m_pPageTitle->setText("用户可通过以下方式寻求技术支持和服务");
+    m_pPageTitle->setText(tr("You can get your answers through the ways below"));//"用户可通过以下方式寻求技术支持和服务");
     m_pPageTitle->setAlignment(Qt::AlignHCenter);
 
     m_pOnline_1 = new QLabel;
@@ -63,17 +63,17 @@ void MainPage::pageLocationInit()
     m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
 
     m_pOnline_2 = new QLabel;
-    m_pOnline_2->setFixedSize(56,20);
+    m_pOnline_2->adjustSize();//->setFixedSize(56,20);
     m_pOnline_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-    m_pOnline_2->setText("企业微信");
+    m_pOnline_2->setText(tr("Offical WeChat Account"));//"企业微信");
     m_pOnline_2->setAlignment(Qt::AlignLeft);
     m_pOnline_2->setAlignment(Qt::AlignVCenter);
     m_pOnline_2->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_pOnline_3 = new QLabel;
-    m_pOnline_3->setFixedSize(206,34);
+    m_pOnline_3->adjustSize();//->setFixedSize(206,34);
     m_pOnline_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-    m_pOnline_3->setText("用户通过微信添加服务与支持团队成员\n企业微信号，寻求在线响应");
+    m_pOnline_3->setText(tr("You can add our Team's WeChat\n Get an online response."));//"用户通过微信添加服务与支持团队成员\n企业微信号，寻求在线响应");
     m_pOnline_3->setAlignment(Qt::AlignLeft);
     m_pOnline_3->setAlignment(Qt::AlignVCenter);
     m_pOnline_3->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -105,17 +105,17 @@ void MainPage::pageLocationInit()
     m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
 
     m_pTelphone_2 = new QLabel;
-    m_pTelphone_2->setFixedSize(56,20);
+    m_pTelphone_2->adjustSize();//setFixedSize(56,20);
     m_pTelphone_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-    m_pTelphone_2->setText("在线咨询");
+    m_pTelphone_2->setText(tr("Online"));//"在线咨询");
     m_pTelphone_2->setAlignment(Qt::AlignLeft);
     m_pTelphone_2->setAlignment(Qt::AlignVCenter);
     m_pTelphone_2->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_pTelphone_3 = new QLabel;
-    m_pTelphone_3->setFixedSize(206,34);
+    m_pTelphone_3->adjustSize();//->setFixedSize(206,34);
     m_pTelphone_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-    m_pTelphone_3->setText("提供IM和反馈两种在线咨询方式");
+    m_pTelphone_3->setText(tr("Leave message to get support."));//"提供IM和反馈两种在线咨询方式");
     m_pTelphone_3->setAlignment(Qt::AlignLeft);
     m_pTelphone_3->setAlignment(Qt::AlignVCenter);
     m_pTelphone_3->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -147,17 +147,17 @@ void MainPage::pageLocationInit()
     m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
 
     m_pMail_2 = new QLabel;
-    m_pMail_2->setFixedSize(56,20);
+    m_pMail_2->adjustSize();//->setFixedSize(56,20);
     m_pMail_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-    m_pMail_2->setText("邮件咨询");
+    m_pMail_2->setText(tr("Mail"));//"邮件咨询");
     m_pMail_2->setAlignment(Qt::AlignLeft);
     m_pMail_2->setAlignment(Qt::AlignVCenter);
     m_pMail_2->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_pMail_3 = new QLabel;
-    m_pMail_3->setFixedSize(206,34);
+    m_pMail_3->adjustSize();//->setFixedSize(206,34);
     m_pMail_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-    m_pMail_3->setText("用户通过发送邮件到指定官方邮件，寻\n求服务与技术响应");
+    m_pMail_3->setText(tr("Send mail to get support."));//"用户通过发送邮件到指定官方邮件，寻\n求服务与技术响应");
     m_pMail_3->setAlignment(Qt::AlignLeft);
     m_pMail_3->setAlignment(Qt::AlignVCenter);
     m_pMail_3->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -189,17 +189,17 @@ void MainPage::pageLocationInit()
     m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
 
     m_pWeChat_2 = new QLabel;
-    m_pWeChat_2->setFixedSize(56,20);
+    m_pWeChat_2->adjustSize();//->setFixedSize(56,20);
     m_pWeChat_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-    m_pWeChat_2->setText("电话咨询");
+    m_pWeChat_2->setText(tr("Telephone"));//"电话咨询");
     m_pWeChat_2->setAlignment(Qt::AlignLeft);
     m_pWeChat_2->setAlignment(Qt::AlignVCenter);
     m_pWeChat_2->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_pWeChat_3 = new QLabel;
-    m_pWeChat_3->setFixedSize(206,34);
+    m_pWeChat_3->adjustSize();//->setFixedSize(206,34);
     m_pWeChat_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-    m_pWeChat_3->setText("5x8小时或7x24小时呼叫中心电话支持\n响应");
+    m_pWeChat_3->setText(tr("5*8 hours hotline."));//"5x8小时或7x24小时呼叫中心电话支持\n响应");
     m_pWeChat_3->setAlignment(Qt::AlignLeft);
     m_pWeChat_3->setAlignment(Qt::AlignVCenter);
     m_pWeChat_3->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -232,17 +232,17 @@ void MainPage::pageLocationInit()
     m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1.png);border:0px;");
 
     m_pDIY_2 = new QLabel;
-    m_pDIY_2->setFixedSize(56,20);
+    m_pDIY_2->adjustSize();//->setFixedSize(56,20);
     m_pDIY_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-    m_pDIY_2->setText("自助支持");
+    m_pDIY_2->setText(tr("Guidance"));//"自助支持");
     m_pDIY_2->setAlignment(Qt::AlignLeft);
     m_pDIY_2->setAlignment(Qt::AlignVCenter);
     m_pDIY_2->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_pDIY_3 = new QLabel;
-    m_pDIY_3->setFixedSize(206,34);
+    m_pDIY_3->adjustSize();//->setFixedSize(206,34);
     m_pDIY_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-    m_pDIY_3->setText("用户通过搜索和查询帮助手册、文档中\n心、FAQ内容和已排除疑问解决问题");
+    m_pDIY_3->setText(tr("Users can check Manuals to solve\nthe problem by self."));//用户通过搜索和查询帮助手册、文档中\n心、FAQ内容和已排除疑问解决问题");
     m_pDIY_3->setAlignment(Qt::AlignLeft);
     m_pDIY_3->setAlignment(Qt::AlignVCenter);
     m_pDIY_3->setAttribute(Qt::WA_TransparentForMouseEvents);

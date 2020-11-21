@@ -99,15 +99,16 @@ void DIYSupportPage::pageLocationInit()
 
 
     m_pMoreInfoLink = new QLabel;
-    m_pMoreInfoLink->setFixedSize(368,17);
+    m_pMoreInfoLink->adjustSize();//setFixedSize(368,17);
     m_pMoreInfoLink->setOpenExternalLinks(true);
-    m_pMoreInfoLink->setText(tr("点击"
-                                "<style> a {text-decoration: none} </style> <a href=\"http://www.kylinos.cn\">了解更多服务与支持内容</a>"
-                                "，跳转至KylinOS官方网站技术支持页面"));
+    m_pMoreInfoLink->setText(tr("Click "
+                                "<style> a {text-decoration: none} </style> <a href=\"http://www.kylinos.cn\">to know more about support</a>"
+                                "，to KylinOS Official Web"));
+//    m_pMoreInfoLink->setText(tr("点击<style> a {text-decoration: none} </style> <a href=\"http://www.kylinos.cn\">了解更多服务与支持内容</a>，跳转至KylinOS官方网站技术支持页面"));
 
     m_pPageTitle = new QLabel;
-    m_pPageTitle->setFixedSize(168,17);
-    m_pPageTitle->setText("用户还可通过以下方式解决问题");
+    m_pPageTitle->adjustSize();//->setFixedSize(168,17);
+    m_pPageTitle->setText(tr("Users can solve problems through the ways below."));//用户还可通过以下方式解决问题");
     m_pPageTitle->setAlignment(Qt::AlignHCenter);
 
     officialWeb = new MyClickWidget(this);
@@ -122,15 +123,15 @@ void DIYSupportPage::pageLocationInit()
     m_pKylinOfficialWeb_1->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_pKylinOfficialWeb_2 = new QLabel;
-    m_pKylinOfficialWeb_2->setFixedSize(84,20);
-    m_pKylinOfficialWeb_2->setText("前往麒麟官网");
+    m_pKylinOfficialWeb_2->adjustSize();//->setFixedSize(84,20);
+    m_pKylinOfficialWeb_2->setText(tr("Go to the KylinOS Official Web"));//"前往麒麟官网");
     m_pKylinOfficialWeb_2->setAlignment(Qt::AlignLeft);
     m_pKylinOfficialWeb_2->setAlignment(Qt::AlignVCenter);
     m_pKylinOfficialWeb_2->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     m_pKylinOfficialWeb_3 = new QLabel;
-    m_pKylinOfficialWeb_3->setFixedSize(263,17);
-    m_pKylinOfficialWeb_3->setText("用户通过访问官网，自助寻求技术与帮助。");
+    m_pKylinOfficialWeb_3->adjustSize();//->setFixedSize(263,17);
+    m_pKylinOfficialWeb_3->setText(tr("Access the Web, find the answers of the \nnormal problems."));//"用户通过访问官网，自助寻求技术与帮助。");
     m_pKylinOfficialWeb_3->setAlignment(Qt::AlignLeft);
     m_pKylinOfficialWeb_3->setAlignment(Qt::AlignVCenter);
     m_pKylinOfficialWeb_3->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -146,14 +147,14 @@ void DIYSupportPage::pageLocationInit()
     m_pKylinManual_1->setFixedSize(18,18);
 
     m_pKylinManual_2 = new QLabel;
-    m_pKylinManual_2->setFixedSize(56,20);
-    m_pKylinManual_2->setText("帮助手册");
+    m_pKylinManual_2->adjustSize();//->setFixedSize(56,20);
+    m_pKylinManual_2->setText(tr("Guidance"));//"帮助手册");
     m_pKylinManual_2->setAlignment(Qt::AlignLeft);
     m_pKylinManual_2->setAlignment(Qt::AlignVCenter);
 
     m_pKylinManual_3 = new QLabel;
-    m_pKylinManual_3->setFixedSize(309,17);
-    m_pKylinManual_3->setText("用户通过查询桌面集成帮助手册，自助寻求支持与帮助。");
+    m_pKylinManual_3->adjustSize();//->setFixedSize(309,17);
+    m_pKylinManual_3->setText(tr("Users can check KylinManual, to find the answers."));//"用户通过查询桌面集成帮助手册，自助寻求支持与帮助。");
     m_pKylinManual_3->setAlignment(Qt::AlignLeft);
     m_pKylinManual_3->setAlignment(Qt::AlignVCenter);
 

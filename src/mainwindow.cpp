@@ -22,25 +22,9 @@ MainWindow::MainWindow()
     //单例运行
     checkSingle();
 
-//    QTranslator *translator = new QTranslator;
-//    QTranslator *translator_qt = new QTranslator;
-
-//    if (translator->load(QLocale(), QLatin1String("kylin-service-support"), QLatin1String("_"), QLatin1String("/usr/share/kylin-service-support")))
-//        QApplication::installTranslator(translator);
-//    else
-//        qDebug() << "cannot load translator kylin-service-support_" << QLocale::system().name() << ".qm!";
-//    if (translator_qt->load("/usr/share/qt5/translations/qt_"+QLocale::system().name()))
-//        QApplication::installTranslator(translator_qt);
-//    else
-//        qDebug() << "cannot load translator kylin-service-support_" << QLocale::system().name() << ".qm!";
-
-
-
-//    QApplication::installTranslator(translator);
-
     WidgetParameterClass basicParameter(WINDOW_WIDTH ,WINDOW_HEIGHT,HASRADIUS,WINRADIUS,WINSHADOW,WINSHADOWALPHA,TITLE_HEIGHT,LEFTBOX_WIDTH,LEFTBOX_HEIGHT,RIGHTBOXHEIGHT,RIGHTBOXWIDTH);
 
-    QString windowTitle = tr("服务与支持");
+    QString windowTitle = tr("Service&Support");
 
     basicWindow = new BaseStyle(basicParameter , windowTitle);
 

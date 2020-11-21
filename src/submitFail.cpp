@@ -28,7 +28,7 @@ void submit_fail::UI_init()
 
     this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
     this->setFixedSize(248,72);
-    setWindowTitle(tr("提交失败"));
+    //setWindowTitle(tr("Submit Failed!"));//"提交失败"));
 
 
 
@@ -38,7 +38,8 @@ void submit_fail::UI_init()
     swshadow->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
 
     label = new QLabel(this);
-    label->setText(tr("反馈信息发送失败!"));
+    label->adjustSize();
+    label->setText(tr("Submit Failed!"));//反馈信息发送失败!"));
     label->setObjectName(QString::fromUtf8("label"));
     label->setFixedSize(134,22);
     label->setStyleSheet(QString::fromUtf8("font: 16px;\n"));

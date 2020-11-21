@@ -23,10 +23,10 @@ StyleWidgetShadow::StyleWidgetShadow(WidgetParameterClass s)
     //窗口设置
     this->setWindowFlags(Qt::FramelessWindowHint);//无边框
     this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
-    this->setWindowTitle("麒麟服务与支持");
+    this->setWindowTitle("kylin-service-support");
     this->setFixedSize(swa.winWidth,swa.winHeight);
     this->setWindowIcon(QIcon(":/data/kylin-service-support.png"));
-    this->setWindowTitle(tr("麒麟服务与支持"));
+    //this->setWindowTitle(tr("麒麟服务与支持"));
     handleIconClickedSub();//在屏幕中央显示
 }
 

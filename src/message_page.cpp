@@ -104,9 +104,12 @@ void MessagePage::pageChangeForTheme(QString str)
                                                         "border:0.5px solid black;\n"
                                                         ""));
         frameSysInfo->setStyleSheet("border-color: rgba(0, 0, 0, 0.16);");
-        labelSystemVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
-        labelDesktopVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
-        labelLanguage->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+        labelSystemVersion_1->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+        labelDesktopVersion_1->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+        labelLanguage_1->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+        labelSystemVersion_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+        labelDesktopVersion_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
+        labelLanguage_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(249, 249, 249, 1);font:12px;"));
 
     }
     else
@@ -162,9 +165,12 @@ void MessagePage::pageChangeForTheme(QString str)
                                                         "border:0.5px solid black;\n"
                                                         ""));
         frameSysInfo->setStyleSheet("border-color: rgba(0, 0, 0, 0.16);");
-        labelSystemVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
-        labelDesktopVersion->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
-        labelLanguage->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+        labelSystemVersion_1->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+        labelDesktopVersion_1->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+        labelLanguage_1->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+        labelSystemVersion_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+        labelDesktopVersion_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
+        labelLanguage_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
 //        m_pMoreInfoLink->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
 //        m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
 //        m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
@@ -242,8 +248,8 @@ void MessagePage::pageStyleOfAskRowLocationInit()
 
 
     m_pStyleOfAsk = new QLabel;
-    m_pStyleOfAsk->setFixedSize(68,20);
-    m_pStyleOfAsk->setText("咨询类别 *");
+    m_pStyleOfAsk->adjustSize();//->setFixedSize(68,20);
+    m_pStyleOfAsk->setText(tr("Question *"));//"咨询类别 *");
     m_pStyleOfAsk->setAlignment(Qt::AlignLeft);
     m_pStyleOfAsk->setAlignment(Qt::AlignVCenter);
 
@@ -252,11 +258,11 @@ void MessagePage::pageStyleOfAskRowLocationInit()
     m_pStyleOfAskCombobox->setMaxVisibleItems(5);
     QStyledItemDelegate *delegate = new QStyledItemDelegate();
     m_pStyleOfAskCombobox->setItemDelegate(delegate);
-    m_pStyleOfAskCombobox->addItem(QString(tr("问题类别")));
-    m_pStyleOfAskCombobox->addItem(QString(tr("系统问题")));
-    m_pStyleOfAskCombobox->addItem(QString(tr("意见建议")));
-    m_pStyleOfAskCombobox->addItem(QString(tr("商务合作")));
-    m_pStyleOfAskCombobox->addItem(QString(tr("其他")));
+    m_pStyleOfAskCombobox->addItem((tr("Type")));//("问题类别")));
+    m_pStyleOfAskCombobox->addItem((tr("System")));//("系统问题")));
+    m_pStyleOfAskCombobox->addItem((tr("Suggestion")));//("意见建议")));
+    m_pStyleOfAskCombobox->addItem((tr("Bussiness")));//("商务合作")));
+    m_pStyleOfAskCombobox->addItem((tr("Others")));//"其他")));
     connect(m_pStyleOfAskCombobox,SIGNAL(currentIndexChanged(QString)),this,SLOT(styleOfAskCombobox_currentIndexChanged()));
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
@@ -298,7 +304,7 @@ void MessagePage::pageContentOfAskRowLocationInit()
 
     m_pTitleOfAsk = new QLabel;
     m_pTitleOfAsk->setFixedSize(68,20);
-    m_pTitleOfAsk->setText("咨询内容 *");
+    m_pTitleOfAsk->setText(tr("Content *"));//"咨询内容 *");
     m_pTitleOfAsk->setAlignment(Qt::AlignLeft);
     m_pTitleOfAsk->setAlignment(Qt::AlignVCenter);
 
@@ -307,7 +313,8 @@ void MessagePage::pageContentOfAskRowLocationInit()
     m_pContentTextEdit->setFixedSize(634,180);
     m_pContentTextEdit->setFrameShape(QFrame::NoFrame);
     m_pContentTextEdit->setAlignment(Qt::AlignVCenter);
-    m_pContentTextEdit->setPlaceholderText(tr("* 请详细描述要咨询的问题详情,必要可添加附件\n* 目前支持的格式仅有*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx"));
+    m_pContentTextEdit->setPlaceholderText(tr("* Please describe your problem, also can add attachments.\n* Now support format *.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx"));
+    //tr("* 请详细描述要咨询的问题详情,必要可添加附件\n* 目前支持的格式仅有*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx"));
     connect(m_pContentTextEdit,SIGNAL(textChanged()),this,SLOT(detailTextEdit_textChanged()));
 
     m_pDetailTextLetterLimit = new QLabel(m_pContentTextEdit);
@@ -361,20 +368,20 @@ void MessagePage::pageUploadFilesRowLocationInit()
 
     m_pUserData = new QLabel;
     m_pUserData->setFixedSize(56,20);
-    m_pUserData->setText("上传附件");
+    m_pUserData->setText(tr("Upload"));//"上传附件");
     m_pUserData->setAlignment(Qt::AlignLeft);
     m_pUserData->setAlignment(Qt::AlignVCenter);
 
     m_pUserDataPushButton = new QPushButton(m_pWidgetUserData);
     m_pUserDataPushButton->setFixedSize(64,30);
     m_pUserDataPushButton->setObjectName("m_pUserDataPushButton");
-    m_pUserDataPushButton->setText(tr("浏览"));
+    m_pUserDataPushButton->setText(tr("Browse"));//("浏览"));
     m_pUserDataPushButton->setFlat(true);
     connect(m_pUserDataPushButton,SIGNAL(clicked()),this,SLOT(userDataPushButton_clicked()));
 
     m_pUserDataLimit = new QLabel(m_pWidgetUserData);
     m_pUserDataLimit->setFixedSize(560,30);
-    m_pUserDataLimit->setText(tr("总附件大小不超过10mb，附件数量不超过5个"));
+    m_pUserDataLimit->setText(tr("All attachmens size should smaller than 10mb,and numbers less than 5."));//("总附件大小不超过10mb，附件数量不超过5个"));
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
     HStyleOfAskLayout->setMargin(0);
@@ -409,18 +416,18 @@ void MessagePage::pageMailRowLocationInit()
 
     m_pMail = new QLabel;
     m_pMail->setFixedSize(40,20);
-    m_pMail->setText("邮件 *");
+    m_pMail->setText(tr("Mail *"));//"邮件 *");
     m_pMail->setAlignment(Qt::AlignLeft);
     m_pMail->setAlignment(Qt::AlignVCenter);
 
     m_pMailTextEdit = new QTextEdit(m_pWidgetMail);
     m_pMailTextEdit->setFixedSize(634,40);
-    m_pMailTextEdit->setPlaceholderText(tr("KylinOS服务与支持团队将通过您预留的邮件反馈处理进度和结果"));
+    m_pMailTextEdit->setPlaceholderText(tr("Leave your E-mail to get response."));//("KylinOS服务与支持团队将通过您预留的邮件反馈处理进度和结果"));
     connect(m_pMailTextEdit,SIGNAL(textChanged()),this,SLOT(mailTextEdit_textChanged()));
 
     m_pMailFormatErr = new QLabel;
     m_pMailFormatErr->setFixedSize(84,17);
-    m_pMailFormatErr->setText("邮箱格式不正确");
+    m_pMailFormatErr->setText(tr("Incorrect E-mail address."));//"邮箱格式不正确");
     m_pMailFormatErr->setStyleSheet(QString::fromUtf8("font: 12px;color: rgba(237, 100, 100, 1);"));
     m_pMailFormatErr->setAlignment(Qt::AlignLeft);
     m_pMailFormatErr->setAlignment(Qt::AlignVCenter);
@@ -475,18 +482,18 @@ void MessagePage::pageSysLogRowLocationInit()
 
     m_pLog = new QLabel;
     m_pLog->setFixedSize(56,20);
-    m_pLog->setText("上传日志");
+    m_pLog->setText(tr("Upload Log"));//"上传日志");
     m_pLog->setAlignment(Qt::AlignLeft);
     m_pLog->setAlignment(Qt::AlignVCenter);
 
     m_pTrueSyslogCheckBox = new QCheckBox();
-    m_pTrueSyslogCheckBox->setText(tr("是"));
+    m_pTrueSyslogCheckBox->setText(tr("Yes"));//"是"));
     m_pTrueSyslogCheckBox->setChecked(true);
     m_pTrueSyslogCheckBox->setObjectName(QString::fromUtf8("checkBox"));
     connect(m_pTrueSyslogCheckBox,SIGNAL(stateChanged(int)),this,SLOT(trueSyslogCheckBox_stateChanged(int)));
 
     m_pFalseSyslogCheckBox = new QCheckBox();
-    m_pFalseSyslogCheckBox->setText(tr("否"));
+    m_pFalseSyslogCheckBox->setText(tr("No"));//"否"));
     m_pFalseSyslogCheckBox->setObjectName(QString::fromUtf8("checkBox"));
     connect(m_pFalseSyslogCheckBox,SIGNAL(stateChanged(int)),this,SLOT(falseSyslogCheckBox_stateChanged(int)));
 
@@ -564,20 +571,20 @@ void MessagePage::pageAllRowLocationInit()
     commitButton = new QPushButton(this);
     commitButton->setFixedSize(64,30);
     commitButton->setObjectName("commitButton");
-    commitButton->setText(tr("提交"));
+    commitButton->setText(tr("Commit"));//"提交"));
     commitButton->setEnabled(false);
     connect(commitButton,SIGNAL(clicked()),this,SLOT(on_commitButton_clicked()));
 
     resetButton = new QPushButton(this);
     resetButton->setFixedSize(64,30);
     resetButton->setObjectName("resetButton");
-    resetButton->setText(tr("重置"));
+    resetButton->setText(tr("Reset"));//"重置"));
     resetButton->setEnabled(true);
     connect(resetButton,SIGNAL(clicked()),this,SLOT(on_resetButton_clicked()));
 
     m_pUserPermission = new QCheckBox(this);
     m_pUserPermission->setFixedSize(120,17);
-    m_pUserPermission->setText(tr("同意获取我的"));
+    m_pUserPermission->setText(tr("Upload my "));//"同意获取我的"));
     m_pUserPermission->setObjectName(QString::fromUtf8("checkBox"));
     connect(m_pUserPermission,SIGNAL(stateChanged(int)),this,SLOT(userPermission_stateChanged(int)));
     //获取系统信息的小弹窗
@@ -603,22 +610,35 @@ void MessagePage::pageAllRowLocationInit()
     frameSysInfo->setGraphicsEffect(effect);
 
     showInfoButton = new systemInfoButton(this);
-    showInfoButton->setText(tr("系统信息"));
+    showInfoButton->setText(tr("System Info"));//"系统信息"));
     showInfoButton->move(172,525);
     showInfoButton->setFeedBack(this);
     showInfoButton->setFlat(true);
     showInfoButton->setEnabled(false);
 
 
-    labelSystemVersion = new QLabel(frameSysInfo);
-    labelSystemVersion->setObjectName(QString::fromUtf8("labelSystemVersion"));
-    labelSystemVersion->setGeometry(QRect(10, 10, 140, 20));
-    labelDesktopVersion = new QLabel(frameSysInfo);
-    labelDesktopVersion->setObjectName(QString::fromUtf8("labelDesktopVersion"));
-    labelDesktopVersion->setGeometry(QRect(10, 31, 140, 20));
-    labelLanguage = new QLabel(frameSysInfo);
-    labelLanguage->setObjectName(QString::fromUtf8("labelLanguage"));
-    labelLanguage->setGeometry(QRect(10, 52, 140, 20));
+    labelSystemVersion_2 = new QLabel(frameSysInfo);
+    labelSystemVersion_2->setObjectName(QString::fromUtf8("labelSystemVersion2"));
+    labelSystemVersion_2->setGeometry(QRect(60, 10, 90, 20));
+    labelDesktopVersion_2 = new QLabel(frameSysInfo);
+    labelDesktopVersion_2->setObjectName(QString::fromUtf8("labelDesktopVersion2"));
+    labelDesktopVersion_2->setGeometry(QRect(60, 31, 90, 20));
+    labelLanguage_2 = new QLabel(frameSysInfo);
+    labelLanguage_2->setObjectName(QString::fromUtf8("labelLanguage2"));
+    labelLanguage_2->setGeometry(QRect(60, 52, 90, 20));
+
+    labelSystemVersion_1 = new QLabel(frameSysInfo);
+    labelSystemVersion_1->setObjectName(QString::fromUtf8("labelSystemVersion1"));
+    labelSystemVersion_1->setText(tr("Lang"));
+    labelSystemVersion_1->setGeometry(QRect(5, 10, 55, 20));
+    labelDesktopVersion_1 = new QLabel(frameSysInfo);
+    labelDesktopVersion_1->setObjectName(QString::fromUtf8("labelDesktopVersion1"));
+    labelDesktopVersion_1->setText(tr("Deskenv"));
+    labelDesktopVersion_1->setGeometry(QRect(5, 31, 55, 20));
+    labelLanguage_1 = new QLabel(frameSysInfo);
+    labelLanguage_1->setText(tr("Os_rel"));
+    labelLanguage_1->setObjectName(QString::fromUtf8("labelLanguage1"));
+    labelLanguage_1->setGeometry(QRect(5, 52, 55, 20));
 
 
     QVBoxLayout *VmainLayout = new QVBoxLayout;
@@ -1042,7 +1062,7 @@ bool MessagePage::allFileSizeLargerThan10M()
 *************************************************/
 void MessagePage::userDataPushButton_clicked()
 {
-    userUploadFileName=QFileDialog::getOpenFileName(this,tr("选择文件"),"/","(*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx)",0);
+    userUploadFileName=QFileDialog::getOpenFileName(this,tr("select file"),"/","(*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx)",0);
 
     if (userUploadFileName.isEmpty())
         return;
@@ -1254,9 +1274,20 @@ void MessagePage::update_add_file_window()
 
         int filesize_width = file_widget[filenum]->filesize_label0->geometry().width();
 
-        file_widget[filenum]->deletebtn0->setText(tr("删除"));
-        file_widget[filenum]->deletebtn0->setFixedSize(26,17);
-        file_widget[filenum]->deletebtn0->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
+        file_widget[filenum]->deletebtn0->setText(tr("Del"));
+        file_widget[filenum]->deletebtn0->setFixedSize(36,21);
+        file_widget[filenum]->deletebtn0->setStyleSheet("font:12px;");
+
+//        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+//        {
+//            file_widget[filenum]->deletebtn0->setStyleSheet("{color:rgba(112, 149, 255, 1);background:transparent;font-size:12px;}");
+//        }
+//        else
+//        {
+//            file_widget[filenum]->deletebtn0->setStyleSheet("{color:rgba(112, 149, 255, 1);background-color:rgba(255,255,255,1);font-size:12px;}"
+//                                                            "hover{color:rgba(112, 149, 255, 1);background-color:rgba(255,255,255,1);font-size:12px;}"
+//                                                            "pressed{color:rgba(112, 149, 255, 1);background-color:rgba(255,255,255,1);font-size:12px;}");
+//         }
         file_widget[filenum]->deletebtn0->setFlat(true);
 
 
@@ -1535,7 +1566,7 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
     //定时器结束
     //Timer ends.
     submitting_timer->stop();
-    commitButton->setText(tr("提交"));
+    commitButton->setText(tr("Submit"));//"提交"));
     commitButton->setEnabled(false);
 
     commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
@@ -1809,15 +1840,10 @@ void MessagePage::systeminfo_hide()
 *************************************************/
 void MessagePage::getSysteminfo()
 {
-    string encoding_info = "系统语言: ";
-    string desktop_info = "桌面环境: ";
-    string os_info = "操作系统: ";
+    string encoding_info = ": ";
+    string desktop_info = ": ";
+    string os_info = ": ";
 
-    if ((QLocale::system().name()) == "en_US") {
-        encoding_info = "Lang: ";
-        desktop_info = "Deskenv: ";
-        os_info= "Osrelease: ";
-    }
     //获取系统信息
     //Access to system information
     //1.获取系统版本
@@ -1849,14 +1875,14 @@ void MessagePage::getSysteminfo()
     send_os_info = QString::fromStdString(system_name +" " + system_version_id);
     system_info_str = QString::fromStdString(system_info);
     system_info_str.remove(QChar('"'), Qt::CaseInsensitive);
-    labelSystemVersion->setText(system_info_str);
+    labelSystemVersion_2->setText(system_info_str);
     //2.获取桌面环境信息
     //Access to desktop environment information
     char * desktop = getenv("DESKTOP_SESSION");
     desktop_info.append(desktop);
     send_dekstop_info.append(desktop);
     desktop_info_str = QString::fromStdString(desktop_info);
-    labelDesktopVersion->setText(desktop_info_str);
+    labelDesktopVersion_2->setText(desktop_info_str);
     //3.获取编码格式
     //Get the coding format
     char *encoding = getenv("LANG");
@@ -1864,10 +1890,17 @@ void MessagePage::getSysteminfo()
     emcoding_2 = (char *)malloc(8);
     if (encoding == NULL) {
         QString locale = QLocale::system().name();
-        if (locale == "en_US") {
+        if (locale == "en_US")
+        {
             strcpy(emcoding_2, "en_US");
-        } else {
+        }
+        else if (locale == "zh_CN")
+        {
             strcpy(emcoding_2, "zh_CN");
+        }
+        else if (locale == "bo_CN")
+        {
+            strcpy(emcoding_2, "bo_CN");
         }
         encoding = emcoding_2;
     }
@@ -1877,7 +1910,7 @@ void MessagePage::getSysteminfo()
     encoding_info_str = QString::fromStdString(encoding_info);
     if(encoding_info_str.contains(".")){
         QStringList list = encoding_info_str.split(".");
-        labelLanguage->setText(list.at(0));
+        labelLanguage_2->setText(list.at(0));
 
         if(send_encoding_info.contains(".")){
             QStringList list2 = send_encoding_info.split(".");
@@ -1886,8 +1919,9 @@ void MessagePage::getSysteminfo()
         }
 
     }
-    else{
-        labelLanguage->setText(encoding_info_str);
+    else
+    {
+        labelLanguage_2->setText(encoding_info_str);
     }
 }
 

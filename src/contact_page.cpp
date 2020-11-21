@@ -58,7 +58,6 @@ void ContactPage::pageChangeForTheme(QString str)
         QString bodyStyleSheet="QWidget #body{background-color:rgba(246, 247, 247, 1);}";
         body->setStyleSheet(bodyStyleSheet);
         m_pContactUs->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:16px;");
-        m_pContactUs->setText("联系我们");
         m_pKylinTeam_1->setStyleSheet("border-image:url(:/data/icon_team.png);border:0px;");
         m_pKylinTeam_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pKylinTeam_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;");
@@ -89,8 +88,10 @@ void ContactPage::contactPageUIInit()
 
 
     m_pContactUs = new QLabel(this);
-    m_pContactUs->setFixedSize(64,22);
-    m_pContactUs->setText("联系我们");
+    //m_pContactUs->setFixedSize(64,22);
+    m_pContactUs->adjustSize();
+    m_pContactUs->setText(tr("Contact Us"));
+//    m_pContactUs->setText("联系我们");
     m_pContactUs->setAlignment(Qt::AlignLeft);
     m_pContactUs->setAlignment(Qt::AlignVCenter);
 
@@ -99,14 +100,15 @@ void ContactPage::contactPageUIInit()
 
 
     m_pKylinTeam_2 = new QLabel;
-    m_pKylinTeam_2->setFixedSize(98,20);
-    m_pKylinTeam_2->setText("服务与支持团队");
+    m_pKylinTeam_2->adjustSize();//->setFixedSize(98,20);
+    m_pKylinTeam_2->setText(tr("Support Team"));
+//    m_pKylinTeam_2->setText("服务与支持团队");
     m_pKylinTeam_2->setAlignment(Qt::AlignLeft);
     m_pKylinTeam_2->setAlignment(Qt::AlignVCenter);
 
     m_pKylinTeam_3 = new QLabel;
     m_pKylinTeam_3->setFixedSize(148,20);
-    m_pKylinTeam_3->setText("KylinOS Support Team");
+    m_pKylinTeam_3->setText(tr("KylinOS Support Team"));
     m_pKylinTeam_3->setAlignment(Qt::AlignLeft);
     m_pKylinTeam_3->setAlignment(Qt::AlignVCenter);
 
@@ -114,8 +116,9 @@ void ContactPage::contactPageUIInit()
     m_pTel_1->setFixedSize(18,18);
 
     m_pTel_2 = new QLabel;
-    m_pTel_2->setFixedSize(28,20);
-    m_pTel_2->setText("电话");
+    m_pTel_2->adjustSize();//setFixedSize(28,20);
+//    m_pTel_2->setText("电话");
+    m_pTel_2->setText(tr("Tel"));
     m_pTel_2->setAlignment(Qt::AlignLeft);
     m_pTel_2->setAlignment(Qt::AlignVCenter);
 
@@ -129,8 +132,8 @@ void ContactPage::contactPageUIInit()
     m_pMail_1->setFixedSize(18,18);
 
     m_pMail_2 = new QLabel;
-    m_pMail_2->setFixedSize(28,20);
-    m_pMail_2->setText("邮件");
+    m_pMail_2->adjustSize();//setFixedSize(28,20);
+    m_pMail_2->setText(tr("E-mail"));//"邮件");
     m_pMail_2->setAlignment(Qt::AlignLeft);
     m_pMail_2->setAlignment(Qt::AlignVCenter);
 
@@ -145,8 +148,8 @@ void ContactPage::contactPageUIInit()
     m_pQRCode_1->setStyleSheet("border-image:url(:/data/qcpic.png);border:0px;");
 
     m_pQRCode_2 = new QLabel;
-    m_pQRCode_2->setFixedSize(154,20);
-    m_pQRCode_2->setText("公众号麒麟软件技术服务");
+    m_pQRCode_2->adjustSize();//setFixedSize(154,20);
+    m_pQRCode_2->setText(tr("Kylin WeChat Official Account"));//"公众号麒麟软件技术服务");
     m_pQRCode_2->setAlignment(Qt::AlignLeft);
     m_pQRCode_2->setAlignment(Qt::AlignVCenter);
 

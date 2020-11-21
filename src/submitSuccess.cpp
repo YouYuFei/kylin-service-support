@@ -33,7 +33,8 @@ void submit_success::UI_init()
         swshadow->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
 
     label = new QLabel(this);
-    label->setText(tr("反馈信息已发送!"));
+    label->adjustSize();
+    label->setText(tr("Submit Successed!"));//反馈信息已发送!"));
     label->setObjectName(QString::fromUtf8("label"));
     label->setGeometry(QRect(75, 19, 118, 22));
     label->setStyleSheet(QString::fromUtf8("font: 16px;\n"));
