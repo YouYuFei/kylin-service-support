@@ -226,22 +226,18 @@ void BaseStyle::myWidgetStyle(WidgetParameterClass basicParameter)
     qDebug() << mainWPoint;
 
     introIcon = new QLabel(menuBox);
-    introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
     introIcon->setFixedSize(16,16);
     introIcon->move(40,89);
 
     messageIcon = new QLabel(menuBox);
-    messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
     messageIcon->setFixedSize(16,16);
     messageIcon->move(40,138);
 
     contactIcon = new QLabel(menuBox);
-    contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
     contactIcon->setFixedSize(16,16);
     contactIcon->move(40,185);
 
     supportIcon = new QLabel(menuBox);
-    supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
     supportIcon->setFixedSize(16,16);
     supportIcon->move(40,234);
 
@@ -307,16 +303,6 @@ void BaseStyle::myWidgetBasicInit(WidgetParameterClass parameter)
     title->setMinimumHeight(parameter.titleHeight);
     title->setObjectName("title");
 
-    //窗体
-//    body = new QWidget;
-//    body->setFixedHeight(this->height());
-//    body->setObjectName("body");
-
-//    QPalette pal_body(body->palette());
-//    body->setPalette(pal_body);
-
-
-
     //左菜单背景
     menuBox = new QWidget;
     menuBox->setFixedSize(180,this->height()-2*parameter.winShadow);
@@ -351,6 +337,7 @@ void BaseStyle::myWidgetTabInit()
     m_pMainPageButton->setObjectName("MainPageButton");
     m_pMainPageButton->setFixedSize(132,32);
 
+    m_pMainPageButton->installEventFilter(this);
     connect(m_pMainPageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MainPageButtonSlots);
 
     //留言咨询界面显示按钮
@@ -359,34 +346,9 @@ void BaseStyle::myWidgetTabInit()
     //m_pMessagePageButton->setText(tr("留言咨询"));
     m_pMessagePageButton->setObjectName("MessagePageButton");
     m_pMessagePageButton->setFixedSize(132,32);
-
-//    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-//    {
-//        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-//    }
-//    else
-//    {
-//        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-//    }
+    m_pMessagePageButton->installEventFilter(this);
 
     connect(m_pMessagePageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MessagePageButtonSlots);
-
-    //在线客服界面显示按钮
-//    m_pOnlineButton = new TabMenuButton();
-//    m_pOnlineButton->setText(tr("在线客服"));
-//    m_pOnlineButton->setObjectName("OnlineButton");
-//    m_pOnlineButton->setFixedSize(132,32);
-
-//    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-//    {
-//        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
-//    }
-//    else
-//    {
-//        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
-//    }
-
-//    connect(m_pOnlineButton, &TabMenuButton::clicked, this, &BaseStyle::m_OnlinePageButtonSlots);
 
     //联系我们界面显示按钮
     m_pContactButton = new TabMenuButton();
@@ -394,15 +356,7 @@ void BaseStyle::myWidgetTabInit()
 //    m_pContactButton->setText(tr("联系我们"));
     m_pContactButton->setObjectName("ContactButton");
     m_pContactButton->setFixedSize(132,32);
-
-//    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-//    {
-//        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
-//    }
-//    else
-//    {
-//        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
-//    }
+    m_pContactButton->installEventFilter(this);
 
     connect(m_pContactButton, &TabMenuButton::clicked, this, &BaseStyle::m_ContactPageButtonSlots);
 
@@ -412,15 +366,7 @@ void BaseStyle::myWidgetTabInit()
 //    m_pDIYButton->setText(tr("自助支持"));
     m_pDIYButton->setObjectName("DIYButton");
     m_pDIYButton->setFixedSize(132,32);
-
-//    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-//    {
-//        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
-//    }
-//    else
-//    {
-//        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
-//    }
+    m_pDIYButton->installEventFilter(this);
 
     connect(m_pDIYButton, &TabMenuButton::clicked, this, &BaseStyle::m_DIYPageButtonSlots);
 
@@ -520,26 +466,30 @@ void BaseStyle::setMainPageButtonBackgroundBlue()
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pMainPageButton->setStyleSheet(qssChooseMenuBar_d);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-
-        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
     }
     else
     {
         m_pMainPageButton->setStyleSheet(qssChooseMenuBar);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-
-        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
     }
 }
 /************************************************
@@ -557,26 +507,30 @@ void BaseStyle::setMessagePageButtonBackgroudIsBlue()
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssChooseMenuBar_d);
-
-        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
     }
     else
     {
         m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssChooseMenuBar);
-
-        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
     }
 }
 /************************************************
@@ -594,26 +548,30 @@ void BaseStyle::setOnlinePageButtonBackgroudIsBlue()
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-
-        //m_pOnlineButton->setStyleSheet(qssChooseMenuBar_d);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
     }
     else
     {
         m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-
-        //m_pOnlineButton->setStyleSheet(qssChooseMenuBar);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
     }
 }
 /************************************************
@@ -631,26 +589,30 @@ void BaseStyle::setContactPageButtonBackgroudIsBlue()
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-
-        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssChooseMenuBar_d);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
     }
     else
     {
         m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-
-        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssChooseMenuBar);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
     }
 }
 /************************************************
@@ -668,82 +630,351 @@ void BaseStyle::setDIYPageButtonBackgroudIsBlue()
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-
-        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssChooseMenuBar_d);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
     }
     else
     {
         m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
 
         m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-
-        //m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
 
         m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
 
         m_pDIYButton->setStyleSheet(qssChooseMenuBar);
+        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
     }
 
 }
-/************************************************
-* 函数名称：mousePressEvent
-* 功能描述：鼠标点击事件重写
-* 输入参数：点击event
-* 输出参数：无
-* 修改日期：2020.11.04
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-//void BaseStyle::mousePressEvent(QMouseEvent *event)
-//{
-//    if (event->button() == Qt::LeftButton) {
-//        this->dragPosition = event->globalPos() - frameGeometry().topLeft();
-//        this->mousePressed = true;
-//    }
-//    QWidget::mousePressEvent(event);
-//}
-/************************************************
-* 函数名称：mouseReleaseEvent
-* 功能描述：鼠标松开事件重写
-* 输入参数：松开event
-* 输出参数：无
-* 修改日期：2020.11.04
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-//void BaseStyle::mouseReleaseEvent(QMouseEvent *event)
-//{
-//    if (event->button() == Qt::LeftButton) {
-//        this->mousePressed = false;
-//    }
-//    QWidget::mouseReleaseEvent(event);
-//}
-/************************************************
-* 函数名称：mouseMoveEvent
-* 功能描述：鼠标移动事件重写
-* 输入参数：移动event
-* 输出参数：无
-* 修改日期：2020.11.04
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-//void BaseStyle::mouseMoveEvent(QMouseEvent *event)
-//{
-//    if (this->mousePressed) {
-//        move(event->globalPos() - this->dragPosition);
-//    }
-//    QWidget::mouseMoveEvent(event);
-//}
 
+/************************************************
+* 函数名称：eventFilter
+* 功能描述：事件过滤，重写
+* 输入参数：侧边menu的按钮响应鼠标悬停，点击，按钮上图标反色
+* 输出参数：无
+* 修改日期：2020.11.23
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool BaseStyle::eventFilter(QObject *obj, QEvent *ev)
+{
+    if(obj == m_pMainPageButton)
+    {
+        mainPageButtonQss(ev);
+    }
+    if(obj == m_pMessagePageButton)
+    {
+        messagePageButtonQss(ev);
+    }
+    if(obj == m_pContactButton)
+    {
+        contactPageButtonQss(ev);
+    }
+    if(obj == m_pDIYButton)
+    {
+        diyPageButtonQss(ev);
+    }
+    //其余的事件按照默认(未覆写)的处理方式处理
+    return QWidget::eventFilter(obj,ev);
+}
+/************************************************
+* 函数名称：mainPageButtonQss
+* 功能描述：按钮根据鼠标动作适配
+* 输入参数：鼠标事件
+* 输出参数：无
+* 修改日期：2020.11.23
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool BaseStyle::mainPageButtonQss(QEvent *ev)
+{
+    if(ev->type() == QEvent::HoverEnter)
+    {
+        //qDebug() << "悬停在软件介绍按钮上";
+        if(currentPageIndex != 0)
+        {
+            //qDebug() << "当前未按下悬停按钮";
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMainPageButton->setStyleSheet(qssChooseMenuBar_d);
+                introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
+            }
+            else
+            {
+                m_pMainPageButton->setStyleSheet(qssChooseMenuBar);
+                introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::HoverLeave)
+    {
+        //qDebug() << "悬停在软件介绍按钮上";
+        if(currentPageIndex != 0)
+        {
+            //qDebug() << "当前未按下悬停按钮";
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
+                introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
+            }
+            else
+            {
+                m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
+                introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::MouseButtonPress)
+    {
+        //qDebug() << "按下了软件简介按钮";
+        if(currentPageIndex != 0)
+        {
+            m_MainPageButtonSlots();
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
+            }
+            else
+            {
+                introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    return true;
+}
+/************************************************
+* 函数名称：messagePageButtonQss
+* 功能描述：按钮根据鼠标动作适配
+* 输入参数：鼠标事件
+* 输出参数：无
+* 修改日期：2020.11.23
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool BaseStyle::messagePageButtonQss(QEvent *ev)
+{
+    if(ev->type() == QEvent::HoverEnter)
+    {
+        //qDebug() << "悬停在软件介绍按钮上";
+        if(currentPageIndex != 1)
+        {
+            //qDebug() << "当前未按下悬停按钮";
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMessagePageButton->setStyleSheet(qssChooseMenuBar_d);
+                messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
+            }
+            else
+            {
+                m_pMessagePageButton->setStyleSheet(qssChooseMenuBar);
+                messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::HoverLeave)
+    {
+        //qDebug() << "悬停在软件介绍按钮上";
+        if(currentPageIndex != 1)
+        {
+            //qDebug() << "当前未按下悬停按钮";
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
+                messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
+            }
+            else
+            {
+                m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
+                messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::MouseButtonPress)
+    {
+        //qDebug() << "按下了软件简介按钮";
+        if(currentPageIndex != 0)
+        {
+            m_MessagePageButtonSlots();
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
+            }
+            else
+            {
+                messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    return true;
+}
+/************************************************
+* 函数名称：contactPageButtonQss
+* 功能描述：按钮根据鼠标动作适配
+* 输入参数：鼠标事件
+* 输出参数：无
+* 修改日期：2020.11.23
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool BaseStyle::contactPageButtonQss(QEvent *ev)
+{
+    if(ev->type() == QEvent::HoverEnter)
+    {
+        //qDebug() << "悬停在软件介绍按钮上";
+        if(currentPageIndex != 2)
+        {
+            //qDebug() << "当前未按下悬停按钮";
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pContactButton->setStyleSheet(qssChooseMenuBar_d);
+                contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
+            }
+            else
+            {
+                m_pContactButton->setStyleSheet(qssChooseMenuBar);
+                contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::HoverLeave)
+    {
+        //qDebug() << "悬停在软件介绍按钮上";
+        if(currentPageIndex != 2)
+        {
+            //qDebug() << "当前未按下悬停按钮";
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
+                contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
+            }
+            else
+            {
+                m_pContactButton->setStyleSheet(qssDefaultMenuBar);
+                contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::MouseButtonPress)
+    {
+        //qDebug() << "按下了软件简介按钮";
+        if(currentPageIndex != 2)
+        {
+            m_ContactPageButtonSlots();
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
+            }
+            else
+            {
+                contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
+            }
+        }
+        return true;    //结束传播
+    }
+    return true;
+}
+/************************************************
+* 函数名称：diyPageButtonQss
+* 功能描述：按钮根据鼠标动作适配
+* 输入参数：鼠标事件
+* 输出参数：无
+* 修改日期：2020.11.23
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool BaseStyle::diyPageButtonQss(QEvent *ev)
+{
+    if(ev->type() == QEvent::HoverEnter)
+    {
+        //qDebug() << "悬停在软件介绍按钮上";
+        if(currentPageIndex != 3)
+        {
+            //qDebug() << "当前未按下悬停按钮";
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pDIYButton->setStyleSheet(qssChooseMenuBar_d);
+                supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+            }
+            else
+            {
+                m_pDIYButton->setStyleSheet(qssChooseMenuBar);
+                supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::HoverLeave)
+    {
+        //qDebug() << "悬停在软件介绍按钮上";
+        if(currentPageIndex != 3)
+        {
+            //qDebug() << "当前未按下悬停按钮";
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
+                supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+            }
+            else
+            {
+                m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
+                supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
+            }
+        }
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::MouseButtonPress)
+    {
+        //qDebug() << "按下了软件简介按钮";
+        if(currentPageIndex != 2)
+        {
+            m_DIYPageButtonSlots();
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+            }
+            else
+            {
+                supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+            }
+        }
+        return true;    //结束传播
+    }
+    return true;
+}
 /************************************************
 * 函数名称：pageChangeForTheme
 * 功能描述：主题颜色适配
@@ -787,9 +1018,6 @@ void BaseStyle::pageChangeForTheme(QString str)
         widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(31, 32, 34, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
                                    "BaseStyle #widgetClose:hover{background-color:rgba(253, 149, 149, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
                                    "BaseStyle #widgetClose:pressed{background-color:rgba(237, 100, 100, 1);border-image:url(:/data/close_h.png);border-radius:4px;}");
-//        QString bodyStyleSheet="QWidget #body{background-color:rgba(31, 32, 34, 1);border-bottom-left-radius:"+QString::number(12)+"px;\
-//                        border-top-left-radius:"+QString::number(12)+"px;}";
-//        body->setStyleSheet(bodyStyleSheet);
 
         QString showStyleSheet="#showBox{background-color:rgba(31, 32, 34, 1);border-bottom-right-radius:"+QString::number(12)+"px;\
                         border-top-right-radius:"+QString::number(12)+"px;}";
@@ -798,11 +1026,6 @@ void BaseStyle::pageChangeForTheme(QString str)
         QString menuStyleSheet="QWidget #menuBox{background-color:rgba(0, 0, 0, 0.7);border-bottom-left-radius:"+QString::number(12)+"px;\
                         border-top-left-radius:"+QString::number(12)+"px;}";
         menuBox->setStyleSheet(menuStyleSheet);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
-        titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
     }
     else
     {
@@ -812,9 +1035,6 @@ void BaseStyle::pageChangeForTheme(QString str)
         widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
                                    "BaseStyle #widgetClose:hover{background-color:rgba(253, 149, 149, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
                                    "BaseStyle #widgetClose:pressed{background-color:rgba(237, 100, 100, 1);border-image:url(:/data/close_h.png);border-radius:4px;}");
-//        QString bodyStyleSheet="QWidget #body{background-color:rgba(255,255,255,1);border-bottom-left-radius:"+QString::number(12)+"px;\
-//                        border-top-left-radius:"+QString::number(12)+"px;}";
-//        body->setStyleSheet(bodyStyleSheet);
 
         QString showStyleSheet="#showBox{background-color:rgba(255,255,255,1);border-bottom-right-radius:12px;\
                         border-top-right-radius:12px;}";
@@ -823,12 +1043,6 @@ void BaseStyle::pageChangeForTheme(QString str)
         QString menuStyleSheet="QWidget #menuBox{background-color:rgba(255,255,255,0.8);border-bottom-left-radius:12px;\
                         border-top-left-radius:12px;}";
         menuBox->setStyleSheet(menuStyleSheet);
-
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
-        titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
     }
 }
 

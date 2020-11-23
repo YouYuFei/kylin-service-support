@@ -71,7 +71,8 @@ public:
     QWidget *showBox   = nullptr;//窗体
 
     void pageChangeForTheme(QString str);
-
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev) override;
 private slots:
 
     void m_MainPageButtonSlots();           //点击“软件介绍”对应槽函数
@@ -97,13 +98,12 @@ private:
     void setContactPageButtonBackgroudIsBlue();
     void setDIYPageButtonBackgroudIsBlue();
 
-    //窗口拖拽函数
-//    void mousePressEvent(QMouseEvent *event);
-//    void mouseReleaseEvent(QMouseEvent *event);
-//    void mouseMoveEvent(QMouseEvent *event);
+    bool mainPageButtonQss(QEvent *ev);
+    bool messagePageButtonQss(QEvent *ev);
+    bool contactPageButtonQss(QEvent *ev);
+    bool diyPageButtonQss(QEvent *ev);
 
     QPoint dragPosition;                                    //拖动坐标
-    bool   mousePressed;                                    //鼠标是否按下
 
     WidgetParameterClass local_basicParameter;
 
@@ -130,8 +130,6 @@ private:
     int currentPageIndex = 0;
 
     bool paintOnce=false;//只绘制一次
-
-    //MyTabWidget *tabWidget;
 
     MainPage *mainPage = nullptr;
     MessagePage *messagePage = nullptr;
