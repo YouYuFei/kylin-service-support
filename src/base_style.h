@@ -39,29 +39,31 @@
 #include <QColor>
 
 //窗体长宽
-#define SHAWINDOW_WIDTH 958
-#define SHAWINDOW_HEIGHT 640
+#define SHAWINDOW_WIDTH (958)
+#define SHAWINDOW_HEIGHT (640)
 //窗体圆角
-#define SHAHASRADIUS 1                //是否有圆角
-#define SHAWINRADIUS 5                //圆角半径
+#define SHAHASRADIUS (1)                //是否有圆角
+#define SHAWINRADIUS (5)                //圆角半径
 //窗体阴影
-#define SHAWINSHADOW 10                //窗体阴影宽度
-#define SHAWINSHADOWALPHA 0.08        //阴影透明度
+#define SHAWINSHADOW (10)                //窗体阴影宽度
+#define SHAWINSHADOWALPHA (0.08)        //阴影透明度
 //标题高度
-#define SHATITLE_HEIGHT 60
+#define SHATITLE_HEIGHT (60)
 //左侧菜单栏长宽
-#define SHALEFTBOX_WIDTH 640
-#define SHALEFTBOX_HEIGHT 640
+#define SHALEFTBOX_WIDTH (640)
+#define SHALEFTBOX_HEIGHT (640)
 //右侧交互页面长宽
-#define SHARIGHTBOXHEIGHT 640
-#define SHARIGHTBOXWIDTH  640
+#define SHARIGHTBOXHEIGHT (640)
+#define SHARIGHTBOXWIDTH  (640)
 
 class BaseStyle : public QWidget
 {
     Q_OBJECT
 public:
 
-    BaseStyle(WidgetParameterClass basicParameter, QString dialogTitleText);
+    BaseStyle(const WidgetParameterClass& basicParameter, const QString& dialogTitleText);
+
+    StyleWidgetShadow *swshadow = nullptr;//阴影
 
     void WidgetStyleClose();//点击关闭事件
 
@@ -70,7 +72,7 @@ public:
     QWidget *menuBox   = nullptr;//窗体
     QWidget *showBox   = nullptr;//窗体
 
-    void pageChangeForTheme(QString str);
+    void pageChangeForTheme(const QString& str);
 protected:
     bool eventFilter(QObject *obj, QEvent *ev) override;
 private slots:
@@ -87,9 +89,9 @@ private:
 
     QString currentTheme;
 
-    void myWidgetStyle(WidgetParameterClass basicParameter);
-    void myWidgetSizeDesign(int windowWidth, int windowHeight);
-    void myWidgetBasicInit(WidgetParameterClass parameter);
+    void myWidgetStyle(const WidgetParameterClass& basicParameter);
+    void myWidgetSizeDesign(int width,int height);
+    void myWidgetBasicInit(const WidgetParameterClass& parameter);
     void myWidgetTabInit();
 
     void setMainPageButtonBackgroundBlue();
@@ -103,11 +105,32 @@ private:
     bool contactPageButtonQss(QEvent *ev);
     bool diyPageButtonQss(QEvent *ev);
 
+    void mainPageButtonDefault();
+    void mainPageButtonHover();
+    void mainPageButtonClick();
+    void mainPageButtonRelease();
+
+    void messagePageButtonDefault();
+    void messagePageButtonHover();
+    void messagePageButtonClick();
+    void messagePageButtonRelease();
+
+    void contactPageButtonDefault();
+    void contactPageButtonHover();
+    void contactPageButtonClick();
+    void contactPageButtonRelease();
+
+    void diyPageButtonDefault();
+    void diyPageButtonHover();
+    void diyPageButtonClick();
+    void diyPageButtonRelease();
+
     QPoint dragPosition;                                    //拖动坐标
 
     WidgetParameterClass local_basicParameter;
 
-    StyleWidgetShadow *swshadow = nullptr;//阴影
+    DaemonIpcDbus *m_pDaemonIpcDbus;
+    void keyPressEvent(QKeyEvent *event);
 
     QLabel *text = nullptr;//标题
 
@@ -137,15 +160,15 @@ private:
     DIYSupportPage *diySupportPage = nullptr;
 
     QString qssDefaultMenuBar = tr("QPushButton{background:transparent;color:rgba(48, 49, 51, 1);border-radius: 16px;}"
-                              "QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}"
-                              "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}");
-    QString qssChooseMenuBar = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}");
+                              "QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}"
+                              "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
+    QString qssChooseMenuBar = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
+    QString qssPressedMenuBar = tr("QPushButton{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
 
     QString qssDefaultMenuBar_d = tr("QPushButton{background:transparent;color:rgba(192, 196, 204, 1);border-radius: 16px;}"
                               "QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}"
                               "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
     QString qssChooseMenuBar_d = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
-
+    QString qssPressedMenuBar_d = tr("QPushButton{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}");
 };
-
 #endif // BASESTYLE_H

@@ -7,7 +7,6 @@ GenericName[zh_CN]=麒麟服务与支持工具
 GenericName[bo_CN]=ཆི་ལིན་ཞབས་ཞུ་དང་རྒྱབ་སྐྱོར་ལག་ཆ།
 Icon=kylin-service-support
 Exec=/usr/bin/kylin-service-support %u
-NoDisplay=true
 Type=Application
 Categories=Utility
 Comment=Tool to service Users the technology of KylinOS

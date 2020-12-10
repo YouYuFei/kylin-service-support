@@ -1,6 +1,9 @@
-QT       += core gui network  dbus
+QT       += core gui network  dbus KWindowSystem x11extras
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+LIBS +=-lpthread
+LIBS +=-lX11
 
 CONFIG += c++11
 CONFIG += link_pkgconfig
@@ -21,6 +24,7 @@ SOURCES += \
     src/browse_button.cpp \
     src/contact_page.cpp \
     src/daemonipcdbus.cpp \
+    src/dbusadaptor.cpp \
     src/diysupport_page.cpp \
     src/file_item_init.cpp \
     src/base_style.cpp \
@@ -28,6 +32,7 @@ SOURCES += \
     src/main_page.cpp \
     src/mainwindow.cpp \
     src/message_page.cpp \
+    src/my_combobox.cpp \
     src/myclick_widget.cpp \
     src/stylewidgetattribute.cpp \
     src/stylewidgetshadow.cpp \
@@ -35,18 +40,21 @@ SOURCES += \
     src/submitSuccess.cpp \
     src/systeminfo_button.cpp \
     src/tabmenu_button.cpp \
-    src/widget_parameter_class.cpp
+    src/widget_parameter_class.cpp \
+    src/xatom-helper.cpp
 
 HEADERS += \
     src/browse_button.h \
     src/contact_page.h \
     src/daemonipcdbus.h \
+    src/dbusadaptor.h \
     src/diysupport_page.h \
     src/file_item_init.h \
     src/base_style.h \
     src/main_page.h \
     src/mainwindow.h \
     src/message_page.h \
+    src/my_combobox.h \
     src/myclick_widget.h \
     src/stylewidgetattribute.h \
     src/stylewidgetshadow.h \
@@ -54,7 +62,8 @@ HEADERS += \
     src/submitSuccess.h \
     src/systeminfo_button.h \
     src/tabmenu_button.h \
-    src/widget_parameter_class.h
+    src/widget_parameter_class.h \
+    src/xatom-helper.h
 
 FORMS +=
 
@@ -67,7 +76,7 @@ TARGET = kylin-service-support
 target.path = /usr/bin
 target.source += $$TARGET
 icon.path = /usr/share/pixmaps
-icon.files = data/kylin-service-support.png
+icon.files = kylin-service-support
 desktop.path = /usr/share/applications/
 desktop.files = kylin-service-support.desktop
 qm_files.files = translations/*.qm

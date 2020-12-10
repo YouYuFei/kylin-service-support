@@ -23,7 +23,7 @@
 *************************************************/
 systemInfoButton::systemInfoButton(QWidget* parent) :QPushButton(parent)
 {
-
+    pBaseWindow = nullptr;
 }
 /************************************************
 * 函数名称：systemInfoButton

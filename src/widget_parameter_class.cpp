@@ -10,7 +10,8 @@
 
 WidgetParameterClass::WidgetParameterClass()
 {
-
+    winWidth = 0 ;
+    winHeight = 0 ;
 }
 
 WidgetParameterClass::WidgetParameterClass(int pWinWidth, int pWinHeight,

@@ -18,10 +18,31 @@
 *   创建  HZH
 *
 *************************************************/
-DIYSupportPage::DIYSupportPage(WidgetParameterClass basicParam)
+DIYSupportPage::DIYSupportPage(const WidgetParameterClass& basicParam)
+    :diySupportPageBasicParameter(basicParam)
 {
+    m_pKylinPic       = nullptr;
+    m_pMoreInfoLink_1 = nullptr;
+    m_pMoreInfoLink_2 = nullptr;
+    m_pMoreInfoLink_3 = nullptr;
+    m_pPageTitle = nullptr;
+    m_pOnline = nullptr;
+    m_pTelphone = nullptr;
+    m_pMail = nullptr;
+
+    m_pKylinOfficialWeb_1 = nullptr;
+    m_pKylinOfficialWeb_2 = nullptr;
+    m_pKylinOfficialWeb_3 = nullptr;
+
+    m_pKylinManual_1 = nullptr;
+    m_pKylinManual_2 = nullptr;
+    m_pKylinManual_3 = nullptr;
+
+    officialWeb = nullptr;
+    kylinManual = nullptr;
+
     this->setWindowTitle("diysupport_page");
-    diySupportPageBasicParameter = basicParam;
+
     pageLocationInit();
     // 响应用户手册
     mDaemonIpcDbus = new DaemonIpcDbus();
@@ -36,13 +57,15 @@ DIYSupportPage::DIYSupportPage(WidgetParameterClass basicParam)
 *   创建  HZH
 *
 *************************************************/
-void DIYSupportPage::pageChangeForTheme(QString str)
+void DIYSupportPage::pageChangeForTheme(const QString& str)
 {
 
     if("ukui-dark" == str || "ukui-black" == str)
     {
         m_pKylinPic->setStyleSheet("border-image:url(:/data/banner.png);border:0px;");
-        m_pMoreInfoLink->setStyleSheet("color:rgba(143, 147, 153, 1);font-size:12px;");
+        m_pMoreInfoLink_1->setStyleSheet("color:rgba(143, 147, 153, 1);font-size:12px;");
+        m_pMoreInfoLink_2->setStyleSheet("color:rgba(112, 149, 255, 1);font-size:12px;");
+        m_pMoreInfoLink_3->setStyleSheet("color:rgba(143, 147, 153, 1);font-size:12px;");
         m_pPageTitle->setStyleSheet("color:rgba(192, 196, 204, 1);font-size:12px;");
         QString officialWebStyleSheet="MyClickWidget{background-color:rgba(49, 50, 52, 1);border-radius:6px;}"
                                       "MyClickWidget:hover{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}"
@@ -63,7 +86,9 @@ void DIYSupportPage::pageChangeForTheme(QString str)
     else
     {
         m_pKylinPic->setStyleSheet("border-image:url(:/data/banner.png);border:0px;");
-        m_pMoreInfoLink->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
+        m_pMoreInfoLink_1->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
+        m_pMoreInfoLink_2->setStyleSheet("color:rgba(112, 149, 255, 1);font-size:12px;");
+        m_pMoreInfoLink_3->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
         m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
         QString officialWebStyleSheet="MyClickWidget{background-color:rgba(246, 247, 247, 1);border-radius:6px;}"
                                       "MyClickWidget:hover{background-color:rgba(149, 176, 255, 1);border-radius:6px;}"
@@ -98,13 +123,19 @@ void DIYSupportPage::pageLocationInit()
     m_pKylinPic->setFixedSize(718,331);
 
 
-    m_pMoreInfoLink = new QLabel;
-    m_pMoreInfoLink->adjustSize();//setFixedSize(368,17);
-    m_pMoreInfoLink->setOpenExternalLinks(true);
-    m_pMoreInfoLink->setText(tr("Click "
-                                "<style> a {text-decoration: none} </style> <a href=\"http://www.kylinos.cn\">to know more about support</a>"
-                                "，to KylinOS Official Web"));
+    m_pMoreInfoLink_1 = new QLabel;
+    m_pMoreInfoLink_1->adjustSize();//setFixedSize(368,17);
+    m_pMoreInfoLink_1->setText(tr("Click "));
+
 //    m_pMoreInfoLink->setText(tr("点击<style> a {text-decoration: none} </style> <a href=\"http://www.kylinos.cn\">了解更多服务与支持内容</a>，跳转至KylinOS官方网站技术支持页面"));
+    m_pMoreInfoLink_2 = new QLabel;
+    m_pMoreInfoLink_2->adjustSize();
+    m_pMoreInfoLink_2->setText(tr("to know more about support"));
+    m_pMoreInfoLink_2->installEventFilter(this);
+
+    m_pMoreInfoLink_3 = new QLabel;
+    m_pMoreInfoLink_3->adjustSize();
+    m_pMoreInfoLink_3->setText(tr("，to KylinOS Official Web"));
 
     m_pPageTitle = new QLabel;
     m_pPageTitle->adjustSize();//->setFixedSize(168,17);
@@ -172,7 +203,9 @@ void DIYSupportPage::pageLocationInit()
     HmainLayout_MoreInfoLink->setMargin(0);
     HmainLayout_MoreInfoLink->addStretch(99);
     HmainLayout_MoreInfoLink->addSpacing(380);
-    HmainLayout_MoreInfoLink->addWidget(m_pMoreInfoLink,1);
+    HmainLayout_MoreInfoLink->addWidget(m_pMoreInfoLink_1,1);
+    HmainLayout_MoreInfoLink->addWidget(m_pMoreInfoLink_2,1);
+    HmainLayout_MoreInfoLink->addWidget(m_pMoreInfoLink_3,1);
     HmainLayout_MoreInfoLink->addSpacing(30);
     HmainLayout_MoreInfoLink->addStretch(99);
 
@@ -228,26 +261,48 @@ void DIYSupportPage::pageLocationInit()
     HmainLayout->setSpacing(0);
     HmainLayout->setMargin(0);
     HmainLayout->addSpacing(30);
-    HmainLayout->addWidget(officialWeb);
+    HmainLayout->addWidget(officialWeb,1);
     HmainLayout->addSpacing(20);
-    HmainLayout->addWidget(kylinManual);
+    HmainLayout->addWidget(kylinManual,1);
     HmainLayout->addStretch(99);
 
     QVBoxLayout *VmainLayout = new QVBoxLayout;
     VmainLayout->setSpacing(0);
     VmainLayout->setMargin(0);
-    VmainLayout->addLayout(HmainLayout_KylinPic);
+    VmainLayout->addLayout(HmainLayout_KylinPic,1);
     VmainLayout->addSpacing(8);
-    VmainLayout->addLayout(HmainLayout_MoreInfoLink);
+    VmainLayout->addLayout(HmainLayout_MoreInfoLink, 1);
     VmainLayout->addSpacing(20);
-    VmainLayout->addLayout(HmainLayout_PageTitle);
+    VmainLayout->addLayout(HmainLayout_PageTitle,1);
     VmainLayout->addSpacing(10);
-    VmainLayout->addLayout(HmainLayout);
-
-
+    VmainLayout->addLayout(HmainLayout,1);
     VmainLayout->addStretch(99);
     this->setLayout(VmainLayout);
 }
+/************************************************
+* 函数名称：eventFilter
+* 功能描述：m_pMoreInfoLink_2点击跳转到ubuntukylin主页
+* 输入参数：
+* 输出参数：无
+* 修改日期：2020.11.04
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool DIYSupportPage::eventFilter(QObject *obj, QEvent *ev)
+{
+    if(obj == m_pMoreInfoLink_2)
+    {
+        if(ev->type() == QEvent::MouseButtonPress)
+        {
+            QDesktopServices::openUrl(QUrl("http://www.kylinos.cn/support/problem.html"));
+        }
+    }
+
+    return QWidget::eventFilter(obj,ev);
+}
+
+
 /************************************************
 * 函数名称：on_officialWeb_clicked
 * 功能描述：点击跳转到ubuntukylin主页

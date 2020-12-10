@@ -21,11 +21,10 @@
 *   创建  HZH
 *
 *************************************************/
-MessagePage::MessagePage(WidgetParameterClass basicParam)
+MessagePage::MessagePage(const WidgetParameterClass& basicParam)
+    : mainPageBasicParameter(basicParam)
 {
     this->setWindowTitle("message_page");
-
-    mainPageBasicParameter = basicParam;
 
     messagePageUIInit();
 
@@ -44,7 +43,7 @@ MessagePage::MessagePage(WidgetParameterClass basicParam)
 *   创建  HZH
 *
 *************************************************/
-void MessagePage::pageChangeForTheme(QString str)
+void MessagePage::pageChangeForTheme(const QString& str)
 {
     currentTheme = str;
     qDebug() << currentTheme;
@@ -55,12 +54,7 @@ void MessagePage::pageChangeForTheme(QString str)
         QString widgetStyleOfAskSheet="QWidget #StyleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetStyleOfAsk->setStyleSheet(widgetStyleOfAskSheet);
         m_pStyleOfAsk->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
-        m_pStyleOfAskCombobox->setStyleSheet("QComboBox QAbstractItemView{border:0px;height:30px;border-radius: 6px;background: rgba(49, 50, 52, 1);font: 14pt;color:rgba(143, 147, 153, 1);} "
-                                             "QComboBox QAbstractItemView:selected{border:0px;height:30px;border-radius: 6px;background: rgba(143, 147, 153, 0.08);font: 14pt;color:rgba(255, 0, 0, 1);} "
-                                             "QComboBox:editable{background:rgba(49, 50, 52, 1);}"
-                                             "QComboBox QAbstractItemView{border: 0px;outline:0px;selection-background-color: rgba(72, 72, 76, 1);height:30px;background:rgba(49, 50, 52, 1);font:14px;color:rgba(249, 249, 249, 1);}"
-                                             "QComboBox QAbstractItemView::item{padding-top:4px;height:40px;}"
-                                             "QComboBox QAbstractItemView::item:selected{height:40px;background-color:rgba(72, 72, 76, 1);color:rgba(249, 249, 249, 1)}");
+        m_pStyleOfAskCombobox->setThemeDark();
 
         QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
@@ -118,12 +112,7 @@ void MessagePage::pageChangeForTheme(QString str)
         m_pWidgetStyleOfAsk->setStyleSheet(widgetStyleOfAskSheet);
         m_pStyleOfAsk->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
 
-        m_pStyleOfAskCombobox->setStyleSheet("QComboBox QAbstractItemView{border:0px;height:30px;border-radius: 6px;background: rgba(143, 147, 153, 0.08);font: 14pt;color:rgba(143, 147, 153, 1);} "
-                                             "QComboBox QAbstractItemView:selected{border:0px;height:30px;border-radius: 6px;background: rgba(143, 147, 153, 0.08);font: 14pt;color:rgba(255, 0, 0, 1);} "
-                                             "QComboBox:editable{background:rgba(143, 147, 153, 0.08);}"
-                                             "QComboBox QAbstractItemView{border: 0px;outline:0px;selection-background-color: rgba(72, 72, 76, 1);height:30px;background:rgba(255, 255, 255, 1);font:14px;color:rgba(48, 49, 51, 1);}"
-                                             "QComboBox QAbstractItemView::item{padding-top:4px;height:40px;}"
-                                             "QComboBox QAbstractItemView::item:selected{height:40px;background-color:rgba(247, 247, 247, 1);color:rgba(48, 49, 51, 1)}");
+        m_pStyleOfAskCombobox->setThemeLight();
 
         QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
@@ -171,23 +160,6 @@ void MessagePage::pageChangeForTheme(QString str)
         labelSystemVersion_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
         labelDesktopVersion_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
         labelLanguage_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
-//        m_pMoreInfoLink->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
-//        m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
-//        m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
-//        m_pOnline_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-//        m_pOnline_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-//        m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
-//        m_pTelphone_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-//        m_pTelphone_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-//        m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
-//        m_pMail_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-//        m_pMail_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-//        m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
-//        m_pWeChat_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-//        m_pWeChat_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-//        m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1.png);border:0px;");
-//        m_pDIY_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-//        m_pDIY_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
 
     }
 }
@@ -253,17 +225,19 @@ void MessagePage::pageStyleOfAskRowLocationInit()
     m_pStyleOfAsk->setAlignment(Qt::AlignLeft);
     m_pStyleOfAsk->setAlignment(Qt::AlignVCenter);
 
-    m_pStyleOfAskCombobox = new QComboBox(m_pWidgetStyleOfAsk);
-    m_pStyleOfAskCombobox->setFixedSize(206,40);
-    m_pStyleOfAskCombobox->setMaxVisibleItems(5);
-    QStyledItemDelegate *delegate = new QStyledItemDelegate();
-    m_pStyleOfAskCombobox->setItemDelegate(delegate);
+//    m_pStyleOfAskCombobox = new QComboBox(m_pWidgetStyleOfAsk);
+    m_pStyleOfAskCombobox = new MyComboBox();
+    m_pStyleOfAskCombobox->listWidget->installEventFilter(this);
+    //m_pStyleOfAskCombobox->setFixedSize(206,40);
+    //m_pStyleOfAskCombobox->setMaxVisibleItems(5);
+    //QStyledItemDelegate *delegate = new QStyledItemDelegate();
+    //m_pStyleOfAskCombobox->setItemDelegate(delegate);
     m_pStyleOfAskCombobox->addItem((tr("Type")));//("问题类别")));
     m_pStyleOfAskCombobox->addItem((tr("System")));//("系统问题")));
     m_pStyleOfAskCombobox->addItem((tr("Suggestion")));//("意见建议")));
     m_pStyleOfAskCombobox->addItem((tr("Bussiness")));//("商务合作")));
     m_pStyleOfAskCombobox->addItem((tr("Others")));//"其他")));
-    connect(m_pStyleOfAskCombobox,SIGNAL(currentIndexChanged(QString)),this,SLOT(styleOfAskCombobox_currentIndexChanged()));
+    connect(m_pStyleOfAskCombobox,SIGNAL(buttonTextChanged()),this,SLOT(styleOfAskCombobox_currentIndexChanged()));
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
     HStyleOfAskLayout->setMargin(0);
@@ -272,10 +246,7 @@ void MessagePage::pageStyleOfAskRowLocationInit()
     HStyleOfAskLayout->addWidget(m_pStyleOfAsk,1);
     HStyleOfAskLayout->addSpacing(18);
     HStyleOfAskLayout->addWidget(m_pStyleOfAskCombobox,1);
-//    HStyleOfAskLayout->addSpacing(5);
-//    HStyleOfAskLayout->addWidget(m_pStyleOfSystemCombobox);
-//    HStyleOfAskLayout->addSpacing(5);
-//    HStyleOfAskLayout->addWidget(m_pStyleOfDeviceCombobox);
+
     HStyleOfAskLayout->addStretch(99);
 
     m_pWidgetStyleOfAsk->setLayout(HStyleOfAskLayout);
@@ -481,28 +452,38 @@ void MessagePage::pageSysLogRowLocationInit()
 
 
     m_pLog = new QLabel;
-    m_pLog->setFixedSize(56,20);
+    m_pLog->adjustSize();//setFixedSize(56,20);
     m_pLog->setText(tr("Upload Log"));//"上传日志");
     m_pLog->setAlignment(Qt::AlignLeft);
     m_pLog->setAlignment(Qt::AlignVCenter);
 
-    m_pTrueSyslogCheckBox = new QCheckBox();
+    m_pTrueSyslogCheckBox = new QCheckBox(this);
     m_pTrueSyslogCheckBox->setText(tr("Yes"));//"是"));
     m_pTrueSyslogCheckBox->setChecked(true);
     m_pTrueSyslogCheckBox->setObjectName(QString::fromUtf8("checkBox"));
-    connect(m_pTrueSyslogCheckBox,SIGNAL(stateChanged(int)),this,SLOT(trueSyslogCheckBox_stateChanged(int)));
+    connect(m_pTrueSyslogCheckBox,SIGNAL(stateChanged(int)),this,SLOT(trueSyslogCheckBox_stateChanged()));
 
-    m_pFalseSyslogCheckBox = new QCheckBox();
+    m_pFalseSyslogCheckBox = new QCheckBox(this);
     m_pFalseSyslogCheckBox->setText(tr("No"));//"否"));
     m_pFalseSyslogCheckBox->setObjectName(QString::fromUtf8("checkBox"));
-    connect(m_pFalseSyslogCheckBox,SIGNAL(stateChanged(int)),this,SLOT(falseSyslogCheckBox_stateChanged(int)));
+    connect(m_pFalseSyslogCheckBox,SIGNAL(stateChanged(int)),this,SLOT(falseSyslogCheckBox_stateChanged()));
+
+    QString locale = QLocale::system().name();
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
     HStyleOfAskLayout->setMargin(0);
     HStyleOfAskLayout->setSpacing(0);
     HStyleOfAskLayout->addSpacing(30);
     HStyleOfAskLayout->addWidget(m_pLog);
-    HStyleOfAskLayout->addSpacing(45);
+    if (locale == "en_US")
+    {
+        HStyleOfAskLayout->addSpacing(20);
+    }
+    else if (locale == "zh_CN")
+    {
+        HStyleOfAskLayout->addSpacing(45);
+    }
+
     HStyleOfAskLayout->addWidget(m_pTrueSyslogCheckBox);
     HStyleOfAskLayout->addSpacing(16);
     HStyleOfAskLayout->addWidget(m_pFalseSyslogCheckBox);
@@ -510,6 +491,8 @@ void MessagePage::pageSysLogRowLocationInit()
     HStyleOfAskLayout->addStretch(99);
 
     m_pWidgetLog->setLayout(HStyleOfAskLayout);
+
+
 }
 
 /************************************************
@@ -629,17 +612,16 @@ void MessagePage::pageAllRowLocationInit()
 
     labelSystemVersion_1 = new QLabel(frameSysInfo);
     labelSystemVersion_1->setObjectName(QString::fromUtf8("labelSystemVersion1"));
-    labelSystemVersion_1->setText(tr("Lang"));
+    labelSystemVersion_1->setText(tr("Os_rel"));
     labelSystemVersion_1->setGeometry(QRect(5, 10, 55, 20));
     labelDesktopVersion_1 = new QLabel(frameSysInfo);
     labelDesktopVersion_1->setObjectName(QString::fromUtf8("labelDesktopVersion1"));
     labelDesktopVersion_1->setText(tr("Deskenv"));
     labelDesktopVersion_1->setGeometry(QRect(5, 31, 55, 20));
     labelLanguage_1 = new QLabel(frameSysInfo);
-    labelLanguage_1->setText(tr("Os_rel"));
+    labelLanguage_1->setText(tr("Lang"));
     labelLanguage_1->setObjectName(QString::fromUtf8("labelLanguage1"));
     labelLanguage_1->setGeometry(QRect(5, 52, 55, 20));
-
 
     QVBoxLayout *VmainLayout = new QVBoxLayout;
     VmainLayout->setSpacing(0);
@@ -676,17 +658,14 @@ void MessagePage::pageAllRowLocationInit()
 *************************************************/
 void MessagePage::styleOfAskCombobox_currentIndexChanged()
 {
-    if(0 == m_pStyleOfAskCombobox->currentIndex())
+    if("Type" == m_pStyleOfAskCombobox->getCurrentText() || "问题类别" == m_pStyleOfAskCombobox->getCurrentText())
     {
-        if("系统问题" == textStyleOfAsk)
-        {
-            qDebug() << "textStyleOfAsk为空！";
-        }
+        qDebug() << "当前未选择有效问题分类" << m_pStyleOfAskCombobox->getCurrentText();
         styleOfAskComboboxFlag = false;
     }
     else
     {
-        textStyleOfAsk = m_pStyleOfAskCombobox->currentText();
+        textStyleOfAsk = m_pStyleOfAskCombobox->getCurrentText();
         qDebug() << textStyleOfAsk;
         styleOfAskComboboxFlag = true;
     }
@@ -779,61 +758,29 @@ void MessagePage::mailTextEdit_textChanged()
         QRegExpValidator v(rx, 0);
         if (2==v.validate(mailText,pos))
         {
-            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-            {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
-                m_pMailFormatErr->hide();
-                mailFormatFlag = true;
-            }
-            else
-            {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
-                m_pMailFormatErr->hide();
-                mailFormatFlag = true;
-            }
+
+            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+            m_pMailFormatErr->hide();
+            mailFormatFlag = true;
+
         }
         else
         {
-            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-            {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-width:1px;border-color:rgba(245, 108, 108, 1);border-style: solid;");
-                mailFormatFlag = false;
-                m_pMailFormatErr->show();
-                return ;
-            }
-            else
-            {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-width:1px;border-color:rgba(245, 108, 108, 1);border-style: solid;");
-                mailFormatFlag = false;
-                m_pMailFormatErr->show();
-                return ;
-            }
+            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-width:1px;border-color:rgba(245, 108, 108, 1);border-style: solid;");
+            mailFormatFlag = false;
+            m_pMailFormatErr->show();
 
         }
     }
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
         commitButton->setEnabled(true);
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
-        }
-        else
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
-        }
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
     }
     else
     {
         commitButton->setEnabled(false);
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-        }
-        else
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-        }
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
     }
 
 }
@@ -847,7 +794,7 @@ void MessagePage::mailTextEdit_textChanged()
 *   创建  HZH
 *
 *************************************************/
-void MessagePage::trueSyslogCheckBox_stateChanged(int state)
+void MessagePage::trueSyslogCheckBox_stateChanged()
 {
     if (m_pTrueSyslogCheckBox->isChecked() == true)
     {
@@ -862,57 +809,7 @@ void MessagePage::trueSyslogCheckBox_stateChanged(int state)
         m_pFalseSyslogCheckBox->setChecked(true);
     }
 
-    qDebug() << syslogFlag;
-    if(allFileSizeLargerThan10M())
-    {
-        qDebug() << "所有文件大小超过10M！";
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-
-    }
-    else
-    {
-        qDebug() << "所有文件大小不到10M！";
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
-        }
-    }
-    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
-    {
-        commitButton->setEnabled(true);
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
-        }
-        else
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
-        }
-
-    }
-    else
-    {
-        commitButton->setEnabled(false);
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-        }
-        else
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-        }
-    }
+    checkBox_stateCheck();
 }
 /************************************************
 * 函数名称：falseSyslogCheckBox_stateChanged
@@ -924,7 +821,7 @@ void MessagePage::trueSyslogCheckBox_stateChanged(int state)
 *   创建  HZH
 *
 *************************************************/
-void MessagePage::falseSyslogCheckBox_stateChanged(int state)
+void MessagePage::falseSyslogCheckBox_stateChanged()
 {
     if (m_pFalseSyslogCheckBox->isChecked() == true)
     {
@@ -939,57 +836,7 @@ void MessagePage::falseSyslogCheckBox_stateChanged(int state)
         m_pFalseSyslogCheckBox->setChecked(false);
     }
 
-    qDebug() << syslogFlag;
-    if(allFileSizeLargerThan10M())
-    {
-        qDebug() << "所有文件大小超过10M！";
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-
-    }
-    else
-    {
-        qDebug() << "所有文件大小不到10M！";
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
-        }
-    }
-    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
-    {
-        commitButton->setEnabled(true);
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
-        }
-        else
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
-        }
-
-    }
-    else
-    {
-        commitButton->setEnabled(false);
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-        }
-        else
-        {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-        }
-    }
+    checkBox_stateCheck();
 }
 /************************************************
 * 函数名称：userPermission_stateChanged
@@ -1040,7 +887,7 @@ bool MessagePage::allFileSizeLargerThan10M()
         allFilesize += fileInfo.size();
     }
 
-    qDebug() << "所有文件大小" << allFilesize << "KB";
+    qDebug() << "所有文件大小" << allFilesize/(1024) << "KB";
     if (allFilesize >= 10*1024*1024)
     {
         return true;
@@ -1071,15 +918,7 @@ void MessagePage::userDataPushButton_clicked()
     if(allFileSizeLargerThan10M())
     {
         qDebug() << "所有文件大小超过10M！";
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-
+        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
     }
     else
     {
@@ -1094,59 +933,7 @@ void MessagePage::userDataPushButton_clicked()
         }
     }
 
-    if (uploadFileNameList.size() ==0)
-    {
-        qDebug() << "所有文件数量不到5个！";
-
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
-        }
-
-        addFileInfoModel();
-    }
-    else if(uploadFileNameList.size() >= 5)
-    {
-        qDebug() << "所有文件数量超过5个！";
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-
-        return ;
-    }
-    else
-    {
-        qDebug() << "所有文件数量不到5个！";
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
-        }
-        int file_diff_flags = 0;
-        for (int fileNum = 0; fileNum < uploadFilePathList.size(); fileNum++) {
-            //添加的文件已经添加过
-            //Added files have been added.
-            if (userUploadFileName.compare(uploadFilePathList.at(fileNum)) == 0)
-                file_diff_flags++;
-        }
-        if (file_diff_flags == 0) {
-            //添加附件框改变
-            //Add attachment box changes
-            addFileInfoModel();
-        }
-    }
+    uploadFile_afterButtonClicked();
 }
 /************************************************
 * 函数名称：addFileInfoModel
@@ -1272,22 +1059,12 @@ void MessagePage::update_add_file_window()
         file_widget[filenum]->filesize_label0->adjustSize();
         file_widget[filenum]->filesize_label0->setAlignment(Qt::AlignHCenter);
 
-        int filesize_width = file_widget[filenum]->filesize_label0->geometry().width();
+        //int filesize_width = file_widget[filenum]->filesize_label0->geometry().width();
 
         file_widget[filenum]->deletebtn0->setText(tr("Del"));
         file_widget[filenum]->deletebtn0->setFixedSize(36,21);
         file_widget[filenum]->deletebtn0->setStyleSheet("font:12px;");
 
-//        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-//        {
-//            file_widget[filenum]->deletebtn0->setStyleSheet("{color:rgba(112, 149, 255, 1);background:transparent;font-size:12px;}");
-//        }
-//        else
-//        {
-//            file_widget[filenum]->deletebtn0->setStyleSheet("{color:rgba(112, 149, 255, 1);background-color:rgba(255,255,255,1);font-size:12px;}"
-//                                                            "hover{color:rgba(112, 149, 255, 1);background-color:rgba(255,255,255,1);font-size:12px;}"
-//                                                            "pressed{color:rgba(112, 149, 255, 1);background-color:rgba(255,255,255,1);font-size:12px;}");
-//         }
         file_widget[filenum]->deletebtn0->setFlat(true);
 
 
@@ -1319,33 +1096,9 @@ void MessagePage::del_file_button_clicked()
 
     int listnum = uploadFileNameList.size();
 
-    if ( btn == file_widget[0]->deletebtn0 ) {
-        qDebug()<<uploadFileNameList.size()<<"delete before";
-        uploadFileNameList.removeAt(0);
-        uploadFileSizeList.removeAt(0);
-        uploadFilePathList.removeAt(0);
-        qDebug()<<uploadFileNameList.size()<<"delete after";
-        qDebug() << "delete 0";
-    } else if( btn == file_widget[1]->deletebtn0 ) {
-        uploadFileNameList.removeAt(1);
-        uploadFileSizeList.removeAt(1);
-        uploadFilePathList.removeAt(1);
+    removeUploadFileNameListFile(btn);
 
-        qDebug() << "delete 1";
-    } else if( btn == file_widget[2]->deletebtn0 ) {
-        uploadFileNameList.removeAt(2);
-        uploadFileSizeList.removeAt(2);
-        uploadFilePathList.removeAt(2);
-        qDebug() << "delete 2";
-    } else if( btn == file_widget[3]->deletebtn0 ) {
-        uploadFileNameList.removeAt(3);
-        uploadFileSizeList.removeAt(3);
-        uploadFilePathList.removeAt(3);
-    } else if( btn == file_widget[4]->deletebtn0) {
-        uploadFileNameList.removeAt(4);
-        uploadFileSizeList.removeAt(4);
-        uploadFilePathList.removeAt(4);
-    }
+
     qDebug()<<uploadFileNameList.size()<<"-----after";
     foreach (auto item,uploadFileNameList)
         qDebug()<<item<<"after";
@@ -1406,7 +1159,7 @@ void MessagePage::update_linedit_add_or_del_file()
 *************************************************/
 void MessagePage::on_resetButton_clicked()
 {
-    m_pStyleOfAskCombobox->setCurrentIndex(0);
+    m_pStyleOfAskCombobox->setCurrentText(tr("Type"));
     m_pContentTextEdit->clear();
     m_pMailTextEdit->clear();
     syslogFlag = 1;
@@ -1462,14 +1215,8 @@ void MessagePage::on_commitButton_clicked()
     if (allFileSizeLargerThan10M() == true)
     {
         qDebug() << "所有文件大小超过10M！";
-        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
-        else
-        {
-            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
-        }
+        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+
         commitButton->setEnabled(false);
         return;
     }
@@ -1840,89 +1587,17 @@ void MessagePage::systeminfo_hide()
 *************************************************/
 void MessagePage::getSysteminfo()
 {
-    string encoding_info = ": ";
-    string desktop_info = ": ";
-    string os_info = ": ";
-
     //获取系统信息
     //Access to system information
     //1.获取系统版本
     //Get the system version
-    string system_info;
-    string system_name;
-    string system_version_id;
-    string s;
-    ifstream fp("/etc/os-release");
-    if (!fp) {
-        system_info = "None";
-    } else {
-        while (getline(fp,s)) {
-            string::size_type idx;
-            idx = s.find("=");
-            if (idx == string::npos) {
-                //不存在
-            } else {
-                string str2 = s.substr(0,idx);
-                if (str2 == "NAME") {
-                    system_name = s.substr(5);
-                } else if(str2 =="VERSION_ID") {
-                    system_version_id = s.substr(11);
-                }
-            }
-        }
-        system_info = os_info +system_name +" " + system_version_id;
-    }
-    send_os_info = QString::fromStdString(system_name +" " + system_version_id);
-    system_info_str = QString::fromStdString(system_info);
-    system_info_str.remove(QChar('"'), Qt::CaseInsensitive);
-    labelSystemVersion_2->setText(system_info_str);
+    getSysVersion();
     //2.获取桌面环境信息
     //Access to desktop environment information
-    char * desktop = getenv("DESKTOP_SESSION");
-    desktop_info.append(desktop);
-    send_dekstop_info.append(desktop);
-    desktop_info_str = QString::fromStdString(desktop_info);
-    labelDesktopVersion_2->setText(desktop_info_str);
+    getDesktopInfo();
     //3.获取编码格式
     //Get the coding format
-    char *encoding = getenv("LANG");
-    char *emcoding_2;
-    emcoding_2 = (char *)malloc(8);
-    if (encoding == NULL) {
-        QString locale = QLocale::system().name();
-        if (locale == "en_US")
-        {
-            strcpy(emcoding_2, "en_US");
-        }
-        else if (locale == "zh_CN")
-        {
-            strcpy(emcoding_2, "zh_CN");
-        }
-        else if (locale == "bo_CN")
-        {
-            strcpy(emcoding_2, "bo_CN");
-        }
-        encoding = emcoding_2;
-    }
-    qDebug() << "encoding" << encoding;
-    encoding_info.append(encoding);
-    send_encoding_info.append(encoding);
-    encoding_info_str = QString::fromStdString(encoding_info);
-    if(encoding_info_str.contains(".")){
-        QStringList list = encoding_info_str.split(".");
-        labelLanguage_2->setText(list.at(0));
-
-        if(send_encoding_info.contains(".")){
-            QStringList list2 = send_encoding_info.split(".");
-            send_encoding_info.clear();
-            send_encoding_info.append(list2.at(0));
-        }
-
-    }
-    else
-    {
-        labelLanguage_2->setText(encoding_info_str);
-    }
+    getCodingFormat();
 }
 
 /************************************************
@@ -2008,4 +1683,380 @@ void MessagePage::set_request_header()
 void MessagePage::resend_info_when_sendfail()
 {
 //    this->on_pushButton_2_clicked();
+}
+/************************************************
+* 函数名称：checkBox_stateCheck
+* 功能描述：checkbox勾选后文件状态检查
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::checkBox_stateCheck()
+{
+    qDebug() << syslogFlag;
+    if(allFileSizeLargerThan10M())
+    {
+        qDebug() << "所有文件大小超过10M！";
+        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+
+    }
+    else
+    {
+        qDebug() << "所有文件大小不到10M！";
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
+        }
+        else
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
+        }
+    }
+    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    {
+        commitButton->setEnabled(true);
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+
+    }
+    else
+    {
+        commitButton->setEnabled(false);
+        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+    }
+}
+
+/************************************************
+* 函数名称：uploadFile_afterButtonClicked
+* 功能描述：提交按钮点击后，根据文件数量进行对应动作
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::uploadFile_afterButtonClicked()
+{
+    if (uploadFileNameList.size() ==0)
+    {
+        qDebug() << "所有文件数量不到5个！";
+
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
+        }
+        else
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
+        }
+
+        addFileInfoModel();
+    }
+    else if(uploadFileNameList.size() >= 5)
+    {
+        qDebug() << "所有文件数量超过5个！";
+        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
+        return ;
+    }
+    else
+    {
+        qDebug() << "所有文件数量不到5个！";
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
+        }
+        else
+        {
+            m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
+        }
+        int file_diff_flags = 0;
+        for (int fileNum = 0; fileNum < uploadFilePathList.size(); fileNum++) {
+            //添加的文件已经添加过
+            //Added files have been added.
+            if (userUploadFileName.compare(uploadFilePathList.at(fileNum)) == 0)
+                file_diff_flags++;
+        }
+        if (file_diff_flags == 0) {
+            //添加附件框改变
+            //Add attachment box changes
+            addFileInfoModel();
+        }
+    }
+}
+
+/************************************************
+* 函数名称：removeUploadFileNameListFile
+* 功能描述：点击listwidget中的del按钮，删除对应项
+* 输入参数：QPushButton* btn 按钮指针
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::removeUploadFileNameListFile(QPushButton* btn)
+{
+    if ( btn == file_widget[0]->deletebtn0 ) {
+        qDebug()<<uploadFileNameList.size()<<"delete before";
+        uploadFileNameList.removeAt(0);
+        uploadFileSizeList.removeAt(0);
+        uploadFilePathList.removeAt(0);
+        qDebug()<<uploadFileNameList.size()<<"delete after";
+        qDebug() << "delete 0";
+    } else if( btn == file_widget[1]->deletebtn0 ) {
+        uploadFileNameList.removeAt(1);
+        uploadFileSizeList.removeAt(1);
+        uploadFilePathList.removeAt(1);
+
+        qDebug() << "delete 1";
+    } else if( btn == file_widget[2]->deletebtn0 ) {
+        uploadFileNameList.removeAt(2);
+        uploadFileSizeList.removeAt(2);
+        uploadFilePathList.removeAt(2);
+        qDebug() << "delete 2";
+    } else if( btn == file_widget[3]->deletebtn0 ) {
+        uploadFileNameList.removeAt(3);
+        uploadFileSizeList.removeAt(3);
+        uploadFilePathList.removeAt(3);
+        qDebug() << "delete 3";
+    } else if( btn == file_widget[4]->deletebtn0) {
+        uploadFileNameList.removeAt(4);
+        uploadFileSizeList.removeAt(4);
+        uploadFilePathList.removeAt(4);
+        qDebug() << "delete 4";
+    }
+    else
+    {
+        qDebug() << "函数异常错误！";
+        return;
+    }
+}
+
+/************************************************
+* 函数名称：getCodingFormat
+* 功能描述：获取系统信息的语言格式信息
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::getCodingFormat()
+{
+    string encoding_info = ": ";
+    char *encoding = getenv("LANG");
+    char *emcoding_2;
+    emcoding_2 = (char *)malloc(8);
+    if(NULL == emcoding_2)
+    {
+        qDebug() << "emcoding_2申请内存失败！";
+        return;
+    }
+    if (encoding == NULL) {
+        QString locale = QLocale::system().name();
+        if (locale == "en_US")
+        {
+            strcpy(emcoding_2, "en_US");
+        }
+        else if (locale == "zh_CN")
+        {
+            strcpy(emcoding_2, "zh_CN");
+        }
+        else if (locale == "bo_CN")
+        {
+            strcpy(emcoding_2, "bo_CN");
+        }
+        encoding = emcoding_2;
+    }
+    qDebug() << "encoding" << encoding;
+    encoding_info.append(encoding);
+    send_encoding_info.append(encoding);
+    encoding_info_str = QString::fromStdString(encoding_info);
+    if(encoding_info_str.contains(".")){
+        QStringList list = encoding_info_str.split(".");
+        labelLanguage_2->setText(list.at(0));
+
+        if(send_encoding_info.contains(".")){
+            QStringList list2 = send_encoding_info.split(".");
+            send_encoding_info.clear();
+            send_encoding_info.append(list2.at(0));
+        }
+
+    }
+    else
+    {
+        labelLanguage_2->setText(encoding_info_str);
+    }
+    if(emcoding_2 != NULL)
+    {
+        free(emcoding_2);
+    }
+}
+
+/************************************************
+* 函数名称：getSysVersion
+* 功能描述：获取系统版本信息
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::getSysVersion()
+{
+    string os_info = ": ";
+    string system_info;
+    string system_name;
+    string system_version_id;
+    string s;
+    ifstream fp("/etc/os-release");
+    if (!fp) {
+        system_info = "None";
+    } else {
+        while (getline(fp,s)) {
+            string::size_type idx;
+            idx = s.find("=");
+            if (idx == string::npos) {
+                //不存在
+            } else {
+                string str2 = s.substr(0,idx);
+                if (str2 == "NAME") {
+                    system_name = s.substr(5);
+                } else if(str2 =="VERSION_ID") {
+                    system_version_id = s.substr(11);
+                }
+            }
+        }
+        system_info = os_info +system_name +" " + system_version_id;
+    }
+    send_os_info = QString::fromStdString(system_name +" " + system_version_id);
+    system_info_str = QString::fromStdString(system_info);
+    system_info_str.remove(QChar('"'), Qt::CaseInsensitive);
+    labelSystemVersion_2->setText(system_info_str);
+}
+
+/************************************************
+* 函数名称：getDesktopInfo
+* 功能描述：获取桌面版本信息
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::getDesktopInfo()
+{
+    string desktop_info = ": ";
+    char * desktop = getenv("DESKTOP_SESSION");
+    desktop_info.append(desktop);
+    send_dekstop_info.append(desktop);
+    desktop_info_str = QString::fromStdString(desktop_info);
+    labelDesktopVersion_2->setText(desktop_info_str);
+}
+/************************************************
+* 函数名称：event
+* 功能描述：事件过滤，下拉框自动收回
+* 输入参数：QEvent *event
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool MessagePage::event(QEvent *event)
+{
+    if(m_pStyleOfAskCombobox == nullptr)
+    {
+        return QWidget::event(event);
+    }
+    if(m_pStyleOfAskCombobox->listWidget == nullptr)
+    {
+        return QWidget::event(event);
+    }
+
+    if (event->type() == QEvent::Leave)
+    {
+        if(mouseIsOutofList())
+        {
+            m_pStyleOfAskCombobox->closeListWidget();
+            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+        }
+    }
+    else if (event->type() == QEvent::MouseButtonPress)
+    {
+        m_pStyleOfAskCombobox->closeListWidget();
+        m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+    }
+
+    return QWidget::event(event);
+}
+/************************************************
+* 函数名称：eventFilter
+* 功能描述：事件过滤，下拉框自动收回
+* 输入参数：QEvent *event
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool MessagePage::eventFilter(QObject *obj, QEvent *ev)
+{
+    if(m_pStyleOfAskCombobox == nullptr)
+    {
+        return QWidget::eventFilter(obj,ev);
+    }
+    if(m_pStyleOfAskCombobox->listWidget == nullptr)
+    {
+        return QWidget::eventFilter(obj,ev);
+    }
+
+    if(ev->type() == QEvent::Leave)
+    {
+        if(obj == m_pStyleOfAskCombobox->listWidget)
+        {
+            m_pStyleOfAskCombobox->closeListWidget();
+            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+        }
+    }
+    else if (ev->type() == QEvent::KeyPress)
+    {
+            m_pStyleOfAskCombobox->closeListWidget();
+            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+    }
+
+    if(obj != m_pStyleOfAskCombobox->listWidget)
+    {
+        m_pStyleOfAskCombobox->closeListWidget();
+        m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+    }
+
+    //其余的事件按照默认(未覆写)的处理方式处理
+    return QWidget::eventFilter(obj,ev);
+}
+/************************************************
+* 函数名称：mouseIsOutofList
+* 功能描述：鼠标离开下拉框判断
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool MessagePage::mouseIsOutofList()
+{
+    QPoint mouse=QCursor::pos();
+    QPoint thisWidget=this->mapToGlobal(this->pos());
+    QSize thisWidgetSize=this->size();
+    if(mouse.rx()<=thisWidget.rx() || mouse.rx()>=thisWidget.rx()+thisWidgetSize.width() || mouse.ry()<=thisWidget.ry() || mouse.ry()>=thisWidget.ry()+thisWidgetSize.height())
+        return true;
+    else
+        return false;
 }

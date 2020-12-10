@@ -41,12 +41,14 @@
 #include <QStandardPaths>
 #include <QEventLoop>
 #include <QStyledItemDelegate>
+#include <QEvent>
 
 #include "file_item_init.h"
 #include "widget_parameter_class.h"
 #include "systeminfo_button.h"
 #include "submitFail.h"
 #include "submitSuccess.h"
+#include "my_combobox.h"
 
 using namespace std;
 
@@ -54,12 +56,12 @@ class MessagePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MessagePage(WidgetParameterClass basicParam);
+    explicit MessagePage(const WidgetParameterClass& basicParam);
     //~MessagePage();
     void systeminfo_show(QPointF pt);
     void systeminfo_hide();
     void set_request_header();
-    void pageChangeForTheme(QString str);
+    void pageChangeForTheme(const QString& str);
     QWidget *verticalWidget;
     QFrame *frameSysInfo;
     systemInfoButton *showInfoButton;
@@ -79,8 +81,8 @@ public slots:
     void detailTextEdit_textChanged();
     void mailTextEdit_textChanged();
 
-    void trueSyslogCheckBox_stateChanged(int);
-    void falseSyslogCheckBox_stateChanged(int);
+    void trueSyslogCheckBox_stateChanged();
+    void falseSyslogCheckBox_stateChanged();
     void userPermission_stateChanged(int);
 
     void userDataPushButton_clicked();
@@ -133,6 +135,20 @@ private:
 
     void sendfile_finished(QNetworkReply* );
 
+    void checkBox_stateCheck();
+
+    void uploadFile_afterButtonClicked();
+
+    void removeUploadFileNameListFile(QPushButton* btn);
+
+    void getCodingFormat();
+    void getSysVersion();
+    void getDesktopInfo();
+
+    bool event(QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *ev);
+    bool mouseIsOutofList();
+
     QWidget *m_pWidgetStyleOfAsk;
     QWidget *m_pWidgetTitleOfAsk;
     QWidget *m_pWidgetDetailOfAsk;
@@ -161,7 +177,8 @@ private:
 
     bool timeout_http_flag = false;
 
-    QComboBox *m_pStyleOfAskCombobox;
+    MyComboBox *m_pStyleOfAskCombobox = nullptr;
+    //QComboBox *m_pStyleOfAskCombobox;
     QString textStyleOfAsk = "系统问题";
 
     QTextEdit *m_pTitleTextEdit;

@@ -23,16 +23,22 @@ class DIYSupportPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit DIYSupportPage(WidgetParameterClass basicParam);
+    explicit DIYSupportPage(const WidgetParameterClass& basicParam);
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev) override;
+
 public slots:
     void on_officialWeb_clicked();
     void on_kylinManual_clicked();
-    void pageChangeForTheme(QString str);
+    void pageChangeForTheme(const QString& str);
 signals:
 private:
     void pageLocationInit();
     QLabel *m_pKylinPic;
-    QLabel *m_pMoreInfoLink;
+    QLabel *m_pMoreInfoLink_1;
+    QLabel *m_pMoreInfoLink_2;
+    QLabel *m_pMoreInfoLink_3;
     QLabel *m_pPageTitle;
     QLabel *m_pOnline;
     QLabel *m_pTelphone;

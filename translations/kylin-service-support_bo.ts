@@ -4,47 +4,47 @@
 <context>
     <name>BaseStyle</name>
     <message>
-        <location filename="../src/base_style.cpp" line="255"/>
+        <location filename="../src/base_style.cpp" line="254"/>
         <source>Service&amp;Support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/base_style.cpp" line="349"/>
+        <location filename="../src/base_style.cpp" line="338"/>
         <source>Intro</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/base_style.cpp" line="358"/>
+        <location filename="../src/base_style.cpp" line="348"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/base_style.cpp" line="393"/>
+        <location filename="../src/base_style.cpp" line="358"/>
         <source>Contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/base_style.cpp" line="411"/>
+        <location filename="../src/base_style.cpp" line="368"/>
         <source>Guidance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/base_style.h" line="141"/>
+        <location filename="../src/base_style.h" line="139"/>
         <source>QPushButton{background:transparent;color:rgba(48, 49, 51, 1);border-radius: 16px;}QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/base_style.h" line="144"/>
+        <location filename="../src/base_style.h" line="142"/>
         <source>QPushButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/base_style.h" line="146"/>
+        <location filename="../src/base_style.h" line="144"/>
         <source>QPushButton{background:transparent;color:rgba(192, 196, 204, 1);border-radius: 16px;}QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/base_style.h" line="149"/>
+        <location filename="../src/base_style.h" line="147"/>
         <source>QPushButton{background:rgba(112, 149, 255, 1);color:rgba(249, 249, 249, 1);border-radius: 16px;}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -85,33 +85,43 @@
 <context>
     <name>DIYSupportPage</name>
     <message>
-        <location filename="../src/diysupport_page.cpp" line="104"/>
-        <source>Click &lt;style&gt; a {text-decoration: none} &lt;/style&gt; &lt;a href=&quot;http://www.kylinos.cn&quot;&gt;to know more about support&lt;/a&gt;，to KylinOS Official Web</source>
+        <location filename="../src/diysupport_page.cpp" line="107"/>
+        <source>Click </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/diysupport_page.cpp" line="111"/>
+        <location filename="../src/diysupport_page.cpp" line="112"/>
+        <source>to know more about support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/diysupport_page.cpp" line="117"/>
+        <source>，to KylinOS Official Web</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/diysupport_page.cpp" line="121"/>
         <source>Users can solve problems through the ways below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/diysupport_page.cpp" line="127"/>
+        <location filename="../src/diysupport_page.cpp" line="137"/>
         <source>Go to the KylinOS Official Web</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/diysupport_page.cpp" line="134"/>
+        <location filename="../src/diysupport_page.cpp" line="144"/>
         <source>Access the Web, find the answers of the 
 normal problems.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/diysupport_page.cpp" line="151"/>
+        <location filename="../src/diysupport_page.cpp" line="161"/>
         <source>Guidance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/diysupport_page.cpp" line="157"/>
+        <location filename="../src/diysupport_page.cpp" line="167"/>
         <source>Users can check KylinManual, to find the answers.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -119,63 +129,73 @@ normal problems.</source>
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../src/main_page.cpp" line="52"/>
-        <source>Click &lt;style&gt; a {text-decoration: none} &lt;/style&gt; &lt;a href=&quot;http://www.kylinos.cn&quot;&gt;to know more about support&lt;/a&gt;，to KylinOS Official Web</source>
+        <location filename="../src/main_page.cpp" line="50"/>
+        <source>Click </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="58"/>
+        <location filename="../src/main_page.cpp" line="55"/>
+        <source>to know more about support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_page.cpp" line="60"/>
+        <source>，to KylinOS Official Web</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_page.cpp" line="65"/>
         <source>You can get your answers through the ways below</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="68"/>
+        <location filename="../src/main_page.cpp" line="75"/>
         <source>Offical WeChat Account</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="76"/>
+        <location filename="../src/main_page.cpp" line="83"/>
         <source>You can add our Team&apos;s WeChat
  Get an online response.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="110"/>
+        <location filename="../src/main_page.cpp" line="117"/>
         <source>Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="118"/>
+        <location filename="../src/main_page.cpp" line="125"/>
         <source>Leave message to get support.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="152"/>
+        <location filename="../src/main_page.cpp" line="159"/>
         <source>Mail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="160"/>
+        <location filename="../src/main_page.cpp" line="167"/>
         <source>Send mail to get support.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="194"/>
+        <location filename="../src/main_page.cpp" line="201"/>
         <source>Telephone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="202"/>
+        <location filename="../src/main_page.cpp" line="209"/>
         <source>5*8 hours hotline.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="237"/>
+        <location filename="../src/main_page.cpp" line="244"/>
         <source>Guidance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_page.cpp" line="245"/>
+        <location filename="../src/main_page.cpp" line="252"/>
         <source>Users can check Manuals to solve
 the problem by self.</source>
         <translation type="unfinished"></translation>
@@ -341,6 +361,14 @@ the problem by self.</source>
     <message>
         <location filename="../src/submitSuccess.cpp" line="37"/>
         <source>Submit Successed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StyleWidgetShadow</name>
+    <message>
+        <location filename="../src/stylewidgetshadow.cpp" line="26"/>
+        <source>kylin-service-support</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

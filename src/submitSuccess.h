@@ -25,7 +25,7 @@ class submit_success : public QDialog
 public:
     explicit submit_success(QWidget *parent = nullptr);
     ~submit_success();
-    void pageChangeForTheme(QString str);
+    void pageChangeForTheme(const QString& str);
     StyleWidgetShadow *swshadow;
 private slots:
     void on_pushButton_2_clicked();

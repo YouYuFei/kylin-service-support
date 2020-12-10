@@ -14,16 +14,16 @@ class WidgetParameterClass
 {
 public:
     WidgetParameterClass();
-    WidgetParameterClass(int winWidth, int winHeight,
-                         bool hasRadius=1, int winRadius=0,
-                         int winShadow =0,double winShadowAlpha=0.00,
-                         int titleHeight=0,
-                         int leftMenuBoxHeight = 0, int leftMenuBoxWidth  = 0,
-                         int rightBoxHeight = 0,int rightBoxWidth  = 0);
+    WidgetParameterClass(int pWinWidth, int pWinHeight,
+                         bool pHasRadius = 1, int pWinRadius = 0,
+                         int pWinShadow = 0, double pWinShadowAlpha = 0.00,
+                         int pTitleHeight = 0,
+                         int pLeftMenuBoxHeight = 0 , int pLeftMenuBoxWidth = 0,
+                         int pRightBoxHeight = 0, int pRightBoxWidth = 0);
 
     //窗体长宽
-    int winWidth;
-    int winHeight;
+    int winWidth ;
+    int winHeight ;
 
     //窗体圆角
     bool hasRadius = 1;               //是否有圆角

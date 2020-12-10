@@ -9,13 +9,13 @@
 #ifndef DAEMONIPCDBUS_H
 #define DAEMONIPCDBUS_H
 
-#define KYLIN_USER_GUIDE_PATH "/"
+#define KYLIN_USER_GUIDE_PATH ("/")
 
-#define KYLIN_USER_GUIDE_SERVICE "com.kylinUserGuide.hotel"
+#define KYLIN_USER_GUIDE_SERVICE ("com.kylinUserGuide.hotel")
 
-#define KYLIN_USER_GUIDE_INTERFACE "com.guide.hotel"
+#define KYLIN_USER_GUIDE_INTERFACE ("com.guide.hotel")
 
-#define SERVICE_NAME_SIZE 30
+#define SERVICE_NAME_SIZE (30)
 
 #include <QObject>
 #include <QApplication>

@@ -22,6 +22,8 @@
 FileItemInit::FileItemInit(QWidget *parent) :
     QWidget(parent)
 {
+    item_widget = nullptr;
+
     if (this->objectName().isEmpty())
         this->setObjectName(QString::fromUtf8("fileitem_init"));
     deletebtn0 = new BrowseButton(this);

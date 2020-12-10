@@ -25,7 +25,7 @@ public:
     ~submit_fail();
 
     void show_faillinfo(int errorcode);
-    void pageChangeForTheme(QString str);
+    void pageChangeForTheme(const QString& str);
 
     StyleWidgetShadow *swshadow;
 private slots:

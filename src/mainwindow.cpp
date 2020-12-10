@@ -123,7 +123,16 @@ void MainWindow::initGsetting()
 *************************************************/
 void MainWindow::setThemeStyle()
 {
-    QString nowThemeStyle = m_pThemeStyle->get("styleName").toString();
+    QString nowThemeStyle = "";
+    if(m_pThemeStyle==nullptr)                  //V10系统不能进行主题切换，需要进行空指针判断
+    {
+        nowThemeStyle = "ukui-default";
+    }
+    else
+    {
+        nowThemeStyle = m_pThemeStyle->get("styleName").toString();
+    }
+
     qDebug() << "设置程序主题模式为" << nowThemeStyle;
     basicWindow->pageChangeForTheme(nowThemeStyle);
 //    styleWidget->ThemeChooseForWidget(nowThemeStyle);
@@ -134,3 +143,23 @@ void MainWindow::setThemeStyle()
 //    warningPage->pageChangeForTheme(nowThemeStyle);
 
 }
+/************************************************
+* 函数名称：pullUpWindow
+* 功能描述：窗口最小化时，点击程序图标，主窗口拉起
+* 输入参数：
+* 输出参数：
+* 修改日期：2020.12.02
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MainWindow::pullUpWindow()
+{
+    qDebug()<<"MainWindow::pullUpWindow  iswindowminized:" << basicWindow->isMinimized();
+    basicWindow->showNormal();
+    basicWindow->raise();
+    basicWindow->activateWindow();
+    qDebug()<<basicWindow->parent();
+
+}
+

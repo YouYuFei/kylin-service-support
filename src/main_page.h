@@ -13,16 +13,21 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QDesktopServices>
+#include <QUrl>
 #include <QDebug>
 #include "widget_parameter_class.h"
+#include "myclick_widget.h"
+
 
 class MainPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MainPage(WidgetParameterClass basicParam);
-    void pageChangeForTheme(QString str);
-
+    explicit MainPage(const WidgetParameterClass& basicParam);
+    void pageChangeForTheme(const QString& str);
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev) override;
 signals:
 private:
 
@@ -31,7 +36,9 @@ private:
     void pageLocationInit();
 
     QLabel *m_pKylinPic;
-    QLabel *m_pMoreInfoLink;
+    QLabel *m_pMoreInfoLink_1;
+    QLabel *m_pMoreInfoLink_2;
+    QLabel *m_pMoreInfoLink_3;
     QLabel *m_pPageTitle;
 
     QWidget *m_pOnline;

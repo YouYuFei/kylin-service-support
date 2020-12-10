@@ -34,8 +34,8 @@ class ContactPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ContactPage(WidgetParameterClass basicParam);
-    void pageChangeForTheme(QString str);
+    explicit ContactPage(const WidgetParameterClass& basicParam);
+    void pageChangeForTheme(const QString& str);
 signals:
 
 private:
@@ -43,7 +43,7 @@ private:
 
     WidgetParameterClass contactPageBasicParameter;
 
-    QLabel *m_pContactUs = nullptr;
+    QLabel *m_pContactUs;
 
     QLabel *m_pKylinTeam_1;
     QLabel *m_pKylinTeam_2;
@@ -60,7 +60,7 @@ private:
     QLabel *m_pQRCode_1;
     QLabel *m_pQRCode_2;
 
-    QWidget *body      = nullptr;
+    QWidget *body;
 
 };
 

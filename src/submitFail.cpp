@@ -16,7 +16,7 @@ extern void qt_blurImage(QImage &blurImage, qreal radius, bool quality, int tran
 submit_fail::submit_fail(QWidget *parent) :
     QDialog(parent)
 {
-    parentWnd = (BaseStyle *)parent;
+    parentWnd = static_cast< BaseStyle * >(parent);//(BaseStyle *)parent;
     UI_init();
 }
 
@@ -102,7 +102,7 @@ void submit_fail::UI_init()
 }
 
 
-void submit_fail::pageChangeForTheme(QString str)
+void submit_fail::pageChangeForTheme(const QString& str)
 {
     qDebug() << "提交失败框的颜色设置！";
     nowTheme = str;

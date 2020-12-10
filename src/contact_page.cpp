@@ -17,8 +17,29 @@
 *   创建  HZH
 *
 *************************************************/
-ContactPage::ContactPage(WidgetParameterClass basicParam)
+ContactPage::ContactPage(const WidgetParameterClass& basicParam)
+    :contactPageBasicParameter(basicParam)
 {
+
+    m_pContactUs   = nullptr;
+
+    m_pKylinTeam_1 = nullptr;
+    m_pKylinTeam_2 = nullptr;
+    m_pKylinTeam_3 = nullptr;
+
+    m_pTel_1       = nullptr;
+    m_pTel_2       = nullptr;
+    m_pTel_3       = nullptr;
+
+    m_pMail_1      = nullptr;
+    m_pMail_2      = nullptr;
+    m_pMail_3      = nullptr;
+
+    m_pQRCode_1    = nullptr;
+    m_pQRCode_2    = nullptr;
+
+    body           = nullptr;
+
     this->setWindowTitle("contact_page");
     contactPageBasicParameter = basicParam;
 
@@ -34,7 +55,7 @@ ContactPage::ContactPage(WidgetParameterClass basicParam)
 *   创建  HZH
 *
 *************************************************/
-void ContactPage::pageChangeForTheme(QString str)
+void ContactPage::pageChangeForTheme(const QString& str)
 {
 
     if("ukui-dark" == str || "ukui-black" == str)

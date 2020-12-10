@@ -23,14 +23,6 @@
         <file>data/icon_email.png</file>
         <file>data/mail.png</file>
         <file>data/banner.png</file>
-        <file>data/conning-a/1.png</file>
-        <file>data/conning-a/2.png</file>
-        <file>data/conning-a/3.png</file>
-        <file>data/conning-a/4.png</file>
-        <file>data/conning-a/5.png</file>
-        <file>data/conning-a/6.png</file>
-        <file>data/conning-a/7.png</file>
-        <file>data/conning-a/8.png</file>
         <file>data/kylin-service-support.png</file>
         <file>data/qcpic.png</file>
         <file>data/icon_wx_d.png</file>
@@ -48,5 +40,10 @@
         <file>data/icon_team_d.png</file>
         <file>data/icon_tele_d.png</file>
         <file>data/mail_d.png</file>
+        <file>data/icon_tele_h.png</file>
+        <file>data/icon_support_h.png</file>
+        <file>data/icon_intro_h.png</file>
+        <file>data/icon_message_h.png</file>
+        <file>data/comboboxIcon_d.png</file>
     </qresource>
 </RCC>

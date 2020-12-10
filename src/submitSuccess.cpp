@@ -14,7 +14,7 @@ extern void qt_blurImage(QImage &blurImage, qreal radius, bool quality, int tran
 submit_success::submit_success(QWidget *parent) :
     QDialog(parent)
 {
-    parentWnd = (BaseStyle *)parent;
+    parentWnd = static_cast<BaseStyle *>(parent);
     UI_init();
 }
 void submit_success::UI_init()
@@ -95,7 +95,7 @@ submit_success::~submit_success()
 
 }
 
-void submit_success::pageChangeForTheme(QString str)
+void submit_success::pageChangeForTheme(const QString& str)
 {
     if("ukui-dark" == str || "ukui-black" == str)
     {

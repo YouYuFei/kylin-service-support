@@ -24,7 +24,7 @@ class StyleWidgetShadow : public QWidget
 {
     Q_OBJECT
 public:
-    StyleWidgetShadow(WidgetParameterClass);
+    StyleWidgetShadow(const WidgetParameterClass& s);
 
 private:
     void handleIconClickedSub();//在屏幕中央显示
