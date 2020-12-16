@@ -7,6 +7,7 @@
 *   创建  HZH
 *************************************************/
 #include "mainwindow.h"
+#include "xatom-helper.h"
 /************************************************
 * 函数名称：MainWindow
 * 功能描述：构造函数
@@ -26,18 +27,15 @@ MainWindow::MainWindow()
 
     QString windowTitle = tr("Service&Support");
 
+
     basicWindow = new BaseStyle(basicParameter , windowTitle);
-
-
-
-    QHBoxLayout *hblayout=new QHBoxLayout(basicWindow->body);
-    hblayout->setMargin(0);//控件间距
-    hblayout->setSpacing(0);//控件间距
-
-    //内部样式
-    stackedWidget =new QStackedWidget;
-
-    hblayout->addWidget(stackedWidget);
+    this->setWindowTitle(tr("Service&Support"));
+    // 添加窗管协议
+    MotifWmHints hints;
+    hints.flags = MWM_HINTS_FUNCTIONS|MWM_HINTS_DECORATIONS;
+    hints.functions = MWM_FUNC_ALL;
+    hints.decorations = MWM_DECOR_BORDER;
+    XAtomHelper::getInstance()->setWindowMotifHint(basicWindow->winId(), hints);
 
     initGsetting();
 }

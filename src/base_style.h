@@ -63,12 +63,10 @@ public:
 
     BaseStyle(const WidgetParameterClass& basicParameter, const QString& dialogTitleText);
 
-    StyleWidgetShadow *swshadow = nullptr;//阴影
-
     void WidgetStyleClose();//点击关闭事件
 
     QWidget *title     = nullptr;//标题栏
-    QWidget *body      = nullptr;//窗体
+
     QWidget *menuBox   = nullptr;//窗体
     QWidget *showBox   = nullptr;//窗体
 
