@@ -91,15 +91,15 @@ void DIYSupportPage::pageChangeForTheme(const QString& str)
         m_pMoreInfoLink_3->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
         m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
         QString officialWebStyleSheet="MyClickWidget{background-color:rgba(246, 247, 247, 1);border-radius:6px;}"
-                                      "MyClickWidget:hover{background-color:rgba(149, 176, 255, 1);border-radius:6px;}"
-                                      "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 1);border-radius:6px;}";
+                                      "MyClickWidget:hover{background-color:rgba(149, 176, 255, 0.16);border-radius:6px;}"
+                                      "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 0.16);border-radius:6px;}";
         officialWeb->setStyleSheet(officialWebStyleSheet);
         m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
         m_pKylinOfficialWeb_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pKylinOfficialWeb_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
         QString kylinManualStyleSheet="MyClickWidget{background-color:rgba(246, 247, 247, 1);border-radius:6px;}"
-                                      "MyClickWidget:hover{background-color:rgba(149, 176, 255, 1);border-radius:6px;}"
-                                      "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 1);border-radius:6px;}";
+                                      "MyClickWidget:hover{background-color:rgba(149, 176, 255, 0.16);border-radius:6px;}"
+                                      "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 0.16);border-radius:6px;}";
         kylinManual->setStyleSheet(kylinManualStyleSheet);
         m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
         m_pKylinManual_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");

@@ -1,3 +1,35 @@
+kylin-service-support (1.0.16kord~rc4) v101; urgency=medium
+
+  * pro文件中增加CONFIG += resources_big，并增加QT版本限制。
+
+ -- hanzehui <hanzehui@kylinos.cn>  Tue, 22 Dec 2020 09:57:40 +0800
+
+kylin-service-support (1.0.16kord~rc3) v101; urgency=medium
+
+  * pro文件中增加CONFIG += resources_big，并增加QT版本限制。
+
+ -- hanzehui <hanzehui@kylinos.cn>  Tue, 22 Dec 2020 09:27:40 +0800
+
+kylin-service-support (1.0.16kord~rc2) v101; urgency=medium
+
+  * pro文件中增加CONFIG += resources_big，解决virtual memory exhausted: Cannot allocate memory 报错，编译无法通过问题。
+
+ -- hanzehui <hanzehui@kylinos.cn>  Tue, 22 Dec 2020 08:57:40 +0800
+
+kylin-service-support (1.0.16kord~rc1) v101; urgency=medium
+
+  * 窗管适配，去掉原有标题栏
+  * 界面问题修改，下拉框选中后字体颜色，邮箱输入时输入框逻辑增加，提交重置按钮修改。
+
+ -- hanzehui <hanzehui@kylinos.cn>  Mon, 21 Dec 2020 17:57:40 +0800
+
+kylin-service-support (1.0.15kord) v101; urgency=medium
+
+  * 窗管适配，去掉原有标题栏
+  * BUG 28993 【服务与支持】存在咨询类别子项为“问题类别”的单项
+
+ -- hanzehui <hanzehui@kylinos.cn>  Thu, 17 Dec 2020 09:57:40 +0800
+
 kylin-service-support (1.0.14kord) v101; urgency=medium
 
   * BUG  27679 【麒麟服务与支持】当设置任务栏大小为大时，麒麟服务与支持的icon太小了

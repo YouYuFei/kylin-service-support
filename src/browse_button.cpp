@@ -40,9 +40,9 @@ void BrowseButton::enterEvent(QEvent *e)
 {
     Q_UNUSED(e);
 
-    QFont font;
-    font.setUnderline(true);
-    setFont(font);
+//    QFont font;
+//    font.setUnderline(true);
+//    setFont(font);
 
 }
 /************************************************
@@ -59,8 +59,8 @@ void BrowseButton::leaveEvent(QEvent *e)
 {
     Q_UNUSED(e);
 
-    QFont font;
-    font.setUnderline(false);
-    setFont(font);
+//    QFont font;
+//    font.setUnderline(false);
+//    setFont(font);
 
 }

@@ -15,6 +15,7 @@
 #include <QWidget>
 #include <QIcon>
 //窗体阴影
+#include <QtMath>
 #include <QPainter>
 //窗口显示在屏幕中心
 #include <QApplication>

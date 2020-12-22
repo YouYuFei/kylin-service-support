@@ -7,6 +7,21 @@ LIBS +=-lX11
 
 CONFIG += c++11
 CONFIG += link_pkgconfig
+
+#check Qt version
+QT_VERSION = $$[QT_VERSION]
+QT_VERSION = $$split(QT_VERSION, ".")
+QT_VER_MAJ = $$member(QT_VERSION, 0)
+QT_VER_MIN = $$member(QT_VERSION, 1)
+
+lessThan(QT_VER_MAJ, 5) | lessThan(QT_VER_MIN, 12) {
+    message(Qt版本小于5.12)
+}
+else{
+    message(Qt版本大于或等于5.12)
+    CONFIG += resources_big
+}
+
 PKGCONFIG += gsettings-qt
 
 # The following define makes your compiler emit warnings if you use
@@ -33,6 +48,7 @@ SOURCES += \
     src/mainwindow.cpp \
     src/message_page.cpp \
     src/my_combobox.cpp \
+    src/my_qlineedit.cpp \
     src/myclick_widget.cpp \
     src/stylewidgetattribute.cpp \
     src/stylewidgetshadow.cpp \
@@ -55,6 +71,7 @@ HEADERS += \
     src/mainwindow.h \
     src/message_page.h \
     src/my_combobox.h \
+    src/my_qlineedit.h \
     src/myclick_widget.h \
     src/stylewidgetattribute.h \
     src/stylewidgetshadow.h \

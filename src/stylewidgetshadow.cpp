@@ -69,6 +69,7 @@ void StyleWidgetShadow::paintEvent(QPaintEvent *event)//重绘窗口
     {
         int alpha=swa.winShadowAlpha*255/4;
         color.setAlpha(alpha - (alpha/swa.winShadow)*(i+1));
+
         painter.setPen(color);
 
         QRect rec(swa.winShadow-i,swa.winShadow-i,swa.winWidth-(swa.winShadow-i)*2,swa.winHeight-(swa.winShadow-i)*2);

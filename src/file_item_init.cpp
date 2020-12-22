@@ -32,6 +32,7 @@ FileItemInit::FileItemInit(QWidget *parent) :
 
     //item_widget->setFixedHeight(17);
     deletebtn0->setFixedHeight(21);
+    deletebtn0->setFlat(true);
     filename_label0->setFixedHeight(21);
     filesize_label0->setFixedHeight(21);
 }

@@ -49,6 +49,7 @@ void MessagePage::pageChangeForTheme(const QString& str)
     qDebug() << currentTheme;
     success_dialog->pageChangeForTheme(str);
     fail_dialog->pageChangeForTheme(str);
+
     if("ukui-dark" == str || "ukui-black" == str)
     {
         QString widgetStyleOfAskSheet="QWidget #StyleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
@@ -71,7 +72,7 @@ void MessagePage::pageChangeForTheme(const QString& str)
         QString widgetMailSheet="QWidget #WidgetMail{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetMail->setStyleSheet(widgetMailSheet);
         m_pMail->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;");
+        m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
         QString widgetLogSheet="QWidget #WidgetLog{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetLog->setStyleSheet(widgetLogSheet);
         m_pLog->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
@@ -80,10 +81,9 @@ void MessagePage::pageChangeForTheme(const QString& str)
         QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
 
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(96, 98, 101, 1);font-size:14px;color:rgba(192, 196, 204, 1)");
-        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)"
-                                   "QPushButton#resetButton:hover{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)"
-                                   "QPushButton#resetButton:pressed{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)");
+        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(31, 32, 34, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}"
+                                   "QPushButton#resetButton:hover{background:rgba(72, 72, 76, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}"
+                                   "QPushButton#resetButton:pressed{background:rgba(72, 72, 76, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}");
         m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
                                                   ""));
         showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
@@ -122,12 +122,14 @@ void MessagePage::pageChangeForTheme(const QString& str)
         QString widgetUserDataSheet="QWidget #UserData{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetUserData->setStyleSheet(widgetUserDataSheet);
         m_pUserData->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-        m_pUserDataPushButton->setStyleSheet("QPushButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255,255,255,0)");
+        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
         QString widgetMailSheet="QWidget #WidgetMail{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetMail->setStyleSheet(widgetMailSheet);
         m_pMail->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
         QString widgetLogSheet="QWidget #WidgetLog{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetLog->setStyleSheet(widgetLogSheet);
         m_pLog->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
@@ -136,10 +138,9 @@ void MessagePage::pageChangeForTheme(const QString& str)
         QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
 
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)"
-                                   "QPushButton#resetButton:hover{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)"
-                                   "QPushButton#resetButton:pressed{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1)");
+        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}"
+                                           "QPushButton#resetButton:hover{background:rgba(242, 246, 253, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}"
+                                           "QPushButton#resetButton:pressed{background:rgba(242, 246, 253, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}");
         m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
                                                   ""));
         showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
@@ -162,6 +163,7 @@ void MessagePage::pageChangeForTheme(const QString& str)
         labelLanguage_2->setStyleSheet(QString::fromUtf8("border-color: transparent;color:rgba(96, 98, 101, 1);font:12px;"));
 
     }
+
 }
 
 /************************************************
@@ -185,6 +187,7 @@ void MessagePage::messagePageUIInit()
 
     pageAllRowLocationInit();
     getSysteminfo();
+    on_resetButton_clicked();
 }
 /************************************************
 * 函数名称：httpclientInit
@@ -225,14 +228,9 @@ void MessagePage::pageStyleOfAskRowLocationInit()
     m_pStyleOfAsk->setAlignment(Qt::AlignLeft);
     m_pStyleOfAsk->setAlignment(Qt::AlignVCenter);
 
-//    m_pStyleOfAskCombobox = new QComboBox(m_pWidgetStyleOfAsk);
     m_pStyleOfAskCombobox = new MyComboBox();
     m_pStyleOfAskCombobox->listWidget->installEventFilter(this);
-    //m_pStyleOfAskCombobox->setFixedSize(206,40);
-    //m_pStyleOfAskCombobox->setMaxVisibleItems(5);
-    //QStyledItemDelegate *delegate = new QStyledItemDelegate();
-    //m_pStyleOfAskCombobox->setItemDelegate(delegate);
-    m_pStyleOfAskCombobox->addItem((tr("Type")));//("问题类别")));
+
     m_pStyleOfAskCombobox->addItem((tr("System")));//("系统问题")));
     m_pStyleOfAskCombobox->addItem((tr("Suggestion")));//("意见建议")));
     m_pStyleOfAskCombobox->addItem((tr("Bussiness")));//("商务合作")));
@@ -347,7 +345,7 @@ void MessagePage::pageUploadFilesRowLocationInit()
     m_pUserDataPushButton->setFixedSize(64,30);
     m_pUserDataPushButton->setObjectName("m_pUserDataPushButton");
     m_pUserDataPushButton->setText(tr("Browse"));//("浏览"));
-    m_pUserDataPushButton->setFlat(true);
+    //m_pUserDataPushButton->setFlat(true);
     connect(m_pUserDataPushButton,SIGNAL(clicked()),this,SLOT(userDataPushButton_clicked()));
 
     m_pUserDataLimit = new QLabel(m_pWidgetUserData);
@@ -391,10 +389,12 @@ void MessagePage::pageMailRowLocationInit()
     m_pMail->setAlignment(Qt::AlignLeft);
     m_pMail->setAlignment(Qt::AlignVCenter);
 
-    m_pMailTextEdit = new QTextEdit(m_pWidgetMail);
+    m_pMailTextEdit = new MyQTextEdit(m_pWidgetMail);
     m_pMailTextEdit->setFixedSize(634,40);
     m_pMailTextEdit->setPlaceholderText(tr("Leave your E-mail to get response."));//("KylinOS服务与支持团队将通过您预留的邮件反馈处理进度和结果"));
     connect(m_pMailTextEdit,SIGNAL(textChanged()),this,SLOT(mailTextEdit_textChanged()));
+    connect(m_pMailTextEdit, SIGNAL(focusOut()), this, SLOT(mailTextEditFoucusOut()));
+    connect(m_pMailTextEdit, SIGNAL(focusIn()), this, SLOT(mailTextEditFoucusIn()));
 
     m_pMailFormatErr = new QLabel;
     m_pMailFormatErr->setFixedSize(84,17);
@@ -519,7 +519,8 @@ void MessagePage::pageUserDataRowLocationInit()
     FileListWidget->setAttribute(Qt::WA_TranslucentBackground);
     FileListWidget->setFrameShape(QListWidget::NoFrame);
 
-    //FileListWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    FileListWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    FileListWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     FileListWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
     FileListWidget->hide();
@@ -555,8 +556,8 @@ void MessagePage::pageAllRowLocationInit()
     commitButton->setFixedSize(64,30);
     commitButton->setObjectName("commitButton");
     commitButton->setText(tr("Commit"));//"提交"));
-    commitButton->setEnabled(false);
     connect(commitButton,SIGNAL(clicked()),this,SLOT(on_commitButton_clicked()));
+    commitButtonClickable = false;
 
     resetButton = new QPushButton(this);
     resetButton->setFixedSize(64,30);
@@ -658,27 +659,12 @@ void MessagePage::pageAllRowLocationInit()
 *************************************************/
 void MessagePage::styleOfAskCombobox_currentIndexChanged()
 {
-    if("Type" == m_pStyleOfAskCombobox->getCurrentText() || "问题类别" == m_pStyleOfAskCombobox->getCurrentText())
-    {
-        qDebug() << "当前未选择有效问题分类" << m_pStyleOfAskCombobox->getCurrentText();
-        styleOfAskComboboxFlag = false;
-    }
-    else
-    {
-        textStyleOfAsk = m_pStyleOfAskCombobox->getCurrentText();
-        qDebug() << textStyleOfAsk;
-        styleOfAskComboboxFlag = true;
-    }
-    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
-    {
-        commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
-    }
-    else
-    {
-        commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-    }
+    qDebug() << m_pStyleOfAskCombobox->getCurrentText();
+
+    textStyleOfAsk = m_pStyleOfAskCombobox->getCurrentText();
+    qDebug() << textStyleOfAsk;
+    styleOfAskComboboxFlag = true;
+
 }
 /************************************************
 * 函数名称：detailTextEdit_textChanged
@@ -721,14 +707,13 @@ void MessagePage::detailTextEdit_textChanged()
     }
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
-        commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        commitButtonClickable = true;
     }
     else
     {
-        commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButtonClickable = false;
     }
+    commitButtonStyleSet();
 }
 /************************************************
 * 函数名称：mailTextEdit_textChanged
@@ -742,13 +727,21 @@ void MessagePage::detailTextEdit_textChanged()
 *************************************************/
 void MessagePage::mailTextEdit_textChanged()
 {
-    if("" == m_pMailTextEdit->toPlainText())
+    if("" == m_pMailTextEdit->toPlainText())// || (!m_pMailTextEdit->toPlainText().contains("@")))
     {
         qDebug() << "mailText为空！";
         m_pMailFormatErr->hide();
         mailFormatFlag = false;
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+        }
+        else
+        {
+            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+        }
     }
-    else
+    else if(false == mailFormatFlag)
     {
         mailText = m_pMailTextEdit->toPlainText();
         qDebug() << mailText;
@@ -759,30 +752,28 @@ void MessagePage::mailTextEdit_textChanged()
         if (2==v.validate(mailText,pos))
         {
 
-            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+            }
+            else
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+            }
             m_pMailFormatErr->hide();
             mailFormatFlag = true;
-
-        }
-        else
-        {
-            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-width:1px;border-color:rgba(245, 108, 108, 1);border-style: solid;");
-            mailFormatFlag = false;
-            m_pMailFormatErr->show();
 
         }
     }
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
-        commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        commitButtonClickable = true;
     }
     else
     {
-        commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButtonClickable = false;
     }
-
+    commitButtonStyleSet();
 }
 /************************************************
 * 函数名称：trueSyslogCheckBox_stateChanged
@@ -1008,18 +999,18 @@ void MessagePage::update_add_file_window()
     if(allFileSizeLargerThan10M())
     {
         qDebug() << "所有文件大小超过10M！";
-        commitButton->setEnabled(false);
+        commitButtonClickable = false;
     }
     else
     {
         qDebug() << "所有文件大小不到10M！";
         if(detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
         {
-            commitButton->setEnabled(true);
+            commitButtonClickable = true;
         }
         else
         {
-            commitButton->setEnabled(false);
+            commitButtonClickable = false;
         }
     }
 
@@ -1120,14 +1111,13 @@ void MessagePage::del_file_button_clicked()
     */
     if ((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
-        commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
+        commitButtonClickable = true;
     }
     else
     {
-        commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButtonClickable = false;
     }
+    commitButtonStyleSet();
 }
 /************************************************
 * 函数名称：update_linedit_add_or_del_file
@@ -1159,7 +1149,15 @@ void MessagePage::update_linedit_add_or_del_file()
 *************************************************/
 void MessagePage::on_resetButton_clicked()
 {
-    m_pStyleOfAskCombobox->setCurrentText(tr("Type"));
+    m_pStyleOfAskCombobox->setCurrentText(tr("System"));
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pStyleOfAskCombobox->setThemeDark();
+    }
+    else
+    {
+        m_pStyleOfAskCombobox->setThemeLight();
+    }
     m_pContentTextEdit->clear();
     m_pMailTextEdit->clear();
     syslogFlag = 1;
@@ -1195,17 +1193,23 @@ void MessagePage::on_resetButton_clicked()
 *************************************************/
 void MessagePage::on_commitButton_clicked()
 {
+    if(false == commitButtonClickable)
+    {
+        return;
+    }
     //判断邮箱格式
     //Determining Email Format
     QRegExp rx("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+");
     int pos=0;
     QRegExpValidator v(rx, 0);
-    if (2==v.validate(mailText,pos)) {
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+    if (2==v.validate(mailText,pos))
+    {
+        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
         m_pMailFormatErr->hide();
         mailFormatFlag = true;
-    } else {
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-width:1px;border-color:rgba(245, 108, 108, 1);border-style: solid;");
+    }
+    else {
+        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border:1px solid:rgba(245, 108, 108, 1);border-radius:4px");
         mailFormatFlag = false;
         m_pMailFormatErr->show();
     }
@@ -1217,11 +1221,11 @@ void MessagePage::on_commitButton_clicked()
         qDebug() << "所有文件大小超过10M！";
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
 
-        commitButton->setEnabled(false);
+        commitButtonClickable = false;
         return;
     }
 
-    commitButton->setEnabled(false);
+    commitButtonClickable = false;
 
     qDebug()<<"submitting_timer->start();";
     submitting_timer->start();
@@ -1314,10 +1318,9 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
     //Timer ends.
     submitting_timer->stop();
     commitButton->setText(tr("Submit"));//"提交"));
-    commitButton->setEnabled(false);
+    commitButtonClickable = false;
 
-    commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
-
+    commitButtonStyleSet();
     commitButton->setIcon(QIcon());
 
 
@@ -1619,7 +1622,8 @@ void MessagePage::set_all_disable_in_submit()
     m_pUserPermission->setEnabled(false);
     resetButton->setEnabled(false);
     m_pUserDataPushButton->setEnabled(false);
-    commitButton->setEnabled(false);
+    commitButtonClickable = false;
+    commitButtonStyleSet();
 
     for (int filenum = 0; filenum < uploadFileNameList.size(); filenum++)
         file_widget[filenum]->deletebtn0->setEnabled(false);
@@ -1647,7 +1651,8 @@ void MessagePage::set_all_enable_after_submit()
     resetButton->setEnabled(true);
 
 
-    commitButton->setEnabled(true);
+    commitButtonClickable = true;
+    commitButtonStyleSet();
 
     for (int filenum = 0; filenum< uploadFileNameList.size();filenum++)
     {
@@ -1717,15 +1722,13 @@ void MessagePage::checkBox_stateCheck()
     }
     if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
     {
-        commitButton->setEnabled(true);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);color:rgba(255, 255, 255, 1);font-size:14px;");
-
+        commitButtonClickable = true;
     }
     else
     {
-        commitButton->setEnabled(false);
-        commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1)");
+        commitButtonClickable = false;
     }
+    commitButtonStyleSet();
 }
 
 /************************************************
@@ -1758,6 +1761,7 @@ void MessagePage::uploadFile_afterButtonClicked()
     else if(uploadFileNameList.size() >= 5)
     {
         qDebug() << "所有文件数量超过5个！";
+
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(245, 108, 108, 1);font-size:14px;}");
         return ;
     }
@@ -1784,6 +1788,11 @@ void MessagePage::uploadFile_afterButtonClicked()
             //Add attachment box changes
             addFileInfoModel();
         }
+        if(uploadFileNameList.size()>=5)
+        {
+            m_pUserDataPushButton->setEnabled(false);
+            m_pUserDataPushButton->setStyleSheet("QPushButton#resetButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-radius:4px;}");
+        }
     }
 }
 
@@ -1806,32 +1815,51 @@ void MessagePage::removeUploadFileNameListFile(QPushButton* btn)
         uploadFilePathList.removeAt(0);
         qDebug()<<uploadFileNameList.size()<<"delete after";
         qDebug() << "delete 0";
+        m_pUserDataPushButton->setEnabled(true);
     } else if( btn == file_widget[1]->deletebtn0 ) {
         uploadFileNameList.removeAt(1);
         uploadFileSizeList.removeAt(1);
         uploadFilePathList.removeAt(1);
-
+        m_pUserDataPushButton->setEnabled(true);
         qDebug() << "delete 1";
     } else if( btn == file_widget[2]->deletebtn0 ) {
         uploadFileNameList.removeAt(2);
         uploadFileSizeList.removeAt(2);
         uploadFilePathList.removeAt(2);
+        m_pUserDataPushButton->setEnabled(true);
         qDebug() << "delete 2";
     } else if( btn == file_widget[3]->deletebtn0 ) {
         uploadFileNameList.removeAt(3);
         uploadFileSizeList.removeAt(3);
         uploadFilePathList.removeAt(3);
+        m_pUserDataPushButton->setEnabled(true);
         qDebug() << "delete 3";
     } else if( btn == file_widget[4]->deletebtn0) {
         uploadFileNameList.removeAt(4);
         uploadFileSizeList.removeAt(4);
         uploadFilePathList.removeAt(4);
+        m_pUserDataPushButton->setEnabled(true);
         qDebug() << "delete 4";
     }
     else
     {
         qDebug() << "函数异常错误！";
         return;
+    }
+
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
+        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+    }
+    else
+    {
+        m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
+        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
     }
 }
 
@@ -2059,4 +2087,149 @@ bool MessagePage::mouseIsOutofList()
         return true;
     else
         return false;
+}
+
+/************************************************
+* 函数名称：mailTextEditFoucusIn
+* 功能描述：mailText被选中判断
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.19
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::mailTextEditFoucusIn()
+{
+    qDebug() << "mailTextEditFoucusIn";
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(112, 149, 255, 1);border-style: solid;border-radius:4px;");
+    }
+    else
+    {
+        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(112, 149, 255, 1);border-style: solid;border-radius:4px;");
+    }
+}
+/************************************************
+* 函数名称：mailTextEditFoucusIn
+* 功能描述：mailText被选中判断
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.19
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::mailTextEditFoucusOut()
+{
+    if("" == m_pMailTextEdit->toPlainText())
+    {
+        qDebug() << "mailText为空！";
+        m_pMailFormatErr->hide();
+        mailFormatFlag = false;
+        if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+        {
+            m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+        }
+        else
+        {
+            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+        }
+    }
+    else
+    {
+        mailText = m_pMailTextEdit->toPlainText();
+        qDebug() << mailText;
+
+        QRegExp rx("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+");
+        int pos=0;
+        QRegExpValidator v(rx, 0);
+        if (2==v.validate(mailText,pos))
+        {
+
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+            }
+            else
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+            }
+            m_pMailFormatErr->hide();
+            mailFormatFlag = true;
+
+        }
+        else
+        {
+            if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(237, 100, 100, 1);border-style: solid;border-radius:4px;");
+            }
+            else
+            {
+                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(237, 100, 100, 1);border-style: solid;border-radius:4px;");
+            }
+            mailFormatFlag = false;
+            m_pMailFormatErr->show();
+
+        }
+    }
+    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    {
+        commitButtonClickable = true;
+    }
+    else
+    {
+        commitButtonClickable = false;
+    }
+    commitButtonStyleSet();
+}
+/************************************************
+* 函数名称：commitButtonStyleSet
+* 功能描述：commitButton样式修改函数
+* 输入参数：无
+* 输出参数：无
+* 修改日期：2020.12.19
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MessagePage::commitButtonStyleSet()
+{
+    if(false == commitButtonClickable)
+    {
+        qDebug() << "当前提交按钮不可点击";
+    }
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        qDebug() << "当前为深色主题";
+        if(false == commitButtonClickable)
+        {
+            commitButton->setStyleSheet("QPushButton#commitButton{background:#48484C;font-size:14px;color:rgba(143, 147, 153, 1);}");
+            commitButton->setEnabled(false);
+        }
+        else
+        {
+            commitButton->setEnabled(true);
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                        "QPushButton#commitButton:hover{background:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                        "QPushButton#commitButton:pressed{background:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+        }
+    }
+    else
+    {
+        if(false == commitButtonClickable)
+        {
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+            commitButton->setEnabled(false);
+        }
+        else
+        {
+            commitButton->setEnabled(true);
+            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                        "QPushButton#commitButton:hover{background:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+                                        "QPushButton#commitButton:pressed{background:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+        }
+    }
 }

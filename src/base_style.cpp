@@ -90,12 +90,12 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 
     myWidgetTabInit();
 
-//    QSize smallWidgetSize(30,30);//小按钮大小
+    QSize smallWidgetSize(30,30);//小按钮大小
     widgetMin =new QPushButton;//最小化按钮
-//    widgetMin->setObjectName("widgetMin");
-    widgetMin->setIcon(QIcon::fromTheme("window-minimize-symbolic"));//主题库的最小化图标
-//    widgetMin->setIconSize(smallWidgetSize);
-//    widgetMin->setFixedSize(smallWidgetSize);
+    widgetMin->setObjectName("widgetMin");
+    //widgetMin->setIcon(QIcon::fromTheme("window-minimize-symbolic"));//主题库的最小化图标
+    widgetMin->setIconSize(smallWidgetSize);
+    widgetMin->setFixedSize(smallWidgetSize);
 
     connect(widgetMin,&QPushButton::clicked,this,[=]{
         this->setWindowState(Qt::WindowMinimized);
@@ -103,15 +103,15 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     });
 
     widgetClose =new QPushButton;//关闭按钮
-//    widgetClose->setObjectName("widgetClose");
-    widgetClose->setIcon(QIcon::fromTheme("window-close-symbolic"));
-//    widgetClose->setIconSize(smallWidgetSize);
-//    widgetClose->setFixedSize(smallWidgetSize);
+    widgetClose->setObjectName("widgetClose");
+    //widgetClose->setIcon(QIcon::fromTheme("window-close-symbolic"));
+    widgetClose->setIconSize(smallWidgetSize);
+    widgetClose->setFixedSize(smallWidgetSize);
 
     connect(widgetClose,&QPushButton::clicked,this,&BaseStyle::WidgetStyleClose);
 
 
-    this->show();
+    //this->show();
 
     //布局
     QHBoxLayout *hlt0=new QHBoxLayout;//右上角按钮内部，水平布局
@@ -157,7 +157,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     QVBoxLayout *vlt_menu_btn=new QVBoxLayout;
     vlt_menu_btn->setMargin(0);
     vlt_menu_btn->setSpacing(0);
-    vlt_menu_btn->addSpacing(40);
+    vlt_menu_btn->addSpacing(0);
     vlt_menu_btn->addWidget(m_pMainPageButton, 1);
     vlt_menu_btn->addSpacing(16);
     vlt_menu_btn->addWidget(m_pMessagePageButton, 1);
@@ -181,8 +181,8 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     //vlt_menu->setMargin(15);
     vlt_menu->setMargin(0);
     vlt_menu->setSpacing(0);
-    vlt_menu->addSpacing(0);
-//    vlt_menu->addLayout(hlt2,1);
+    vlt_menu->addSpacing(40);
+    //vlt_menu->addLayout(hlt2,1);
     vlt_menu->setSpacing(20);
     vlt_menu->addLayout(hlt_menu_btn,1);
     vlt_menu->addStretch(99);
@@ -205,7 +205,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     QVBoxLayout *hlt3=new QVBoxLayout;//标题栏外部
     hlt3->setMargin(0);
     hlt3->setSpacing(0);
-//    hlt3->addLayout(hltbutton3);
+    //hlt3->addLayout(hltbutton3);
     hlt3->addWidget(m_pstackWidget);
     hlt3->addStretch(99);
 
@@ -245,9 +245,14 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     supportIcon->setFixedSize(16,16);
     supportIcon->move(40,194);
 
+//    titleIcon = new QLabel(menuBox);
+//    titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
+//    titleIcon->setFixedSize(24,24);
+//    titleIcon->move(8,8);
+
     this->setWindowIcon(QIcon(":/data/kylin-service-support.png"));
     this->setWindowTitle(tr("Service&Support"));
-//    this->setWindowTitle(tr("服务与支持"));
+    this->setWindowTitle(tr("服务与支持"));
 }
 /************************************************
 * 函数名称：myWidgetSizeDesign
@@ -324,7 +329,7 @@ void BaseStyle::myWidgetTabInit()
     m_pMainPageButton->setFixedSize(132,32);
 
     m_pMainPageButton->installEventFilter(this);
-    connect(m_pMainPageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MainPageButtonSlots);
+    //connect(m_pMainPageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MainPageButtonSlots);
 
     //留言咨询界面显示按钮
     m_pMessagePageButton = new TabMenuButton();
@@ -334,7 +339,7 @@ void BaseStyle::myWidgetTabInit()
     m_pMessagePageButton->setFixedSize(132,32);
     m_pMessagePageButton->installEventFilter(this);
 
-    connect(m_pMessagePageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MessagePageButtonSlots);
+    //connect(m_pMessagePageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MessagePageButtonSlots);
 
     //联系我们界面显示按钮
     m_pContactButton = new TabMenuButton();
@@ -344,7 +349,7 @@ void BaseStyle::myWidgetTabInit()
     m_pContactButton->setFixedSize(132,32);
     m_pContactButton->installEventFilter(this);
 
-    connect(m_pContactButton, &TabMenuButton::clicked, this, &BaseStyle::m_ContactPageButtonSlots);
+    //connect(m_pContactButton, &TabMenuButton::clicked, this, &BaseStyle::m_ContactPageButtonSlots);
 
     //自助支持界面显示按钮
     m_pDIYButton = new TabMenuButton();
@@ -354,7 +359,7 @@ void BaseStyle::myWidgetTabInit()
     m_pDIYButton->setFixedSize(132,32);
     m_pDIYButton->installEventFilter(this);
 
-    connect(m_pDIYButton, &TabMenuButton::clicked, this, &BaseStyle::m_DIYPageButtonSlots);
+    //connect(m_pDIYButton, &TabMenuButton::clicked, this, &BaseStyle::m_DIYPageButtonSlots);
 
 }
 /************************************************
@@ -372,7 +377,6 @@ void BaseStyle::m_MainPageButtonSlots()
     currentPageIndex = 0;
     setMainPageButtonBackgroundBlue();
     m_pstackWidget->setCurrentIndex(0);
-
 }
 
 /************************************************
@@ -389,6 +393,7 @@ void BaseStyle::m_MessagePageButtonSlots()
 {
     setMessagePageButtonBackgroudIsBlue();
     m_pstackWidget->setCurrentIndex(1);
+    //messagePage->on_resetButton_clicked();
     currentPageIndex = 1;
 }
 /************************************************
@@ -719,7 +724,11 @@ bool BaseStyle::mainPageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::MouseButtonRelease)
     {
-        mainPageButtonRelease();
+        qDebug() << "松开了简介按钮";
+        if(0 != currentPageIndex)
+        {
+            mainPageButtonRelease();
+        }
         return true;    //结束传播
     }
     return true;
@@ -768,7 +777,11 @@ bool BaseStyle::messagePageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::MouseButtonRelease)
     {
-        messagePageButtonRelease();
+        qDebug() << "松开了在线留言按钮";
+        if(1 != currentPageIndex)
+        {
+            messagePageButtonRelease();
+        }
         return true;    //结束传播
     }
     return true;
@@ -818,7 +831,7 @@ bool BaseStyle::contactPageButtonQss(QEvent *ev)
     else if(ev->type() == QEvent::MouseButtonRelease)
     {
         qDebug() << "松开了自助支持简介按钮";
-        if(2 == currentPageIndex)
+        if(2 != currentPageIndex)
         {
             contactPageButtonRelease();
         }
@@ -870,7 +883,7 @@ bool BaseStyle::diyPageButtonQss(QEvent *ev)
     else if(ev->type() == QEvent::MouseButtonRelease)
     {
         qDebug() << "松开了自助支持简介按钮";
-        if(3 == currentPageIndex)
+        if(3 != currentPageIndex)
         {
             diyPageButtonRelease();
         }
@@ -915,12 +928,12 @@ void BaseStyle::pageChangeForTheme(const QString& str)
     }
     if("ukui-dark" == str || "ukui-black" == str)
     {
-//        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(31, 32, 34, 1);border-image:url(:/data/min_h.png);border-radius:4px;}"
-//                                 "BaseStyle #widgetMin:hover{background-color:rgba(151, 151, 151, 1);border-image:url(:/data/min_h.png);border-radius:4px;}"
-//                                 "BaseStyle #widgetMin:pressed{background-color:rgba(151, 151, 151, 1);border-image:url(:/data/min_h.png);border-radius:4px;}");
-//        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(31, 32, 34, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
-//                                   "BaseStyle #widgetClose:hover{background-color:rgba(253, 149, 149, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
-//                                   "BaseStyle #widgetClose:pressed{background-color:rgba(237, 100, 100, 1);border-image:url(:/data/close_h.png);border-radius:4px;}");
+        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_h.png);border-radius:4px;}"
+                                 "BaseStyle #widgetMin:hover{background-color:rgba(255, 255, 255, 0.1);border-image:url(:/data/min_h.png);border-radius:4px;}"
+                                 "BaseStyle #widgetMin:pressed{background-color:rgba(255, 255, 255, 0.15);border-image:url(:/data/min_h.png);border-radius:4px;}");
+        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_h.png);border-radius:4px;}"
+                                   "BaseStyle #widgetClose:hover{background-color:#F86457;border-image:url(:/data/close_h.png);border-radius:4px;}"
+                                   "BaseStyle #widgetClose:pressed{background-color:#E44C50;border-image:url(:/data/close_h.png);border-radius:4px;}");
 
         QString showStyleSheet="#showBox{background-color:rgba(31, 32, 34, 1);}";
         showBox->setStyleSheet(showStyleSheet);
@@ -930,12 +943,12 @@ void BaseStyle::pageChangeForTheme(const QString& str)
     }
     else
     {
-//        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_d.png);border-radius:4px;}"
-//                                 "BaseStyle #widgetMin:hover{background-color:rgba(0, 0, 0, 0.04);border-image:url(:/data/min_d.png);border-radius:4px;}"
-//                                 "BaseStyle #widgetMin:pressed{background-color:rgba(48, 49, 51, 0.08);border-image:url(:/data/min_d.png);border-radius:4px;}");
-//        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
-//                                   "BaseStyle #widgetClose:hover{background-color:rgba(253, 149, 149, 1);border-image:url(:/data/close_h.png);border-radius:4px;}"
-//                                   "BaseStyle #widgetClose:pressed{background-color:rgba(237, 100, 100, 1);border-image:url(:/data/close_h.png);border-radius:4px;}");
+        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_d.png);border-radius:4px;}"
+                                 "BaseStyle #widgetMin:hover{background-color:rgba(0,0,0,0.1);border-image:url(:/data/min_d.png);border-radius:4px;}"
+                                 "BaseStyle #widgetMin:pressed{background-color:rgba(0,0,0,0.15);border-image:url(:/data/min_d.png);border-radius:4px;}");
+        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
+                                   "BaseStyle #widgetClose:hover{background-color:#F86457;border-image:url(:/data/close_h.png);border-radius:4px;}"
+                                   "BaseStyle #widgetClose:pressed{background-color:#E44C50;border-image:url(:/data/close_h.png);border-radius:4px;}");
 
         QString showStyleSheet="#showBox{background-color:rgba(255,255,255,1);}";
         showBox->setStyleSheet(showStyleSheet);
@@ -1025,7 +1038,7 @@ void BaseStyle::mainPageButtonHover()
 *************************************************/
 void BaseStyle::mainPageButtonClick()
 {
-    m_MainPageButtonSlots();
+    //m_MainPageButtonSlots();
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pMainPageButton->setStyleSheet(qssPressedMenuBar_d);
@@ -1050,13 +1063,9 @@ void BaseStyle::mainPageButtonClick()
 *************************************************/
 void BaseStyle::mainPageButtonRelease()
 {
-    qDebug() << "松开了自助支持简介按钮";
-    if(0 == currentPageIndex)
-    {
-        m_MainPageButtonSlots();
+    m_MainPageButtonSlots();
 
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
-    }
+    introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
 }
 /************************************************
 * 函数名称：messagePageButtonDefault
@@ -1118,7 +1127,7 @@ void BaseStyle::messagePageButtonHover()
 *************************************************/
 void BaseStyle::messagePageButtonClick()
 {
-    m_MessagePageButtonSlots();
+    //m_MessagePageButtonSlots();
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pMessagePageButton->setStyleSheet(qssPressedMenuBar_d);
@@ -1142,14 +1151,9 @@ void BaseStyle::messagePageButtonClick()
 *************************************************/
 void BaseStyle::messagePageButtonRelease()
 {
-    qDebug() << "松开了自助支持简介按钮";
-    if(1 == currentPageIndex)
-    {
-        m_MessagePageButtonSlots();
-
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
-
-    }
+    m_MessagePageButtonSlots();
+    messagePage->on_resetButton_clicked();
+    messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
 }
 /************************************************
 * 函数名称：contactPageButtonDefault
@@ -1211,7 +1215,7 @@ void BaseStyle::contactPageButtonHover()
 *************************************************/
 void BaseStyle::contactPageButtonClick()
 {
-    m_ContactPageButtonSlots();
+    //m_ContactPageButtonSlots();
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pContactButton->setStyleSheet(qssPressedMenuBar_d);
@@ -1301,7 +1305,7 @@ void BaseStyle::diyPageButtonHover()
 *************************************************/
 void BaseStyle::diyPageButtonClick()
 {
-    m_DIYPageButtonSlots();
+    //m_DIYPageButtonSlots();
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pDIYButton->setStyleSheet(qssPressedMenuBar_d);

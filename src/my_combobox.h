@@ -5,14 +5,18 @@
 #define DARKTHEME ("dark")
 #define LIGHTTHEME ("light")
 #define ITEMHIGHT (30)
-#define SHADOW (2)
+#define SHADOW (4)
 
+#include <QtMath>
 #include <QDebug>
 #include <QWidget>
+#include <QPainter>
 #include <QPushButton>
 #include <QListWidget>
 #include <QBoxLayout>
 #include <QLabel>
+#include <QGraphicsDropShadowEffect>
+#include "stylewidgetshadow.h"
 
 class MyComboBox : public QWidget
 {
@@ -20,6 +24,8 @@ class MyComboBox : public QWidget
 public:
     explicit MyComboBox();
     QListWidget *listWidget = nullptr;//combobox列表列表部分
+    StyleWidgetShadow *shadowWidget = nullptr;
+
     void addItem(QString lable);//添加到列表
     void closeListWidget();
     void setThemeDark(); //深色模式
@@ -30,7 +36,6 @@ public:
 
 public slots:
     void clickComboboxList(QListWidgetItem *item); //将值传递到按键
-
 
 signals:
     void buttonTextChanged();//点击下拉列表，内容发生变化

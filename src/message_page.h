@@ -49,6 +49,7 @@
 #include "submitFail.h"
 #include "submitSuccess.h"
 #include "my_combobox.h"
+#include "my_qlineedit.h"
 
 using namespace std;
 
@@ -104,6 +105,10 @@ public slots:
     void add_file_to_Part(QString filepath,QString file_type,QString file_name);
 
     QByteArray get_today_syslog();
+
+    void mailTextEditFoucusOut();
+
+    void mailTextEditFoucusIn();
 
 private:
 
@@ -190,7 +195,8 @@ private:
     QTextEdit *m_pDetailTextEdit;
     QString detailText = "";
 
-    QTextEdit *m_pMailTextEdit;
+    //QTextEdit *m_pMailTextEdit;
+    MyQTextEdit *m_pMailTextEdit;
     QString mailText = "";
 
     QTextEdit *m_pLogTextEdit;
@@ -256,6 +262,9 @@ private:
 
     submit_fail *fail_dialog=nullptr;
     submit_success * success_dialog=nullptr;
+
+    bool commitButtonClickable = false;
+    void commitButtonStyleSet();
 
 };
 

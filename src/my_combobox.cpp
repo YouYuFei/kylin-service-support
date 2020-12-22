@@ -21,7 +21,7 @@ MyComboBox::MyComboBox()
 {
     //窗口设置
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint);//无边框
-    this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
+
     this->setFixedSize(206,40);
 
     pushButton = new QPushButton(this);
@@ -36,16 +36,33 @@ MyComboBox::MyComboBox()
     hlt->addWidget(text,9);
     hlt->addWidget(icon);
 
+    //增加下拉框阴影
+    WidgetParameterClass shadowParameter(206,120,1,4,4,0.16,0,0,0,0,0);
+
+    shadowWidget = new StyleWidgetShadow(shadowParameter);
+    shadowWidget->setWindowFlag(Qt::FramelessWindowHint);  // 无边框
+    shadowWidget->setAttribute(Qt::WA_TransparentForMouseEvents, true);;
+
+
     listWidget=new QListWidget;
     listWidget->setWindowFlag(Qt::FramelessWindowHint);  // 无边框
+    listWidget->setAttribute(Qt::WA_TranslucentBackground);
+
     listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //关闭水平滚动条
     listWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //关闭水平滚动条
+
     connect(listWidget,&QListWidget::itemClicked,this,&MyComboBox::clickComboboxList);
+
+    //设置阴影
+    QHBoxLayout *hblayout=new QHBoxLayout(shadowWidget);
+    hblayout->setMargin(0);//控件间距
+    hblayout->setSpacing(0);//控件间距
+    hblayout->addWidget(listWidget);
+
 
     QFont ft;
     ft.setPixelSize(14);
     listWidget->setFont(ft);
-    ft.setPixelSize(12);
     text->setFont(ft);
 }
 
@@ -54,7 +71,7 @@ void MyComboBox::addItem(QString lable)
     QListWidgetItem *item=new QListWidgetItem;
     item->setText(lable);
 
-    item->setSizeHint(QSize(pushButton->width()-SHADOW * 2,ITEMHIGHT));
+    item->setSizeHint(QSize(pushButton->width(),ITEMHIGHT));
     if(text->text().isEmpty())
     {
         clickComboboxList(item);
@@ -65,18 +82,29 @@ void MyComboBox::addItem(QString lable)
 
 void MyComboBox::clickComboboxList(QListWidgetItem *item)
 {
-    text->setText(item->text());
+    qDebug() << "clickComboboxList";
+    text->setText("    " + item->text());
 
+    //增加选项被选中后颜色
+    if(LIGHTTHEME == themeStatus)
+    {
+        text->setStyleSheet("color:rgba(112, 149, 255, 1);border:0px;");
+    }
+    else if(DARKTHEME == themeStatus)
+    {
+        text->setStyleSheet("color:rgba(112, 149, 255, 1);border:0px;");
+    }
     closeListWidget();
     emit buttonTextChanged();
 }
 
 void MyComboBox::on_comboboxButton_click()
 {
+    qDebug() << "on_comboboxButton_click()";
     if(!isListOpen)
     {
         closeListWidget();
-        int listWidgetHeight=listWidget->count() * ITEMHIGHT + SHADOW;
+        int listWidgetHeight=120;
         listWidget->setFixedHeight(listWidgetHeight);
         listWidget->setFixedWidth(LISTWIDGETWIDTH);
 
@@ -85,66 +113,81 @@ void MyComboBox::on_comboboxButton_click()
         QPoint point= pushButton->mapToGlobal(QPoint(0,0));
 
         icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;");
-        if(LIGHTTHEME == themeStatus){
-            pushButton->setStyleSheet(".QPushButton{background-color:#fff;border:1px solid rgba(100, 105, 241, 1);}");
-            listWidget->setStyleSheet("QListWidget::Item{background-color:rgba(255,255,255,1);border-radius:2px;padding-left:20px;color:rgba(96,98,102,1);}"
-                                      "QListWidget::Item:hover{background-color:rgba(246,246,246,1);}");
-        }else if(DARKTHEME == themeStatus){
-            pushButton->setStyleSheet(".QPushButton{background-color:rgba(31,32,34,1);border:1px solid rgba(100,105,241,1);border-radius:4px;color:rgba(143,417,153,1);}");
-            listWidget->setStyleSheet("QListWidget::Item{background-color:rgba(61,61,65,1);border-radius:2px;color:rgba(249,249,249,1);padding-left:20px;}"
-                                      "QListWidget::Item:hover{background-color:rgba(72,72,76,1);color:rgba(249,249,249,1);}");
+        if(LIGHTTHEME == themeStatus)
+        {
+            pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;}");
+            listWidget->setStyleSheet("QListWidget{color:rgba(48, 49, 51, 1);border-radius:4px;border:0px;border-radius:4px;}"
+                                      "QListWidget::Item{background-color:rgba(255,255,255,1);border-radius:2px;padding-left:20px;color:rgba(48, 49, 51, 1);border-radius:0px;}"
+                                      "QListWidget::Item:hover{background-color: rgba(247, 247, 247, 1) ;border-radius:0px;}");
         }
-        listWidget->move(point.rx()-SHADOW/2,point.ry()+pushButton->height()+ SHADOW);
+        else if(DARKTHEME == themeStatus)
+        {
+            pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;}");
+            listWidget->setStyleSheet("QListWidget{color:rgba(31, 32, 34, 1);border-radius:4px;border:0px;border-radius:4px;}"
+                                      "QListWidget::Item{background-color:rgba(61, 61, 65, 1);border-radius:2px;color:rgba(249,249,249,1);padding-left:20px;border-radius:0px;}"
+                                      "QListWidget::Item:hover{background-color:rgba(72, 72, 76, 1);color:rgba(249,249,249,1);border-radius:0px;}");
+        }
+//        listWidget->move(point.rx(),point.ry()+pushButton->height()+ SHADOW);
+        shadowWidget->move(point.rx()-SHADOW,point.ry()+pushButton->height());
 
+        shadowWidget->show();
         listWidget->show();
         isListOpen = true;
     }
     else
     {
-        isListOpen = false;
+        //isListOpen = false;
         closeListWidget();
     }
 }
 
 void MyComboBox::closeListWidget()
 {
+    qDebug() << "closeListWidget()";
+    isListOpen = false;
     icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;");
+
+    shadowWidget->hide();
     listWidget->close();
-    if(LIGHTTHEME == themeStatus){
-        pushButton->setStyleSheet(".QPushButton{background-color:#fff;border:1px solid rgba(192, 196,204,1);border-radius:4px;}"
-                              ".QPushButton:hover{background-color:#fff;border:1px solid rgba(192,196,204,1);border-radius:4px;}");
-    }else if(DARKTHEME == themeStatus){
-        pushButton->setStyleSheet(".QPushButton{background-color:rgba(31,32,34,1);border:1px solid rgba(61,61,65,1);border-radius:4px;}"
-                              ".QPushButton:hover{background-color:rgba(31,32,34,1);border:1px solid rgba(61,61,65,1);border-radius:4px;}");
+
+    if(LIGHTTHEME == themeStatus)
+    {
+        pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;}"
+                              ".QPushButton:hover{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;}");
+    }
+    else if(DARKTHEME == themeStatus)
+    {
+        pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;}"
+                              ".QPushButton:hover{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;}");
     }
 }
 
 void MyComboBox::setThemeDark()
 {
     themeStatus = DARKTHEME;
-    text->setStyleSheet("background-color:rgba(31,32,34,1);color:rgba(143,147,153,1);border:0px;");
-    listWidget->setStyleSheet("QListWIdget{color:rgba(61,61,65,1);}"
-                "QListWidget::Item{background-color:rgba(61,61,65,1);color:rgba(249,249,249,1);padding-left:10px;}"
-                              "QListWidget::Item:hover{background-color:(26,246,246,1);border:1px soild red};");
+    text->setStyleSheet("color:rgba(143, 147, 153, 1);border:0px;");
+    listWidget->setStyleSheet("QListWidget{color:rgba(61,61,65,1);border-radius:4px;border:0px;border-radius:4px;}"
+                              "QListWidget::Item{background-color:rgba(61,61,65,1);color:rgba(249,249,249,1);padding-left:10px;border-radius:0px;}"
+                              "QListWidget::Item:hover{background-color:rgba(72, 72, 76, 1);border:0px;border-radius:0px;};");
     icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;");
-    pushButton->setStyleSheet(".QPushButton{background-color:rgba(31,32,34,1);border:1px solid rgba(61,61,65,1);}");
+    pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;}");
 }
 
 void MyComboBox::setThemeLight()
 {
     themeStatus = LIGHTTHEME;
-    text->setStyleSheet("color:rgba(96,98,101,1);border:0px;");
-    listWidget->setStyleSheet("QListWidget::Item{background-color:rgba(255,255,255,1);color:rgba(96,98,102,1);padding-left:10px;}"
-                              "QListWidget::Item:hover{background-color:(246,246,246,1);border:1px soild red};");
+    text->setStyleSheet("color:rgba(143, 147, 153, 1);border:0px;");
+    listWidget->setStyleSheet("QListWidget{color:rgba(61,61,65,1);border-radius:4px;border:0px;border-radius:4px;}"
+                              "QListWidget::Item{background-color:rgba(255,255,255,1);color:rgba(48, 49, 51, 1);padding-left:10px;border-radius:0px;}"
+                              "QListWidget::Item:hover{background-color:(246,246,246,1);border:0px;border-radius:0px;};");
     icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;");
-    pushButton->setStyleSheet(".QPushButton{background-color:#fff;border:1px solid rgba(192, 196,204,1);border-radius:4px;}"
-                              ".QPushButton:hover{background-color:#fff;border:1px solid rgba(192,196,204,1);border-radius:4px;}");
+    pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;}");
 }
 
 QString MyComboBox::getCurrentText()
 {
 
-    return (text->text());
+    return (text->text().right(text->text().length()-4));
 }
 
 void MyComboBox::setCurrentText(QString str)
