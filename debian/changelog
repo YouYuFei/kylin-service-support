@@ -1,3 +1,10 @@
+kylin-service-support (1.0.16kord~rc6) v101; urgency=medium
+
+  * UI修改，左侧引导栏按设计稿重新加入毛玻璃特效
+  * 新功能开发，识别当前系统是否为优麒麟，若为优麒麟，跳转至优麒麟专用界面（未完成）
+
+ -- hanzehui <hanzehui@kylinos.cn>  Thu 07 Jan 2021 09:57:40 +0800
+
 kylin-service-support (1.0.16kord~rc5) v101; urgency=medium
 
   * BUG 31758 【麒麟服务与支持工具】将系统字体调至为14号及以上时，服务与支持界面显示不全，文字与图标重叠

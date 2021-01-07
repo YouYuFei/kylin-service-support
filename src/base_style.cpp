@@ -151,7 +151,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     QHBoxLayout *hlt2=new QHBoxLayout;//标题栏外部
     hlt2->setMargin(0);
     hlt2->setSpacing(0);
-    hlt2->addSpacing(57);
+    hlt2->addSpacing(40);
     hlt2->addWidget(title);
     //hlt2->addSpacing(50);//2004加上这个切换主题后，有一个字会显示不全，后续需要注意其他版本是否有类似问题
     hlt2->addStretch(99);
