@@ -27,16 +27,26 @@ MainWindow::MainWindow()
 
     QString windowTitle = tr("Service&Support");
 
+    getSysVersion();
 
-    basicWindow = new BaseStyle(basicParameter , windowTitle);
+    if(multiFunc)
+    {
+        basicWindow = new BaseStyle(basicParameter , windowTitle);
 
-    // 添加窗管协议
-//    MotifWmHints hints;
-//    hints.flags = MWM_HINTS_FUNCTIONS|MWM_HINTS_DECORATIONS;
-//    hints.functions = MWM_FUNC_ALL;
-//    hints.decorations = MWM_DECOR_BORDER;
-//    XAtomHelper::getInstance()->setWindowMotifHint(basicWindow->winId(), hints);
-    basicWindow->show();
+        // 添加窗管协议
+        MotifWmHints hints;
+        hints.flags = MWM_HINTS_FUNCTIONS|MWM_HINTS_DECORATIONS;
+        hints.functions = MWM_FUNC_ALL;
+        hints.decorations = MWM_DECOR_BORDER;
+        XAtomHelper::getInstance()->setWindowMotifHint(basicWindow->winId(), hints);
+
+        basicWindow->show();
+    }
+    else
+    {
+
+    }
+
     initGsetting();
 }
 /************************************************
@@ -132,14 +142,14 @@ void MainWindow::setThemeStyle()
     }
 
     qDebug() << "设置程序主题模式为" << nowThemeStyle;
-    basicWindow->pageChangeForTheme(nowThemeStyle);
-//    styleWidget->ThemeChooseForWidget(nowThemeStyle);
+    if(multiFunc)
+    {
+        basicWindow->pageChangeForTheme(nowThemeStyle);
+    }
+    else
+    {
 
-//    prePage->pageChangeForTheme(nowThemeStyle);
-//    startPage->pageChangeForTheme(nowThemeStyle);
-//    finishPage->pageChangeForTheme(nowThemeStyle);
-//    warningPage->pageChangeForTheme(nowThemeStyle);
-
+    }
 }
 /************************************************
 * 函数名称：pullUpWindow
@@ -160,4 +170,68 @@ void MainWindow::pullUpWindow()
     qDebug()<<basicWindow->parent();
 
 }
-
+/************************************************
+* 函数名称：getSysVersion
+* 功能描述：获取系统版本
+* 输入参数：
+* 输出参数：
+* 修改日期：2021.01.06
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void MainWindow::getSysVersion()
+{
+    string os_info = ": ";
+    QString system_info;
+    QString system_name;
+    QString system_version_id;
+    string s;
+    ifstream fp("/etc/os-release");
+    if (!fp)
+    {
+        system_info = "None";
+        multiFunc = false;
+    }
+    else
+    {
+        while (getline(fp,s))
+        {
+            string::size_type idx;
+            idx = s.find("=");
+            if (idx == string::npos)
+            {
+                //不存在
+                multiFunc = false;
+            }
+            else
+            {
+                string str2 = s.substr(0,idx);
+                if (str2 == "NAME")
+                {
+                    system_name = QString::fromStdString(s.substr(5));
+                    if(system_name.contains("Kylin",Qt::CaseInsensitive))
+                    {
+                        multiFunc = true;
+                    }
+                    else
+                    {
+                        multiFunc = false;
+                    }
+                }
+                else if(str2 =="VERSION_ID")
+                {
+                    system_version_id = QString::fromStdString(s.substr(11));
+                    if(system_version_id.contains("v10",Qt::CaseInsensitive))
+                    {
+                        multiFunc = true;
+                    }
+                    else
+                    {
+                        multiFunc = false;
+                    }
+                }
+            }
+        }
+    }
+}

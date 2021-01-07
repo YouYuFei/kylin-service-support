@@ -50,6 +50,7 @@ SOURCES += \
     src/my_combobox.cpp \
     src/my_qlineedit.cpp \
     src/myclick_widget.cpp \
+    src/simple_style.cpp \
     src/stylewidgetattribute.cpp \
     src/stylewidgetshadow.cpp \
     src/submitFail.cpp \
@@ -73,6 +74,7 @@ HEADERS += \
     src/my_combobox.h \
     src/my_qlineedit.h \
     src/myclick_widget.h \
+    src/simple_style.h \
     src/stylewidgetattribute.h \
     src/stylewidgetshadow.h \
     src/submitFail.h \

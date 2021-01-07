@@ -63,7 +63,10 @@ private:
     // getstting初始化、值获取、 设置getsetting值
     void initGsetting();
     void setThemeStyle();
+    void getSysVersion();
 
     QGSettings  *m_pThemeStyle= nullptr;
+
+    bool multiFunc = false;
 };
 #endif // MAINWINDOW_H

@@ -7,6 +7,7 @@
 *   创建  HZH
 *************************************************/
 #include "base_style.h"
+
 /************************************************
 * 函数名称：BaseStyle(WidgetParameterClass basicParameter, QString dialogTitleText)
 * 功能描述：构造函数
@@ -20,6 +21,7 @@
 BaseStyle::BaseStyle(const WidgetParameterClass& basicParameter, const QString& dialogTitleText)
     :local_basicParameter(basicParameter)
 {
+
     m_pDaemonIpcDbus = new DaemonIpcDbus();
 
     m_pstackWidget = new QStackedWidget();
@@ -54,7 +56,7 @@ BaseStyle::BaseStyle(const WidgetParameterClass& basicParameter, const QString& 
 //    ft.setPixelSize(14);
 //    ft.setFamily(QFontDatabase::applicationFontFamilies(QFontDatabase::addApplicationFont(":/data/PingFang-SC-Semibold-2.ttf")).at(0));//读取字体
 //    text->setFont(ft);
-//    paintOnce=true;
+//    paintOnce=true;"lastPath"
 //}
 /************************************************
 * 函数名称：WidgetStyleClose
@@ -84,7 +86,7 @@ void BaseStyle::WidgetStyleClose()
 *************************************************/
 void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 {
-    myWidgetSizeDesign(960,600);
+    myWidgetSizeDesign(960 ,640);
 
     myWidgetBasicInit(basicParameter);
 
@@ -111,7 +113,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     connect(widgetClose,&QPushButton::clicked,this,&BaseStyle::WidgetStyleClose);
 
 
-    //this->show();
+//    this->show();
 
     //布局
     QHBoxLayout *hlt0=new QHBoxLayout;//右上角按钮内部，水平布局
@@ -149,7 +151,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     QHBoxLayout *hlt2=new QHBoxLayout;//标题栏外部
     hlt2->setMargin(0);
     hlt2->setSpacing(0);
-    hlt2->addSpacing(40);
+    hlt2->addSpacing(57);
     hlt2->addWidget(title);
     //hlt2->addSpacing(50);//2004加上这个切换主题后，有一个字会显示不全，后续需要注意其他版本是否有类似问题
     hlt2->addStretch(99);
@@ -181,8 +183,8 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     //vlt_menu->setMargin(15);
     vlt_menu->setMargin(0);
     vlt_menu->setSpacing(0);
-    vlt_menu->addSpacing(40);
-    //vlt_menu->addLayout(hlt2,1);
+    vlt_menu->addSpacing(0);
+    vlt_menu->addLayout(hlt2,1);
     vlt_menu->setSpacing(20);
     vlt_menu->addLayout(hlt_menu_btn,1);
     vlt_menu->addStretch(99);
@@ -205,7 +207,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     QVBoxLayout *hlt3=new QVBoxLayout;//标题栏外部
     hlt3->setMargin(0);
     hlt3->setSpacing(0);
-    //hlt3->addLayout(hltbutton3);
+    hlt3->addLayout(hltbutton3);
     hlt3->addWidget(m_pstackWidget);
     hlt3->addStretch(99);
 
@@ -215,14 +217,18 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     QHBoxLayout *hlt_menu=new QHBoxLayout;//窗体内部，水平布局
     hlt_menu->setMargin(0);
     hlt_menu->setSpacing(0);
+    hlt_menu->addSpacing(0);
     hlt_menu->addWidget(menuBox, 1);
     hlt_menu->addWidget(showBox, 1);
+    hlt_menu->addSpacing(0);
     //hlt_menu->addStretch(99);
 
     QVBoxLayout *vl=new QVBoxLayout;//总体
     vl->setMargin(0);
     vl->setSpacing(0);
+    vl->addSpacing(0);
     vl->addLayout(hlt_menu);
+    vl->addSpacing(0);
     //vl->addStretch(99);
     this->setLayout(vl);
 
@@ -231,24 +237,24 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 
     introIcon = new QLabel(menuBox);
     introIcon->setFixedSize(16,16);
-    introIcon->move(40,49);
+    introIcon->move(40,69);
 
     messageIcon = new QLabel(menuBox);
     messageIcon->setFixedSize(16,16);
-    messageIcon->move(40,98);
+    messageIcon->move(40,118);
 
     contactIcon = new QLabel(menuBox);
     contactIcon->setFixedSize(16,16);
-    contactIcon->move(40,145);
+    contactIcon->move(40,165);
 
     supportIcon = new QLabel(menuBox);
     supportIcon->setFixedSize(16,16);
-    supportIcon->move(40,194);
+    supportIcon->move(40,214);
 
-//    titleIcon = new QLabel(menuBox);
-//    titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
-//    titleIcon->setFixedSize(24,24);
-//    titleIcon->move(8,8);
+    titleIcon = new QLabel(menuBox);
+    titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
+    titleIcon->setFixedSize(24,24);
+    titleIcon->move(8,8);
 
     this->setWindowIcon(QIcon(":/data/kylin-service-support.png"));
     this->setWindowTitle(tr("Service&Support"));
@@ -266,7 +272,9 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 *************************************************/
 void BaseStyle::myWidgetSizeDesign(int width,int height)
 {
-    this->setFixedSize(960, 600);
+    //this->setWindowFlags(Qt::FramelessWindowHint);//无边框
+    //this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
+    //this->setFixedSize(960, 640);
 
     QRect availableGeometry = qApp->primaryScreen()->availableGeometry();
     this->move((availableGeometry.width() - this->width())/2, (availableGeometry.height() - this->height())/2);
@@ -290,20 +298,20 @@ void BaseStyle::myWidgetBasicInit(const WidgetParameterClass& parameter)
 
     //标题栏
     title = new QWidget;
-    title->setMaximumHeight(parameter.titleHeight);
-    title->setMinimumHeight(parameter.titleHeight);
+    title->setMaximumHeight(40);
+    title->setMinimumHeight(40);
     title->setObjectName("title");
 
     //左菜单背景
     menuBox = new QWidget;
-    menuBox->setFixedSize(182,600);
+    menuBox->setFixedSize(180,640);
     menuBox->setObjectName("menuBox");
 
 
 
     //右对话框背景
     showBox = new QWidget;
-    showBox->setFixedSize(778,600);
+    showBox->setFixedSize(778,640);
     showBox->setObjectName("showBox");
 
 
@@ -694,7 +702,6 @@ bool BaseStyle::mainPageButtonQss(QEvent *ev)
 {
     if(ev->type() == QEvent::HoverEnter)
     {
-        //qDebug() << "悬停在软件介绍按钮上";
         if(currentPageIndex != 0)
         {
             mainPageButtonDefault();
@@ -704,7 +711,6 @@ bool BaseStyle::mainPageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::HoverLeave)
     {
-        //qDebug() << "悬停在软件介绍按钮上";
         if(currentPageIndex != 0)
         {
             mainPageButtonHover();
@@ -714,7 +720,7 @@ bool BaseStyle::mainPageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::MouseButtonPress)
     {
-        //qDebug() << "按下了软件简介按钮";
+        qDebug() << "按下了软件简介按钮";
         if(currentPageIndex != 0)
         {
             mainPageButtonClick();
@@ -747,7 +753,6 @@ bool BaseStyle::messagePageButtonQss(QEvent *ev)
 {
     if(ev->type() == QEvent::HoverEnter)
     {
-        //qDebug() << "悬停在软件介绍按钮上";
         if(currentPageIndex != 1)
         {
             messagePageButtonDefault();
@@ -757,7 +762,6 @@ bool BaseStyle::messagePageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::HoverLeave)
     {
-        //qDebug() << "悬停在软件介绍按钮上";
         if(currentPageIndex != 1)
         {
             messagePageButtonHover();
@@ -767,7 +771,7 @@ bool BaseStyle::messagePageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::MouseButtonPress)
     {
-        //qDebug() << "按下了软件简介按钮";
+        qDebug() << "按下了在线留言按钮";
         if(currentPageIndex != 1)
         {
             messagePageButtonClick();
@@ -800,7 +804,6 @@ bool BaseStyle::contactPageButtonQss(QEvent *ev)
 {
     if(ev->type() == QEvent::HoverEnter)
     {
-        //qDebug() << "悬停在软件介绍按钮上";
         if(currentPageIndex != 2)
         {
             contactPageButtonDefault();
@@ -810,7 +813,6 @@ bool BaseStyle::contactPageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::HoverLeave)
     {
-        //qDebug() << "悬停在软件介绍按钮上";
         if(currentPageIndex != 2)
         {
             contactPageButtonHover();
@@ -821,7 +823,7 @@ bool BaseStyle::contactPageButtonQss(QEvent *ev)
     else if(ev->type() == QEvent::MouseButtonPress)
     {
 
-        //qDebug() << "按下了软件简介按钮";
+        qDebug() << "按下了联系我们按钮";
         if(currentPageIndex != 2)
         {
             contactPageButtonClick();
@@ -830,7 +832,7 @@ bool BaseStyle::contactPageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::MouseButtonRelease)
     {
-        qDebug() << "松开了自助支持简介按钮";
+        qDebug() << "松开了联系我们按钮";
         if(2 != currentPageIndex)
         {
             contactPageButtonRelease();
@@ -853,7 +855,6 @@ bool BaseStyle::diyPageButtonQss(QEvent *ev)
 {
     if(ev->type() == QEvent::HoverEnter)
     {
-        qDebug() << "悬停在自助支持按钮上";
         if(currentPageIndex != 3)
         {
             diyPageButtonDefault();
@@ -863,7 +864,6 @@ bool BaseStyle::diyPageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::HoverLeave)
     {
-        qDebug() << "悬停在自助支持按钮上";
         if(currentPageIndex != 3)
         {
             diyPageButtonHover();
@@ -873,7 +873,7 @@ bool BaseStyle::diyPageButtonQss(QEvent *ev)
     }
     else if(ev->type() == QEvent::MouseButtonPress)
     {
-        qDebug() << "按下了软件简介按钮";
+        qDebug() << "按下了自助支持按钮";
         if(currentPageIndex != 3)
         {
             diyPageButtonClick();
@@ -938,7 +938,7 @@ void BaseStyle::pageChangeForTheme(const QString& str)
         QString showStyleSheet="#showBox{background-color:rgba(31, 32, 34, 1);}";
         showBox->setStyleSheet(showStyleSheet);
 
-        QString menuStyleSheet="QWidget #menuBox{background-color:rgba(31, 32, 34, 1);}";
+        QString menuStyleSheet="QWidget #menuBox{background-color:rgba(0, 0, 0, 0.7);}";
         menuBox->setStyleSheet(menuStyleSheet);
     }
     else
@@ -953,7 +953,7 @@ void BaseStyle::pageChangeForTheme(const QString& str)
         QString showStyleSheet="#showBox{background-color:rgba(255,255,255,1);}";
         showBox->setStyleSheet(showStyleSheet);
 
-        QString menuStyleSheet="QWidget #menuBox{background-color:rgba(255,255,255,1);}";
+        QString menuStyleSheet="QWidget #menuBox{background-color:rgba(255,255,255,0.8);}";
         menuBox->setStyleSheet(menuStyleSheet);
     }
 }

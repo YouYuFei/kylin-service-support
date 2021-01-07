@@ -11,6 +11,7 @@
 #include <QtNetwork/QNetworkReply>
 #include <QtNetwork/QNetworkRequest>
 #include <QHttpPart>
+#include <QSettings>
 /************************************************
 * 函数名称：MessagePage
 * 功能描述：构造函数
@@ -900,7 +901,10 @@ bool MessagePage::allFileSizeLargerThan10M()
 *************************************************/
 void MessagePage::userDataPushButton_clicked()
 {
-    userUploadFileName=QFileDialog::getOpenFileName(this,tr("select file"),"/","(*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx)",0);
+    QSettings settingPath("./Setting.ini", QSettings::IniFormat);
+    QString lastPath = settingPath.value("LastFilePath").toString();
+
+    userUploadFileName=QFileDialog::getOpenFileName(this,tr("select file"),lastPath,"(*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx)",0);
 
     if (userUploadFileName.isEmpty())
         return;

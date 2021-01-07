@@ -1,3 +1,9 @@
+kylin-service-support (1.0.16kord~rc5) v101; urgency=medium
+
+  * BUG 31758 【麒麟服务与支持工具】将系统字体调至为14号及以上时，服务与支持界面显示不全，文字与图标重叠
+
+ -- hanzehui <hanzehui@kylinos.cn>  Tue, 05 Jan 2021 09:57:40 +0800
+
 kylin-service-support (1.0.16kord~rc4) v101; urgency=medium
 
   * pro文件中增加CONFIG += resources_big，并增加QT版本限制。
