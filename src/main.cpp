@@ -147,12 +147,6 @@ int main(int argc, char *argv[])
     auto connection = QDBusConnection::sessionBus();
     qDebug()<<"建立DBus服务状态： "<< (connection.registerService("com.kylin.servicesupport")&&connection.registerObject("/com/kylin/servicesupport", &w));
 
-//    // 添加窗管协议
-//    MotifWmHints hints;
-//    hints.flags = MWM_HINTS_FUNCTIONS|MWM_HINTS_DECORATIONS;
-//    hints.functions = MWM_FUNC_ALL;
-//    hints.decorations = MWM_DECOR_BORDER;
-//    XAtomHelper::getInstance()->setWindowMotifHint(w.basicWindow->winId(), hints);
     //w.show();
     return a.exec();
 }

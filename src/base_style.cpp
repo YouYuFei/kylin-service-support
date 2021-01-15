@@ -112,7 +112,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 
     connect(widgetClose,&QPushButton::clicked,this,&BaseStyle::WidgetStyleClose);
 
-
+    this->setFixedSize(960,640);
 //    this->show();
 
     //布局
