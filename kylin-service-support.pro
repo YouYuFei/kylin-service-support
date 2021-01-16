@@ -46,6 +46,7 @@ SOURCES += \
     src/main.cpp \
     src/main_page.cpp \
     src/mainwindow.cpp \
+    src/menumodule.cpp \
     src/message_page.cpp \
     src/my_combobox.cpp \
     src/my_qlineedit.cpp \
@@ -68,8 +69,10 @@ HEADERS += \
     src/diysupport_page.h \
     src/file_item_init.h \
     src/base_style.h \
+    src/highlight-effect.h \
     src/main_page.h \
     src/mainwindow.h \
+    src/menumodule.h \
     src/message_page.h \
     src/my_combobox.h \
     src/my_qlineedit.h \

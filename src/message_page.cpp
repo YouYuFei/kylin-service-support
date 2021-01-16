@@ -664,7 +664,6 @@ void MessagePage::styleOfAskCombobox_currentIndexChanged()
 
     textStyleOfAsk = m_pStyleOfAskCombobox->getCurrentText();
     qDebug() << textStyleOfAsk;
-    styleOfAskComboboxFlag = true;
 
 }
 /************************************************
@@ -706,7 +705,7 @@ void MessagePage::detailTextEdit_textChanged()
         length = m_pContentTextEdit->toPlainText().count();
         m_pDetailTextLetterLimit->setText(QString::number(length)+"/200");
     }
-    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag)
     {
         commitButtonClickable = true;
     }
@@ -766,7 +765,7 @@ void MessagePage::mailTextEdit_textChanged()
 
         }
     }
-    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag)
     {
         commitButtonClickable = true;
     }
@@ -1008,7 +1007,7 @@ void MessagePage::update_add_file_window()
     else
     {
         qDebug() << "所有文件大小不到10M！";
-        if(detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+        if(detailTextFlag && mailFormatFlag)
         {
             commitButtonClickable = true;
         }
@@ -1113,7 +1112,7 @@ void MessagePage::del_file_button_clicked()
      and fill in the detailed description and
      email address to activate the submission.
     */
-    if ((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    if ((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag )
     {
         commitButtonClickable = true;
     }
@@ -1724,7 +1723,7 @@ void MessagePage::checkBox_stateCheck()
             m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
         }
     }
-    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag )
     {
         commitButtonClickable = true;
     }
@@ -2179,7 +2178,7 @@ void MessagePage::mailTextEditFoucusOut()
 
         }
     }
-    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag && styleOfAskComboboxFlag)
+    if((false == allFileSizeLargerThan10M()) && detailTextFlag && mailFormatFlag )
     {
         commitButtonClickable = true;
     }

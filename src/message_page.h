@@ -220,7 +220,7 @@ private:
     bool detailTextFlag = false;
     bool titleTextFlag = false;
     bool mailFormatFlag = false;
-    bool styleOfAskComboboxFlag = false;
+
     bool textStyleOfSystemFlag = false;
     bool textStyleOfDeviceFlag = false;
     bool syslogFlag = true;
