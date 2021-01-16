@@ -34,6 +34,12 @@
         <translation>自助支持</translation>
     </message>
     <message>
+        <location filename="../src/base_style.cpp" line="398"/>
+        <source>Customer</source>
+        <translatorcomment>在线客服</translatorcomment>
+        <translation>在线客服</translation>
+    </message>
+    <message>
         <location filename="../src/base_style.h" line="139"/>
         <source>QPushButton{background:transparent;color:rgba(48, 49, 51, 1);border-radius: 16px;}QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(255, 255, 255, 1);border-radius: 16px;}</source>
         <translation type="unfinished"></translation>
@@ -451,6 +457,90 @@ the problem by self.</source>
         <source>kylin-service-support</source>
         <translatorcomment>麒麟服务与支持</translatorcomment>
         <translation type="unfinished">麒麟服务与支持</translation>
+    </message>
+</context>
+<context>
+    <name>menuModule</name>
+    <message>
+        <location filename="../src/menumodule.cpp" line="49"/>
+        <location filename="../src/menumodule.cpp" line="155"/>
+        <source>standard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="51"/>
+        <location filename="../src/menumodule.cpp" line="158"/>
+        <source>scientific</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="53"/>
+        <location filename="../src/menumodule.cpp" line="161"/>
+        <source>exchange rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="59"/>
+        <source>Theme</source>
+        <translatorcomment>主题</translatorcomment>
+        <translation>主题</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="61"/>
+        <location filename="../src/menumodule.cpp" line="152"/>
+        <source>Help</source>
+        <translatorcomment>帮助</translatorcomment>
+        <translation>帮助</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="63"/>
+        <location filename="../src/menumodule.cpp" line="149"/>
+        <source>About</source>
+        <translatorcomment>关于</translatorcomment>
+        <translation>关于</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="65"/>
+        <location filename="../src/menumodule.cpp" line="146"/>
+        <source>Quit</source>
+        <translatorcomment>退出</translatorcomment>
+        <translation>退出</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="76"/>
+        <source>Auto</source>
+        <translatorcomment>自动</translatorcomment>
+        <translation>自动</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="80"/>
+        <source>Light</source>
+        <translatorcomment>浅色</translatorcomment>
+        <translation>浅色</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="84"/>
+        <source>Dark</source>
+        <translatorcomment>深色</translatorcomment>
+        <translation>深色</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="296"/>
+        <source>Version: </source>
+        <translatorcomment>版本号：</translatorcomment>
+        <translation>版本号：</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.cpp" line="300"/>
+        <source>Support: </source>
+        <translatorcomment>服务与支持团队：</translatorcomment>
+        <translation>服务与支持团队：</translation>
+    </message>
+    <message>
+        <location filename="../src/menumodule.h" line="62"/>
+        <source>Kylin Service Support</source>
+        <translatorcomment>麒麟服务与支持</translatorcomment>
+        <translation>麒麟服务与支持</translation>
     </message>
 </context>
 </TS>

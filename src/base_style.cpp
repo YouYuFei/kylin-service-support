@@ -70,8 +70,7 @@ BaseStyle::BaseStyle(const WidgetParameterClass& basicParameter, const QString& 
 *************************************************/
 void BaseStyle::WidgetStyleClose()
 {
-    //swshadow->deleteLater();
-
+    menu->aboutWindow->close();
     this->close();
 }
 /************************************************
@@ -92,23 +91,37 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 
     myWidgetTabInit();
 
-    QSize smallWidgetSize(30,30);//小按钮大小
-    widgetMin =new QPushButton;//最小化按钮
-    widgetMin->setObjectName("widgetMin");
-    //widgetMin->setIcon(QIcon::fromTheme("window-minimize-symbolic"));//主题库的最小化图标
-    widgetMin->setIconSize(smallWidgetSize);
-    widgetMin->setFixedSize(smallWidgetSize);
+    menu  = new menuModule(this);
+    connect(menu,&menuModule::menuModuleClose,[=](){
+        this->close();
+        menu->aboutWindow->close();
+    });
+
+    widgetMin =new QPushButton();//最小化按钮
+    widgetMin->setIcon(QIcon::fromTheme("window-minimize-symbolic"));//主题库的最小化图标
+    widgetMin->setProperty("isWindowButton", 0x1);
+
+    widgetMin->setProperty("useIconHighlightEffect", 0x2);
+
+    widgetMin->setFlat(true);
+    widgetMin->setFixedSize(30, 30);
+    widgetMin->setIconSize(QSize(16, 16));
 
     connect(widgetMin,&QPushButton::clicked,this,[=]{
         this->setWindowState(Qt::WindowMinimized);
         //this->swshadow->setWindowState(Qt::WindowMinimized);
     });
 
-    widgetClose =new QPushButton;//关闭按钮
+    widgetClose =new QPushButton();//关闭按钮
+    widgetClose->setIcon(QIcon::fromTheme("window-close-symbolic"));
     widgetClose->setObjectName("widgetClose");
-    //widgetClose->setIcon(QIcon::fromTheme("window-close-symbolic"));
-    widgetClose->setIconSize(smallWidgetSize);
-    widgetClose->setFixedSize(smallWidgetSize);
+    widgetClose->setProperty("isWindowButton", 0x2) ;
+    widgetClose->setProperty("useIconHighlightEffect", 0x8);
+
+    widgetClose->setFlat(true);
+
+    widgetClose->setFixedSize(30, 30);
+    widgetClose->setIconSize(QSize(16, 16));
 
     connect(widgetClose,&QPushButton::clicked,this,&BaseStyle::WidgetStyleClose);
 
@@ -120,6 +133,8 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     hlt0->setMargin(0);
     hlt0->setSpacing(0);
     hlt0->addStretch(99);
+    hlt0->addWidget(menu->menuButton, 1);
+    hlt0->addSpacing(4);
     hlt0->addWidget(widgetMin, 1);
     hlt0->addSpacing(4);
     hlt0->addWidget(widgetClose, 1);
@@ -167,6 +182,8 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     vlt_menu_btn->addWidget(m_pContactButton, 1);
     vlt_menu_btn->addSpacing(16);
     vlt_menu_btn->addWidget(m_pDIYButton, 1);
+    vlt_menu_btn->addSpacing(16);
+    vlt_menu_btn->addWidget(m_pOnlineButton, 1);
     vlt_menu_btn->addStretch(99);
 
     QHBoxLayout *hlt_menu_btn=new QHBoxLayout;//标题栏内部，水平布局
@@ -251,14 +268,21 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     supportIcon->setFixedSize(16,16);
     supportIcon->move(40,214);
 
+    customerIcon = new QLabel(menuBox);
+    customerIcon->setFixedSize(16,16);
+    customerIcon->move(40,262);
+
     titleIcon = new QLabel(menuBox);
-    titleIcon->setStyleSheet("border-image:url(:/data/kylin-service-support.png);border:0px;");
     titleIcon->setFixedSize(24,24);
+
+    QIcon icon = QIcon::fromTheme("kylin-service-support");
+    titleIcon->setPixmap(icon.pixmap(QSize(24,24)));
+    titleIcon->setScaledContents(true);
+
     titleIcon->move(8,8);
 
-    this->setWindowIcon(QIcon(":/data/kylin-service-support.png"));
+    this->setWindowIcon(QIcon::fromTheme("kylin-service-support"));
     this->setWindowTitle(tr("Service&Support"));
-    this->setWindowTitle(tr("服务与支持"));
 }
 /************************************************
 * 函数名称：myWidgetSizeDesign
@@ -369,6 +393,15 @@ void BaseStyle::myWidgetTabInit()
 
     //connect(m_pDIYButton, &TabMenuButton::clicked, this, &BaseStyle::m_DIYPageButtonSlots);
 
+    //在线客服按钮
+    m_pOnlineButton = new TabMenuButton();
+    m_pOnlineButton->setText(tr("Customer"));
+    //m_pMessagePageButton->setText("在线客服");
+    m_pOnlineButton->setObjectName("OnlinePageButton");
+    m_pOnlineButton->setFixedSize(132,32);
+
+    m_pOnlineButton->installEventFilter(this);
+
 }
 /************************************************
 * 函数名称：m_MainPageButtonSlots
@@ -416,7 +449,11 @@ void BaseStyle::m_MessagePageButtonSlots()
 *************************************************/
 void BaseStyle::m_OnlinePageButtonSlots()
 {
-    setOnlinePageButtonBackgroudIsBlue();
+//    setOnlinePageButtonBackgroudIsBlue();
+//    setMainPageButtonBackgroundBlue();
+//    m_pstackWidget->setCurrentIndex(0);
+    m_MainPageButtonSlots();
+    QDesktopServices::openUrl(QUrl("https://webchat-bj.clink.cn/chat.html?accessId=8f4d87f6-6f18-4c4a-b6ad-2376d128e346&language=zh_CN"));
 }
 /************************************************
 * 函数名称：m_ContactPageButtonSlots
@@ -475,6 +512,9 @@ void BaseStyle::setMainPageButtonBackgroundBlue()
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
     }
     else
     {
@@ -489,6 +529,9 @@ void BaseStyle::setMainPageButtonBackgroundBlue()
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
     }
 }
 /************************************************
@@ -516,6 +559,9 @@ void BaseStyle::setMessagePageButtonBackgroudIsBlue()
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
     }
     else
     {
@@ -530,6 +576,9 @@ void BaseStyle::setMessagePageButtonBackgroudIsBlue()
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
     }
 }
 /************************************************
@@ -557,6 +606,9 @@ void BaseStyle::setOnlinePageButtonBackgroudIsBlue()
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
     }
     else
     {
@@ -571,6 +623,9 @@ void BaseStyle::setOnlinePageButtonBackgroudIsBlue()
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
     }
 }
 /************************************************
@@ -598,6 +653,11 @@ void BaseStyle::setContactPageButtonBackgroudIsBlue()
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
+
+
     }
     else
     {
@@ -612,6 +672,9 @@ void BaseStyle::setContactPageButtonBackgroudIsBlue()
 
         m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
     }
 }
 /************************************************
@@ -639,6 +702,9 @@ void BaseStyle::setDIYPageButtonBackgroudIsBlue()
 
         m_pDIYButton->setStyleSheet(qssChooseMenuBar_d);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
     }
     else
     {
@@ -653,6 +719,9 @@ void BaseStyle::setDIYPageButtonBackgroudIsBlue()
 
         m_pDIYButton->setStyleSheet(qssChooseMenuBar);
         supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
+
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
     }
 
 }
@@ -684,6 +753,10 @@ bool BaseStyle::eventFilter(QObject *obj, QEvent *ev)
     if(obj == m_pDIYButton)
     {
         diyPageButtonQss(ev);
+    }
+    if(obj == m_pOnlineButton)
+    {
+        onlinePageButtonQss(ev);
     }
     //其余的事件按照默认(未覆写)的处理方式处理
     return QWidget::eventFilter(obj,ev);
@@ -892,6 +965,45 @@ bool BaseStyle::diyPageButtonQss(QEvent *ev)
     return true;
 }
 /************************************************
+* 函数名称：onlinePageButtonQss
+* 功能描述：按钮根据鼠标动作适配
+* 输入参数：鼠标事件
+* 输出参数：无
+* 修改日期：2020.11.23
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+bool BaseStyle::onlinePageButtonQss(QEvent *ev)
+{
+    if(ev->type() == QEvent::HoverEnter)
+    {
+        onlinePageButtonDefault();
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::HoverLeave)
+    {
+        onlinePageButtonHover();
+
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::MouseButtonPress)
+    {
+        qDebug() << "按下了在线客服按钮";
+        onlinePageButtonClick();
+        return true;    //结束传播
+    }
+    else if(ev->type() == QEvent::MouseButtonRelease)
+    {
+        qDebug() << "松开了自助支持简介按钮";
+
+        onlinePageButtonRelease();
+        return true;    //结束传播
+    }
+    return true;
+}
+/************************************************
 * 函数名称：pageChangeForTheme
 * 功能描述：主题颜色适配
 * 输入参数：StyleWidgetAttribute page_swa
@@ -928,12 +1040,12 @@ void BaseStyle::pageChangeForTheme(const QString& str)
     }
     if("ukui-dark" == str || "ukui-black" == str)
     {
-        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_h.png);border-radius:4px;}"
-                                 "BaseStyle #widgetMin:hover{background-color:rgba(255, 255, 255, 0.1);border-image:url(:/data/min_h.png);border-radius:4px;}"
-                                 "BaseStyle #widgetMin:pressed{background-color:rgba(255, 255, 255, 0.15);border-image:url(:/data/min_h.png);border-radius:4px;}");
-        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_h.png);border-radius:4px;}"
-                                   "BaseStyle #widgetClose:hover{background-color:#F86457;border-image:url(:/data/close_h.png);border-radius:4px;}"
-                                   "BaseStyle #widgetClose:pressed{background-color:#E44C50;border-image:url(:/data/close_h.png);border-radius:4px;}");
+//        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_h.png);border-radius:4px;}"
+//                                 "BaseStyle #widgetMin:hover{background-color:rgba(255, 255, 255, 0.1);border-image:url(:/data/min_h.png);border-radius:4px;}"
+//                                 "BaseStyle #widgetMin:pressed{background-color:rgba(255, 255, 255, 0.15);border-image:url(:/data/min_h.png);border-radius:4px;}");
+//        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_h.png);border-radius:4px;}"
+//                                   "BaseStyle #widgetClose:hover{background-color:#F86457;border-image:url(:/data/close_h.png);border-radius:4px;}"
+//                                   "BaseStyle #widgetClose:pressed{background-color:#E44C50;border-image:url(:/data/close_h.png);border-radius:4px;}");
 
         QString showStyleSheet="#showBox{background-color:rgba(31, 32, 34, 1);}";
         showBox->setStyleSheet(showStyleSheet);
@@ -943,12 +1055,12 @@ void BaseStyle::pageChangeForTheme(const QString& str)
     }
     else
     {
-        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_d.png);border-radius:4px;}"
-                                 "BaseStyle #widgetMin:hover{background-color:rgba(0,0,0,0.1);border-image:url(:/data/min_d.png);border-radius:4px;}"
-                                 "BaseStyle #widgetMin:pressed{background-color:rgba(0,0,0,0.15);border-image:url(:/data/min_d.png);border-radius:4px;}");
-        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
-                                   "BaseStyle #widgetClose:hover{background-color:#F86457;border-image:url(:/data/close_h.png);border-radius:4px;}"
-                                   "BaseStyle #widgetClose:pressed{background-color:#E44C50;border-image:url(:/data/close_h.png);border-radius:4px;}");
+//        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_d.png);border-radius:4px;}"
+//                                 "BaseStyle #widgetMin:hover{background-color:rgba(0,0,0,0.1);border-image:url(:/data/min_d.png);border-radius:4px;}"
+//                                 "BaseStyle #widgetMin:pressed{background-color:rgba(0,0,0,0.15);border-image:url(:/data/min_d.png);border-radius:4px;}");
+//        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
+//                                   "BaseStyle #widgetClose:hover{background-color:#F86457;border-image:url(:/data/close_h.png);border-radius:4px;}"
+//                                   "BaseStyle #widgetClose:pressed{background-color:#E44C50;border-image:url(:/data/close_h.png);border-radius:4px;}");
 
         QString showStyleSheet="#showBox{background-color:rgba(255,255,255,1);}";
         showBox->setStyleSheet(showStyleSheet);
@@ -1332,4 +1444,94 @@ void BaseStyle::diyPageButtonRelease()
     m_DIYPageButtonSlots();
 
     supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
+}
+/************************************************
+* 函数名称：onlinePageButtonDefault
+* 功能描述：onlinePageButton默认样式
+* 输入参数：
+* 输出参数：
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void BaseStyle::onlinePageButtonDefault()
+{
+    qDebug() << "当前未按下悬停按钮";
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pOnlineButton->setStyleSheet(qssChooseMenuBar_d);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
+    }
+    else
+    {
+        m_pOnlineButton->setStyleSheet(qssChooseMenuBar);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
+    }
+}
+
+/************************************************
+* 函数名称：onlinePageButtonHover
+* 功能描述：onlinePageButton鼠标悬停样式
+* 输入参数：
+* 输出参数：
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void BaseStyle::onlinePageButtonHover()
+{
+    qDebug() << "当前未按下悬停按钮";
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
+    }
+    else
+    {
+        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
+    }
+}
+
+/************************************************
+* 函数名称：onlinePageButtonClick
+* 功能描述：onlinePageButton鼠标点击样式
+* 输入参数：
+* 输出参数：
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void BaseStyle::onlinePageButtonClick()
+{
+    //m_DIYPageButtonSlots();
+    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
+    {
+        m_pOnlineButton->setStyleSheet(qssPressedMenuBar_d);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
+    }
+    else
+    {
+        m_pOnlineButton->setStyleSheet(qssPressedMenuBar);
+        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
+    }
+}
+/************************************************
+* 函数名称：onlinePageButtonRelease
+* 功能描述：onlinePageButton鼠标松开样式
+* 输入参数：
+* 输出参数：
+* 修改日期：2020.12.08
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void BaseStyle::onlinePageButtonRelease()
+{
+    m_OnlinePageButtonSlots();
+
+    customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
 }

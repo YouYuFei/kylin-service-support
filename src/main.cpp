@@ -113,6 +113,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
     QApplication a(argc, argv);
+    a.setApplicationVersion("1.0.16kord~rc9");
     responseCommand(a);
 
     QTranslator app_trans;

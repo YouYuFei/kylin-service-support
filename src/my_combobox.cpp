@@ -88,11 +88,11 @@ void MyComboBox::clickComboboxList(QListWidgetItem *item)
     //增加选项被选中后颜色
     if(LIGHTTHEME == themeStatus)
     {
-        text->setStyleSheet("color:rgba(112, 149, 255, 1);border:0px;");
+        text->setStyleSheet("color:rgba(112, 149, 255, 1);border:0px;font-size:14px;");
     }
     else if(DARKTHEME == themeStatus)
     {
-        text->setStyleSheet("color:rgba(112, 149, 255, 1);border:0px;");
+        text->setStyleSheet("color:rgba(112, 149, 255, 1);border:0px;font-size:14px;");
     }
     closeListWidget();
     emit buttonTextChanged();
@@ -115,14 +115,14 @@ void MyComboBox::on_comboboxButton_click()
         icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;");
         if(LIGHTTHEME == themeStatus)
         {
-            pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;}");
+            pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;font-size:14px;}");
             listWidget->setStyleSheet("QListWidget{color:rgba(48, 49, 51, 1);border-radius:4px;border:0px;border-radius:4px;}"
                                       "QListWidget::Item{background-color:rgba(255,255,255,1);border-radius:2px;padding-left:20px;color:rgba(48, 49, 51, 1);border-radius:0px;}"
                                       "QListWidget::Item:hover{background-color: rgba(247, 247, 247, 1) ;border-radius:0px;}");
         }
         else if(DARKTHEME == themeStatus)
         {
-            pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;}");
+            pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;font-size:14px;}");
             listWidget->setStyleSheet("QListWidget{color:rgba(31, 32, 34, 1);border-radius:4px;border:0px;border-radius:4px;}"
                                       "QListWidget::Item{background-color:rgba(61, 61, 65, 1);border-radius:2px;color:rgba(249,249,249,1);padding-left:20px;border-radius:0px;}"
                                       "QListWidget::Item:hover{background-color:rgba(72, 72, 76, 1);color:rgba(249,249,249,1);border-radius:0px;}");
@@ -152,13 +152,13 @@ void MyComboBox::closeListWidget()
 
     if(LIGHTTHEME == themeStatus)
     {
-        pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;}"
-                              ".QPushButton:hover{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;}");
+        pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;font-size:14px;}"
+                              ".QPushButton:hover{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;font-size:14px;}");
     }
     else if(DARKTHEME == themeStatus)
     {
-        pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;}"
-                              ".QPushButton:hover{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;}");
+        pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;font-size:14px;}"
+                              ".QPushButton:hover{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;font-size:14px;}");
     }
 }
 
@@ -166,22 +166,22 @@ void MyComboBox::setThemeDark()
 {
     themeStatus = DARKTHEME;
     text->setStyleSheet("color:rgba(143, 147, 153, 1);border:0px;");
-    listWidget->setStyleSheet("QListWidget{color:rgba(61,61,65,1);border-radius:4px;border:0px;border-radius:4px;}"
-                              "QListWidget::Item{background-color:rgba(61,61,65,1);color:rgba(249,249,249,1);padding-left:10px;border-radius:0px;}"
-                              "QListWidget::Item:hover{background-color:rgba(72, 72, 76, 1);border:0px;border-radius:0px;};");
-    icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;");
-    pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;}");
+    listWidget->setStyleSheet("QListWidget{color:rgba(61,61,65,1);border-radius:4px;border:0px;border-radius:4px;font-size:14px;}"
+                              "QListWidget::Item{background-color:rgba(61,61,65,1);color:rgba(249,249,249,1);padding-left:10px;border-radius:0px;font-size:14px;}"
+                              "QListWidget::Item:hover{background-color:rgba(72, 72, 76, 1);border:0px;border-radius:0px;font-size:14px;};");
+    icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;font-size:14px;");
+    pushButton->setStyleSheet(".QPushButton{background-color:rgba(49, 50, 52, 1);border:0px;border-radius:6px;font-size:14px;}");
 }
 
 void MyComboBox::setThemeLight()
 {
     themeStatus = LIGHTTHEME;
-    text->setStyleSheet("color:rgba(143, 147, 153, 1);border:0px;");
-    listWidget->setStyleSheet("QListWidget{color:rgba(61,61,65,1);border-radius:4px;border:0px;border-radius:4px;}"
-                              "QListWidget::Item{background-color:rgba(255,255,255,1);color:rgba(48, 49, 51, 1);padding-left:10px;border-radius:0px;}"
-                              "QListWidget::Item:hover{background-color:(246,246,246,1);border:0px;border-radius:0px;};");
+    text->setStyleSheet("color:rgba(143, 147, 153, 1);border:0px;font-size:14px;");
+    listWidget->setStyleSheet("QListWidget{color:rgba(61,61,65,1);border-radius:4px;border:0px;border-radius:4px;font-size:14px;}"
+                              "QListWidget::Item{background-color:rgba(255,255,255,1);color:rgba(48, 49, 51, 1);padding-left:10px;border-radius:0px;font-size:14px;}"
+                              "QListWidget::Item:hover{background-color:(246,246,246,1);border:0px;border-radius:0px;font-size:14px;};");
     icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;");
-    pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;}");
+    pushButton->setStyleSheet(".QPushButton{background-color:rgba(143, 147, 153, 0.08);border:0px;border-radius:6px;font-size:14px;}");
 }
 
 QString MyComboBox::getCurrentText()

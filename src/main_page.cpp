@@ -70,12 +70,6 @@ void MainPage::pageLocationInit()
     m_pKylinPic->setFixedSize(718,331);
     m_pKylinPic->setStyleSheet("border-image:url(:/data/banner.png);border:0px;");
 
-//    QPalette pal_KylinPic(m_pKylinPic->palette());
-//    pal_KylinPic.setColor(QPalette::Background, Qt::black);//设置背景黑色
-//    m_pKylinPic->setAutoFillBackground(true);
-//    m_pKylinPic->setPalette(pal_KylinPic);
-    //m_pPageTitle->setStyleSheet("color:rgba(255, 0, 0, 0.85);font-size:20px;");
-
     m_pMoreInfoLink_1 = new QLabel;
     m_pMoreInfoLink_1->adjustSize();//setFixedSize(368,17);
     m_pMoreInfoLink_1->setText(tr("Click "));
