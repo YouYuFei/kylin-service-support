@@ -281,7 +281,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 
     titleIcon->move(8,8);
 
-    this->setWindowIcon(QIcon::fromTheme("kylin-service-support"));
+//    this->setWindowIcon(QIcon::fromTheme("kylin-service-support"));
     this->setWindowTitle(tr("Service&Support"));
 }
 /************************************************

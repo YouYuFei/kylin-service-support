@@ -29,7 +29,7 @@ MyComboBox::MyComboBox()
     connect(pushButton,&QPushButton::clicked,this,&MyComboBox::on_comboboxButton_click);
 
     text=new QLabel;
-    text->setFixedHeight(16);
+    text->setFixedHeight(18);
     icon=new QLabel;
     icon->setFixedSize(16,16);
     QHBoxLayout *hlt=new QHBoxLayout(pushButton);
