@@ -297,7 +297,7 @@ QVBoxLayout* menuModule::initBody()
     bodyAppVersion->setAlignment(Qt::AlignLeft);
     bodyAppVersion->setStyleSheet("font-size:14px;");
     QLabel* bodySupport = new QLabel();
-    bodySupport->setText(tr("Support: ") + "support@kylinos.cn");
+    bodySupport->setText(tr("Service & Support: ") + "support@kylinos.cn");
     bodySupport->setFixedHeight(24);
     bodySupport->setStyleSheet("font-size:14px;");
     QVBoxLayout *vlyt = new QVBoxLayout;

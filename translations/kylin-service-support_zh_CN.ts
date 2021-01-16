@@ -532,7 +532,7 @@ the problem by self.</source>
     </message>
     <message>
         <location filename="../src/menumodule.cpp" line="300"/>
-        <source>Support: </source>
+        <source>Service &amp; Support: </source>
         <translatorcomment>服务与支持团队：</translatorcomment>
         <translation>服务与支持团队：</translation>
     </message>
