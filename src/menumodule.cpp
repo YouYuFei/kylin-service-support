@@ -215,7 +215,7 @@ void menuModule::helpAction()
     DaemonIpcDbus *ipcDbus = new DaemonIpcDbus();
     if(!ipcDbus->daemonIsNotRunning()){
         // qDebug() << "hahahahahaha" << appName;
-        ipcDbus->showGuide(appName);
+        ipcDbus->showGuide("");
     }
 }
 
