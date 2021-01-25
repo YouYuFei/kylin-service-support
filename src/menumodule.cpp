@@ -16,7 +16,8 @@
  */
 
 #include <QTime>
-
+#include <QDesktopServices>
+#include <QUrl>
 #include "menumodule.h"
 #include "xatom-helper.h"
 
@@ -297,9 +298,16 @@ QVBoxLayout* menuModule::initBody()
     bodyAppVersion->setAlignment(Qt::AlignLeft);
     bodyAppVersion->setStyleSheet("font-size:14px;");
     QLabel* bodySupport = new QLabel();
-    bodySupport->setText(tr("Service & Support: ") + "support@kylinos.cn");
-    bodySupport->setFixedHeight(24);
-    bodySupport->setStyleSheet("font-size:14px;");
+    bodySupport->setText(tr("Service & Support: ") +
+                             "<a href=\"mailto://support@kylinos.cn\""
+                             "style=\"color:palttte(buttonText)\">"
+                             "support@kylinos.cn</a>");
+        connect(bodySupport,&QLabel::linkActivated,this,[=](const QString url){
+            QDesktopServices::openUrl(QUrl(url));
+        });
+        bodySupport->setContextMenuPolicy(Qt::NoContextMenu);
+        bodySupport->setFixedHeight(24);
+        bodySupport->setStyleSheet("font-size:14px;");
     QVBoxLayout *vlyt = new QVBoxLayout;
     vlyt->setMargin(0);
     vlyt->setSpacing(0);
