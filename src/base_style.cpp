@@ -96,6 +96,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     myWidgetTabInit();
 
     menu  = new menuModule(this);
+
     connect(menu,&menuModule::menuModuleClose,[=](){
         if(menu->aboutWindow)
         {

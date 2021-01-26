@@ -22,7 +22,7 @@ void submit_success::UI_init()
     if (this->objectName().isEmpty())
         this->setObjectName(QString::fromUtf8("submit_success"));
     this->setWindowFlags(Qt::FramelessWindowHint);
-
+    this->setAttribute(Qt::WA_ShowModal, true);
     this->showNormal();
     this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
     this->setFixedSize(248,72);

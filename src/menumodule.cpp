@@ -223,6 +223,8 @@ void menuModule::helpAction()
 void menuModule::initAbout()
 {
     aboutWindow = new QWidget();
+    aboutWindow->setAttribute(Qt::WA_ShowModal, true);
+//    setWindowModality(Qt::WindowModal);
     // aboutWindow->setWindowFlags(Qt::FramelessWindowHint);
     MotifWmHints hints;
     hints.flags = MWM_HINTS_FUNCTIONS|MWM_HINTS_DECORATIONS;

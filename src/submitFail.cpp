@@ -25,7 +25,7 @@ void submit_fail::UI_init()
     if (this->objectName().isEmpty())
         this->setObjectName(QString::fromUtf8("submit_fail"));
     this->setWindowFlags(Qt::FramelessWindowHint);
-
+    this->setAttribute(Qt::WA_ShowModal, true);
     this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
     this->setFixedSize(248,72);
     //setWindowTitle(tr("Submit Failed!"));//"提交失败"));
