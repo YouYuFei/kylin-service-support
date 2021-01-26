@@ -118,32 +118,32 @@ void submit_fail::pageChangeForTheme(const QString& str)
     }
 }
 
-//void submit_fail::show_faillinfo(int error_code)
-//{
-//    switch (error_code) {
-//    case 1:
-//        label_3->setText(tr("远程服务器拒绝连接"));
-//        break;
-//    case 2:
-//        label_3->setText(tr("服务器关闭"));
-//        break;
-//    case 3:
-//        label_3->setText(tr("找不到远程主机名（无效主机名）"));
-//        break;
-//    case 4:
-//        label_3->setText(tr("与远程服务器的连接超时"));
-//        break;
-//    case 99:
-//        label_3->setText(tr("网络未连接"));
-//        break;
-//    case 403:
-//        label_3->setText(tr("服务器不可用"));
-//        break;
-//    default:
-//        label_3->setText(tr("未知错误"));
-//        break;
-//    }
-//}
+void submit_fail::show_faillinfo(int error_code)
+{
+    switch (error_code) {
+    case 1:
+        qWarning() << (tr("远程服务器拒绝连接"));
+        break;
+    case 2:
+        qWarning() << (tr("服务器关闭"));
+        break;
+    case 3:
+        qWarning() << (tr("找不到远程主机名（无效主机名）"));
+        break;
+    case 4:
+        qWarning() << (tr("与远程服务器的连接超时"));
+        break;
+    case 99:
+        qWarning() << (tr("网络未连接"));
+        break;
+    case 403:
+        qWarning() << (tr("服务器不可用"));
+        break;
+    default:
+        qWarning() << (tr("未知错误"));
+        break;
+    }
+}
 submit_fail::~submit_fail()
 {
 }

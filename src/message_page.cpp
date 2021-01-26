@@ -1371,13 +1371,11 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
         qDebug() << "finishedSlot errors here";
         qDebug( "found error .... code: %d\n", (int)reply->error());
         qDebug()<<qPrintable(reply->errorString());
-        //判断错误类型
-        //Type of error
-
-//        if(!timeout_http_flag)
-//            fail_dialog->show_faillinfo((int)reply->error());
-//        else
-//            fail_dialog->show_faillinfo(4); //timeout
+        //打印错误类型信息，QWarning信息，会记录在log中
+        if(!timeout_http_flag)
+            fail_dialog->show_faillinfo((int)reply->error());
+        else
+            fail_dialog->show_faillinfo(4); //timeout
         fail_dialog->setModal(false);
         fail_dialog->swshadow->show();
         //fail_dialog->show();

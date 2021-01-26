@@ -6,79 +6,81 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QApplication>
-
-void msgHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg)
+#define DOUBLE 2
+#define MAX_FILE_SIZE 1024
+#define LOG_FILE0 "demo_0.log"
+#define LOG_FILE1 "demo_1.log"
+#define LOG_FILE_PATH "/.cache/kylin-service-support/log"
+/************************************************
+* 函数名称：qtMessagePutIntoLog
+* 功能描述：日志记录函数
+* 输入参数：qDebug标准输出
+* 输出参数：BootRepairLog.txt
+* 修改日期：2020.11.07
+* 修改内容：
+*   创建  HZH
+*
+*************************************************/
+void messageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
-    static FILE *fp = NULL; // 使用静态变量，进行数据持久保持
-    static char logPath[255] = {0};
-    static int uid = -1;
+    QByteArray localMsg = msg.toLocal8Bit();
+    QByteArray currentTime = QTime::currentTime().toString().toLocal8Bit();
 
-    Q_UNUSED(context);
+    QString name[DOUBLE] = {LOG_FILE0, LOG_FILE1};
+    FILE *log_file = nullptr;
+    QString logFilePath;
+    int fileSize;
+    static int i = 0;
+    QDir dir;
+    bool flag = false;
 
-    // 初始执行时，设置log文件路径
-    if (uid == -1) {
-        uid = getuid();
-        sprintf(logPath, "/run/user/%d/%s.log", uid, "kylin-service-support");
+    logFilePath = QDir::homePath() + LOG_FILE_PATH;
+    if (dir.mkpath(logFilePath)) {
+        flag = true;
     }
 
-    if (access(logPath, F_OK|W_OK) == 0) {
-        // log文件存在且可写
-        if (fp == NULL) {
-            // log文件未被打开过
-            fp = fopen(logPath, "a+");
-        }
-    } else {
-        // log文件不存在或者不可写，则需要判断是否被打开过，被打开过就需要关闭
-        if (fp != NULL)
-            fclose(fp);
-        fp = NULL;
+    if (flag) {
+        logFilePath = logFilePath + "/" + name[i];
+        log_file = fopen(logFilePath.toLocal8Bit().constData(), "a+");
     }
 
-    QDateTime currentTime = QDateTime::currentDateTime();
-    QString timeStr = currentTime.toString("yy.MM.dd hh:mm:ss +zzz");
-
-    // 获取用于控制命令行输出的环境变量
-    char *ctrlEnv = getenv("XXXX_DEBUG");
-    QString env;
-
-    // 格式化输出字符串，添加消息发生时间、消息等级
-    QString outMsg;
+    const char *file = context.file ? context.file : "";
+    const char *function = context.function ? context.function : "";
     switch (type) {
     case QtDebugMsg:
-        outMsg = QString("[%1 D]: %2").arg(timeStr).arg(msg);
+        if (!log_file) {
+            break;
+        }
+        fprintf(log_file, "Debug: %s: %s (%s:%u, %s)\n", currentTime.constData(), localMsg.constData(), file, context.line, function);
         break;
     case QtInfoMsg:
-        outMsg = QString("[%1 I]: %2").arg(timeStr).arg(msg);
+        fprintf(log_file? log_file: stdout, "Info: %s: %s (%s:%u, %s)\n", currentTime.constData(), localMsg.constData(), file, context.line, function);
         break;
     case QtWarningMsg:
-        outMsg = QString("[%1 W]: %2").arg(timeStr).arg(msg);
+        fprintf(log_file? log_file: stderr, "Warning: %s: %s (%s:%u, %s)\n", currentTime.constData(), localMsg.constData(), file, context.line, function);
         break;
     case QtCriticalMsg:
-        outMsg = QString("[%1 C]: %2").arg(timeStr).arg(msg);
+        fprintf(log_file? log_file: stderr, "Critical: %s: %s (%s:%u, %s)\n", currentTime.constData(), localMsg.constData(), file, context.line, function);
         break;
     case QtFatalMsg:
-        outMsg = QString("[%1 F]: %2").arg(timeStr).arg(msg);
+        fprintf(log_file? log_file: stderr, "Fatal: %s: %s (%s:%u, %s)\n", currentTime.constData(), localMsg.constData(), file, context.line, function);
+        break;
     }
 
-    if (fp != NULL) {
-        // 日志文件存在，则输出到日志文件中
-        fprintf(fp, "%s\n", outMsg.toUtf8().data());
-        fflush(fp);
-    }
-
-    if (ctrlEnv != NULL) {
-        // 环境变量为true或者1，则将信息输出到命令行
-        env = QString(ctrlEnv).toLower();
-        if ((env == "true") || (env == "1")) {
-            fprintf(stdout, "%s\n", outMsg.toStdString().c_str());
-            fflush(stdout);
+    if (log_file) {
+        fileSize = ftell(log_file);
+        if (fileSize >= MAX_FILE_SIZE) {
+            i = (i + 1) % DOUBLE;
+            logFilePath = QDir::homePath() + LOG_FILE_PATH + "/" + name[i];
+            if (QFile::exists(logFilePath)) {
+                QFile temp(logFilePath);
+                temp.remove();
+            }
         }
+        fclose(log_file);
     }
-
-    // 遇到致命错误，需要终止程序（这里终止程序是可选的）
-    if (type == QtFatalMsg)
-        abort();
 }
+
 
 void responseCommand(QApplication &a) //响应外部dbus命令
 {
@@ -107,7 +109,7 @@ void responseCommand(QApplication &a) //响应外部dbus命令
 }
 int main(int argc, char *argv[])
 {
-    qInstallMessageHandler(msgHandler);
+    qInstallMessageHandler(messageOutput);
     //高清屏幕自适应
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
