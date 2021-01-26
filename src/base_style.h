@@ -35,8 +35,6 @@
 #include "tabmenu_button.h"
 #include "contact_page.h"
 #include "diysupport_page.h"
-#include "stylewidgetattribute.h"
-#include "stylewidgetshadow.h"
 #include "menumodule.h"
 //窗体长宽
 #define SHAWINDOW_WIDTH (958)

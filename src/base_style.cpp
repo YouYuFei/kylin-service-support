@@ -539,7 +539,7 @@ bool BaseStyle::eventFilter(QObject *obj, QEvent *ev)
 /************************************************
 * 函数名称：pageChangeForTheme
 * 功能描述：主题颜色适配
-* 输入参数：StyleWidgetAttribute page_swa
+* 输入参数：
 * 输出参数：无
 * 修改日期：2020.10.12
 * 修改内容：

@@ -549,9 +549,9 @@ void MessagePage::pageUserDataRowLocationInit()
 void MessagePage::pageAllRowLocationInit()
 {
     success_dialog = new submit_success(this);
-    success_dialog->swshadow->hide();
+
     fail_dialog = new submit_fail(this);
-    fail_dialog->swshadow->hide();
+
 
     commitButton = new QPushButton(this);
     commitButton->setFixedSize(64,30);
@@ -1345,10 +1345,10 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
 
 
         success_dialog->setModal(false);
-        success_dialog->swshadow->show();
+
 
         QTimer::singleShot(3000, [=](){
-            success_dialog->swshadow->hide();
+
             set_all_enable_after_submit();
             on_resetButton_clicked();
         });
@@ -1377,10 +1377,10 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
         else
             fail_dialog->show_faillinfo(4); //timeout
         fail_dialog->setModal(false);
-        fail_dialog->swshadow->show();
+
         //fail_dialog->show();
         QTimer::singleShot(3000, [=](){
-            fail_dialog->swshadow->hide();
+
             set_all_enable_after_submit();
         });
     }

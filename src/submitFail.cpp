@@ -30,13 +30,6 @@ void submit_fail::UI_init()
     this->setFixedSize(248,72);
     //setWindowTitle(tr("Submit Failed!"));//"提交失败"));
 
-
-
-    WidgetParameterClass shadowParameter(236 ,60,1,6,6,0.16,0,0,0,0,0);
-
-    swshadow = new StyleWidgetShadow(shadowParameter);
-    swshadow->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
-
     label = new QLabel(this);
     label->adjustSize();
     label->setText(tr("Submit Failed!"));//反馈信息发送失败!"));
@@ -92,12 +85,12 @@ void submit_fail::UI_init()
     //this->setStyleSheet("submit_fail{background-color:rgba(61, 61, 65, 1);border-radius:6px;}");
 
     //设置阴影
-    QHBoxLayout *hblayout=new QHBoxLayout(swshadow);
+    QHBoxLayout *hblayout=new QHBoxLayout(this);
     hblayout->setMargin(0);//控件间距
     hblayout->setSpacing(0);//控件间距
     hblayout->addWidget(this);
-    swshadow->show();
-    //this->show();
+
+    this->show();
 
 }
 

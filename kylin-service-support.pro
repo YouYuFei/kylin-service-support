@@ -52,8 +52,6 @@ SOURCES += \
     src/my_qlineedit.cpp \
     src/myclick_widget.cpp \
     src/simple_style.cpp \
-    src/stylewidgetattribute.cpp \
-    src/stylewidgetshadow.cpp \
     src/submitFail.cpp \
     src/submitSuccess.cpp \
     src/systeminfo_button.cpp \
@@ -78,8 +76,6 @@ HEADERS += \
     src/my_qlineedit.h \
     src/myclick_widget.h \
     src/simple_style.h \
-    src/stylewidgetattribute.h \
-    src/stylewidgetshadow.h \
     src/submitFail.h \
     src/submitSuccess.h \
     src/systeminfo_button.h \

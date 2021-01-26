@@ -36,14 +36,6 @@ MyComboBox::MyComboBox()
     hlt->addWidget(text,9);
     hlt->addWidget(icon);
 
-    //增加下拉框阴影
-    WidgetParameterClass shadowParameter(206,120,1,4,4,0.16,0,0,0,0,0);
-
-    shadowWidget = new StyleWidgetShadow(shadowParameter);
-    shadowWidget->setWindowFlag(Qt::FramelessWindowHint);  // 无边框
-    shadowWidget->setAttribute(Qt::WA_TransparentForMouseEvents, true);;
-
-
     listWidget=new QListWidget;
     listWidget->setWindowFlag(Qt::FramelessWindowHint);  // 无边框
     listWidget->setAttribute(Qt::WA_TranslucentBackground);
@@ -128,9 +120,8 @@ void MyComboBox::on_comboboxButton_click()
                                       "QListWidget::Item:hover{background-color:rgba(72, 72, 76, 1);color:rgba(249,249,249,1);border-radius:0px;}");
         }
 //        listWidget->move(point.rx(),point.ry()+pushButton->height()+ SHADOW);
-        shadowWidget->move(point.rx()-SHADOW,point.ry()+pushButton->height());
+        listWidget->move(point.rx()-SHADOW,point.ry()+pushButton->height());
 
-        shadowWidget->show();
         listWidget->show();
         isListOpen = true;
     }
@@ -147,7 +138,6 @@ void MyComboBox::closeListWidget()
     isListOpen = false;
     icon->setStyleSheet("border-image:url(:/data/comboboxIcon_d.png);border:0px;");
 
-    shadowWidget->hide();
     listWidget->close();
 
     if(LIGHTTHEME == themeStatus)

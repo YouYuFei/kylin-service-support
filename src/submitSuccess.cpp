@@ -27,11 +27,6 @@ void submit_success::UI_init()
     this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
     this->setFixedSize(248,72);
 
-    WidgetParameterClass shadowParameter(236 ,60,1,6,6,0.16,0,0,0,0,0);
-
-    swshadow = new StyleWidgetShadow(shadowParameter);
-        swshadow->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
-
     label = new QLabel(this);
     label->adjustSize();
     label->setText(tr("Submit Successed!"));//反馈信息已发送!"));
@@ -84,11 +79,10 @@ void submit_success::UI_init()
 
     this->setLayout(vlt_suc);
     //设置阴影
-    QHBoxLayout *hblayout=new QHBoxLayout(swshadow);
+    QHBoxLayout *hblayout=new QHBoxLayout(this);
     hblayout->setMargin(0);//控件间距
     hblayout->setSpacing(0);//控件间距
     hblayout->addWidget(this);
-    swshadow->show();
 }
 submit_success::~submit_success()
 {
@@ -112,7 +106,6 @@ void submit_success::pageChangeForTheme(const QString& str)
 void submit_success::on_pushButton_2_clicked()
 {
     this->close();
-    swshadow->close();
     //parentWnd->window_close();
 }
 

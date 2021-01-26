@@ -12,8 +12,7 @@
 #include <QDialog>
 #include <QPushButton>
 #include <QLabel>
-#include "stylewidgetattribute.h"
-#include "stylewidgetshadow.h"
+
 
 class BaseStyle;
 
@@ -26,7 +25,7 @@ public:
     explicit submit_success(QWidget *parent = nullptr);
     ~submit_success();
     void pageChangeForTheme(const QString& str);
-    StyleWidgetShadow *swshadow;
+
 private slots:
     void on_pushButton_2_clicked();
 
