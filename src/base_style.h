@@ -129,6 +129,8 @@ private:
     void onlinePageButtonClick();
     void onlinePageButtonRelease();
 
+    void allButtonNoChecked();
+
     QPoint dragPosition;                                    //拖动坐标
 
     WidgetParameterClass local_basicParameter;
@@ -149,11 +151,11 @@ private:
     QPushButton *widgetMin   = nullptr;                     //最小化窗口
     menuModule *menu = nullptr;                             //三联按钮菜单按钮
 
-    TabMenuButton *m_pMainPageButton;                       //主页界面显示按钮
-    TabMenuButton *m_pMessagePageButton;                    //留言咨询界面显示按钮
-    TabMenuButton *m_pOnlineButton;                         //在线客服界面显示按钮
-    TabMenuButton *m_pContactButton;                        //在线客服界面显示按钮
-    TabMenuButton *m_pDIYButton;                            //在线客服界面显示按钮
+    QPushButton *m_pMainPageButton;                       //主页界面显示按钮
+    QPushButton *m_pMessagePageButton;                    //留言咨询界面显示按钮
+    QPushButton *m_pOnlineButton;                         //在线客服界面显示按钮
+    QPushButton *m_pContactButton;                        //在线客服界面显示按钮
+    QPushButton *m_pDIYButton;                            //在线客服界面显示按钮
 
 
     int currentPageIndex = 0;
@@ -165,16 +167,5 @@ private:
     ContactPage *contactPage = nullptr;
     DIYSupportPage *diySupportPage = nullptr;
 
-    QString qssDefaultMenuBar = tr("QPushButton{background:transparent;color:rgba(48, 49, 51, 1);font-size:14px;}"
-                              "QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(249, 249, 249, 1);font-size:14px;}"
-                              "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);font-size:14px;}");
-    QString qssChooseMenuBar = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(249, 249, 249, 1);font-size:14px;}");
-    QString qssPressedMenuBar = tr("QPushButton{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);font-size:14px;}");
-
-    QString qssDefaultMenuBar_d = tr("QPushButton{background:transparent;color:rgba(192, 196, 204, 1);font-size:14px;}"
-                              "QPushButton:hover{background:rgba(149, 176, 255, 1);color:rgba(249, 249, 249, 1);font-size:14px;}"
-                              "QPushButton:pressed{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);font-size:14px;}");
-    QString qssChooseMenuBar_d = tr("QPushButton{background:rgba(112, 149, 255, 1);color:rgba(249, 249, 249, 1);font-size:14px;}");
-    QString qssPressedMenuBar_d = tr("QPushButton{background:rgba(73, 112, 222, 1);color:rgba(249, 249, 249, 1);font-size:14px;}");
 };
 #endif // BASESTYLE_H

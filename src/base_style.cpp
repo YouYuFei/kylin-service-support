@@ -70,7 +70,11 @@ BaseStyle::BaseStyle(const WidgetParameterClass& basicParameter, const QString& 
 *************************************************/
 void BaseStyle::WidgetStyleClose()
 {
-    menu->aboutWindow->close();
+    if(menu->aboutWindow)
+    {
+        menu->aboutWindow->close();
+    }
+
     this->close();
 }
 /************************************************
@@ -93,8 +97,11 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 
     menu  = new menuModule(this);
     connect(menu,&menuModule::menuModuleClose,[=](){
+        if(menu->aboutWindow)
+        {
+            menu->aboutWindow->close();
+        }
         this->close();
-        menu->aboutWindow->close();
     });
 
     widgetMin =new QPushButton();//最小化按钮
@@ -109,7 +116,6 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 
     connect(widgetMin,&QPushButton::clicked,this,[=]{
         this->setWindowState(Qt::WindowMinimized);
-        //this->swshadow->setWindowState(Qt::WindowMinimized);
     });
 
     widgetClose =new QPushButton();//关闭按钮
@@ -252,26 +258,6 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
     QPoint mainWPoint = this->mapToGlobal(QPoint(0,0));
     qDebug() << mainWPoint;
 
-    introIcon = new QLabel(menuBox);
-    introIcon->setFixedSize(16,16);
-    introIcon->move(40,69);
-
-    messageIcon = new QLabel(menuBox);
-    messageIcon->setFixedSize(16,16);
-    messageIcon->move(40,118);
-
-    contactIcon = new QLabel(menuBox);
-    contactIcon->setFixedSize(16,16);
-    contactIcon->move(40,165);
-
-    supportIcon = new QLabel(menuBox);
-    supportIcon->setFixedSize(16,16);
-    supportIcon->move(40,214);
-
-    customerIcon = new QLabel(menuBox);
-    customerIcon->setFixedSize(16,16);
-    customerIcon->move(40,262);
-
     titleIcon = new QLabel(menuBox);
     titleIcon->setFixedSize(24,24);
 
@@ -281,7 +267,7 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 
     titleIcon->move(8,8);
 
-//    this->setWindowIcon(QIcon::fromTheme("kylin-service-support"));
+    this->setWindowIcon(QIcon::fromTheme("kylin-service-support"));
     this->setWindowTitle(tr("Service&Support"));
 }
 /************************************************
@@ -296,10 +282,8 @@ void BaseStyle::myWidgetStyle(const WidgetParameterClass& basicParameter)
 *************************************************/
 void BaseStyle::myWidgetSizeDesign(int width,int height)
 {
-    //this->setWindowFlags(Qt::FramelessWindowHint);//无边框
-    //this->setAttribute(Qt::WA_TranslucentBackground, true);//窗体透明
-    //this->setFixedSize(960, 640);
-
+    Q_UNUSED(width);
+    Q_UNUSED(height);
     QRect availableGeometry = qApp->primaryScreen()->availableGeometry();
     this->move((availableGeometry.width() - this->width())/2, (availableGeometry.height() - this->height())/2);
 }
@@ -315,7 +299,7 @@ void BaseStyle::myWidgetSizeDesign(int width,int height)
 *************************************************/
 void BaseStyle::myWidgetBasicInit(const WidgetParameterClass& parameter)
 {
-
+    Q_UNUSED(parameter);
     text = new QLabel;
     text->setStyleSheet("rgba(255, 255, 255, 1);");
 
@@ -354,53 +338,79 @@ void BaseStyle::myWidgetBasicInit(const WidgetParameterClass& parameter)
 void BaseStyle::myWidgetTabInit()
 {
     //主页界面显示按钮
-    m_pMainPageButton = new TabMenuButton();
+    m_pMainPageButton = new QPushButton();
     m_pMainPageButton->setText(tr("Intro"));
     //m_pMainPageButton->setText("软件介绍");
     m_pMainPageButton->setObjectName("MainPageButton");
     m_pMainPageButton->setFixedSize(132,32);
+    m_pMainPageButton->setIcon(QIcon::fromTheme("view-dual-symbolic"));//主题库的图标
+    m_pMainPageButton->setProperty("isWindowButton", QPalette::Highlight);
+    m_pMainPageButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pMainPageButton->setFlat(true);
+    m_pMainPageButton->setCheckable(true);
+    m_pMainPageButton->setAutoExclusive(true);
 
-    m_pMainPageButton->installEventFilter(this);
-    //connect(m_pMainPageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MainPageButtonSlots);
+    connect(m_pMainPageButton, &QPushButton::clicked, this, &BaseStyle::m_MainPageButtonSlots);
 
     //留言咨询界面显示按钮
-    m_pMessagePageButton = new TabMenuButton();
+    m_pMessagePageButton = new QPushButton();
     m_pMessagePageButton->setText(tr("Message"));
     //m_pMessagePageButton->setText(tr("留言咨询"));
     m_pMessagePageButton->setObjectName("MessagePageButton");
     m_pMessagePageButton->setFixedSize(132,32);
-    m_pMessagePageButton->installEventFilter(this);
+    m_pMessagePageButton->setIcon(QIcon::fromTheme("document-edit-symbolic"));//主题库的图标
+    m_pMessagePageButton->setProperty("isWindowButton", QPalette::Highlight);
+    m_pMessagePageButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pMessagePageButton->setFlat(true);
+    m_pMessagePageButton->setCheckable(true);
+    m_pMessagePageButton->setAutoExclusive(true);
 
-    //connect(m_pMessagePageButton, &TabMenuButton::clicked, this, &BaseStyle::m_MessagePageButtonSlots);
+    connect(m_pMessagePageButton, &QPushButton::clicked, this, &BaseStyle::m_MessagePageButtonSlots);
 
     //联系我们界面显示按钮
-    m_pContactButton = new TabMenuButton();
+    m_pContactButton = new QPushButton();
     m_pContactButton->setText(tr("Contact"));
 //    m_pContactButton->setText(tr("联系我们"));
     m_pContactButton->setObjectName("ContactButton");
     m_pContactButton->setFixedSize(132,32);
-    m_pContactButton->installEventFilter(this);
+    m_pContactButton->setIcon(QIcon::fromTheme("call-start-symbolic"));//主题库的图标
+    m_pContactButton->setProperty("isWindowButton", QPalette::Highlight);
+    m_pContactButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pContactButton->setFlat(true);
+    m_pContactButton->setCheckable(true);
+    m_pContactButton->setAutoExclusive(true);
 
-    //connect(m_pContactButton, &TabMenuButton::clicked, this, &BaseStyle::m_ContactPageButtonSlots);
+    connect(m_pContactButton, &QPushButton::clicked, this, &BaseStyle::m_ContactPageButtonSlots);
 
     //自助支持界面显示按钮
-    m_pDIYButton = new TabMenuButton();
+    m_pDIYButton = new QPushButton();
     m_pDIYButton->setText(tr("Guidance"));
-//    m_pDIYButton->setText(tr("自助支持"));
-    m_pDIYButton->setObjectName("DIYButton");
+    //m_pMessagePageButton->setText("在线客服");
+    m_pDIYButton->setObjectName("GuidancePageButton");
     m_pDIYButton->setFixedSize(132,32);
-    m_pDIYButton->installEventFilter(this);
+    m_pDIYButton->setIcon(QIcon::fromTheme("system-search-symbolic"));//主题库的图标
+    m_pDIYButton->setProperty("isWindowButton", QPalette::Highlight);
+    m_pDIYButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pDIYButton->setFlat(true);
+    m_pDIYButton->setCheckable(true);
+    m_pDIYButton->setAutoExclusive(true);
 
-    //connect(m_pDIYButton, &TabMenuButton::clicked, this, &BaseStyle::m_DIYPageButtonSlots);
+    connect(m_pDIYButton, &QPushButton::clicked, this, &BaseStyle::m_DIYPageButtonSlots);
 
     //在线客服按钮
-    m_pOnlineButton = new TabMenuButton();
+    m_pOnlineButton = new QPushButton();
     m_pOnlineButton->setText(tr("Customer"));
     //m_pMessagePageButton->setText("在线客服");
     m_pOnlineButton->setObjectName("OnlinePageButton");
     m_pOnlineButton->setFixedSize(132,32);
+    m_pOnlineButton->setIcon(QIcon::fromTheme("contact-new-symbolic"));//主题库的最小化图标
+    m_pOnlineButton->setProperty("isWindowButton", QPalette::Highlight);
+    m_pOnlineButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pOnlineButton->setFlat(true);
+    m_pOnlineButton->setCheckable(true);
+    m_pOnlineButton->setAutoExclusive(true);
 
-    m_pOnlineButton->installEventFilter(this);
+    connect(m_pOnlineButton, &QPushButton::clicked, this, &BaseStyle::m_OnlinePageButtonSlots);
 
 }
 /************************************************
@@ -415,8 +425,9 @@ void BaseStyle::myWidgetTabInit()
 *************************************************/
 void BaseStyle::m_MainPageButtonSlots()
 {
+    allButtonNoChecked();
+    m_pMainPageButton->setChecked(true);
     currentPageIndex = 0;
-    setMainPageButtonBackgroundBlue();
     m_pstackWidget->setCurrentIndex(0);
 }
 
@@ -432,9 +443,9 @@ void BaseStyle::m_MainPageButtonSlots()
 *************************************************/
 void BaseStyle::m_MessagePageButtonSlots()
 {
-    setMessagePageButtonBackgroudIsBlue();
+    allButtonNoChecked();
+    m_pMessagePageButton->setChecked(true);
     m_pstackWidget->setCurrentIndex(1);
-    //messagePage->on_resetButton_clicked();
     currentPageIndex = 1;
 }
 /************************************************
@@ -449,10 +460,10 @@ void BaseStyle::m_MessagePageButtonSlots()
 *************************************************/
 void BaseStyle::m_OnlinePageButtonSlots()
 {
-//    setOnlinePageButtonBackgroudIsBlue();
-//    setMainPageButtonBackgroundBlue();
-//    m_pstackWidget->setCurrentIndex(0);
-    m_MainPageButtonSlots();
+    allButtonNoChecked();
+    m_pOnlineButton->setChecked(true);
+    m_pstackWidget->setCurrentIndex(0);
+    currentPageIndex = 0;
     QDesktopServices::openUrl(QUrl("https://webchat-bj.clink.cn/chat.html?accessId=8f4d87f6-6f18-4c4a-b6ad-2376d128e346&language=zh_CN"));
 }
 /************************************************
@@ -467,7 +478,8 @@ void BaseStyle::m_OnlinePageButtonSlots()
 *************************************************/
 void BaseStyle::m_ContactPageButtonSlots()
 {
-    setContactPageButtonBackgroudIsBlue();
+    allButtonNoChecked();
+    m_pContactButton->setChecked(true);
     m_pstackWidget->setCurrentIndex(2);
     currentPageIndex = 2;
 }
@@ -483,247 +495,27 @@ void BaseStyle::m_ContactPageButtonSlots()
 *************************************************/
 void BaseStyle::m_DIYPageButtonSlots()
 {
-    setDIYPageButtonBackgroudIsBlue();
+    allButtonNoChecked();
+    m_pDIYButton->setChecked(true);
+    //setDIYPageButtonBackgroudIsBlue();
     m_pstackWidget->setCurrentIndex(3);
     currentPageIndex = 3;
 }
 /************************************************
-* 函数名称：setMainPageButtonBackgroundBlue
-* 功能描述：翻页到主界面时其余按钮恢复非选中状态
-* 输入参数：无
+* 函数名称：allButtonNoChecked
+* 功能描述：所有按钮恢复非选中状态
+* 输入参数：侧边menu的按钮响应鼠标悬停，点击，按钮上图标反色
 * 输出参数：无
-* 修改日期：2020.11.04
+* 修改日期：2021.01.26
 * 修改内容：
 *   创建  HZH
 *
 *************************************************/
-void BaseStyle::setMainPageButtonBackgroundBlue()
+void BaseStyle::allButtonNoChecked()
 {
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMainPageButton->setStyleSheet(qssChooseMenuBar_d);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-    else
-    {
-        m_pMainPageButton->setStyleSheet(qssChooseMenuBar);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：setMessagePageButtonBackgroudIsBlue
-* 功能描述：翻页到留言界面时其余按钮恢复非选中状态
-* 输入参数：无
-* 输出参数：无
-* 修改日期：2020.11.04
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::setMessagePageButtonBackgroudIsBlue()
-{
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssChooseMenuBar_d);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-    else
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssChooseMenuBar);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：setOnlinePageButtonBackgroudIsBlue
-* 功能描述：翻页到在线客服界面时其余按钮恢复非选中状态
-* 输入参数：无
-* 输出参数：无
-* 修改日期：2020.11.04
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::setOnlinePageButtonBackgroudIsBlue()
-{
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-    else
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：setContactPageButtonBackgroudIsBlue
-* 功能描述：翻页到联系我们界面时其余按钮恢复非选中状态
-* 输入参数：无
-* 输出参数：无
-* 修改日期：2020.11.04
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::setContactPageButtonBackgroudIsBlue()
-{
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssChooseMenuBar_d);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_h.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-
-
-    }
-    else
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssChooseMenuBar);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_h.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：setDIYPageButtonBackgroudIsBlue
-* 功能描述：翻页到自助支持界面时其余按钮恢复非选中状态
-* 输入参数：无
-* 输出参数：无
-* 修改日期：2020.11.04
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::setDIYPageButtonBackgroudIsBlue()
-{
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssChooseMenuBar_d);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-    else
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
-
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
-
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
-
-        m_pDIYButton->setStyleSheet(qssChooseMenuBar);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
-
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
-    }
-
+    m_pDIYButton->setChecked(false);
+    m_pContactButton->setChecked(false);
+    m_pOnlineButton->setChecked(false);
 }
 
 /************************************************
@@ -738,271 +530,11 @@ void BaseStyle::setDIYPageButtonBackgroudIsBlue()
 *************************************************/
 bool BaseStyle::eventFilter(QObject *obj, QEvent *ev)
 {
-    if(obj == m_pMainPageButton)
-    {
-        mainPageButtonQss(ev);
-    }
-    if(obj == m_pMessagePageButton)
-    {
-        messagePageButtonQss(ev);
-    }
-    if(obj == m_pContactButton)
-    {
-        contactPageButtonQss(ev);
-    }
-    if(obj == m_pDIYButton)
-    {
-        diyPageButtonQss(ev);
-    }
-    if(obj == m_pOnlineButton)
-    {
-        onlinePageButtonQss(ev);
-    }
+
     //其余的事件按照默认(未覆写)的处理方式处理
     return QWidget::eventFilter(obj,ev);
 }
-/************************************************
-* 函数名称：mainPageButtonQss
-* 功能描述：按钮根据鼠标动作适配
-* 输入参数：鼠标事件
-* 输出参数：无
-* 修改日期：2020.11.23
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-bool BaseStyle::mainPageButtonQss(QEvent *ev)
-{
-    if(ev->type() == QEvent::HoverEnter)
-    {
-        if(currentPageIndex != 0)
-        {
-            mainPageButtonDefault();
-        }
 
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::HoverLeave)
-    {
-        if(currentPageIndex != 0)
-        {
-            mainPageButtonHover();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonPress)
-    {
-        qDebug() << "按下了软件简介按钮";
-        if(currentPageIndex != 0)
-        {
-            mainPageButtonClick();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonRelease)
-    {
-        qDebug() << "松开了简介按钮";
-        if(0 != currentPageIndex)
-        {
-            mainPageButtonRelease();
-        }
-        return true;    //结束传播
-    }
-    return true;
-}
-/************************************************
-* 函数名称：messagePageButtonQss
-* 功能描述：按钮根据鼠标动作适配
-* 输入参数：鼠标事件
-* 输出参数：无
-* 修改日期：2020.11.23
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-bool BaseStyle::messagePageButtonQss(QEvent *ev)
-{
-    if(ev->type() == QEvent::HoverEnter)
-    {
-        if(currentPageIndex != 1)
-        {
-            messagePageButtonDefault();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::HoverLeave)
-    {
-        if(currentPageIndex != 1)
-        {
-            messagePageButtonHover();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonPress)
-    {
-        qDebug() << "按下了在线留言按钮";
-        if(currentPageIndex != 1)
-        {
-            messagePageButtonClick();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonRelease)
-    {
-        qDebug() << "松开了在线留言按钮";
-        if(1 != currentPageIndex)
-        {
-            messagePageButtonRelease();
-        }
-        return true;    //结束传播
-    }
-    return true;
-}
-/************************************************
-* 函数名称：contactPageButtonQss
-* 功能描述：按钮根据鼠标动作适配
-* 输入参数：鼠标事件
-* 输出参数：无
-* 修改日期：2020.11.23
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-bool BaseStyle::contactPageButtonQss(QEvent *ev)
-{
-    if(ev->type() == QEvent::HoverEnter)
-    {
-        if(currentPageIndex != 2)
-        {
-            contactPageButtonDefault();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::HoverLeave)
-    {
-        if(currentPageIndex != 2)
-        {
-            contactPageButtonHover();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonPress)
-    {
-
-        qDebug() << "按下了联系我们按钮";
-        if(currentPageIndex != 2)
-        {
-            contactPageButtonClick();
-        }
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonRelease)
-    {
-        qDebug() << "松开了联系我们按钮";
-        if(2 != currentPageIndex)
-        {
-            contactPageButtonRelease();
-        }
-        return true;    //结束传播
-    }
-    return true;
-}
-/************************************************
-* 函数名称：diyPageButtonQss
-* 功能描述：按钮根据鼠标动作适配
-* 输入参数：鼠标事件
-* 输出参数：无
-* 修改日期：2020.11.23
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-bool BaseStyle::diyPageButtonQss(QEvent *ev)
-{
-    if(ev->type() == QEvent::HoverEnter)
-    {
-        if(currentPageIndex != 3)
-        {
-            diyPageButtonDefault();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::HoverLeave)
-    {
-        if(currentPageIndex != 3)
-        {
-            diyPageButtonHover();
-        }
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonPress)
-    {
-        qDebug() << "按下了自助支持按钮";
-        if(currentPageIndex != 3)
-        {
-            diyPageButtonClick();
-        }
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonRelease)
-    {
-        qDebug() << "松开了自助支持简介按钮";
-        if(3 != currentPageIndex)
-        {
-            diyPageButtonRelease();
-        }
-        return true;    //结束传播
-    }
-    return true;
-}
-/************************************************
-* 函数名称：onlinePageButtonQss
-* 功能描述：按钮根据鼠标动作适配
-* 输入参数：鼠标事件
-* 输出参数：无
-* 修改日期：2020.11.23
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-bool BaseStyle::onlinePageButtonQss(QEvent *ev)
-{
-    if(ev->type() == QEvent::HoverEnter)
-    {
-        onlinePageButtonDefault();
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::HoverLeave)
-    {
-        onlinePageButtonHover();
-
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonPress)
-    {
-        qDebug() << "按下了在线客服按钮";
-        onlinePageButtonClick();
-        return true;    //结束传播
-    }
-    else if(ev->type() == QEvent::MouseButtonRelease)
-    {
-        qDebug() << "松开了自助支持简介按钮";
-
-        onlinePageButtonRelease();
-        return true;    //结束传播
-    }
-    return true;
-}
 /************************************************
 * 函数名称：pageChangeForTheme
 * 功能描述：主题颜色适配
@@ -1023,29 +555,12 @@ void BaseStyle::pageChangeForTheme(const QString& str)
     diySupportPage->pageChangeForTheme(currentTheme);
     mainPage->pageChangeForTheme(currentTheme);
 
-    switch(currentPageIndex)
-    {
-        case 0:
-            m_MainPageButtonSlots();
-            break;
-        case 1:
-            m_MessagePageButtonSlots();
-            break;
-        case 2:
-            m_ContactPageButtonSlots();
-            break;
-        case 3:
-            m_DIYPageButtonSlots();
-            break;
-    }
+    allButtonNoChecked();
+    m_pMainPageButton->setChecked(true);
+
+
     if("ukui-dark" == str || "ukui-black" == str)
     {
-//        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_h.png);border-radius:4px;}"
-//                                 "BaseStyle #widgetMin:hover{background-color:rgba(255, 255, 255, 0.1);border-image:url(:/data/min_h.png);border-radius:4px;}"
-//                                 "BaseStyle #widgetMin:pressed{background-color:rgba(255, 255, 255, 0.15);border-image:url(:/data/min_h.png);border-radius:4px;}");
-//        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_h.png);border-radius:4px;}"
-//                                   "BaseStyle #widgetClose:hover{background-color:#F86457;border-image:url(:/data/close_h.png);border-radius:4px;}"
-//                                   "BaseStyle #widgetClose:pressed{background-color:#E44C50;border-image:url(:/data/close_h.png);border-radius:4px;}");
 
         QString showStyleSheet="#showBox{background-color:rgba(31, 32, 34, 1);}";
         showBox->setStyleSheet(showStyleSheet);
@@ -1055,12 +570,6 @@ void BaseStyle::pageChangeForTheme(const QString& str)
     }
     else
     {
-//        widgetMin->setStyleSheet("BaseStyle #widgetMin{background-color:rgba(255,255,255,0);border-image:url(:/data/min_d.png);border-radius:4px;}"
-//                                 "BaseStyle #widgetMin:hover{background-color:rgba(0,0,0,0.1);border-image:url(:/data/min_d.png);border-radius:4px;}"
-//                                 "BaseStyle #widgetMin:pressed{background-color:rgba(0,0,0,0.15);border-image:url(:/data/min_d.png);border-radius:4px;}");
-//        widgetClose->setStyleSheet("BaseStyle #widgetClose{background-color:rgba(255,255,255,0);border-image:url(:/data/close_d.png);border-radius:4px;}"
-//                                   "BaseStyle #widgetClose:hover{background-color:#F86457;border-image:url(:/data/close_h.png);border-radius:4px;}"
-//                                   "BaseStyle #widgetClose:pressed{background-color:#E44C50;border-image:url(:/data/close_h.png);border-radius:4px;}");
 
         QString showStyleSheet="#showBox{background-color:rgba(255,255,255,1);}";
         showBox->setStyleSheet(showStyleSheet);
@@ -1088,450 +597,4 @@ void BaseStyle::keyPressEvent(QKeyEvent *event)
             m_pDaemonIpcDbus->showGuide("");
         }
     }
-}
-/************************************************
-* 函数名称：mainPageButtonDefault
-* 功能描述：mainPageButton默认样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::mainPageButtonDefault()
-{
-    //qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMainPageButton->setStyleSheet(qssChooseMenuBar_d);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
-    }
-    else
-    {
-        m_pMainPageButton->setStyleSheet(qssChooseMenuBar);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：mainPageButtonHover
-* 功能描述：mainPageButton鼠标悬停样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::mainPageButtonHover()
-{
-    //qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar_d);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_d.png);border:0px;");
-    }
-    else
-    {
-        m_pMainPageButton->setStyleSheet(qssDefaultMenuBar);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro.png);border:0px;");
-    }
-}
-
-/************************************************
-* 函数名称：mainPageButtonClick
-* 功能描述：mainPageButton鼠标点下样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::mainPageButtonClick()
-{
-    //m_MainPageButtonSlots();
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMainPageButton->setStyleSheet(qssPressedMenuBar_d);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
-    }
-    else
-    {
-        m_pMainPageButton->setStyleSheet(qssPressedMenuBar);
-        introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
-    }
-
-}
-/************************************************
-* 函数名称：mainPageButtonRelease
-* 功能描述：mainPageButton鼠标松开样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::mainPageButtonRelease()
-{
-    m_MainPageButtonSlots();
-
-    introIcon->setStyleSheet("border-image:url(:/data/icon_intro_h.png);border:0px;");
-}
-/************************************************
-* 函数名称：messagePageButtonDefault
-* 功能描述：messagePageButton默认样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::messagePageButtonDefault()
-{
-    //qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMessagePageButton->setStyleSheet(qssChooseMenuBar_d);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
-    }
-    else
-    {
-        m_pMessagePageButton->setStyleSheet(qssChooseMenuBar);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：messagePageButtonHover
-* 功能描述：messagePageButton鼠标悬停样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::messagePageButtonHover()
-{
-    //qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar_d);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_d.png);border:0px;");
-    }
-    else
-    {
-        m_pMessagePageButton->setStyleSheet(qssDefaultMenuBar);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：messagePageButtonClick
-* 功能描述：messagePageButton鼠标点击样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::messagePageButtonClick()
-{
-    //m_MessagePageButtonSlots();
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pMessagePageButton->setStyleSheet(qssPressedMenuBar_d);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
-    }
-    else
-    {
-        m_pMessagePageButton->setStyleSheet(qssPressedMenuBar);
-        messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：messagePageButtonClick
-* 功能描述：messagePageButton鼠标松开样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::messagePageButtonRelease()
-{
-    m_MessagePageButtonSlots();
-    messagePage->on_resetButton_clicked();
-    messageIcon->setStyleSheet("border-image:url(:/data/icon_message_h.png);border:0px;");
-}
-/************************************************
-* 函数名称：contactPageButtonDefault
-* 功能描述：messagePageButton默认样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::contactPageButtonDefault()
-{
-    //qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pContactButton->setStyleSheet(qssChooseMenuBar_d);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_h.png);border:0px;");
-    }
-    else
-    {
-        m_pContactButton->setStyleSheet(qssChooseMenuBar);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_h.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：contactPageButtonHover
-* 功能描述：contactPageButton鼠标悬停样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::contactPageButtonHover()
-{
-    //qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar_d);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_d.png);border:0px;");
-    }
-    else
-    {
-        m_pContactButton->setStyleSheet(qssDefaultMenuBar);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：contactPageButtonClick
-* 功能描述：contactPageButton鼠标悬停样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::contactPageButtonClick()
-{
-    //m_ContactPageButtonSlots();
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pContactButton->setStyleSheet(qssPressedMenuBar_d);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_h.png);border:0px;");
-    }
-    else
-    {
-        m_pContactButton->setStyleSheet(qssPressedMenuBar);
-        contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_h.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：contactPageButtonRelease
-* 功能描述：contactPageButton鼠标松开样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::contactPageButtonRelease()
-{
-    m_ContactPageButtonSlots();
-
-    contactIcon->setStyleSheet("border-image:url(:/data/icon_tele_h.png);border:0px;");
-}
-/************************************************
-* 函数名称：diyPageButtonDefault
-* 功能描述：diyPageButton默认样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::diyPageButtonDefault()
-{
-    qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pDIYButton->setStyleSheet(qssChooseMenuBar_d);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
-    }
-    else
-    {
-        m_pDIYButton->setStyleSheet(qssChooseMenuBar);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
-    }
-}
-
-/************************************************
-* 函数名称：diyPageButtonHover
-* 功能描述：diyPageButton鼠标悬停样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::diyPageButtonHover()
-{
-    qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar_d);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_d.png);border:0px;");
-    }
-    else
-    {
-        m_pDIYButton->setStyleSheet(qssDefaultMenuBar);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support.png);border:0px;");
-    }
-}
-
-/************************************************
-* 函数名称：diyPageButtonClick
-* 功能描述：diyPageButton鼠标点击样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::diyPageButtonClick()
-{
-    //m_DIYPageButtonSlots();
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pDIYButton->setStyleSheet(qssPressedMenuBar_d);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
-    }
-    else
-    {
-        m_pDIYButton->setStyleSheet(qssPressedMenuBar);
-        supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：diyPageButtonRelease
-* 功能描述：diyPageButton鼠标松开样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::diyPageButtonRelease()
-{
-    m_DIYPageButtonSlots();
-
-    supportIcon->setStyleSheet("border-image:url(:/data/icon_support_h.png);border:0px;");
-}
-/************************************************
-* 函数名称：onlinePageButtonDefault
-* 功能描述：onlinePageButton默认样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::onlinePageButtonDefault()
-{
-    qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pOnlineButton->setStyleSheet(qssChooseMenuBar_d);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-    else
-    {
-        m_pOnlineButton->setStyleSheet(qssChooseMenuBar);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-}
-
-/************************************************
-* 函数名称：onlinePageButtonHover
-* 功能描述：onlinePageButton鼠标悬停样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::onlinePageButtonHover()
-{
-    qDebug() << "当前未按下悬停按钮";
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar_d);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-    else
-    {
-        m_pOnlineButton->setStyleSheet(qssDefaultMenuBar);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
-    }
-}
-
-/************************************************
-* 函数名称：onlinePageButtonClick
-* 功能描述：onlinePageButton鼠标点击样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::onlinePageButtonClick()
-{
-    //m_DIYPageButtonSlots();
-    if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
-    {
-        m_pOnlineButton->setStyleSheet(qssPressedMenuBar_d);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-    else
-    {
-        m_pOnlineButton->setStyleSheet(qssPressedMenuBar);
-        customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
-    }
-}
-/************************************************
-* 函数名称：onlinePageButtonRelease
-* 功能描述：onlinePageButton鼠标松开样式
-* 输入参数：
-* 输出参数：
-* 修改日期：2020.12.08
-* 修改内容：
-*   创建  HZH
-*
-*************************************************/
-void BaseStyle::onlinePageButtonRelease()
-{
-    m_OnlinePageButtonSlots();
-
-    customerIcon->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
 }
