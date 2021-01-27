@@ -77,7 +77,7 @@ public:
 signals:
 
 public slots:
-    void styleOfAskCombobox_currentIndexChanged();
+    void styleOfAskCombobox_currentIndexChanged(QString);
 
     void detailTextEdit_textChanged();
     void mailTextEdit_textChanged();
@@ -182,8 +182,8 @@ private:
 
     bool timeout_http_flag = false;
 
-    MyComboBox *m_pStyleOfAskCombobox = nullptr;
-    //QComboBox *m_pStyleOfAskCombobox;
+//    MyComboBox *m_pStyleOfAskCombobox = nullptr;
+    QComboBox *m_pStyleOfAskCombobox = nullptr;
     QString textStyleOfAsk = "系统问题";
 
     QTextEdit *m_pTitleTextEdit;

@@ -16,7 +16,6 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include <QGraphicsDropShadowEffect>
-#include "stylewidgetshadow.h"
 
 class MyComboBox : public QWidget
 {
@@ -24,7 +23,6 @@ class MyComboBox : public QWidget
 public:
     explicit MyComboBox();
     QListWidget *listWidget = nullptr;//combobox列表列表部分
-    StyleWidgetShadow *shadowWidget = nullptr;
 
     void addItem(QString lable);//添加到列表
     void closeListWidget();

@@ -46,7 +46,7 @@ MyComboBox::MyComboBox()
     connect(listWidget,&QListWidget::itemClicked,this,&MyComboBox::clickComboboxList);
 
     //设置阴影
-    QHBoxLayout *hblayout=new QHBoxLayout(shadowWidget);
+    QHBoxLayout *hblayout=new QHBoxLayout();
     hblayout->setMargin(0);//控件间距
     hblayout->setSpacing(0);//控件间距
     hblayout->addWidget(listWidget);

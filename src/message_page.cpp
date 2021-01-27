@@ -56,7 +56,7 @@ void MessagePage::pageChangeForTheme(const QString& str)
         QString widgetStyleOfAskSheet="QWidget #StyleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetStyleOfAsk->setStyleSheet(widgetStyleOfAskSheet);
         m_pStyleOfAsk->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
-        m_pStyleOfAskCombobox->setThemeDark();
+        //m_pStyleOfAskCombobox->setThemeDark();
 
         QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
@@ -113,7 +113,7 @@ void MessagePage::pageChangeForTheme(const QString& str)
         m_pWidgetStyleOfAsk->setStyleSheet(widgetStyleOfAskSheet);
         m_pStyleOfAsk->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
 
-        m_pStyleOfAskCombobox->setThemeLight();
+        //m_pStyleOfAskCombobox->setThemeLight();
 
         QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
@@ -229,14 +229,18 @@ void MessagePage::pageStyleOfAskRowLocationInit()
     m_pStyleOfAsk->setAlignment(Qt::AlignLeft);
     m_pStyleOfAsk->setAlignment(Qt::AlignVCenter);
 
-    m_pStyleOfAskCombobox = new MyComboBox();
-    m_pStyleOfAskCombobox->listWidget->installEventFilter(this);
+//    m_pStyleOfAskCombobox = new MyComboBox();
+    m_pStyleOfAskCombobox = new QComboBox();
+    m_pStyleOfAskCombobox->setFixedSize(206,40);
+    m_pStyleOfAskCombobox->setStyleSheet("QComboBox { min-height: 30px; }"
+                                "QComboBox QAbstractItemView::item{ min-height: 30px; }");
+    //m_pStyleOfAskCombobox->listWidget->installEventFilter(this);
 
     m_pStyleOfAskCombobox->addItem((tr("System")));//("系统问题")));
     m_pStyleOfAskCombobox->addItem((tr("Suggestion")));//("意见建议")));
     m_pStyleOfAskCombobox->addItem((tr("Bussiness")));//("商务合作")));
     m_pStyleOfAskCombobox->addItem((tr("Others")));//"其他")));
-    connect(m_pStyleOfAskCombobox,SIGNAL(buttonTextChanged()),this,SLOT(styleOfAskCombobox_currentIndexChanged()));
+    connect(m_pStyleOfAskCombobox,SIGNAL(currentIndexChanged(QString)),this,SLOT(styleOfAskCombobox_currentIndexChanged(QString)));
 
     QHBoxLayout *HStyleOfAskLayout = new QHBoxLayout;
     HStyleOfAskLayout->setMargin(0);
@@ -548,10 +552,10 @@ void MessagePage::pageUserDataRowLocationInit()
 *************************************************/
 void MessagePage::pageAllRowLocationInit()
 {
-    success_dialog = new submit_success(this);
-
-    fail_dialog = new submit_fail(this);
-
+    success_dialog = new submit_success();
+    success_dialog->hide();
+    fail_dialog = new submit_fail();
+    fail_dialog->hide();
 
     commitButton = new QPushButton(this);
     commitButton->setFixedSize(64,30);
@@ -658,11 +662,11 @@ void MessagePage::pageAllRowLocationInit()
 *   创建  HZH
 *
 *************************************************/
-void MessagePage::styleOfAskCombobox_currentIndexChanged()
+void MessagePage::styleOfAskCombobox_currentIndexChanged(QString str)
 {
-    qDebug() << m_pStyleOfAskCombobox->getCurrentText();
+    qDebug() << str;
 
-    textStyleOfAsk = m_pStyleOfAskCombobox->getCurrentText();
+    textStyleOfAsk = str;
     qDebug() << textStyleOfAsk;
 
 }
@@ -1155,11 +1159,11 @@ void MessagePage::on_resetButton_clicked()
     m_pStyleOfAskCombobox->setCurrentText(tr("System"));
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
-        m_pStyleOfAskCombobox->setThemeDark();
+        //m_pStyleOfAskCombobox->setThemeDark();
     }
     else
     {
-        m_pStyleOfAskCombobox->setThemeLight();
+        //m_pStyleOfAskCombobox->setThemeLight();
     }
     m_pContentTextEdit->clear();
     m_pMailTextEdit->clear();
@@ -1344,13 +1348,14 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
         qDebug() << bytes_info;
 
 
-        success_dialog->setModal(false);
-
+        success_dialog->setModal(true);
+        success_dialog->show();
 
         QTimer::singleShot(3000, [=](){
 
             set_all_enable_after_submit();
             on_resetButton_clicked();
+            success_dialog->hide();
         });
         //解析JSON 获取uid annex_uid
         //Parsing JSON to get uid annex_uid
@@ -1376,11 +1381,11 @@ void MessagePage::finishedSlot(QNetworkReply *reply)
             fail_dialog->show_faillinfo((int)reply->error());
         else
             fail_dialog->show_faillinfo(4); //timeout
-        fail_dialog->setModal(false);
+        fail_dialog->setModal(true);
 
-        //fail_dialog->show();
+        fail_dialog->show();
         QTimer::singleShot(3000, [=](){
-
+            fail_dialog->hide();
             set_all_enable_after_submit();
         });
     }
@@ -1938,10 +1943,10 @@ void MessagePage::getCodingFormat()
 *************************************************/
 void MessagePage::getSysVersion()
 {
-    string os_info = ": ";
-    string system_info;
-    string system_name;
-    string system_version_id;
+    QString os_info = ": ";
+    QString system_info;
+    QString system_name;
+
     string s;
     ifstream fp("/etc/os-release");
     if (!fp) {
@@ -1954,18 +1959,29 @@ void MessagePage::getSysVersion()
                 //不存在
             } else {
                 string str2 = s.substr(0,idx);
-                if (str2 == "NAME") {
-                    system_name = s.substr(5);
-                } else if(str2 =="VERSION_ID") {
-                    system_version_id = s.substr(11);
+
+                if(str2 == "PRETTY_NAME")
+                {
+                    system_name = QString::fromStdString(s.substr(12));
                 }
             }
         }
-        system_info = os_info +system_name +" " + system_version_id;
+
     }
-    send_os_info = QString::fromStdString(system_name +" " + system_version_id);
-    system_info_str = QString::fromStdString(system_info);
-    system_info_str.remove(QChar('"'), Qt::CaseInsensitive);
+    //#BUG34940 v10专业版os-release原字段与v10混淆，难以区分，更换读取字段
+    if(system_name.contains("Professional",Qt::CaseInsensitive))
+    {
+        system_info_str = os_info + "Kylin v10Pro";
+    }
+    else if(system_name.contains("v10",Qt::CaseInsensitive))
+    {
+        system_info_str = os_info + "Kylin v10";
+    }
+    else if(system_name.contains("UBUNTU",Qt::CaseInsensitive))
+    {
+        system_info_str = os_info + "UbuntuKylin";
+    }
+
     labelSystemVersion_2->setText(system_info_str);
 }
 
@@ -2004,24 +2020,24 @@ bool MessagePage::event(QEvent *event)
     {
         return QWidget::event(event);
     }
-    if(m_pStyleOfAskCombobox->listWidget == nullptr)
-    {
-        return QWidget::event(event);
-    }
+//    if(m_pStyleOfAskCombobox->listWidget == nullptr)
+//    {
+//        return QWidget::event(event);
+//    }
 
-    if (event->type() == QEvent::Leave)
-    {
-        if(mouseIsOutofList())
-        {
-            m_pStyleOfAskCombobox->closeListWidget();
-            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
-        }
-    }
-    else if (event->type() == QEvent::MouseButtonPress)
-    {
-        m_pStyleOfAskCombobox->closeListWidget();
-        m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
-    }
+//    if (event->type() == QEvent::Leave)
+//    {
+//        if(mouseIsOutofList())
+//        {
+//            m_pStyleOfAskCombobox->closeListWidget();
+//            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+//        }
+//    }
+//    else if (event->type() == QEvent::MouseButtonPress)
+//    {
+//        m_pStyleOfAskCombobox->closeListWidget();
+//        m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+//    }
 
     return QWidget::event(event);
 }
@@ -2037,34 +2053,34 @@ bool MessagePage::event(QEvent *event)
 *************************************************/
 bool MessagePage::eventFilter(QObject *obj, QEvent *ev)
 {
-    if(m_pStyleOfAskCombobox == nullptr)
-    {
-        return QWidget::eventFilter(obj,ev);
-    }
-    if(m_pStyleOfAskCombobox->listWidget == nullptr)
-    {
-        return QWidget::eventFilter(obj,ev);
-    }
+//    if(m_pStyleOfAskCombobox == nullptr)
+//    {
+//        return QWidget::eventFilter(obj,ev);
+//    }
+//    if(m_pStyleOfAskCombobox->listWidget == nullptr)
+//    {
+//        return QWidget::eventFilter(obj,ev);
+//    }
 
-    if(ev->type() == QEvent::Leave)
-    {
-        if(obj == m_pStyleOfAskCombobox->listWidget)
-        {
-            m_pStyleOfAskCombobox->closeListWidget();
-            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
-        }
-    }
-    else if (ev->type() == QEvent::KeyPress)
-    {
-            m_pStyleOfAskCombobox->closeListWidget();
-            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
-    }
+//    if(ev->type() == QEvent::Leave)
+//    {
+//        if(obj == m_pStyleOfAskCombobox->listWidget)
+//        {
+//            m_pStyleOfAskCombobox->closeListWidget();
+//            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+//        }
+//    }
+//    else if (ev->type() == QEvent::KeyPress)
+//    {
+//            m_pStyleOfAskCombobox->closeListWidget();
+//            m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+//    }
 
-    if(obj != m_pStyleOfAskCombobox->listWidget)
-    {
-        m_pStyleOfAskCombobox->closeListWidget();
-        m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
-    }
+//    if(obj != m_pStyleOfAskCombobox->listWidget)
+//    {
+//        m_pStyleOfAskCombobox->closeListWidget();
+//        m_pStyleOfAskCombobox->setFocus(Qt::ActiveWindowFocusReason);
+//    }
 
     //其余的事件按照默认(未覆写)的处理方式处理
     return QWidget::eventFilter(obj,ev);

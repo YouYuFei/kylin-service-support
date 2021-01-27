@@ -51,6 +51,7 @@ systemInfoButton::~systemInfoButton()
 *************************************************/
 void systemInfoButton::enterEvent(QEvent *e)
 {
+    Q_UNUSED(e);
     QPointF position = QCursor::pos();
     pBaseWindow->systeminfo_show(position);
 }
@@ -66,6 +67,7 @@ void systemInfoButton::enterEvent(QEvent *e)
 *************************************************/
 void systemInfoButton::leaveEvent(QEvent *e)
 {
+    Q_UNUSED(e);
     pBaseWindow->systeminfo_hide();
 }
 

@@ -24,7 +24,6 @@
 
 #include "widget_parameter_class.h"
 #include "message_page.h"
-#include "stylewidgetshadow.h"
 
 class SimpleStyle : public QWidget
 {

@@ -28,11 +28,8 @@ public:
 
 private slots:
     void on_pushButton_2_clicked();
-    void close_fail_window();
-    void resend_feedbackinfo();
 
 protected:
-    //void paintEvent(QPaintEvent*);
 
 private:
 
