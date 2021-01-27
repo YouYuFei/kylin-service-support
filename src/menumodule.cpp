@@ -216,7 +216,7 @@ void menuModule::helpAction()
     DaemonIpcDbus *ipcDbus = new DaemonIpcDbus();
     if(!ipcDbus->daemonIsNotRunning()){
         // qDebug() << "hahahahahaha" << appName;
-        ipcDbus->showGuide("");
+        ipcDbus->showGuide("kylin-service-support");
     }
 }
 
@@ -224,6 +224,7 @@ void menuModule::initAbout()
 {
     aboutWindow = new QWidget();
     aboutWindow->setAttribute(Qt::WA_ShowModal, true);
+
 //    setWindowModality(Qt::WindowModal);
     // aboutWindow->setWindowFlags(Qt::FramelessWindowHint);
     MotifWmHints hints;

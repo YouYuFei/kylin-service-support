@@ -339,6 +339,6 @@ void DIYSupportPage::on_kylinManual_clicked()
     qDebug() << "+++++++++++++++++++++++++++++++++++++++++++++";
     if (!mDaemonIpcDbus->daemonIsNotRunning()){
         //增加标题栏帮助菜单、F1快捷键打开用户手册
-        mDaemonIpcDbus->showGuide("");
+        mDaemonIpcDbus->showGuide("kylin-service-support");
     }
 }

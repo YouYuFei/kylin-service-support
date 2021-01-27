@@ -85,11 +85,20 @@ HEADERS += \
 
 FORMS +=
 
-TRANSLATIONS += translations/kylin-service-support_zh_CN.ts \
-                translations/kylin-service-support_bo.ts
+TRANSLATIONS += ./translations/kylin-service-support_zh_CN.ts \
+                ./translations/kylin-service-support_bo.ts
 
 
 TARGET = kylin-service-support
+
+message($$system(./translations/generate_translations_pm.sh))
+# translations
+TRANSLATIONS += $$PWD/translations/kylin-service-support_zh_CN.ts
+QM_FILES_INSTALL_PATH = /usr/share/kylin-service-support/translations/
+CONFIG += lrelease
+
+BEFORE_LINK_CMD_LINE = echo Hello world!
+QMAKE_PRE_LINK += $$quote($$BEFORE_LINK_CMD_LINE)
 
 target.path = /usr/bin
 target.source += $$TARGET
@@ -97,13 +106,17 @@ icon.path = /usr/share/pixmaps
 icon.files = kylin-service-support
 desktop.path = /usr/share/applications/
 desktop.files = kylin-service-support.desktop
-qm_files.files = translations/*.qm
-qm_files.path = /usr/share/kylin-service-support/translations/
+translationsFiles.path = /usr/share/kylin-service-support/translations/
+translationsFiles.files += $$PWD/translations/*
+manual.path = /usr/share/kylin-user-guide/data/guide/kylin-service-support
+manual.files += $$PWD/data/kylin-service-support/*
+
 
 INSTALLS += target \
             icon \
             desktop \
-            qm_files
+            translationsFiles \
+            manual
 
 DISTFILES +=
 

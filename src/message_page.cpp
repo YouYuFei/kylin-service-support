@@ -61,33 +61,33 @@ void MessagePage::pageChangeForTheme(const QString& str)
         QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
         m_pTitleOfAsk->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
-        m_pContentTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;");
+//        m_pContentTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;");
         m_pDetailTextLetterLimit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 14px;color: rgba(96, 98, 101, 1);"));
         QString widgetUserDataSheet="QWidget #UserData{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetUserData->setStyleSheet(widgetUserDataSheet);
         m_pUserData->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
-        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+//        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
         QString widgetMailSheet="QWidget #WidgetMail{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetMail->setStyleSheet(widgetMailSheet);
         m_pMail->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+//        m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
         QString widgetLogSheet="QWidget #WidgetLog{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetLog->setStyleSheet(widgetLogSheet);
         m_pLog->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
-        m_pTrueSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
-        m_pFalseSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
+//        m_pTrueSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
+//        m_pFalseSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
         QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgba(31, 32, 34, 1);border-radius:6px;}";
         m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
 
-        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(31, 32, 34, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}"
-                                   "QPushButton#resetButton:hover{background:rgba(72, 72, 76, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}"
-                                   "QPushButton#resetButton:pressed{background:rgba(72, 72, 76, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}");
-        m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
-                                                  ""));
-        showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
+//        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(31, 32, 34, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}"
+//                                   "QPushButton#resetButton:hover{background:rgba(72, 72, 76, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}"
+//                                   "QPushButton#resetButton:pressed{background:rgba(72, 72, 76, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(96, 98, 101, 1);border-style: solid;border-radius:4px;}");
+//        m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
+//                                                  ""));
+        showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;color:rgba(112, 149, 255, 1)"));
         verticalWidget->setStyleSheet(QString::fromUtf8("background-color: rgba(61, 61, 65, 1);\n"
                                                         "border-top-left-radius:4px;\n"
                                                         "\n"
@@ -118,33 +118,33 @@ void MessagePage::pageChangeForTheme(const QString& str)
         QString widgetTitleOfAskSheet="QWidget #TitleOfAsk{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetTitleOfAsk->setStyleSheet(widgetTitleOfAskSheet);
         m_pTitleOfAsk->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-        m_pContentTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
+//        m_pContentTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;");
         m_pDetailTextLetterLimit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 14px;color: rgba(192, 196, 204, 1);"));
         QString widgetUserDataSheet="QWidget #UserData{background-color:rgbargba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetUserData->setStyleSheet(widgetUserDataSheet);
         m_pUserData->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+//        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
         QString widgetMailSheet="QWidget #WidgetMail{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetMail->setStyleSheet(widgetMailSheet);
         m_pMail->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+//        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
         QString widgetLogSheet="QWidget #WidgetLog{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetLog->setStyleSheet(widgetLogSheet);
         m_pLog->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
-        m_pTrueSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
-        m_pFalseSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
+//        m_pTrueSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
+//        m_pFalseSyslogCheckBox->setStyleSheet(QString::fromUtf8("font: 14px;color:rgba(143, 147, 153, 1);\n"));
         QString widgetUserDataWidgetSheet="QWidget #UserData{background-color:rgba(255, 255, 255, 1);border-radius:6px;}";
         m_pWidgetUserDataWidget->setStyleSheet(widgetUserDataWidgetSheet);
 
-        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}"
-                                           "QPushButton#resetButton:hover{background:rgba(242, 246, 253, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}"
-                                           "QPushButton#resetButton:pressed{background:rgba(242, 246, 253, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}");
-        m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
-                                                  ""));
-        showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 12px;color:rgba(112, 149, 255, 1)"));
+//        resetButton->setStyleSheet("QPushButton#resetButton{background:rgba(221, 223, 231, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}"
+//                                           "QPushButton#resetButton:hover{background:rgba(242, 246, 253, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}"
+//                                           "QPushButton#resetButton:pressed{background:rgba(242, 246, 253, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-width:1px;border-color:#DDDFE7;border-style: solid;border-radius:4px;}");
+//        m_pUserPermission->setStyleSheet(QString::fromUtf8("font: 12px;color:rgba(96, 98, 101, 1);\n"
+//                                                  ""));
+        showInfoButton->setStyleSheet(QString::fromUtf8("background-color:transparent;color:rgba(112, 149, 255, 1)"));
         verticalWidget->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255);\n"
                                                         "border-top-left-radius:4px;\n"
                                                         "\n"
@@ -285,7 +285,7 @@ void MessagePage::pageContentOfAskRowLocationInit()
     m_pContentTextEdit = new QTextEdit(m_pTitleOfAsk);
 
     m_pContentTextEdit->setFixedSize(634,180);
-    m_pContentTextEdit->setFrameShape(QFrame::NoFrame);
+//    m_pContentTextEdit->setFrameShape(QFrame::NoFrame);
     m_pContentTextEdit->setAlignment(Qt::AlignVCenter);
     m_pContentTextEdit->setPlaceholderText(tr("* Please describe your problem, also can add attachments.\n* Now support format *.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx"));
     //tr("* 请详细描述要咨询的问题详情,必要可添加附件\n* 目前支持的格式仅有*.gif *.jpg *.png *.pptx *.wps *.xlsx *.pdf *.txt *.docx"));
@@ -600,7 +600,7 @@ void MessagePage::pageAllRowLocationInit()
 
     showInfoButton = new systemInfoButton(this);
     showInfoButton->setText(tr("System Info"));//"系统信息"));
-    showInfoButton->move(172,525);
+    showInfoButton->move(200,525);
     showInfoButton->setFeedBack(this);
     showInfoButton->setFlat(true);
     showInfoButton->setEnabled(false);
@@ -738,11 +738,13 @@ void MessagePage::mailTextEdit_textChanged()
         mailFormatFlag = false;
         if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
         {
-            m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+//            m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+            m_pMailTextEdit->setStyleSheet("color:rgba(96, 98, 101, 1);");
         }
         else
         {
-            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+//            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+            m_pMailTextEdit->setStyleSheet("color:rgba(143, 147, 153, 1);");
         }
     }
     else if(false == mailFormatFlag)
@@ -758,11 +760,13 @@ void MessagePage::mailTextEdit_textChanged()
 
             if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
             {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+//                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+                m_pMailTextEdit->setStyleSheet("color:rgba(96, 98, 101, 1);");
             }
             else
             {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+//                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+                m_pMailTextEdit->setStyleSheet("color:rgba(143, 147, 153, 1);");
             }
             m_pMailFormatErr->hide();
             mailFormatFlag = true;
@@ -1211,12 +1215,14 @@ void MessagePage::on_commitButton_clicked()
     QRegExpValidator v(rx, 0);
     if (2==v.validate(mailText,pos))
     {
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+//        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+        m_pMailTextEdit->setStyleSheet("color:rgba(143, 147, 153, 1);");
         m_pMailFormatErr->hide();
         mailFormatFlag = true;
     }
     else {
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border:1px solid:rgba(245, 108, 108, 1);border-radius:4px");
+//        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border:1px solid:rgba(245, 108, 108, 1);border-radius:4px");
+        m_pMailTextEdit->setStyleSheet("color:rgba(143, 147, 153, 1);border:1px solid:rgba(245, 108, 108, 1)");
         mailFormatFlag = false;
         m_pMailFormatErr->show();
     }
@@ -1797,7 +1803,7 @@ void MessagePage::uploadFile_afterButtonClicked()
         if(uploadFileNameList.size()>=5)
         {
             m_pUserDataPushButton->setEnabled(false);
-            m_pUserDataPushButton->setStyleSheet("QPushButton#resetButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-radius:4px;}");
+//            m_pUserDataPushButton->setStyleSheet("QPushButton#resetButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(143, 147, 153, 1);border-radius:4px;}");
         }
     }
 }
@@ -1856,16 +1862,16 @@ void MessagePage::removeUploadFileNameListFile(QPushButton* btn)
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;}");
-        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+//        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
     }
     else
     {
         m_pUserDataLimit->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:14px;}");
-        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+//        m_pUserDataPushButton->setStyleSheet("QPushButton#m_pUserDataPushButton{background-color:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                             "QPushButton#m_pUserDataPushButton:hover{background-color:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                             "QPushButton#m_pUserDataPushButton:pressed{background-color:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
     }
 }
 
@@ -2121,11 +2127,13 @@ void MessagePage::mailTextEditFoucusIn()
     qDebug() << "mailTextEditFoucusIn";
     if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
     {
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(112, 149, 255, 1);border-style: solid;border-radius:4px;");
+//        m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(112, 149, 255, 1);border-style: solid;border-radius:4px;");
+        m_pMailTextEdit->setStyleSheet("color:rgba(96, 98, 101, 1);border-width:1px;border-color:rgba(112, 149, 255, 1);border-style: solid;");
     }
     else
     {
-        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(112, 149, 255, 1);border-style: solid;border-radius:4px;");
+//        m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(112, 149, 255, 1);border-style: solid;border-radius:4px;");
+        m_pMailTextEdit->setStyleSheet("color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(112, 149, 255, 1);border-style: solid;border-radius:4px;");
     }
 }
 /************************************************
@@ -2147,11 +2155,13 @@ void MessagePage::mailTextEditFoucusOut()
         mailFormatFlag = false;
         if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
         {
-            m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+//            m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+            m_pMailTextEdit->setStyleSheet("color:rgba(96, 98, 101, 1);");
         }
         else
         {
-            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+//            m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+            m_pMailTextEdit->setStyleSheet("color:rgba(143, 147, 153, 1);");
         }
     }
     else
@@ -2167,11 +2177,13 @@ void MessagePage::mailTextEditFoucusOut()
 
             if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
             {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+//                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;");
+                m_pMailTextEdit->setStyleSheet("color:rgba(96, 98, 101, 1);");
             }
             else
             {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+//                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;");
+                m_pMailTextEdit->setStyleSheet("color:rgba(143, 147, 153, 1);");
             }
             m_pMailFormatErr->hide();
             mailFormatFlag = true;
@@ -2181,11 +2193,13 @@ void MessagePage::mailTextEditFoucusOut()
         {
             if("ukui-dark" == currentTheme || "ukui-black" == currentTheme)
             {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(237, 100, 100, 1);border-style: solid;border-radius:4px;");
+//                m_pMailTextEdit->setStyleSheet("background-color:rgba(49, 50, 52, 1);color:rgba(96, 98, 101, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(237, 100, 100, 1);border-style: solid;border-radius:4px;");
+                m_pMailTextEdit->setStyleSheet("color:rgba(96, 98, 101, 1);border-width:1px;border-color:rgba(237, 100, 100, 1);border-style: solid;");
             }
             else
             {
-                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(237, 100, 100, 1);border-style: solid;border-radius:4px;");
+//                m_pMailTextEdit->setStyleSheet("background-color:rgba(143, 147, 153, 0.08);color:rgba(143, 147, 153, 1);font-size:14px;border-radius:4px;border-width:1px;border-color:rgba(237, 100, 100, 1);border-style: solid;border-radius:4px;");
+                m_pMailTextEdit->setStyleSheet("color:rgba(143, 147, 153, 1);border-width:1px;border-color:rgba(237, 100, 100, 1);border-style: solid;border-radius:4px;");
             }
             mailFormatFlag = false;
             m_pMailFormatErr->show();
@@ -2223,30 +2237,30 @@ void MessagePage::commitButtonStyleSet()
         qDebug() << "当前为深色主题";
         if(false == commitButtonClickable)
         {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:#48484C;font-size:14px;color:rgba(143, 147, 153, 1);}");
+//            commitButton->setStyleSheet("QPushButton#commitButton{background:#48484C;font-size:14px;color:rgba(143, 147, 153, 1);}");
             commitButton->setEnabled(false);
         }
         else
         {
             commitButton->setEnabled(true);
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                        "QPushButton#commitButton:hover{background:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                        "QPushButton#commitButton:pressed{background:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+//            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                        "QPushButton#commitButton:hover{background:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                        "QPushButton#commitButton:pressed{background:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
         }
     }
     else
     {
         if(false == commitButtonClickable)
         {
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+//            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(192, 196, 204, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
             commitButton->setEnabled(false);
         }
         else
         {
             commitButton->setEnabled(true);
-            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                        "QPushButton#commitButton:hover{background:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
-                                        "QPushButton#commitButton:pressed{background:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
+//            commitButton->setStyleSheet("QPushButton#commitButton{background:rgba(112, 149, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                        "QPushButton#commitButton:hover{background:rgba(149, 176, 255, 1);font-size:14px;color:rgba(255, 255, 255, 1);}"
+//                                        "QPushButton#commitButton:pressed{background:rgba(73, 112, 222, 1);font-size:14px;color:rgba(255, 255, 255, 1);}");
         }
     }
 }

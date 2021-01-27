@@ -1,8 +1,23 @@
+kylin-service-support (1.0.16kord~rc13) v101; urgency=medium
+
+    *  留言页面去掉控件样式
+
+ -- hanzehui <hanzehui@kylinos.cn>  Wed, 27 Jan 2021 16:57:40 +0800
+
 kylin-service-support (1.0.16kord~rc12) v101; urgency=medium
 
-    * 打开日志，定位错误输出。
+    *  #BUG 34940 【麒麟服务与支持工具】留言咨询中的系统信息内容显示错误
+    *  #BUG 36106 【麒麟服务与支持】英文系统，正常网络情况下，提交建议失败，同一时间对比龙芯架构机器无此问题
+    *  #BUG 36092 【麒麟服务与支持】打开麒麟服务与支持，点击帮助后打开的用户手册显示主界面，没有定位到麒麟服务与支持的位置
+    *  #BUG 34940 【麒麟服务与支持工具】留言咨询中的系统信息内容显示错误 
+    *  主题接入
+    *  修改左侧引导栏样式
+    *  修改下拉框样式
+    *  模态窗口
+    *  qm文件去除，自动生成
+    *  添加用户手册
 
- -- hanzehui <hanzehui@kylinos.cn>  Tue, 26 Jan 2021 14:57:40 +0800
+ -- hanzehui <hanzehui@kylinos.cn>  Wed, 27 Jan 2021 14:57:40 +0800
 
 kylin-service-support (1.0.16kord~rc11) v101; urgency=medium
 

@@ -62,7 +62,7 @@ void submit_fail::UI_init()
     body->setFixedSize(236,60);
     body->setObjectName("body");
     body->setLayout(vlt_menu);
-    body->setStyleSheet("QWidget{background-color:rgba(61, 61, 65, 1);}");
+//    body->setStyleSheet("QWidget{background-color:rgba(61, 61, 65, 1);}");
 
 
     QHBoxLayout *hlt_fail=new QHBoxLayout;//窗体内部，水平布局
@@ -96,12 +96,12 @@ void submit_fail::pageChangeForTheme(const QString& str)
     if("ukui-dark" == str || "ukui-black" == str)
     {
         body->setStyleSheet("QWidget{background-color:rgba(61, 61, 65, 1);}");
-        label->setStyleSheet(QString::fromUtf8("color:rgba(192, 196, 204, 1);font: 16px;\n"));
+//        label->setStyleSheet(QString::fromUtf8("color:rgba(192, 196, 204, 1);font: 16px;\n"));
     }
     else
     {
         body->setStyleSheet("QWidget{background-color:rgba(255, 255, 255, 1);}");
-        label->setStyleSheet(QString::fromUtf8("color:rgba(48, 49, 51, 1);font: 16px;\n"));
+//        label->setStyleSheet(QString::fromUtf8("color:rgba(48, 49, 51, 1);font: 16px;\n"));
     }
 }
 
