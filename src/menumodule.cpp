@@ -216,7 +216,7 @@ void menuModule::helpAction()
     DaemonIpcDbus *ipcDbus = new DaemonIpcDbus();
     if(!ipcDbus->daemonIsNotRunning()){
         // qDebug() << "hahahahahaha" << appName;
-        ipcDbus->showGuide("kylin-service-support");
+        ipcDbus->showGuide(appName);
     }
 }
 

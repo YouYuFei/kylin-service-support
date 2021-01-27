@@ -600,7 +600,7 @@ void BaseStyle::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_F1)
     {
         if(!m_pDaemonIpcDbus->daemonIsNotRunning()){
-            m_pDaemonIpcDbus->showGuide("");
+            m_pDaemonIpcDbus->showGuide("kylin-service-support");
         }
     }
 }
