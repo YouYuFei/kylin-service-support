@@ -7,6 +7,7 @@
 *   创建  HZH
 *************************************************/
 #include "base_style.h"
+#include "highlight-effect.h"
 
 /************************************************
 * 函数名称：BaseStyle(WidgetParameterClass basicParameter, QString dialogTitleText)
@@ -346,7 +347,8 @@ void BaseStyle::myWidgetTabInit()
     m_pMainPageButton->setFixedSize(132,32);
     m_pMainPageButton->setIcon(QIcon::fromTheme("view-dual-symbolic"));//主题库的图标
     m_pMainPageButton->setProperty("isWindowButton", QPalette::Highlight);
-    m_pMainPageButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pMainPageButton->setProperty("useIconHighlightEffect", 0x4);
+    m_pMainPageButton->setProperty("useIconHighlightEffect", HighLightEffect::ordinaryHighLight);
     m_pMainPageButton->setFlat(true);
     m_pMainPageButton->setCheckable(true);
     m_pMainPageButton->setAutoExclusive(true);
@@ -361,7 +363,8 @@ void BaseStyle::myWidgetTabInit()
     m_pMessagePageButton->setFixedSize(132,32);
     m_pMessagePageButton->setIcon(QIcon::fromTheme("document-edit-symbolic"));//主题库的图标
     m_pMessagePageButton->setProperty("isWindowButton", QPalette::Highlight);
-    m_pMessagePageButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pMessagePageButton->setProperty("useIconHighlightEffect", 0x4);
+    m_pMessagePageButton->setProperty("useIconHighlightEffect", HighLightEffect::ordinaryHighLight);
     m_pMessagePageButton->setFlat(true);
     m_pMessagePageButton->setCheckable(true);
     m_pMessagePageButton->setAutoExclusive(true);
@@ -376,7 +379,8 @@ void BaseStyle::myWidgetTabInit()
     m_pContactButton->setFixedSize(132,32);
     m_pContactButton->setIcon(QIcon::fromTheme("call-start-symbolic"));//主题库的图标
     m_pContactButton->setProperty("isWindowButton", QPalette::Highlight);
-    m_pContactButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pContactButton->setProperty("useIconHighlightEffect", 0x4);
+    m_pContactButton->setProperty("useIconHighlightEffect", HighLightEffect::ordinaryHighLight);
     m_pContactButton->setFlat(true);
     m_pContactButton->setCheckable(true);
     m_pContactButton->setAutoExclusive(true);
@@ -391,7 +395,8 @@ void BaseStyle::myWidgetTabInit()
     m_pDIYButton->setFixedSize(132,32);
     m_pDIYButton->setIcon(QIcon::fromTheme("system-search-symbolic"));//主题库的图标
     m_pDIYButton->setProperty("isWindowButton", QPalette::Highlight);
-    m_pDIYButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pDIYButton->setProperty("useIconHighlightEffect", 0x4);
+    m_pDIYButton->setProperty("useIconHighlightEffect", HighLightEffect::ordinaryHighLight);
     m_pDIYButton->setFlat(true);
     m_pDIYButton->setCheckable(true);
     m_pDIYButton->setAutoExclusive(true);
@@ -406,7 +411,8 @@ void BaseStyle::myWidgetTabInit()
     m_pOnlineButton->setFixedSize(132,32);
     m_pOnlineButton->setIcon(QIcon::fromTheme("contact-new-symbolic"));//主题库的最小化图标
     m_pOnlineButton->setProperty("isWindowButton", QPalette::Highlight);
-    m_pOnlineButton->setProperty("useIconHighlightEffect", 0x08);
+    m_pOnlineButton->setProperty("useIconHighlightEffect", 0x4);
+    m_pOnlineButton->setProperty("useIconHighlightEffect", HighLightEffect::ordinaryHighLight);
     m_pOnlineButton->setFlat(true);
     m_pOnlineButton->setCheckable(true);
     m_pOnlineButton->setAutoExclusive(true);

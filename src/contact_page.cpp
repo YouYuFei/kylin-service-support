@@ -63,13 +63,13 @@ void ContactPage::pageChangeForTheme(const QString& str)
         QString bodyStyleSheet="QWidget #body{background-color:rgba(49, 50, 52, 1);}";
         body->setStyleSheet(bodyStyleSheet);
         m_pContactUs->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:16px;");
-        m_pKylinTeam_1->setStyleSheet("border-image:url(:/data/icon_team_d.png);border:0px;");
+//        m_pKylinTeam_1->setStyleSheet("border-image:url(:/data/icon_team_d.png);border:0px;");
         m_pKylinTeam_2->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
         m_pKylinTeam_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;");
-        m_pTel_1->setStyleSheet("border-image:url(:/data/icon_contact_d.png);border:0px;");
+//        m_pTel_1->setStyleSheet("border-image:url(:/data/icon_contact_d.png);border:0px;");
         m_pTel_2->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
         m_pTel_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;");
-        m_pMail_1->setStyleSheet("border-image:url(:/data/mail_d.png);border:0px;");
+//        m_pMail_1->setStyleSheet("border-image:url(:/data/mail_d.png);border:0px;");
         m_pMail_2->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
         m_pMail_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;");
         m_pQRCode_2->setStyleSheet("background-color:transparent;color:rgba(192, 196, 204, 1);font-size:14px;");
@@ -79,13 +79,13 @@ void ContactPage::pageChangeForTheme(const QString& str)
         QString bodyStyleSheet="QWidget #body{background-color:rgba(246, 247, 247, 1);}";
         body->setStyleSheet(bodyStyleSheet);
         m_pContactUs->setStyleSheet("background-color:transparent;color:rgba(96, 98, 101, 1);font-size:16px;");
-        m_pKylinTeam_1->setStyleSheet("border-image:url(:/data/icon_team.png);border:0px;");
+//        m_pKylinTeam_1->setStyleSheet("border-image:url(:/data/icon_team.png);border:0px;");
         m_pKylinTeam_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pKylinTeam_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;");
-        m_pTel_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
+//        m_pTel_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
         m_pTel_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pTel_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;");
-        m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
+//        m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
         m_pMail_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pMail_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:14px;");
         m_pQRCode_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
@@ -118,6 +118,9 @@ void ContactPage::contactPageUIInit()
 
     m_pKylinTeam_1 = new QLabel;
     m_pKylinTeam_1->setFixedSize(18,18);
+    QIcon icon = QIcon::fromTheme("stock-people-symbolic");
+    m_pKylinTeam_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pKylinTeam_1->setPixmap(icon.pixmap(QSize(18,18)));
 
 
     m_pKylinTeam_2 = new QLabel;
@@ -135,6 +138,9 @@ void ContactPage::contactPageUIInit()
 
     m_pTel_1 = new QLabel;
     m_pTel_1->setFixedSize(18,18);
+    QIcon icon1 = QIcon::fromTheme("call-stop-symbolic");
+    m_pTel_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pTel_1->setPixmap(icon1.pixmap(QSize(18,18)));
 
     m_pTel_2 = new QLabel;
     m_pTel_2->adjustSize();//setFixedSize(28,20);
@@ -151,6 +157,9 @@ void ContactPage::contactPageUIInit()
 
     m_pMail_1 = new QLabel;
     m_pMail_1->setFixedSize(18,18);
+    QIcon icon2 = QIcon::fromTheme("mail-send-receive-symbolic");
+    m_pMail_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pMail_1->setPixmap(icon2.pixmap(QSize(18,18)));
 
     m_pMail_2 = new QLabel;
     m_pMail_2->adjustSize();//setFixedSize(28,20);

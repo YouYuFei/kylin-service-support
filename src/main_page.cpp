@@ -92,7 +92,11 @@ void MainPage::pageLocationInit()
 
     m_pOnline_1 = new QLabel;
     m_pOnline_1->setFixedSize(16,16);
-    m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
+    QIcon icon = QIcon::fromTheme("address-book-new-symbolic");
+    m_pOnline_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pOnline_1->setPixmap(icon.pixmap(QSize(16,16)));
+    m_pOnline_1->setScaledContents(true);
+//    m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
 
     m_pOnline_2 = new QLabel;
     m_pOnline_2->adjustSize();//->setFixedSize(56,20);
@@ -134,7 +138,11 @@ void MainPage::pageLocationInit()
 
     m_pTelphone_1 = new QLabel;
     m_pTelphone_1->setFixedSize(16,16);
-    m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
+    QIcon icon1 = QIcon::fromTheme("audio-headset-symbolic");
+    m_pTelphone_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pTelphone_1->setPixmap(icon1.pixmap(QSize(16,16)));
+    m_pTelphone_1->setScaledContents(true);
+//    m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
 
     m_pTelphone_2 = new QLabel;
     m_pTelphone_2->adjustSize();//setFixedSize(56,20);
@@ -176,7 +184,11 @@ void MainPage::pageLocationInit()
 
     m_pMail_1 = new QLabel;
     m_pMail_1->setFixedSize(16,16);
-    m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
+    QIcon icon2 = QIcon::fromTheme("mail-app-symbolic");
+    m_pMail_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pMail_1->setPixmap(icon2.pixmap(QSize(16,16)));
+    m_pMail_1->setScaledContents(true);
+//    m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
 
     m_pMail_2 = new QLabel;
     m_pMail_2->adjustSize();//->setFixedSize(56,20);
@@ -218,7 +230,11 @@ void MainPage::pageLocationInit()
 
     m_pWeChat_1 = new QLabel;
     m_pWeChat_1->setFixedSize(16,16);
-    m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
+    QIcon icon3 = QIcon::fromTheme("call-stop-symbolic");
+    m_pWeChat_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pWeChat_1->setPixmap(icon3.pixmap(QSize(16,16)));
+    m_pWeChat_1->setScaledContents(true);
+//    m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
 
     m_pWeChat_2 = new QLabel;
     m_pWeChat_2->adjustSize();//->setFixedSize(56,20);
@@ -261,7 +277,11 @@ void MainPage::pageLocationInit()
 
     m_pDIY_1 = new QLabel;
     m_pDIY_1->setFixedSize(16,16);
-    m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1.png);border:0px;");
+    QIcon icon4 = QIcon::fromTheme("view-paged-symbolic");
+    m_pDIY_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pDIY_1->setPixmap(icon4.pixmap(QSize(16,16)));
+    m_pDIY_1->setScaledContents(true);
+//    m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1.png);border:0px;");
 
     m_pDIY_2 = new QLabel;
     m_pDIY_2->adjustSize();//->setFixedSize(56,20);
@@ -411,19 +431,19 @@ void MainPage::pageChangeForTheme(const QString& str)
         m_pMoreInfoLink_2->setStyleSheet("color:rgba(112, 149, 255, 1);font-size:12px;");
         m_pMoreInfoLink_3->setStyleSheet("color:rgba(143, 147, 153, 1);font-size:12px;");
         m_pPageTitle->setStyleSheet("color:rgba(192, 196, 204, 1);font-size:12px;");
-        m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx_d.png);border:0px;");
+//        m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx_d.png);border:0px;");
         m_pOnline_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
         m_pOnline_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-        m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
+//        m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu_d.png);border:0px;");
         m_pTelphone_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
         m_pTelphone_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-        m_pMail_1->setStyleSheet("border-image:url(:/data/mail_d.png);border:0px;");
+//        m_pMail_1->setStyleSheet("border-image:url(:/data/mail_d.png);border:0px;");
         m_pMail_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
         m_pMail_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-        m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact_d.png);border:0px;");
+//        m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact_d.png);border:0px;");
         m_pWeChat_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
         m_pWeChat_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-        m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1_d.png);border:0px;");
+//        m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1_d.png);border:0px;");
         m_pDIY_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
         m_pDIY_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
 
@@ -434,19 +454,19 @@ void MainPage::pageChangeForTheme(const QString& str)
         m_pMoreInfoLink_2->setStyleSheet("color:rgba(112, 149, 255, 1);font-size:12px;");
         m_pMoreInfoLink_3->setStyleSheet("color:rgba(48, 49, 51, 1);font-size:12px;");
         m_pPageTitle->setStyleSheet("color:rgba(96, 98, 101, 1);font-size:12px;");
-        m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
+//        m_pOnline_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
         m_pOnline_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pOnline_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-        m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
+//        m_pTelphone_1->setStyleSheet("border-image:url(:/data/icon_kefu.png);border:0px;");
         m_pTelphone_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pTelphone_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-        m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
+//        m_pMail_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
         m_pMail_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pMail_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-        m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
+//        m_pWeChat_1->setStyleSheet("border-image:url(:/data/icon_contact.png);border:0px;");
         m_pWeChat_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pWeChat_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
-        m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1.png);border:0px;");
+//        m_pDIY_1->setStyleSheet("border-image:url(:/data/icon_support1.png);border:0px;");
         m_pDIY_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pDIY_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
 

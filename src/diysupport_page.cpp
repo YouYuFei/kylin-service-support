@@ -71,14 +71,14 @@ void DIYSupportPage::pageChangeForTheme(const QString& str)
                                       "MyClickWidget:hover{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}"
                                       "MyClickWidget:pressed{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}";
         officialWeb->setStyleSheet(officialWebStyleSheet);
-        m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx_d.png);border:0px;");
+//        m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx_d.png);border:0px;");
         m_pKylinOfficialWeb_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
         m_pKylinOfficialWeb_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
         QString kylinManualStyleSheet="MyClickWidget{background-color:rgba(49, 50, 52, 1);border-radius:6px;}"
                                       "MyClickWidget:hover{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}"
                                       "MyClickWidget:pressed{background-color:rgba(112, 149, 255, 0.2);border-radius:6px;}";
         kylinManual->setStyleSheet(kylinManualStyleSheet);
-        m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail_d.png);border:0px;");
+//        m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail_d.png);border:0px;");
         m_pKylinManual_2->setStyleSheet("background-color:transparent;color:rgba(249, 249, 249, 1);font-size:14px;");
         m_pKylinManual_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
 
@@ -94,14 +94,14 @@ void DIYSupportPage::pageChangeForTheme(const QString& str)
                                       "MyClickWidget:hover{background-color:rgba(149, 176, 255, 0.16);border-radius:6px;}"
                                       "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 0.16);border-radius:6px;}";
         officialWeb->setStyleSheet(officialWebStyleSheet);
-        m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
+//        m_pKylinOfficialWeb_1->setStyleSheet("border-image:url(:/data/icon_wx.png);border:0px;");
         m_pKylinOfficialWeb_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pKylinOfficialWeb_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
         QString kylinManualStyleSheet="MyClickWidget{background-color:rgba(246, 247, 247, 1);border-radius:6px;}"
                                       "MyClickWidget:hover{background-color:rgba(149, 176, 255, 0.16);border-radius:6px;}"
                                       "MyClickWidget:pressed{background-color:rgba(149, 176, 255, 0.16);border-radius:6px;}";
         kylinManual->setStyleSheet(kylinManualStyleSheet);
-        m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
+//        m_pKylinManual_1->setStyleSheet("border-image:url(:/data/mail.png);border:0px;");
         m_pKylinManual_2->setStyleSheet("background-color:transparent;color:rgba(48, 49, 51, 1);font-size:14px;");
         m_pKylinManual_3->setStyleSheet("background-color:transparent;color:rgba(143, 147, 153, 1);font-size:12px;");
 
@@ -152,6 +152,9 @@ void DIYSupportPage::pageLocationInit()
     m_pKylinOfficialWeb_1 = new QLabel;
     m_pKylinOfficialWeb_1->setFixedSize(18,18);
     m_pKylinOfficialWeb_1->setAttribute(Qt::WA_TransparentForMouseEvents);
+    QIcon icon1 = QIcon::fromTheme("media-view-subtitles-symbolic");
+    m_pKylinOfficialWeb_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pKylinOfficialWeb_1->setPixmap(icon1.pixmap(QSize(18,18)));
 
     m_pKylinOfficialWeb_2 = new QLabel;
     m_pKylinOfficialWeb_2->adjustSize();//->setFixedSize(84,20);
@@ -176,6 +179,9 @@ void DIYSupportPage::pageLocationInit()
 
     m_pKylinManual_1 = new QLabel;
     m_pKylinManual_1->setFixedSize(18,18);
+    QIcon icon = QIcon::fromTheme("document-send-symbolic");
+    m_pKylinManual_1->setProperty("useIconHighlightEffect", 0x8);
+    m_pKylinManual_1->setPixmap(icon.pixmap(QSize(18,18)));
 
     m_pKylinManual_2 = new QLabel;
     m_pKylinManual_2->adjustSize();//->setFixedSize(56,20);
