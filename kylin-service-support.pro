@@ -48,10 +48,8 @@ SOURCES += \
     src/mainwindow.cpp \
     src/menumodule.cpp \
     src/message_page.cpp \
-    src/my_combobox.cpp \
     src/my_qlineedit.cpp \
     src/myclick_widget.cpp \
-    src/simple_style.cpp \
     src/submitFail.cpp \
     src/submitSuccess.cpp \
     src/systeminfo_button.cpp \
@@ -72,10 +70,8 @@ HEADERS += \
     src/mainwindow.h \
     src/menumodule.h \
     src/message_page.h \
-    src/my_combobox.h \
     src/my_qlineedit.h \
     src/myclick_widget.h \
-    src/simple_style.h \
     src/submitFail.h \
     src/submitSuccess.h \
     src/systeminfo_button.h \

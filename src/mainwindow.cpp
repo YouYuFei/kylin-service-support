@@ -44,16 +44,7 @@ MainWindow::MainWindow()
     }
     else
     {
-        simpleWindow = new SimpleStyle(basicParameter , windowTitle);
-
-        // 添加窗管协议
-        MotifWmHints hints;
-        hints.flags = MWM_HINTS_FUNCTIONS|MWM_HINTS_DECORATIONS;
-        hints.functions = MWM_FUNC_ALL;
-        hints.decorations = MWM_DECOR_BORDER;
-        XAtomHelper::getInstance()->setWindowMotifHint(simpleWindow->winId(), hints);
-
-        simpleWindow->show();
+        exit(0);
     }
 
     initGsetting();
@@ -151,14 +142,9 @@ void MainWindow::setThemeStyle()
     }
 
     qDebug() << "设置程序主题模式为" << nowThemeStyle;
-    if(multiFunc)
-    {
-        basicWindow->pageChangeForTheme(nowThemeStyle);
-    }
-    else
-    {
-        simpleWindow->pageChangeForTheme(nowThemeStyle);
-    }
+
+    basicWindow->pageChangeForTheme(nowThemeStyle);
+
 }
 /************************************************
 * 函数名称：pullUpWindow
