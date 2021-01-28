@@ -224,7 +224,7 @@ void menuModule::initAbout()
 {
     aboutWindow = new QWidget();
     aboutWindow->setWindowFlag(Qt::Tool);
-//    aboutWindow->setAttribute(Qt::WA_ShowModal, true);
+    aboutWindow->setAttribute(Qt::WA_ShowModal, true);
 
 //    setWindowModality(Qt::WindowModal);
     // aboutWindow->setWindowFlags(Qt::FramelessWindowHint);
