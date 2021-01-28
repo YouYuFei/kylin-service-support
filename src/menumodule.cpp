@@ -34,6 +34,10 @@ void menuModule::init()
 
 void menuModule::initAction()
 {
+    bodySupport = new QLabel();
+    titleText = new QLabel();
+    bodyAppName = new QLabel();
+    bodyAppVersion = new QLabel();
     iconSize = QSize(30,30);
     menuButton = new QToolButton(this);
     menuButton->setProperty("isWindowButton", 0x1);
@@ -267,7 +271,6 @@ QHBoxLayout* menuModule::initTitleBar()
     titleBtnClose->setFlat(true);
     connect(titleBtnClose,&QPushButton::clicked,[=](){aboutWindow->close();});
     
-    QLabel* titleText = new QLabel();
     titleText->setText(tr(appShowingName.toLocal8Bit()));
     titleText->setStyleSheet("font-size:14px;");
     
@@ -292,26 +295,22 @@ QVBoxLayout* menuModule::initBody()
     bodyIcon->setPixmap(QIcon::fromTheme("kylin-service-support").pixmap(bodyIcon->size()));
     // bodyIcon->setStyleSheet("font-size:14px;");
     // bodyIcon->setScaledContents(true);
-    QLabel* bodyAppName = new QLabel();
+
     bodyAppName->setFixedHeight(28);
     bodyAppName->setText(tr(appShowingName.toLocal8Bit()));
     bodyAppName->setStyleSheet("font-size:18px;");
-    QLabel* bodyAppVersion = new QLabel();
+
     bodyAppVersion->setFixedHeight(24);
     bodyAppVersion->setText(tr("Version: ") + appVersion);
     bodyAppVersion->setAlignment(Qt::AlignLeft);
     bodyAppVersion->setStyleSheet("font-size:14px;");
-    QLabel* bodySupport = new QLabel();
-    bodySupport->setText(tr("Service & Support: ") +
-                             "<a href=\"mailto://support@kylinos.cn\""
-                             "style=\"color:palttte(buttonText)\">"
-                             "support@kylinos.cn</a>");
-        connect(bodySupport,&QLabel::linkActivated,this,[=](const QString url){
-            QDesktopServices::openUrl(QUrl(url));
-        });
-        bodySupport->setContextMenuPolicy(Qt::NoContextMenu);
-        bodySupport->setFixedHeight(24);
-        bodySupport->setStyleSheet("font-size:14px;");
+
+    connect(bodySupport,&QLabel::linkActivated,this,[=](const QString url){
+        QDesktopServices::openUrl(QUrl(url));
+    });
+    bodySupport->setContextMenuPolicy(Qt::NoContextMenu);
+    bodySupport->setFixedHeight(24);
+    bodySupport->setStyleSheet("font-size:14px;");
     QVBoxLayout *vlyt = new QVBoxLayout;
     vlyt->setMargin(0);
     vlyt->setSpacing(0);
@@ -371,6 +370,10 @@ void menuModule::setThemeDark()
     }
     emit menuModuleSetThemeStyle("dark-theme");
     // menuButton->setProperty("setIconHighlightEffectDefaultColor", QColor(Qt::white));
+    bodySupport->setText(tr("Service & Support: ") +
+                         "<a href=\"mailto://support@kylinos.cn\""
+                         "style=\"color:rgba(225,225,225,1)\">"
+                         "support@kylinos.cn</a>");
 }
 
 void menuModule::setThemeLight()
@@ -384,5 +387,9 @@ void menuModule::setThemeLight()
         // aboutWindow->setStyleSheet("background-color:rgba(255,255,255,1);");
     }
     emit menuModuleSetThemeStyle("light-theme");
+    bodySupport->setText(tr("Service & Support: ") +
+                         "<a href=\"mailto://support@kylinos.cn\""
+                         "style=\"color:rgba(0,0,0,1)\">"
+                         "support@kylinos.cn</a>");
 
 }

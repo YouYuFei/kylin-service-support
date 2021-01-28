@@ -69,6 +69,11 @@ private:
     QMenu *themeMenu = nullptr;
     QSize iconSize;
     QString appPath = ""; //拉起帮助菜单时使用appName字段
+
+    QLabel* bodySupport;
+    QLabel* titleText;
+    QLabel* bodyAppName;
+    QLabel* bodyAppVersion;
     
     QGSettings *m_pGsettingThemeData = nullptr;
     QGSettings *m_pGsettingThemeStatus = nullptr;
