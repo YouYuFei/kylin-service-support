@@ -20,6 +20,7 @@
 
 #include "widget_parameter_class.h"
 #include "base_style.h"
+#include "simple_style.h"
 #include "daemonipcdbus.h"
 
 //gsetting获取主题样式关键字
@@ -54,7 +55,7 @@ public:
     void checkSingle();
 
     BaseStyle      *basicWindow   = nullptr;
-
+    SimpleStyle    *simpleWindow  = nullptr;
 private:
     //WidgetParameterClass basicParameter;
 

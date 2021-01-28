@@ -44,7 +44,16 @@ MainWindow::MainWindow()
     }
     else
     {
+        simpleWindow = new SimpleStyle(basicParameter , windowTitle);
 
+        // 添加窗管协议
+        MotifWmHints hints;
+        hints.flags = MWM_HINTS_FUNCTIONS|MWM_HINTS_DECORATIONS;
+        hints.functions = MWM_FUNC_ALL;
+        hints.decorations = MWM_DECOR_BORDER;
+        XAtomHelper::getInstance()->setWindowMotifHint(simpleWindow->winId(), hints);
+
+        simpleWindow->show();
     }
 
     initGsetting();
@@ -148,7 +157,7 @@ void MainWindow::setThemeStyle()
     }
     else
     {
-
+        simpleWindow->pageChangeForTheme(nowThemeStyle);
     }
 }
 /************************************************
