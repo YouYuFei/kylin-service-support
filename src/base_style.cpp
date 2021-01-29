@@ -473,7 +473,7 @@ void BaseStyle::m_OnlinePageButtonSlots()
     m_pOnlineButton->setChecked(true);
     m_pstackWidget->setCurrentIndex(0);
     currentPageIndex = 0;
-    QDesktopServices::openUrl(QUrl("https://webchat-bj.clink.cn/chat.html?accessId=8f4d87f6-6f18-4c4a-b6ad-2376d128e346&language=zh_CN"));
+    QDesktopServices::openUrl(QUrl("https://webchat-bj.clink.cn/chat.html?accessId=8b626ce9-8d56-4b68-b6f9-de357a088258&language=zh_CN"));
 }
 /************************************************
 * 函数名称：m_ContactPageButtonSlots
