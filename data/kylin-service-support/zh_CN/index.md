@@ -50,7 +50,7 @@
 
 ### 功能介绍
     您可以点击左侧引导栏中的按钮选择切换不同页面。
-![图 6 引导栏-big](image/navigation.png)
+![图 6 引导栏](image/navigation.png)
 
 <br>
 

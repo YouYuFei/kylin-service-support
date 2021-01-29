@@ -55,7 +55,7 @@ The online customer service page is shown in the figure below.
 
 ### Feature Introduction
 You can click the button in the navigation bar on the left to switch to different pages.
-![Fig 6 Navigation-big](image/navigation.png)
+![Fig 6 Navigation](image/navigation.png)
 
 <br>
 

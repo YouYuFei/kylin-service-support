@@ -1,3 +1,9 @@
+kylin-service-support (1.0.16kord~rc17) v101; urgency=medium
+
+    *  优化用户手册
+
+ -- liuyuhui <liuyuhui@kylinos.cn>  Thu, 28 Jan 2021 14:57:40 +0800
+
 kylin-service-support (1.0.16kord~rc16) v101; urgency=medium
 
     *  去掉部分优麒麟相关代码
