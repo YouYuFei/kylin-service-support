@@ -109,7 +109,7 @@ void responseCommand(QApplication &a) //响应外部dbus命令
 }
 int main(int argc, char *argv[])
 {
-    qInstallMessageHandler(messageOutput);
+    //qInstallMessageHandler(messageOutput);
     //高清屏幕自适应
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);

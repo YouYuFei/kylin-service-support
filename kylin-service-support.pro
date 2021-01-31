@@ -50,6 +50,7 @@ SOURCES += \
     src/message_page.cpp \
     src/my_qlineedit.cpp \
     src/myclick_widget.cpp \
+    src/smtpMailClient.cpp \
     src/submitFail.cpp \
     src/submitSuccess.cpp \
     src/systeminfo_button.cpp \
@@ -72,6 +73,7 @@ HEADERS += \
     src/message_page.h \
     src/my_qlineedit.h \
     src/myclick_widget.h \
+    src/smtpMailClient.h \
     src/submitFail.h \
     src/submitSuccess.h \
     src/systeminfo_button.h \

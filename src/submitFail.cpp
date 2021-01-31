@@ -11,6 +11,7 @@
 #include "browse_button.h"
 #include "xatom-helper.h"
 #include <QPainterPath>
+#include "smtpMailClient.h"
 
 extern void qt_blurImage(QImage &blurImage, qreal radius, bool quality, int transposed);
 
@@ -108,20 +109,20 @@ void submit_fail::pageChangeForTheme(const QString& str)
 void submit_fail::show_faillinfo(int error_code)
 {
     switch (error_code) {
-    case 1:
-        qWarning() << (tr("远程服务器拒绝连接"));
+    case int(SmtpErrType::SmtpConnectOverTime):
+        qWarning() << (tr("与邮箱服务器链接超时"));
         break;
-    case 2:
-        qWarning() << (tr("服务器关闭"));
+    case int(SmtpErrType::SmtpFeedBackOverTime):
+        qWarning() << (tr("smtp返回信息超时"));
         break;
-    case 3:
-        qWarning() << (tr("找不到远程主机名（无效主机名）"));
+    case int(SmtpErrType::MailServerNotReady):
+        qWarning() << (tr("mail服务器未准备好"));
         break;
-    case 4:
-        qWarning() << (tr("与远程服务器的连接超时"));
+    case int(SmtpErrType::MailLoginFailed):
+        qWarning() << (tr("邮箱登录失败"));
         break;
-    case 99:
-        qWarning() << (tr("网络未连接"));
+    case int(SmtpErrType::SendMailConfigFeedBackOverTime):
+        qWarning() << (tr("邮箱用户设置失败"));
         break;
     case 403:
         qWarning() << (tr("服务器不可用"));

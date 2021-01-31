@@ -12,6 +12,7 @@
 #include <QtNetwork/QNetworkRequest>
 #include <QHttpPart>
 #include <QSettings>
+#include "smtpMailClient.h"
 /************************************************
 * 函数名称：MessagePage
 * 功能描述：构造函数
@@ -1245,75 +1246,119 @@ void MessagePage::on_commitButton_clicked()
 
     set_all_disable_in_submit();
 
-    //超时
-    //timeout
-    QTimer timer_http;
-    timer_http.setInterval(30000);  // 设置超时时间 30 秒
-    timer_http.setSingleShot(true);  // 单次触发
-
-    QJsonObject feedback_info_json;
-    qDebug() << textStyleOfAsk;
-    feedback_info_json.insert("subject",textStyleOfAsk);
-
-    feedback_info_json.insert("description",detailText);
-
-    feedback_info_json.insert("email",mailText);
-
-    if (get_systeminfoflag) {
-        feedback_info_json.insert("version",send_os_info);
-        feedback_info_json.insert("desktop",send_dekstop_info);
-        feedback_info_json.insert("language",send_encoding_info);
-    } else {
-        feedback_info_json.insert("version","");
-        feedback_info_json.insert("desktop","");
-        feedback_info_json.insert("language","");
+    mailContent messageStruct;
+    messageStruct.askTitle = textStyleOfAsk;
+    messageStruct.customerEMail = mailText;
+    messageStruct.questionDescription = detailText;
+    if (get_systeminfoflag)
+    {
+        messageStruct.OSVersion = send_os_info;
+        messageStruct.desktopVersion = send_dekstop_info;
+        messageStruct.systemLanguage = send_encoding_info;
     }
-    QString url_filepath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) +"/.config/ukui/url.conf";
-    qDebug () << "url_filepath-->" << url_filepath;
-    //从配置文件中读服务器地址
-    //Read the server address from the configuration file
-    QFile  file_url(url_filepath);
-    QFileInfo url_fileinfo(url_filepath);
-    if (!url_fileinfo.isFile()) {
-        file_url.open(QIODevice::ReadWrite | QIODevice::Text);
-        file_url.write("http://feedback.ubuntukylin.com/v1/issue/");
-        urlstring.append("http://feedback.ubuntukylin.com/v1/issue/");
-    } else {
-        file_url.open(QIODevice::ReadWrite | QIODevice::Text);
-        urlstring = file_url.readLine();
+    else
+    {
+        messageStruct.OSVersion = "";
+        messageStruct.desktopVersion = "";
+        messageStruct.systemLanguage = "";
     }
-    file_url.close();
-    set_request_header();
-    request.setUrl(QUrl(urlstring));
-    qDebug()<<"url:"<<urlstring;
-    QJsonDocument json_doc;
-    json_doc.setObject(feedback_info_json);
-    QByteArray post_feedback_info_array = json_doc.toJson(QJsonDocument::Compact);
-    qDebug()<<post_feedback_info_array;
-    QNetworkReply *pReply = accessManager->post(request,post_feedback_info_array);
 
-    QEventLoop loop;
-    connect(&timer_http, &QTimer::timeout, &loop, &QEventLoop::quit);
-    connect(pReply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
-    timer_http.start();
-    loop.exec();
+    SmtpMailClient e_mail(this);
+    int connectRes = e_mail.connectToHost();
+    if(int(SmtpErrType::SmtpOpSucc) != connectRes)
+    {
+        fail_dialog->show_faillinfo(connectRes); //timeout
+        fail_dialog->setModal(true);
 
-    if (timer_http.isActive()) {
-//        if (window_is_close_flag == false) {
-            timer_http.stop();
-            finishedSlot(pReply);
-//        }
-    } else {
-//        if (window_is_close_flag ==false) {
-            timeout_http_flag=true;
-            finishedSlot(pReply);
-            timer_http.stop();
-            disconnect(pReply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
-            pReply->abort();
-            pReply->deleteLater();
-            qDebug() << "Timeout";
-//        }
+        fail_dialog->show();
+        QTimer::singleShot(3000, [=](){
+            fail_dialog->hide();
+            set_all_enable_after_submit();
+        });
     }
+
+    int sendRes = e_mail.sendMail(messageStruct);
+    if(int(SmtpErrType::SmtpOpSucc) != sendRes)
+    {
+        fail_dialog->show_faillinfo(sendRes); //timeout
+        fail_dialog->setModal(true);
+
+        fail_dialog->show();
+        QTimer::singleShot(3000, [=](){
+            fail_dialog->hide();
+            set_all_enable_after_submit();
+        });
+    }
+
+//    //超时
+//    //timeout
+//    QTimer timer_http;
+//    timer_http.setInterval(30000);  // 设置超时时间 30 秒
+//    timer_http.setSingleShot(true);  // 单次触发
+
+//    QJsonObject feedback_info_json;
+//    qDebug() << textStyleOfAsk;
+//    feedback_info_json.insert("subject",textStyleOfAsk);
+
+//    feedback_info_json.insert("description",detailText);
+
+//    feedback_info_json.insert("email",mailText);
+
+//    if (get_systeminfoflag) {
+//        feedback_info_json.insert("version",send_os_info);
+//        feedback_info_json.insert("desktop",send_dekstop_info);
+//        feedback_info_json.insert("language",send_encoding_info);
+//    } else {
+//        feedback_info_json.insert("version","");
+//        feedback_info_json.insert("desktop","");
+//        feedback_info_json.insert("language","");
+//    }
+//    QString url_filepath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) +"/.config/ukui/url.conf";
+//    qDebug () << "url_filepath-->" << url_filepath;
+//    //从配置文件中读服务器地址
+//    //Read the server address from the configuration file
+//    QFile  file_url(url_filepath);
+//    QFileInfo url_fileinfo(url_filepath);
+//    if (!url_fileinfo.isFile()) {
+//        file_url.open(QIODevice::ReadWrite | QIODevice::Text);
+//        file_url.write("http://feedback.ubuntukylin.com/v1/issue/");
+//        urlstring.append("http://feedback.ubuntukylin.com/v1/issue/");
+//    } else {
+//        file_url.open(QIODevice::ReadWrite | QIODevice::Text);
+//        urlstring = file_url.readLine();
+//    }
+//    file_url.close();
+//    set_request_header();
+//    request.setUrl(QUrl(urlstring));
+//    qDebug()<<"url:"<<urlstring;
+//    QJsonDocument json_doc;
+//    json_doc.setObject(feedback_info_json);
+//    QByteArray post_feedback_info_array = json_doc.toJson(QJsonDocument::Compact);
+//    qDebug()<<post_feedback_info_array;
+//    QNetworkReply *pReply = accessManager->post(request,post_feedback_info_array);
+
+//    QEventLoop loop;
+//    connect(&timer_http, &QTimer::timeout, &loop, &QEventLoop::quit);
+//    connect(pReply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+//    timer_http.start();
+//    loop.exec();
+
+//    if (timer_http.isActive()) {
+////        if (window_is_close_flag == false) {
+//            timer_http.stop();
+//            finishedSlot(pReply);
+////        }
+//    } else {
+////        if (window_is_close_flag ==false) {
+//            timeout_http_flag=true;
+//            finishedSlot(pReply);
+//            timer_http.stop();
+//            disconnect(pReply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+//            pReply->abort();
+//            pReply->deleteLater();
+//            qDebug() << "Timeout";
+////        }
+//    }
 }
 /************************************************
 * 函数名称：finishedSlot
